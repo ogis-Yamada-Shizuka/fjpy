@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  metercount: 1
+  testervalue: 9.99
+  point: 1
+
+two:
+  metercount: 1
+  testervalue: 9.99
+  point: 1

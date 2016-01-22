@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weather_id: 
+  exterior: 1
+  tone: 1
+  stain: 1
+
+two:
+  weather_id: 
+  exterior: 1
+  tone: 1
+  stain: 1

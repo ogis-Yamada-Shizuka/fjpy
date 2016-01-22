@@ -1,0 +1,41 @@
+<%= form_for(@inspection) do |f| %>
+  <% if @inspection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
+
+      <ul>
+      <% @inspection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :targetyearmonth %><br>
+    <%= f.text_field :targetyearmonth %>
+  </div>
+  <div class="field">
+    <%= f.label :equipment_id %><br>
+    <%= f.collection_select( :equipment_id, Equipment.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :status_id %><br>
+    <%= f.collection_select( :status_id, Status.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :worker_id %><br>
+    <%= f.collection_select( :worker_id, Worker.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :result_id %><br>
+    <%= f.collection_select( :result_id, Result.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :processingdate %><br>
+    <%= f.date_select :processingdate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

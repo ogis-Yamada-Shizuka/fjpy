@@ -1,0 +1,16 @@
+  <div class="field">
+    <%= f.label :weather_id %><br>
+    <%= f.collection_select( :weather_id, Weather.all, :id, :name )%>
+  </div>
+  <div class="field">
+    <%= f.label :exterior_id %><br>
+    <%= f.collection_select( :exterior_id, Checkresult.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :tone_id %><br>
+    <%= f.collection_select( :tone_id, Checkresult.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :stain_id %><br>
+    <%= f.collection_select( :stain_id, Checkresult.all, :id, :name ) %>
+  </div>

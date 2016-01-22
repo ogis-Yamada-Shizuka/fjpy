@@ -1,0 +1,33 @@
+<%= form_for(@check) do |f| %>
+  <% if @check.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@check.errors.count, "error") %> prohibited this check from being saved:</h2>
+
+      <ul>
+      <% @check.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weather_id %><br>
+    <%= f.collection_select( :weather_id, Weather.all, :id, :name )%>
+  </div>
+  <div class="field">
+    <%= f.label :exterior_id %><br>
+    <%= f.collection_select( :exterior_id, Checkresult.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :tone_id %><br>
+    <%= f.collection_select( :tone_id, Checkresult.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :stain_id %><br>
+    <%= f.collection_select( :stain_id, Checkresult.all, :id, :name ) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

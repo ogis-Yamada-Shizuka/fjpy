@@ -1,0 +1,43 @@
+<h1><%= t('views.topic.show') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.title') %>:</strong>
+  <%= @topic.title %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.name') %>:</strong>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.description') %>:</strong>
+  <%= simple_format(@topic.description) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.flag_id') %>:</strong>
+  <%= @topic.flag.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.created_at') %>:</strong>
+  <%= @topic.created_at %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.topic.updated_at') %>:</strong>
+  <%= @topic.updated_at %>
+</p>
+
+<hr>
+<h2><%= t('views.comment.index') %></h2>
+<%= render 'comments/index', comments: @comments %>
+<hr>
+<h2><%= t('views.comment.new') %></h2>
+<%= render 'comments/form_topic', comment: @comment %>
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

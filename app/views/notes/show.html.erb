@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= simple_format(@note.memo) %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag(@note.picture_url, width: 600) if @note.picture.present? %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

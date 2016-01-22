@@ -1,0 +1,41 @@
+<% breadcrumb :place_index %>
+<h1><%= t('views.place.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <td><%= place.address %></td>
+        <td><%= link_to 'Show', place %></td>
+        <td><%= link_to 'Edit', edit_place_path(place) %></td>
+        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Place', new_place_path %>
+
+<br><hr><br>
+
+<p>
+  <%= link_to t('views.link_to.csv_download'), places_path(format: :csv) %>
+</p>
+
+<p>
+  <%= form_tag import_places_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag t('views.link_to.csv_upload') %>
+  <% end %>
+</p>

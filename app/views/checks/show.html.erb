@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Weather:</strong>
+  <%= @check.weather.name %>
+</p>
+
+<p>
+  <strong>Exterior:</strong>
+  <%= @check.exterior.name %>
+</p>
+
+<p>
+  <strong>Tone:</strong>
+  <%= @check.tone.name %>
+</p>
+
+<p>
+  <strong>Stain:</strong>
+  <%= @check.stain.name %>
+</p>
+
+<%= link_to 'Edit', edit_check_path(@check) %> |
+<%= link_to 'Back', checks_path %>

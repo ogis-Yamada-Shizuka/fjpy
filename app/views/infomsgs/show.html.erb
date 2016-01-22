@@ -1,0 +1,46 @@
+<h1><%= t('views.infomsg.show') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+  <% if @infomsg.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@infomsg.errors.count, "error") %> prohibited this infomsg from being saved:</h2>
+
+      <ul>
+      <% @infomsg.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<p>
+  <strong><%= t('activerecord.attributes.infomsg.effective_date') %>:</strong>
+  <%= @infomsg.effective_date %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.infomsg.title') %>:</strong>
+  <%= @infomsg.title %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.infomsg.description') %>:</strong>
+  <%= simple_format(@infomsg.description) %>
+</p>
+
+<%= link_to 'Back', infomsgs_path %>
+
+<hr>
+
+
+<%= form_tag action='delete_by_admin' do %>
+  <%= hidden_field :id, :trg, :value => @infomsg.id %>
+
+  <%= render 'passwdfld' %>
+  <div>
+    <%= submit_tag('削除') %>
+  </div>
+
+<% end %>
