@@ -1,0 +1,35 @@
+<h1><%= t('views.topic.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.topic.title') %></th>
+      <th><%= t('activerecord.attributes.topic.name') %></th>
+      <th><%= t('activerecord.attributes.topic.description') %></th>
+      <th><%= t('activerecord.attributes.topic.flag_id') %></th>
+      <th><%= t('activerecord.attributes.topic.created_at') %></th>
+      <th><%= t('activerecord.attributes.topic.updated_at') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.title %></td>
+        <td><%= topic.name %></td>
+        <td><%= topic.description %></td>
+        <td><%= topic.flag.name %></td>
+        <td><%= topic.created_at %></td>
+        <td><%= topic.updated_at %></td>
+        <td><%= link_to 'Show', topic %></td>
+        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Topic', new_topic_path %>

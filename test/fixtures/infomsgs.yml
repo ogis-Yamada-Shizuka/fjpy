@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  effective_date: 2015-03-16
+  title: MyString
+  description: MyText
+
+two:
+  effective_date: 2015-03-16
+  title: MyString
+  description: MyText

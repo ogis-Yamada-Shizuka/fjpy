@@ -1,0 +1,11 @@
+<h3><%= t('views.note.show') %></h3>
+
+<p>
+  <strong><%= t('activerecord.attributes.note.memo') %>:</strong>
+  <%= simple_format(note.memo) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.note.picture') %>:</strong>
+  <%= image_tag(note.picture_url, width: 600) if note.picture.present? %>
+</p>

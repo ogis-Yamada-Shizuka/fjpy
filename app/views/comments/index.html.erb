@@ -1,0 +1,7 @@
+<h1><%= t('views.comment.index') %></h1>
+
+<%= render 'index', comments: @comments %>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

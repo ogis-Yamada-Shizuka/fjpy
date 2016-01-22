@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.kiroku.worker_id') %></th>
+      <th><%= t('activerecord.attributes.kiroku.latitude') %></th>
+      <th><%= t('activerecord.attributes.kiroku.longitude') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% kirokus.each do |kiroku| %>
+      <tr>
+        <td><%= kiroku.worker.name %></td>
+        <td><%= kiroku.latitude %></td>
+        <td><%= kiroku.longitude %></td>
+        <td><%= link_to t('views.link_to.show'), kiroku %></td>
+        <td><%= link_to t('views.link_to.edit'), edit_kiroku_path(kiroku) %></td>
+        <td><%= link_to t('views.link_to.destroy'), kiroku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

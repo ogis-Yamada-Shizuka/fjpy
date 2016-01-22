@@ -1,0 +1,28 @@
+<h1><%= t('views.infomsg.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.infomsg.effective_date') %></th>
+      <th><%= t('activerecord.attributes.infomsg.title') %></th>
+      <th><%= t('activerecord.attributes.infomsg.description') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @infomsgs.each do |infomsg| %>
+      <tr>
+        <td><%= infomsg.effective_date %></td>
+        <td><%= infomsg.title %></td>
+        <td><%= infomsg.description %></td>
+        <td><%= link_to 'Show', infomsg %></td>
+        <td><%= link_to 'Edit', edit_infomsg_path(infomsg) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('views.infomsg.new'), new_infomsg_path %>

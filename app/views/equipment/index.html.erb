@@ -1,0 +1,47 @@
+<% breadcrumb :equipment_index %>
+<h1><%= t('views.equipment.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.equipment.name') %></th>
+      <th><%= t('activerecord.attributes.equipment.type_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.place_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.division_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.last_update') %></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @equipment.each do |equipment| %>
+      <tr>
+        <td><%= equipment.name %></td>
+        <td><%= equipment.type.name %></td>
+        <td><%= equipment.place.name %></td>
+        <td><%= equipment.division.name %></td>
+        <td><%= equipment.updated_at %></td>
+        <td><%= link_to t('views.link_to.show'), equipment %></td>
+        <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
+        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to link_to t('views.link_to.new'), new_equipment_path %>
+
+<br><hr><br>
+
+<p>
+  <%= link_to t('views.link_to.csv_download'), equipment_index_path(format: :csv) %>
+</p>
+
+<p>
+  <%= form_tag import_equipment_index_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag t('views.link_to.csv_upload') %>
+  <% end %>
+</p>

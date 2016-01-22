@@ -1,0 +1,33 @@
+<% breadcrumb :inspection_do_inspection %>
+<h1><%= t('views.inspection.do_inspecrion') %></h1>
+
+<%= form_for(@kiroku) do |f| %>
+  <% if @kiroku.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kiroku.errors.count, "error") %> prohibited this kiroku from being saved:</h2>
+
+      <ul>
+      <% @kiroku.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-3 col-sm-3 col-xs-4">
+    <%= render 'show', inspection: @inspection %>
+  </div>
+
+    <%= render 'kirokus/form_do_inspection', f: f %>
+
+
+  <div class="actions">
+    <%= f.submit "点検記録登録" %>
+  </div>
+
+<% end %>
+
+<hr>
+<%= link_to 'Edit', edit_inspection_path(@inspection) %> |
+<%= link_to 'Back', inspections_path %>

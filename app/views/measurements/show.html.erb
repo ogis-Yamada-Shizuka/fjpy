@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Metercount:</strong>
+  <%= @measurement.metercount %>
+</p>
+
+<p>
+  <strong>Testervalue:</strong>
+  <%= @measurement.testervalue %>
+</p>
+
+<p>
+  <strong>Point:</strong>
+  <%= @measurement.point %>
+</p>
+
+<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
+<%= link_to 'Back', measurements_path %>

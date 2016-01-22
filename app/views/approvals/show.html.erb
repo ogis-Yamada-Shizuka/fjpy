@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inspection:</strong>
+  <%= @approval.inspection.id %>
+</p>
+
+<p>
+  <strong>Signature:</strong>
+  <%= image_tag signature_approval_path(@approval) %>
+</p>
+
+<%= link_to 'Edit', edit_approval_path(@approval) %> |
+<%= link_to 'Back', approvals_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  targetyearmonth: MyString
+  references: 
+  references: 
+  references: 
+  references: 
+  processingdate: 2015-02-25
+
+two:
+  targetyearmonth: MyString
+  references: 
+  references: 
+  references: 
+  references: 
+  processingdate: 2015-02-25

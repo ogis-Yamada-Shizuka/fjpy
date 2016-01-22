@@ -1,0 +1,27 @@
+<% breadcrumb :equipment_show %>
+<h1><%= t('views.equipment.show') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.name') %>:</strong>
+  <%= @equipment.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.type_id') %>:</strong>
+  <%= @equipment.type.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.place_id') %>:</strong>
+  <%= @equipment.place.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.division_id') %>:</strong>
+  <%= @equipment.division.name %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_path(@equipment) %> |
+<%= link_to 'Back', equipment_index_path %>
