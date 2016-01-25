@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   create_table "checks", force: true do |t|
     t.integer  "weather_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "kiroku_id"
     t.integer  "exterior_id"
     t.integer  "tone_id"
     t.integer  "stain_id"
+    t.integer  "kiroku_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "checks", ["weather_id"], name: "index_checks_on_weather_id"
@@ -116,9 +116,9 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.integer  "metercount"
     t.decimal  "testervalue", precision: 5, scale: 2
     t.integer  "point"
+    t.integer  "kiroku_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "kiroku_id"
   end
 
   create_table "notes", force: true do |t|
