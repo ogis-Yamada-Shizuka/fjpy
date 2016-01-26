@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126074226) do
+ActiveRecord::Schema.define(version: 20160126084149) do
 
   create_table "approvals", force: true do |t|
     t.integer  "inspection_schedule_id"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20160126074226) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "inspection_requests", force: true do |t|
+    t.integer  "service_id"
+    t.integer  "inspect_schedule_id"
+    t.date     "schedule"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inspection_requests", ["inspect_schedule_id"], name: "index_inspection_requests_on_inspect_schedule_id"
+  add_index "inspection_requests", ["service_id"], name: "index_inspection_requests_on_service_id"
 
   create_table "inspection_results", force: true do |t|
     t.integer  "inspection_schedule_id"

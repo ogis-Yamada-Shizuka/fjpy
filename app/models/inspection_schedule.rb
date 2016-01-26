@@ -5,6 +5,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :result
   has_many :inspection_result
   has_one :approval
+  has_many :inspection_requests
 
   include Common
   after_commit :dump
