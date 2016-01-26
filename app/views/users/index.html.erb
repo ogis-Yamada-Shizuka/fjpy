@@ -4,8 +4,10 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Division</th>
+      <th>ユーザID</th>
+      <th>名前</th>
+      <th>所属</th>
+      <th>email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,11 +15,13 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.userid %></td>
         <td><%= user.name %></td>
         <td><%= user.division.name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to '詳細', user %></td>
+        <td><%= link_to '編集', edit_user_path(user) %></td>
+        <td><%= link_to '削除', user, method: :delete, data: { confirm: '削除していいですか?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,7 +29,7 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to '新規作成', new_user_path %>
 
 <br><hr><br>
 

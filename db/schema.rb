@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126064346) do
+ActiveRecord::Schema.define(version: 20160126074226) do
 
   create_table "approvals", force: true do |t|
     t.integer  "inspection_id"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20160126064346) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "userid"
   end
 
   add_index "users", ["division_id"], name: "index_users_on_division_id"
