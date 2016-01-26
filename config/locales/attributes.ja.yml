@@ -30,6 +30,16 @@ ja:
         picture: 写真
       user:
         name: 名前
+        userid: ログインＩＤ
+        code: 社員コード
+        name: 氏名
+        password: パスワード
+        email: Ｅメール
+        remember_me: ログイン状態を維持する。
+        dept: 所属部門
+        password_confirmation: パスワード（確認）
+        current_password: 現在のパスワード
+        company: 会社
         company_id: 所属
       equipment:
         name: 名称
