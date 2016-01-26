@@ -1,0 +1,17 @@
+<%= form_for(@inspection_period) do |f| %>
+  <% if @inspection_period.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection_period.errors.count, "error") %> prohibited this inspection_period from being saved:</h2>
+
+      <ul>
+      <% @inspection_period.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
