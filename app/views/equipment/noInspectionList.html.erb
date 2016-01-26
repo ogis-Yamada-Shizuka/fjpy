@@ -8,7 +8,7 @@
       <tr>
         <th>#</th>
         <th><%= t('activerecord.attributes.equipment.name') %></th>
-        <th><%= t('activerecord.attributes.equipment.type_id') %></th>
+        <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
         <th><%= t('activerecord.attributes.equipment.place_id') %></th>
         <th><%= t('activerecord.attributes.equipment.division_id') %></th>
       </tr>
@@ -19,7 +19,7 @@
         <tr>
           <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}" %></td>
           <td><%= equipment.name %></td>
-          <td><%= equipment.type.name %></td>
+          <td><%= equipment.system_model.name %></td>
           <td><%= equipment.place.name %></td>
           <td><%= equipment.division.name %></td>
         </tr>
@@ -56,6 +56,6 @@
     <%= submit_tag('予定の登録') %>
     </div>
   </div>
-<% end %> 
+<% end %>
 
 <% end %>

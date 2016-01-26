@@ -39,17 +39,17 @@ Rails.application.routes.draw do
   resources :statuses
 
   resources :equipment do
-    collection { post :import }  # for CSV Upload 
+    collection { post :import }  # for CSV Upload
   end
 
   resources :places do
-    collection { post :import }  # for CSV Upload 
+    collection { post :import }  # for CSV Upload
   end
 
-  resources :types
+  resources :system_models
 
   resources :users do
-    collection { post :import }  # for CSV Upload 
+    collection { post :import }  # for CSV Upload
   end
 
   resources :divisions

@@ -1,10 +1,10 @@
-<%= form_for(@type) do |f| %>
-  <% if @type.errors.any? %>
+<%= form_for(@system_model) do |f| %>
+  <% if @system_model.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@type.errors.count, "error") %> prohibited this type from being saved:</h2>
+      <h2><%= pluralize(@system_model.errors.count, "error") %> prohibited this system_model from being saved:</h2>
 
       <ul>
-      <% @type.errors.full_messages.each do |message| %>
+      <% @system_model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

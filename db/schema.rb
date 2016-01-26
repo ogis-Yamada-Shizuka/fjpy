@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   create_table "equipment", force: true do |t|
     t.string   "name"
-    t.integer  "type_id"
+    t.integer  "system_model_id"
     t.integer  "place_id"
     t.integer  "division_id"
     t.datetime "created_at"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "equipment", ["division_id"], name: "index_equipment_on_division_id"
   add_index "equipment", ["place_id"], name: "index_equipment_on_place_id"
-  add_index "equipment", ["type_id"], name: "index_equipment_on_type_id"
+  add_index "equipment", ["system_model_id"], name: "index_equipment_on_system_model_id"
 
   create_table "flags", force: true do |t|
     t.string   "name"
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "topics", ["flag_id"], name: "index_topics_on_flag_id"
 
-  create_table "types", force: true do |t|
+  create_table "system_models", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

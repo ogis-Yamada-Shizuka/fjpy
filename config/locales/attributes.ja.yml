@@ -33,7 +33,7 @@ ja:
         division_id: 所属
       equipment:
         name: 名称
-        type_id: 種類
+        system_model_id: 型式
         place_id: 設置場所
         division_id: 管轄
         last_update: 最終更新日時
@@ -50,7 +50,7 @@ ja:
         updated_at: 最終更新日
       comment:
         name: 投稿者
-        description: 詳細    
+        description: 詳細
         topic_id: トピック
         created_at: 登録日
         updated_at: 最終更新日

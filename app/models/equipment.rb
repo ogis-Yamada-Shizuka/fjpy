@@ -1,5 +1,5 @@
 class Equipment < ActiveRecord::Base
-  belongs_to :type
+  belongs_to :system_model
   belongs_to :place
   belongs_to :division
 

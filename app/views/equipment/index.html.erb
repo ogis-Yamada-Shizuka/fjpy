@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th><%= t('activerecord.attributes.equipment.name') %></th>
-      <th><%= t('activerecord.attributes.equipment.type_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.equipment.division_id') %></th>
       <th><%= t('activerecord.attributes.equipment.last_update') %></th>
@@ -17,7 +17,7 @@
     <% @equipment.each do |equipment| %>
       <tr>
         <td><%= equipment.name %></td>
-        <td><%= equipment.type.name %></td>
+        <td><%= equipment.system_model.name %></td>
         <td><%= equipment.place.name %></td>
         <td><%= equipment.division.name %></td>
         <td><%= equipment.updated_at %></td>
