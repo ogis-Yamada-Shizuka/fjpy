@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20150414012918) do
 
   create_table "approvals", force: true do |t|
-    t.integer  "inspection_id"
+    t.integer  "inspection_schedule_id"
     t.binary   "signature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "approvals", ["inspection_id"], name: "index_approvals_on_inspection_id"
+  add_index "approvals", ["inspection_schedule_id"], name: "index_approvals_on_inspection_schedule_id"
 
   create_table "checkresults", force: true do |t|
     t.string   "name"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.integer  "exterior_id"
     t.integer  "tone_id"
     t.integer  "stain_id"
-    t.integer  "kiroku_id"
+    t.integer  "inspection_result_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,25 +50,26 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id"
 
-  create_table "divisions", force: true do |t|
+  create_table "companies", force: true do |t|
     t.string   "code"
     t.string   "name"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "equipment", force: true do |t|
     t.string   "name"
-    t.integer  "type_id"
+    t.integer  "system_model_id"
     t.integer  "place_id"
-    t.integer  "division_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "equipment", ["division_id"], name: "index_equipment_on_division_id"
+  add_index "equipment", ["company_id"], name: "index_equipment_on_company_id"
   add_index "equipment", ["place_id"], name: "index_equipment_on_place_id"
-  add_index "equipment", ["type_id"], name: "index_equipment_on_type_id"
+  add_index "equipment", ["system_model_id"], name: "index_equipment_on_system_model_id"
 
   create_table "flags", force: true do |t|
     t.string   "name"
@@ -84,7 +85,19 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
-  create_table "inspections", force: true do |t|
+  create_table "inspection_results", force: true do |t|
+    t.integer  "inspection_schedule_id"
+    t.integer  "user_id"
+    t.decimal  "latitude",               precision: 11, scale: 8
+    t.decimal  "longitude",              precision: 11, scale: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inspection_results", ["inspection_schedule_id"], name: "index_inspection_results_on_inspection_schedule_id"
+  add_index "inspection_results", ["user_id"], name: "index_inspection_results_on_user_id"
+
+  create_table "inspection_schedules", force: true do |t|
     t.string   "targetyearmonth"
     t.integer  "equipment_id"
     t.integer  "status_id"
@@ -95,41 +108,29 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
-  add_index "inspections", ["equipment_id"], name: "index_inspections_on_equipment_id"
-  add_index "inspections", ["result_id"], name: "index_inspections_on_result_id"
-  add_index "inspections", ["status_id"], name: "index_inspections_on_status_id"
-  add_index "inspections", ["user_id"], name: "index_inspections_on_user_id"
-
-  create_table "kirokus", force: true do |t|
-    t.integer  "inspection_id"
-    t.integer  "user_id"
-    t.decimal  "latitude",      precision: 11, scale: 8
-    t.decimal  "longitude",     precision: 11, scale: 8
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "kirokus", ["inspection_id"], name: "index_kirokus_on_inspection_id"
-  add_index "kirokus", ["user_id"], name: "index_kirokus_on_user_id"
+  add_index "inspection_schedules", ["equipment_id"], name: "index_inspection_schedules_on_equipment_id"
+  add_index "inspection_schedules", ["result_id"], name: "index_inspection_schedules_on_result_id"
+  add_index "inspection_schedules", ["status_id"], name: "index_inspection_schedules_on_status_id"
+  add_index "inspection_schedules", ["user_id"], name: "index_inspection_schedules_on_user_id"
 
   create_table "measurements", force: true do |t|
     t.integer  "metercount"
-    t.decimal  "testervalue", precision: 5, scale: 2
+    t.decimal  "testervalue",          precision: 5, scale: 2
     t.integer  "point"
-    t.integer  "kiroku_id"
+    t.integer  "inspection_result_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "notes", force: true do |t|
-    t.integer  "kiroku_id"
+    t.integer  "inspection_result_id"
     t.text     "memo"
     t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "notes", ["kiroku_id"], name: "index_notes_on_kiroku_id"
+  add_index "notes", ["inspection_result_id"], name: "index_notes_on_inspection_result_id"
 
   create_table "places", force: true do |t|
     t.string   "name"
@@ -150,6 +151,12 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
+  create_table "system_models", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topics", force: true do |t|
     t.string   "title"
     t.string   "name"
@@ -161,20 +168,14 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "topics", ["flag_id"], name: "index_topics_on_flag_id"
 
-  create_table "types", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "division_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["division_id"], name: "index_users_on_division_id"
+  add_index "users", ["company_id"], name: "index_users_on_company_id"
 
   create_table "weathers", force: true do |t|
     t.string   "name"

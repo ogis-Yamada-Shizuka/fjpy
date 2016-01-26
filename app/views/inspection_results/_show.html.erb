@@ -1,0 +1,28 @@
+<p>
+  <strong><%= t('activerecord.attributes.inspection_result.user_id') %>:</strong>
+  <%= inspection_result.user.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_result.latitude') %>:</strong>
+  <%= inspection_result.latitude %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_result.longitude') %>:</strong>
+  <%= inspection_result.longitude %>
+</p>
+
+<P>
+<div id="map" style='width: 100%;height:400px;'></div>
+</P>
+
+<script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {draggable: false,panControl: false,streetViewControl: false}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @marker.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+	  handler.getMap().setZoom(18);
+    });
+</script>

@@ -69,6 +69,6 @@ class ChecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_params
-      params.require(:check).permit(:kiroku_id, :weather_id, :exterior_id, :tone_id, :stain_id)
+      params.require(:check).permit(:inspection_result_id, :weather_id, :exterior_id, :tone_id, :stain_id)
     end
 end
