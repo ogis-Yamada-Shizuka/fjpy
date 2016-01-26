@@ -14,7 +14,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />here
+    <%= f.label :email %><br />
     <%= f.email_field :email %>
   </div>
 
@@ -32,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :division %><br>
-    <%= f.collection_select( :division_id, Division.all, :id, :name, :include_blank => true ) %>
+    <%= f.label :company %><br>
+    <%= f.collection_select( :company_id, Company.all, :id, :name, :include_blank => true ) %>
   </div>
 
   <div class="actions">

@@ -73,6 +73,6 @@ class ApprovalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def approval_params
-      params.require(:approval).permit(:inspection_id, :signature)
+      params.require(:approval).permit(:inspection_schedule_id, :signature)
     end
 end

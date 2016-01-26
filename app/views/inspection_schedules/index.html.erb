@@ -1,0 +1,81 @@
+<% breadcrumb :inspection_schedule_index %>
+<h1><%= t('views.inspection_schedule.index') %></h1>
+
+<div class="well col-md-4 col-sm-4 col-xs-4">
+
+  <%= search_form_for @search do |f| %>
+    <div>
+    <p>
+    <%= t('activerecord.attributes.inspection_schedule.user_id') %>
+    <%= f.collection_select(:user_id_eq, User.all, :id, :name, :include_blank => true ) %>
+    <%= t('activerecord.attributes.inspection_schedule.status_id') %>
+    <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
+    </div>
+    </p>
+    <div>
+      <%= f.submit t('helpers.submit.search') %>
+    </div>
+  <% end %>
+
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.inspection_schedule.targetyearmonth') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.user_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.result_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inspection_schedules.each do |inspection_schedule| %>
+      <tr>
+        <td><%= inspection_schedule.targetyearmonth %></td>
+        <td><%= inspection_schedule.equipment.name %></td>
+        <td><%= inspection_schedule.status.name %></td>
+        <td><%= inspection_schedule.user.name %></td>
+        <td><%= inspection_schedule.result.name %></td>
+        <td><%= inspection_schedule.processingdate %></td>
+        <td>
+          <% if inspection_schedule.can_inspection? %>
+            <%= link_to  do_inspection_path(inspection_schedule) do %>
+              <i class="fa fa-pencil fa-fw"></i>
+              <%= t('views.inspection_schedule.do_inspecrion') %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to inspection_schedule do %>
+            <i class="fa fa-newspaper-o fa-fw"></i>
+            <%= t('views.link_to.show') %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to_if(inspection_schedule.doing?, t('views.inspection_schedule.done_inspection'), done_inspection_path(inspection_schedule) ){} %>
+        </td>
+        <td>
+          <%= link_to edit_inspection_schedule_path(inspection_schedule) do %>
+            <i class="fa fa-refresh fa-fw"></i>
+            <%=  t('views.link_to.edit') %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to inspection_schedule, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash-o fa-fw"></i>
+            <%= t('views.link_to.destroy') %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate(@inspection_schedules) %>
+<br>
+
+<%= link_to t('views.link_to.new'), new_inspection_schedule_path %>

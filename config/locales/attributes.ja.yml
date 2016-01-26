@@ -1,36 +1,35 @@
 ja:
   activerecord:
     attributes:
-      inspection:
+      inspection_schedule:
         targetyearmonth: 点検予定年月
-        equipment_id: 対象設備
+        equipment_id: 対象装置システム
         status_id: 進捗状況
         user_id: 担当予定者
         result_id: 点検結果
         processingdate: 処理日
-      kiroku:
-        user_id: 記録者
+      inspection_result:
+        user_id: 点検実績記録者
         latitude: 緯度
         longitude: 経度
         updated_at: 最終更新日
       check:
-        kiroku_id: 記録番号
+        inspection_result_id: 点検実績番号
         weather_id: 天候
         exterior_id: 外観
         tone_id: 色
         stain_id: 汚れ
       measurement:
-        kiroku_id: 記録番号
+        inspection_result_id: 点検実績番号
         metercount: メーター値
         testervalue: テスター計測値
         point: 評価点
       note:
-        kiroku_id: 記録番号
+        inspection_result_id: 点検実績番号
         memo: 所感
         picture: 写真
       user:
         name: 名前
-        division_id: 所属
         userid: ログインＩＤ
         code: 社員コード
         name: 氏名
@@ -41,11 +40,12 @@ ja:
         password_confirmation: パスワード（確認）
         current_password: 現在のパスワード
         company: 会社
+        company_id: 所属
       equipment:
         name: 名称
-        type_id: 種類
+        system_model_id: 型式
         place_id: 設置場所
-        division_id: 管轄
+        company_id: 管轄
         last_update: 最終更新日時
       infomsg:
         effective_date: 発効日
@@ -60,7 +60,7 @@ ja:
         updated_at: 最終更新日
       comment:
         name: 投稿者
-        description: 詳細    
+        description: 詳細
         topic_id: トピック
         created_at: 登録日
         updated_at: 最終更新日
