@@ -74,3 +74,6 @@ gem 'kaminari'
 group :development, :test do
   gem 'railroady'
 end
+
+gem 'devise'
+

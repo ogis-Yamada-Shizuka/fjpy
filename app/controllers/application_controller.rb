@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include Common
+
+  before_filter :authenticate_user!
   before_action :set_currentparams
 
   def set_currentparams
