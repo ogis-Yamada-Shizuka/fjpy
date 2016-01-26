@@ -7,7 +7,7 @@
       <th><%= t('activerecord.attributes.equipment.name') %></th>
       <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
-      <th><%= t('activerecord.attributes.equipment.division_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.company_id') %></th>
       <th><%= t('activerecord.attributes.equipment.last_update') %></th>
       <th colspan="5"></th>
     </tr>
@@ -19,7 +19,7 @@
         <td><%= equipment.name %></td>
         <td><%= equipment.system_model.name %></td>
         <td><%= equipment.place.name %></td>
-        <td><%= equipment.division.name %></td>
+        <td><%= equipment.company.name %></td>
         <td><%= equipment.updated_at %></td>
         <td><%= link_to t('views.link_to.show'), equipment %></td>
         <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>

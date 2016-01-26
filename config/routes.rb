@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     collection { post :import }  # for CSV Upload
   end
 
-  resources :divisions
+  resources :companies
 
 # 装置システムの点検予定を作成する
   get 'noinspection_list' => 'equipment#noInspectionList'

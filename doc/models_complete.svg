@@ -104,10 +104,10 @@
 <text text-anchor="start" x="991.5" y="-612.3" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="991.5" y="-597.3" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>
-<!-- Division -->
-<g id="node8" class="node"><title>Division</title>
+<!-- Company -->
+<g id="node8" class="node"><title>Company</title>
 <path fill="none" stroke="black" d="M1144.5,-582C1144.5,-582 1251.5,-582 1251.5,-582 1257.5,-582 1263.5,-588 1263.5,-594 1263.5,-594 1263.5,-676 1263.5,-676 1263.5,-682 1257.5,-688 1251.5,-688 1251.5,-688 1144.5,-688 1144.5,-688 1138.5,-688 1132.5,-682 1132.5,-676 1132.5,-676 1132.5,-594 1132.5,-594 1132.5,-588 1138.5,-582 1144.5,-582"/>
-<text text-anchor="middle" x="1198" y="-672.8" font-family="Times,serif" font-size="14.00">Division</text>
+<text text-anchor="middle" x="1198" y="-672.8" font-family="Times,serif" font-size="14.00">Company</text>
 <polyline fill="none" stroke="black" points="1132.5,-665 1263.5,-665 "/>
 <text text-anchor="start" x="1140.5" y="-649.8" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="1140.5" y="-634.8" font-family="Times,serif" font-size="14.00">code :string</text>
@@ -122,7 +122,7 @@
 <polyline fill="none" stroke="black" points="1281.5,-665 1412.5,-665 "/>
 <text text-anchor="start" x="1289.5" y="-649.8" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="1289.5" y="-634.8" font-family="Times,serif" font-size="14.00">name :string</text>
-<text text-anchor="start" x="1289.5" y="-619.8" font-family="Times,serif" font-size="14.00">division_id :integer</text>
+<text text-anchor="start" x="1289.5" y="-619.8" font-family="Times,serif" font-size="14.00">company_id :integer</text>
 <text text-anchor="start" x="1289.5" y="-604.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="1289.5" y="-589.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>
@@ -202,7 +202,7 @@
 <text text-anchor="start" x="395.5" y="-649.8" font-family="Times,serif" font-size="14.00">name :string</text>
 <text text-anchor="start" x="395.5" y="-634.8" font-family="Times,serif" font-size="14.00">type_id :integer</text>
 <text text-anchor="start" x="395.5" y="-619.8" font-family="Times,serif" font-size="14.00">place_id :integer</text>
-<text text-anchor="start" x="395.5" y="-604.8" font-family="Times,serif" font-size="14.00">division_id :integer</text>
+<text text-anchor="start" x="395.5" y="-604.8" font-family="Times,serif" font-size="14.00">company_id :integer</text>
 <text text-anchor="start" x="395.5" y="-589.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="395.5" y="-574.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>

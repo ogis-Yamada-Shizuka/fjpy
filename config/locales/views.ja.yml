@@ -54,11 +54,14 @@ ja:
     note:
       note: その他記録
       show: その他記録の確認
-    division:
-      index: 部署の一覧
-      new: 部署の登録
-      edit: 部署の更新
-      show: 部署の確認
+    company:
+      index: 会社の一覧
+      new: 会社の登録
+      edit: 会社の更新
+      show: 会社の確認
+      head: YES本社
+      branch: YES拠点
+      service: サービス会社(拠点)
     user:
       index: 作業者の一覧
       new: 作業者の登録

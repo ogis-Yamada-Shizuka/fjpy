@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :division
+  belongs_to :company
 
 
   # CSV Upload

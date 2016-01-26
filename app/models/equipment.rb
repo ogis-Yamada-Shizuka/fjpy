@@ -1,7 +1,7 @@
 class Equipment < ActiveRecord::Base
   belongs_to :system_model
   belongs_to :place
-  belongs_to :division
+  belongs_to :company
 
   has_many :inspections
 

@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name
-      t.references :division, index: true
+      t.references :company, index: true
 
       t.timestamps
     end

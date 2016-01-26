@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id"
 
-  create_table "divisions", force: true do |t|
+  create_table "companies", force: true do |t|
     t.string   "code"
     t.string   "name"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,12 +62,12 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.string   "name"
     t.integer  "system_model_id"
     t.integer  "place_id"
-    t.integer  "division_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "equipment", ["division_id"], name: "index_equipment_on_division_id"
+  add_index "equipment", ["company_id"], name: "index_equipment_on_company_id"
   add_index "equipment", ["place_id"], name: "index_equipment_on_place_id"
   add_index "equipment", ["system_model_id"], name: "index_equipment_on_system_model_id"
 
@@ -150,6 +151,12 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
+  create_table "system_models", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topics", force: true do |t|
     t.string   "title"
     t.string   "name"
@@ -161,20 +168,14 @@ ActiveRecord::Schema.define(version: 20150414012918) do
 
   add_index "topics", ["flag_id"], name: "index_topics_on_flag_id"
 
-  create_table "system_models", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "division_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["division_id"], name: "index_users_on_division_id"
+  add_index "users", ["company_id"], name: "index_users_on_company_id"
 
   create_table "weathers", force: true do |t|
     t.string   "name"

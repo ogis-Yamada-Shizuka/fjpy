@@ -58,10 +58,10 @@
 <ellipse fill="none" stroke="black" cx="749" cy="-255" rx="40.4202" ry="18"/>
 <text text-anchor="middle" x="749" y="-251.3" font-family="Times,serif" font-size="14.00">Weather</text>
 </g>
-<!-- Division -->
-<g id="node8" class="node"><title>Division</title>
+<!-- Company -->
+<g id="node8" class="node"><title>Company</title>
 <ellipse fill="none" stroke="black" cx="849" cy="-255" rx="40.4202" ry="18"/>
-<text text-anchor="middle" x="849" y="-251.3" font-family="Times,serif" font-size="14.00">Division</text>
+<text text-anchor="middle" x="849" y="-251.3" font-family="Times,serif" font-size="14.00">Company</text>
 </g>
 <!-- User -->
 <g id="node9" class="node"><title>User</title>

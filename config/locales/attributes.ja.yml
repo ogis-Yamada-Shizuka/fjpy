@@ -30,12 +30,12 @@ ja:
         picture: 写真
       user:
         name: 名前
-        division_id: 所属
+        company_id: 所属
       equipment:
         name: 名称
         system_model_id: 型式
         place_id: 設置場所
-        division_id: 管轄
+        company_id: 管轄
         last_update: 最終更新日時
       infomsg:
         effective_date: 発効日
