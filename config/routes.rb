@@ -54,7 +54,7 @@ Rails.application.routes.draw do
 
   resources :divisions
 
-# 設備の点検予定を作成する
+# 装置システムの点検予定を作成する
   get 'noinspection_list' => 'equipment#noInspectionList'
   post 'create_inspections' => 'inspections#createInspections'
 

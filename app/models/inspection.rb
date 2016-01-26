@@ -19,7 +19,7 @@ class Inspection < ActiveRecord::Base
               .pluck(:equipment_id)
   end
 
-  # 設備の点検予定をまとめて作成
+  # 装置システムの点検予定をまとめて作成
   def self.bulk_create(params, current_date)
     params.targets.try(:map) do |equipment_id|
       if User.exists?(id: params.user_id)

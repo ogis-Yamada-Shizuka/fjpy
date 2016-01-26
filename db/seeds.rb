@@ -243,7 +243,7 @@ User.create( name: '本村結芽', division_id: 5 )
 User.create( name: '飛田繁雄', division_id: 1 )
 User.create( name: '安斎優華', division_id: 2 )
 
-# Equipment(設備)テーブルにテスト用初期値を投入（全件削除して再投入）
+# Equipment(装置システム)テーブルにテスト用初期値を投入（全件削除して再投入）
 Equipment.delete_all
 if Rails.env.development?
   Equipment.connection.execute("delete from sqlite_sequence where name='equipment'")
