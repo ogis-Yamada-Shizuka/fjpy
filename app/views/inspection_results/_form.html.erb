@@ -1,3 +1,16 @@
+<%= form_for(@inspection_result) do |f| %>
+  <% if @inspection_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection_result.errors.count, "error") %> prohibited this inspection_result from being saved:</h2>
+
+      <ul>
+      <% @inspection_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <script type="text/javascript">
   if (navigator.geolocation) {
 
@@ -9,9 +22,9 @@
         var lat = pos.coords.latitude;
         var lng = pos.coords.longitude;
 
-        document.getElementById("kiroku_latitude").value = lat;
-        document.getElementById("kiroku_longitude").value = lng;
-        
+        document.getElementById("inspection_result_latitude").value = lat;
+        document.getElementById("inspection_result_longitude").value = lng;
+
         },
 
       // （2）位置情報の取得に失敗した場合
@@ -43,9 +56,6 @@
   }
 </script>
 
-<%= f.hidden_field :inspection_id %>
-
-<div class="col-md-9 col-sm-9 col-xs-8">
   <div class="field">
     <%= f.label :user_id %><br>
     <%= f.collection_select( :user_id, User.all, :id, :name ) %>
@@ -58,39 +68,7 @@
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude, readonly: true %>
   </div>
-</div>
-</div> <!-- row -->
-
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#menu1" data-toggle="tab">
-      <%=  t('views.check.check') %></a></li>
-    <li><a href="#menu2" data-toggle="tab">
-      <%=  t('views.measurement.measurement') %>
-    </a></li>
-    <li><a href="#menu3" data-toggle="tab">
-      <%=  t('views.note.note') %>      
-    </a></li>
-</ul>
-
-
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="menu1">
-        <%= f.fields_for :check do |check| %>
-        <%= render 'checks/form_do_inspection', f: check %>
-        <% end %>      
-      </div>
-      <div class="tab-pane fade" id="menu2">
-        <%= f.fields_for :measurement do |measurement| %>
-          <%= render 'measurements/form_do_inspection', f: measurement %>
-        <% end %>
-      </div>
-      <div class="tab-pane fade" id="menu3">
-        <%= f.fields_for :note do |note| %>
-        <%= render 'notes/form_do_inspection', f: note %>
-        <% end %>      
-      </div>
-    </div>
+  <div class="actions">
+    <%= f.submit %>
   </div>
-</div>
+<% end %>

@@ -4,11 +4,11 @@
 
 <hr>
 
-<% @kirokus.each do |kiroku| %>
+<% @inspection_results.each do |inspection_result| %>
   <table>
     <tr>
-      <td><%= t('activerecord.attributes.kiroku.user_id') %>:<%= kiroku.user.name %></td>
-      <td><%= t('activerecord.attributes.kiroku.updated_at') %>:<%= kiroku.updated_at %></td>
+      <td><%= t('activerecord.attributes.inspection_result.user_id') %>:<%= inspection_result.user.name %></td>
+      <td><%= t('activerecord.attributes.inspection_result.updated_at') %>:<%= inspection_result.updated_at %></td>
     </tr>
     <tr><td colspan="2">
       <table border=1>
@@ -19,10 +19,10 @@
           <th><%= t('activerecord.attributes.check.stain_id') %></th>
         </tr>
         <tr>
-          <td><%= kiroku.check.weather.name %></td>
-          <td><%= kiroku.check.exterior.name %></td>
-          <td><%= kiroku.check.tone.name %></td>
-          <td><%= kiroku.check.stain.name %></td>
+          <td><%= inspection_result.check.weather.name %></td>
+          <td><%= inspection_result.check.exterior.name %></td>
+          <td><%= inspection_result.check.tone.name %></td>
+          <td><%= inspection_result.check.stain.name %></td>
         </tr>
       </table>
     </td></tr>
@@ -34,16 +34,16 @@
           <th><%= t('activerecord.attributes.measurement.point') %></th>
         </tr>
         <tr>
-          <td><%= kiroku.measurement.metercount %></td>
-          <td><%= kiroku.measurement.testervalue %></td>
-          <td><%= kiroku.measurement.point %></td>
+          <td><%= inspection_result.measurement.metercount %></td>
+          <td><%= inspection_result.measurement.testervalue %></td>
+          <td><%= inspection_result.measurement.point %></td>
         </tr>
       </table>
     </td></tr>
     <tr><th colspan="2"><%= t('activerecord.attributes.note.memo') %></th></tr>
-    <tr><td colspan="2"><%= kiroku.note.memo %></td></tr>
+    <tr><td colspan="2"><%= inspection_result.note.memo %></td></tr>
     <tr><th colspan="2"><%= t('activerecord.attributes.note.picture') %></th></tr>
-    <tr><td colspan="2"><%= image_tag(kiroku.note.picture_url, width: 600) if kiroku.note.picture.present? %></td></tr>
+    <tr><td colspan="2"><%= image_tag(inspection_result.note.picture_url, width: 600) if inspection_result.note.picture.present? %></td></tr>
 </table>
 <% end %>
 <hr>

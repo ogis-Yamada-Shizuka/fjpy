@@ -57,7 +57,7 @@
 <text text-anchor="start" x="246.5" y="-98.3" font-family="Times,serif" font-size="14.00">weather_id :integer</text>
 <text text-anchor="start" x="246.5" y="-83.3" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="246.5" y="-68.3" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
-<text text-anchor="start" x="246.5" y="-53.3" font-family="Times,serif" font-size="14.00">kiroku_id :integer</text>
+<text text-anchor="start" x="246.5" y="-53.3" font-family="Times,serif" font-size="14.00">inspection_result_id :integer</text>
 <text text-anchor="start" x="246.5" y="-38.3" font-family="Times,serif" font-size="14.00">exterior_id :integer</text>
 <text text-anchor="start" x="246.5" y="-23.3" font-family="Times,serif" font-size="14.00">tone_id :integer</text>
 <text text-anchor="start" x="246.5" y="-8.3" font-family="Times,serif" font-size="14.00">stain_id :integer</text>
@@ -132,7 +132,7 @@
 <text text-anchor="middle" x="453" y="-121.3" font-family="Times,serif" font-size="14.00">Note</text>
 <polyline fill="none" stroke="black" points="387.5,-113.5 518.5,-113.5 "/>
 <text text-anchor="start" x="395.5" y="-98.3" font-family="Times,serif" font-size="14.00">id :integer</text>
-<text text-anchor="start" x="395.5" y="-83.3" font-family="Times,serif" font-size="14.00">kiroku_id :integer</text>
+<text text-anchor="start" x="395.5" y="-83.3" font-family="Times,serif" font-size="14.00">inspection_result_id :integer</text>
 <text text-anchor="start" x="395.5" y="-68.3" font-family="Times,serif" font-size="14.00">memo :text</text>
 <text text-anchor="start" x="395.5" y="-53.3" font-family="Times,serif" font-size="14.00">picture :string</text>
 <text text-anchor="start" x="395.5" y="-38.3" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
@@ -174,10 +174,10 @@
 <text text-anchor="start" x="389" y="-385.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="389" y="-370.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>
-<!-- Kiroku -->
-<g id="node16" class="node"><title>Kiroku</title>
+<!-- InspectionResult -->
+<g id="node16" class="node"><title>InspectionResult</title>
 <path fill="none" stroke="black" d="M398,-189C398,-189 508,-189 508,-189 514,-189 520,-195 520,-201 520,-201 520,-313 520,-313 520,-319 514,-325 508,-325 508,-325 398,-325 398,-325 392,-325 386,-319 386,-313 386,-313 386,-201 386,-201 386,-195 392,-189 398,-189"/>
-<text text-anchor="middle" x="453" y="-309.8" font-family="Times,serif" font-size="14.00">Kiroku</text>
+<text text-anchor="middle" x="453" y="-309.8" font-family="Times,serif" font-size="14.00">InspectionResult</text>
 <polyline fill="none" stroke="black" points="386,-302 520,-302 "/>
 <text text-anchor="start" x="394" y="-286.8" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="394" y="-271.8" font-family="Times,serif" font-size="14.00">inspection_id :integer</text>
@@ -187,8 +187,8 @@
 <text text-anchor="start" x="394" y="-211.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="394" y="-196.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>
-<!-- Inspection&#45;&gt;Kiroku -->
-<g id="edge2" class="edge"><title>Inspection&#45;&gt;Kiroku</title>
+<!-- Inspection&#45;&gt;InspectionResult -->
+<g id="edge2" class="edge"><title>Inspection&#45;&gt;InspectionResult</title>
 <path fill="none" stroke="#1dda7b" d="M453,-354.939C453,-348.343 453,-341.725 453,-335.215"/>
 <ellipse fill="none" stroke="#1dda7b" cx="453" cy="-358.979" rx="4" ry="4"/>
 <polygon fill="#1dda7b" stroke="#1dda7b" points="453,-335.093 457.5,-325.093 453,-330.093 453,-325.093 453,-325.093 453,-325.093 453,-330.093 448.5,-325.093 453,-335.093 453,-335.093"/>
@@ -212,14 +212,14 @@
 <ellipse fill="none" stroke="#dca1cd" cx="453" cy="-562.753" rx="4" ry="4"/>
 <polygon fill="#dca1cd" stroke="#dca1cd" points="453,-539.299 457.5,-529.299 453,-534.299 453,-529.299 453,-529.299 453,-529.299 453,-534.299 448.5,-529.299 453,-539.299 453,-539.299"/>
 </g>
-<!-- Kiroku&#45;&gt;Check -->
-<g id="edge4" class="edge"><title>Kiroku&#45;&gt;Check</title>
+<!-- InspectionResult&#45;&gt;Check -->
+<g id="edge4" class="edge"><title>InspectionResult&#45;&gt;Check</title>
 <path fill="none" stroke="#83d33c" d="M391.861,-182.551C385.118,-174.451 378.225,-166.169 371.411,-157.984"/>
 <ellipse fill="none" stroke="#83d33c" cx="394.535" cy="-185.763" rx="4.00002" ry="4.00002"/>
 <ellipse fill="#83d33c" stroke="#83d33c" cx="368.779" cy="-154.822" rx="4.00002" ry="4.00002"/>
 </g>
-<!-- Kiroku&#45;&gt;Note -->
-<g id="edge6" class="edge"><title>Kiroku&#45;&gt;Note</title>
+<!-- InspectionResult&#45;&gt;Note -->
+<g id="edge6" class="edge"><title>InspectionResult&#45;&gt;Note</title>
 <path fill="none" stroke="#1960d6" d="M453,-180.718C453,-168.748 453,-156.429 453,-144.649"/>
 <ellipse fill="none" stroke="#1960d6" cx="453" cy="-184.838" rx="4" ry="4"/>
 <ellipse fill="#1960d6" stroke="#1960d6" cx="453" cy="-140.59" rx="4" ry="4"/>
@@ -235,10 +235,10 @@
 <text text-anchor="start" x="544.5" y="-60.8" font-family="Times,serif" font-size="14.00">point :integer</text>
 <text text-anchor="start" x="544.5" y="-45.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="544.5" y="-30.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
-<text text-anchor="start" x="544.5" y="-15.8" font-family="Times,serif" font-size="14.00">kiroku_id :integer</text>
+<text text-anchor="start" x="544.5" y="-15.8" font-family="Times,serif" font-size="14.00">inspection_result_id :integer</text>
 </g>
-<!-- Kiroku&#45;&gt;Measurement -->
-<g id="edge5" class="edge"><title>Kiroku&#45;&gt;Measurement</title>
+<!-- InspectionResult&#45;&gt;Measurement -->
+<g id="edge5" class="edge"><title>InspectionResult&#45;&gt;Measurement</title>
 <path fill="none" stroke="#300556" d="M514.065,-182.64C522.907,-172.017 532.011,-161.081 540.855,-150.456"/>
 <ellipse fill="none" stroke="#300556" cx="511.465" cy="-185.763" rx="4.00002" ry="4.00002"/>
 <ellipse fill="#300556" stroke="#300556" cx="543.469" cy="-147.315" rx="4.00002" ry="4.00002"/>

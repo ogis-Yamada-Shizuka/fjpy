@@ -13,22 +13,22 @@ class InspectionsController < ApplicationController
   # GET /inspections/1
   # GET /inspections/1.json
   def show
-    @kirokus = @inspection.kiroku.all
+    @inspection_results = @inspection.inspection_result.all
   end
 
   # GET /inspections/1/do_inspection
   def do_inspection
-    @kirokus = @inspection.kiroku.all
-    @kiroku = @inspection.kiroku.build
-    @kiroku.user_id = @inspection.user_id
-    @check =  @kiroku.build_check
-    @measurement = @kiroku.build_measurement
-    @note = @kiroku.build_note
+    @inspection_results = @inspection.inspection_result.all
+    @inspection_result = @inspection.inspection_result.build
+    @inspection_result.user_id = @inspection.user_id
+    @check =  @inspection_result.build_check
+    @measurement = @inspection_result.build_measurement
+    @note = @inspection_result.build_note
   end
 
   # GET /inspections/1/done_inspection
   def done_inspection
-    @kirokus = @inspection.kiroku.all
+    @inspection_results = @inspection.inspection_result.all
   end
 
   # GET /inspections/new

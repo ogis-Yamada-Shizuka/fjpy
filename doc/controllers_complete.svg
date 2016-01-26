@@ -305,10 +305,10 @@
 <text text-anchor="start" x="217" y="-707.3" font-family="Times,serif" font-size="14.00">equipment_params</text>
 <text text-anchor="start" x="217" y="-692.3" font-family="Times,serif" font-size="14.00">set_equipment</text>
 </g>
-<!-- KirokusController -->
-<g id="node18" class="node"><title>KirokusController</title>
+<!-- InspectionResultsController -->
+<g id="node18" class="node"><title>InspectionResultsController</title>
 <path fill="none" stroke="black" d="M620,-912.5C620,-912.5 712,-912.5 712,-912.5 718,-912.5 724,-918.5 724,-924.5 724,-924.5 724,-1113.5 724,-1113.5 724,-1119.5 718,-1125.5 712,-1125.5 712,-1125.5 620,-1125.5 620,-1125.5 614,-1125.5 608,-1119.5 608,-1113.5 608,-1113.5 608,-924.5 608,-924.5 608,-918.5 614,-912.5 620,-912.5"/>
-<text text-anchor="middle" x="666" y="-1110.3" font-family="Times,serif" font-size="14.00">KirokusController</text>
+<text text-anchor="middle" x="666" y="-1110.3" font-family="Times,serif" font-size="14.00">InspectionResultsController</text>
 <polyline fill="none" stroke="black" points="608,-1102.5 724,-1102.5 "/>
 <text text-anchor="start" x="616" y="-1087.3" font-family="Times,serif" font-size="14.00">create</text>
 <text text-anchor="start" x="616" y="-1072.3" font-family="Times,serif" font-size="14.00">destroy</text>
@@ -320,8 +320,8 @@
 <polyline fill="none" stroke="black" points="608,-989.5 724,-989.5 "/>
 <polyline fill="none" stroke="black" points="608,-965.5 724,-965.5 "/>
 <text text-anchor="start" x="616" y="-950.3" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="616" y="-935.3" font-family="Times,serif" font-size="14.00">kiroku_params</text>
-<text text-anchor="start" x="616" y="-920.3" font-family="Times,serif" font-size="14.00">set_kiroku</text>
+<text text-anchor="start" x="616" y="-935.3" font-family="Times,serif" font-size="14.00">inspection_result_params</text>
+<text text-anchor="start" x="616" y="-920.3" font-family="Times,serif" font-size="14.00">set_inspection_result</text>
 </g>
 <!-- CommentsController -->
 <g id="node19" class="node"><title>CommentsController</title>

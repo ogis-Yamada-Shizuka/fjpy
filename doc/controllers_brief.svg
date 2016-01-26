@@ -97,10 +97,10 @@
 <ellipse fill="none" stroke="black" cx="445.792" cy="-208" rx="85.5853" ry="18"/>
 <text text-anchor="middle" x="445.792" y="-204.3" font-family="Times,serif" font-size="14.00">EquipmentController</text>
 </g>
-<!-- KirokusController -->
-<g id="node18" class="node"><title>KirokusController</title>
+<!-- InspectionResultsController -->
+<g id="node18" class="node"><title>InspectionResultsController</title>
 <ellipse fill="none" stroke="black" cx="515.393" cy="-138" rx="75.2868" ry="18"/>
-<text text-anchor="middle" x="515.393" y="-134.3" font-family="Times,serif" font-size="14.00">KirokusController</text>
+<text text-anchor="middle" x="515.393" y="-134.3" font-family="Times,serif" font-size="14.00">InspectionResultsController</text>
 </g>
 <!-- CommentsController -->
 <g id="node19" class="node"><title>CommentsController</title>

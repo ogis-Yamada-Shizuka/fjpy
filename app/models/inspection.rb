@@ -3,7 +3,7 @@ class Inspection < ActiveRecord::Base
   belongs_to :status
   belongs_to :user
   belongs_to :result
-  has_many :kiroku
+  has_many :inspection_result
   has_one :approval
 
   include Common
@@ -48,8 +48,8 @@ class Inspection < ActiveRecord::Base
   end
 
 # Inspection の結果変更
-  def judging(kiroku)
-    if(kiroku.check.tone_id!=4)
+  def judging(inspection_result)
+    if(inspection_result.check.tone_id!=4)
       self.result_id = Result.of_ok;
     else
       self.result_id = Result.of_ng;

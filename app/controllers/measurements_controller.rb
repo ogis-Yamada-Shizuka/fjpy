@@ -69,6 +69,6 @@ class MeasurementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measurement_params
-      params.require(:measurement).permit(:kiroku_id, :metercount, :testervalue, :point)
+      params.require(:measurement).permit(:inspection_result_id, :metercount, :testervalue, :point)
     end
 end

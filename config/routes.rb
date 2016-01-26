@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   root to: 'menu#show'
 
-  resources :kirokus
+  resources :inspection_results
 
   resources :notes
 

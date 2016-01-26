@@ -5,7 +5,7 @@ class CreateChecks < ActiveRecord::Migration
       t.integer :exterior_id
       t.integer :tone_id
       t.integer :stain_id
-      t.integer :kiroku_id
+      t.integer :inspection_result_id
 
       t.timestamps
     end

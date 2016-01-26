@@ -1,0 +1,7 @@
+<h1><%= t('views.inspection_result.index') %></h1>
+
+<%= render 'index', inspection_results: @inspection_results %>
+
+<br>
+
+<%= link_to t('views.link_to.new'), new_inspection_result_path %>
