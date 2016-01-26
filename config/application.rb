@@ -19,5 +19,12 @@ module Kilogy
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      # TODO: テストの方針が確定したら修正する
+      g.test_framework false
+    end
   end
 end

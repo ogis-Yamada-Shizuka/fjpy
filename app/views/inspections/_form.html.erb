@@ -24,8 +24,8 @@
     <%= f.collection_select( :status_id, Status.all, :id, :name ) %>
   </div>
   <div class="field">
-    <%= f.label :worker_id %><br>
-    <%= f.collection_select( :worker_id, Worker.all, :id, :name ) %>
+    <%= f.label :user_id %><br>
+    <%= f.collection_select( :user_id, User.all, :id, :name ) %>
   </div>
   <div class="field">
     <%= f.label :result_id %><br>

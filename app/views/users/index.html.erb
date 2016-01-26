@@ -1,0 +1,41 @@
+<% breadcrumb :user_index %>
+<h1><%= t('views.user.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Division</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.division.name %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+
+<br><hr><br>
+
+<p>
+  <%= link_to t('views.link_to.csv_download'), users_path(format: :csv) %>
+</p>
+
+<p>
+  <%= form_tag import_users_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag t('views.link_to.csv_upload') %>
+  <% end %>
+</p>

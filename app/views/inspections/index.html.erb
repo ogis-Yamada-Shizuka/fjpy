@@ -6,8 +6,8 @@
   <%= search_form_for @search do |f| %>
     <div>
     <p>
-    <%= t('activerecord.attributes.inspection.worker_id') %>
-    <%= f.collection_select(:worker_id_eq, Worker.all, :id, :name, :include_blank => true ) %>
+    <%= t('activerecord.attributes.inspection.user_id') %>
+    <%= f.collection_select(:user_id_eq, User.all, :id, :name, :include_blank => true ) %>
     <%= t('activerecord.attributes.inspection.status_id') %>
     <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
     </div>
@@ -25,7 +25,7 @@
       <th><%= t('activerecord.attributes.inspection.targetyearmonth') %></th>
       <th><%= t('activerecord.attributes.inspection.equipment_id') %></th>
       <th><%= t('activerecord.attributes.inspection.status_id') %></th>
-      <th><%= t('activerecord.attributes.inspection.worker_id') %></th>
+      <th><%= t('activerecord.attributes.inspection.user_id') %></th>
       <th><%= t('activerecord.attributes.inspection.result_id') %></th>
       <th><%= t('activerecord.attributes.inspection.processingdate') %></th>
       <th colspan="4"></th>
@@ -38,7 +38,7 @@
         <td><%= inspection.targetyearmonth %></td>
         <td><%= inspection.equipment.name %></td>
         <td><%= inspection.status.name %></td>
-        <td><%= inspection.worker.name %></td>
+        <td><%= inspection.user.name %></td>
         <td><%= inspection.result.name %></td>
         <td><%= inspection.processingdate %></td>
         <td>

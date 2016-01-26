@@ -14,7 +14,7 @@ class KirokusController < ApplicationController
       marker.lat kiroku.latitude
       marker.lng kiroku.longitude
       marker.infowindow kiroku.updated_at.to_s
-      marker.json({title: kiroku.worker_id.to_s})
+      marker.json({title: kiroku.user_id.to_s})
     end
   end
 
@@ -79,7 +79,7 @@ class KirokusController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def kiroku_params
       params.require(:kiroku).permit(
-        :inspection_id, :worker_id, :latitude, :longitude,
+        :inspection_id, :user_id, :latitude, :longitude,
         measurement_attributes: [:id, :kiroku_id, :metercount, :testervalue, :point],
         check_attributes: [:id, :kiroku_id, :weather_id, :exterior_id, :tone_id, :stain_id],
         note_attributes: [:id, :kiroku_id, :memo, :picture] )

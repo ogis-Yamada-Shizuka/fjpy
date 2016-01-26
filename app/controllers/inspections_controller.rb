@@ -20,7 +20,7 @@ class InspectionsController < ApplicationController
   def do_inspection
     @kirokus = @inspection.kiroku.all
     @kiroku = @inspection.kiroku.build
-    @kiroku.worker_id = @inspection.worker_id
+    @kiroku.user_id = @inspection.user_id
     @check =  @kiroku.build_check
     @measurement = @kiroku.build_measurement
     @note = @kiroku.build_note
@@ -111,6 +111,6 @@ class InspectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inspection_params
-      params.require(:inspection).permit(:targetyearmonth, :equipment_id, :status_id, :worker_id, :result_id, :processingdate)
+      params.require(:inspection).permit(:targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate)
     end
 end

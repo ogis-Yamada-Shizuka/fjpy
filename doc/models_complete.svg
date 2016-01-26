@@ -115,10 +115,10 @@
 <text text-anchor="start" x="1140.5" y="-604.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="1140.5" y="-589.8" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 </g>
-<!-- Worker -->
-<g id="node9" class="node"><title>Worker</title>
+<!-- User -->
+<g id="node9" class="node"><title>User</title>
 <path fill="none" stroke="black" d="M1293.5,-582C1293.5,-582 1400.5,-582 1400.5,-582 1406.5,-582 1412.5,-588 1412.5,-594 1412.5,-594 1412.5,-676 1412.5,-676 1412.5,-682 1406.5,-688 1400.5,-688 1400.5,-688 1293.5,-688 1293.5,-688 1287.5,-688 1281.5,-682 1281.5,-676 1281.5,-676 1281.5,-594 1281.5,-594 1281.5,-588 1287.5,-582 1293.5,-582"/>
-<text text-anchor="middle" x="1347" y="-672.8" font-family="Times,serif" font-size="14.00">Worker</text>
+<text text-anchor="middle" x="1347" y="-672.8" font-family="Times,serif" font-size="14.00">User</text>
 <polyline fill="none" stroke="black" points="1281.5,-665 1412.5,-665 "/>
 <text text-anchor="start" x="1289.5" y="-649.8" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="1289.5" y="-634.8" font-family="Times,serif" font-size="14.00">name :string</text>
@@ -168,7 +168,7 @@
 <text text-anchor="start" x="389" y="-475.8" font-family="Times,serif" font-size="14.00">targetyearmonth :string</text>
 <text text-anchor="start" x="389" y="-460.8" font-family="Times,serif" font-size="14.00">equipment_id :integer</text>
 <text text-anchor="start" x="389" y="-445.8" font-family="Times,serif" font-size="14.00">status_id :integer</text>
-<text text-anchor="start" x="389" y="-430.8" font-family="Times,serif" font-size="14.00">worker_id :integer</text>
+<text text-anchor="start" x="389" y="-430.8" font-family="Times,serif" font-size="14.00">user_id :integer</text>
 <text text-anchor="start" x="389" y="-415.8" font-family="Times,serif" font-size="14.00">result_id :integer</text>
 <text text-anchor="start" x="389" y="-400.8" font-family="Times,serif" font-size="14.00">processingdate :date</text>
 <text text-anchor="start" x="389" y="-385.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
@@ -181,7 +181,7 @@
 <polyline fill="none" stroke="black" points="386,-302 520,-302 "/>
 <text text-anchor="start" x="394" y="-286.8" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="394" y="-271.8" font-family="Times,serif" font-size="14.00">inspection_id :integer</text>
-<text text-anchor="start" x="394" y="-256.8" font-family="Times,serif" font-size="14.00">worker_id :integer</text>
+<text text-anchor="start" x="394" y="-256.8" font-family="Times,serif" font-size="14.00">user_id :integer</text>
 <text text-anchor="start" x="394" y="-241.8" font-family="Times,serif" font-size="14.00">latitude :decimal</text>
 <text text-anchor="start" x="394" y="-226.8" font-family="Times,serif" font-size="14.00">longitude :decimal</text>
 <text text-anchor="start" x="394" y="-211.8" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
