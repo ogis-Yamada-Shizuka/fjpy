@@ -1,4 +1,4 @@
-class Inspection < ActiveRecord::Base
+class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :status
   belongs_to :user
@@ -9,11 +9,11 @@ class Inspection < ActiveRecord::Base
   include Common
   after_commit :dump
 
-
-  #Inspection上に、1年前以前の情報しかないequipment_idの一覧を取得。
+  # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
+  # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
     limit_date = Time.now.prev_year
-    Inspection.select("equipment_id, max(targetyearmonth) ")
+    InspectionSchedule.select("equipment_id, max(targetyearmonth) ")
               .group("equipment_id")
               .having("max(targetyearmonth) < '#{limit_date.strftime('%Y%m')}'")
               .pluck(:equipment_id)
@@ -23,7 +23,7 @@ class Inspection < ActiveRecord::Base
   def self.bulk_create(params, current_date)
     params.targets.try(:map) do |equipment_id|
       if User.exists?(id: params.user_id)
-        new_inspection = new(
+        new_inspection_schedule = new(
           targetyearmonth: params.targetyearmonth,
           equipment_id: equipment_id,
           status_id: 1,
@@ -31,14 +31,14 @@ class Inspection < ActiveRecord::Base
           result_id: 4,
           processingdate: current_date
         )
-        new_inspection.save
+        new_inspection_schedule.save
       else
         false
       end
     end
   end
 
-  # Inspection のステータス変更
+  # InspectionSchedule のステータス変更
   def start_inspection
     self.status_id = Status.of_doing;
   end

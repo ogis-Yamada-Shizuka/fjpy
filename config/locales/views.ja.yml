@@ -21,11 +21,11 @@ ja:
       destroy: 削除
       csv_download: CSVダウンロード
       csv_upload: CSVアップロード
-    inspection:
-      index: 点検一覧
-      new: 点検の登録
-      edit: 点検の更新
-      show: 点検の確認
+    inspection_schedule:
+      index: 点検予定一覧
+      new: 点検予定の登録
+      edit: 点検予定の更新
+      show: 点検予定の確認
       do_inspecrion: 点検開始
       done_inspection: 点検の完了
       close_inspecrion: 点検完了(承認)

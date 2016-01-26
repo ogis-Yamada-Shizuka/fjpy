@@ -25,14 +25,14 @@ Rails.application.routes.draw do
 
   resources :checkresults
 
-  resources :inspections
+  resources :inspection_schedules
 
   # 点検を実施する
-  get 'inspections/:id/do_inspection' => 'inspections#do_inspection' , as: 'do_inspection'
-  get 'inspections/:id/done_inspection' => 'inspections#done_inspection' , as: 'done_inspection'
+  get 'inspection_schedules/:id/do_inspection' => 'inspection_schedules#do_inspection' , as: 'do_inspection'
+  get 'inspection_schedules/:id/done_inspection' => 'inspection_schedules#done_inspection' , as: 'done_inspection'
 
   # 点検を完了(StatusをDoneに）する
-  post 'inspections/:id/close_inspection' => 'inspections#closeInspection'
+  post 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#closeInspection'
 
   resources :results
 
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
 # 装置システムの点検予定を作成する
   get 'noinspection_list' => 'equipment#noInspectionList'
-  post 'create_inspections' => 'inspections#createInspections'
+  post 'create_inspection_schedules' => 'inspection_schedules#createInspectionSchedules'
 
 
 

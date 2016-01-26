@@ -1,4 +1,4 @@
-class InspectionParam
+class InspectionScheduleParam
   attr_reader :targetyearmonth, :user_id, :targets
 
   def initialize(params = {})

@@ -11,7 +11,7 @@
 
         document.getElementById("inspection_result_latitude").value = lat;
         document.getElementById("inspection_result_longitude").value = lng;
-        
+
         },
 
       // （2）位置情報の取得に失敗した場合
@@ -43,7 +43,7 @@
   }
 </script>
 
-<%= f.hidden_field :inspection_id %>
+<%= f.hidden_field :inspection_schedule_id %>
 
 <div class="col-md-9 col-sm-9 col-xs-8">
   <div class="field">
@@ -68,7 +68,7 @@
       <%=  t('views.measurement.measurement') %>
     </a></li>
     <li><a href="#menu3" data-toggle="tab">
-      <%=  t('views.note.note') %>      
+      <%=  t('views.note.note') %>
     </a></li>
 </ul>
 
@@ -79,7 +79,7 @@
       <div class="tab-pane fade in active" id="menu1">
         <%= f.fields_for :check do |check| %>
         <%= render 'checks/form_do_inspection', f: check %>
-        <% end %>      
+        <% end %>
       </div>
       <div class="tab-pane fade" id="menu2">
         <%= f.fields_for :measurement do |measurement| %>
@@ -89,7 +89,7 @@
       <div class="tab-pane fade" id="menu3">
         <%= f.fields_for :note do |note| %>
         <%= render 'notes/form_do_inspection', f: note %>
-        <% end %>      
+        <% end %>
       </div>
     </div>
   </div>

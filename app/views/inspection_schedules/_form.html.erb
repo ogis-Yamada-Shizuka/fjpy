@@ -1,10 +1,10 @@
-<%= form_for(@inspection) do |f| %>
-  <% if @inspection.errors.any? %>
+<%= form_for(@inspection_schedule) do |f| %>
+  <% if @inspection_schedule.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
+      <h2><%= pluralize(@inspection_schedule.errors.count, "error") %> prohibited this inspection_schedule from being saved:</h2>
 
       <ul>
-      <% @inspection.errors.full_messages.each do |message| %>
+      <% @inspection_schedule.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

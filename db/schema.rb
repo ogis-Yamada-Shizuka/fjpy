@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20150414012918) do
 
   create_table "approvals", force: true do |t|
-    t.integer  "inspection_id"
+    t.integer  "inspection_schedule_id"
     t.binary   "signature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "approvals", ["inspection_id"], name: "index_approvals_on_inspection_id"
+  add_index "approvals", ["inspection_schedule_id"], name: "index_approvals_on_inspection_schedule_id"
 
   create_table "checkresults", force: true do |t|
     t.string   "name"
@@ -86,18 +86,18 @@ ActiveRecord::Schema.define(version: 20150414012918) do
   end
 
   create_table "inspection_results", force: true do |t|
-    t.integer  "inspection_id"
+    t.integer  "inspection_schedule_id"
     t.integer  "user_id"
-    t.decimal  "latitude",      precision: 11, scale: 8
-    t.decimal  "longitude",     precision: 11, scale: 8
+    t.decimal  "latitude",               precision: 11, scale: 8
+    t.decimal  "longitude",              precision: 11, scale: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "inspection_results", ["inspection_id"], name: "index_inspection_results_on_inspection_id"
+  add_index "inspection_results", ["inspection_schedule_id"], name: "index_inspection_results_on_inspection_schedule_id"
   add_index "inspection_results", ["user_id"], name: "index_inspection_results_on_user_id"
 
-  create_table "inspections", force: true do |t|
+  create_table "inspection_schedules", force: true do |t|
     t.string   "targetyearmonth"
     t.integer  "equipment_id"
     t.integer  "status_id"
@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
-  add_index "inspections", ["equipment_id"], name: "index_inspections_on_equipment_id"
-  add_index "inspections", ["result_id"], name: "index_inspections_on_result_id"
-  add_index "inspections", ["status_id"], name: "index_inspections_on_status_id"
-  add_index "inspections", ["user_id"], name: "index_inspections_on_user_id"
+  add_index "inspection_schedules", ["equipment_id"], name: "index_inspection_schedules_on_equipment_id"
+  add_index "inspection_schedules", ["result_id"], name: "index_inspection_schedules_on_result_id"
+  add_index "inspection_schedules", ["status_id"], name: "index_inspection_schedules_on_status_id"
+  add_index "inspection_schedules", ["user_id"], name: "index_inspection_schedules_on_user_id"
 
   create_table "measurements", force: true do |t|
     t.integer  "metercount"

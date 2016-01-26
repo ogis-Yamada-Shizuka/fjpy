@@ -1,6 +1,6 @@
-<h1><%= t('views.inspection.done_inspection') %></h1>
+<h1><%= t('views.inspection_schedule.done_inspection') %></h1>
 
-<%= render 'show', inspection: @inspection %>
+<%= render 'show', inspection_schedule: @inspection_schedule %>
 
 <hr>
 
@@ -59,11 +59,11 @@
       <!--　ここにコードを書いていきます。　-->
         canvas.isDrawingMode = true;
     </script>
-    <button type="button" onclick="canvas.clear().renderAll()">クリア</button>    
+    <button type="button" onclick="canvas.clear().renderAll()">クリア</button>
     <input type="hidden" id="sign" name="sign" value="" />
   </div>
   <hr>
   <div class="actions">
-    <%= submit_tag(t('views.inspection.close_inspecrion'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
+    <%= submit_tag(t('views.inspection_schedule.close_inspecrion'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
   </div>
 <% end %>

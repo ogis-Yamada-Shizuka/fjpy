@@ -3,7 +3,7 @@ class Equipment < ActiveRecord::Base
   belongs_to :place
   belongs_to :company
 
-  has_many :inspections
+  has_many :inspection_schedules
 
   # CSV Upload
   require 'csv'
@@ -17,12 +17,12 @@ class Equipment < ActiveRecord::Base
 
   def self.no_inspection_list
 
-    equipment_list = Inspection.old_inspection_equipment_list
+    equipment_list = InspectionSchedule.old_inspection_equipment_list
 
-    Equipment.includes(:inspections)
-             .references(:inspections)
-             .where(Inspection.arel_table[:equipment_id].eq(nil)
-             .or(Inspection.arel_table[:equipment_id].in(equipment_list)))
+    Equipment.includes(:inspection_schedules)
+             .references(:inspection_schedules)
+             .where(InspectionSchedule.arel_table[:equipment_id].eq(nil)
+             .or(InspectionSchedule.arel_table[:equipment_id].in(equipment_list)))
   end
 
 end

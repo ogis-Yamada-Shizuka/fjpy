@@ -31,7 +31,10 @@ class InspectionResultsController < ApplicationController
   # POST /inspection_results.json
   def create
     @inspection_result = InspectionResult.new(inspection_result_params)
-    inspection = Inspection.find(params[:inspection_result][:inspection_id])
+
+    # TODO: ここで落ちる kilogy からのバグがある。(inspection_schedule_id を hidden で入れる？)
+    inspection = InspectionSchedule.find(params[:inspection_result][:inspection_schedule_id])
+
     inspection.start_inspection  # 点検開始
     inspection.judging(@inspection_result)  # 点検結果を判断
 
@@ -79,7 +82,7 @@ class InspectionResultsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def inspection_result_params
       params.require(:inspection_result).permit(
-        :inspection_id, :user_id, :latitude, :longitude,
+        :inspection_schedule_id, :user_id, :latitude, :longitude,
         measurement_attributes: [:id, :inspection_result_id, :metercount, :testervalue, :point],
         check_attributes: [:id, :inspection_result_id, :weather_id, :exterior_id, :tone_id, :stain_id],
         note_attributes: [:id, :inspection_result_id, :memo, :picture] )

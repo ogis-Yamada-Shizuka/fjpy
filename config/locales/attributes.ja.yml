@@ -1,7 +1,7 @@
 ja:
   activerecord:
     attributes:
-      inspection:
+      inspection_schedule:
         targetyearmonth: 点検予定年月
         equipment_id: 対象装置システム
         status_id: 進捗状況
