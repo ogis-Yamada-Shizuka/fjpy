@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :types
 
-  resources :workers do
+  resources :users do
     collection { post :import }  # for CSV Upload 
   end
 

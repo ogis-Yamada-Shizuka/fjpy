@@ -1,7 +1,7 @@
 class Inspection < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :status
-  belongs_to :worker
+  belongs_to :user
   belongs_to :result
   has_many :kiroku
   has_one :approval
@@ -22,12 +22,12 @@ class Inspection < ActiveRecord::Base
   # 設備の点検予定をまとめて作成
   def self.bulk_create(params, current_date)
     params.targets.try(:map) do |equipment_id|
-      if Worker.exists?(id: params.worker_id)
+      if User.exists?(id: params.user_id)
         new_inspection = new(
           targetyearmonth: params.targetyearmonth,
           equipment_id: equipment_id,
           status_id: 1,
-          worker_id: params.worker_id,
+          user_id: params.user_id,
           result_id: 4,
           processingdate: current_date
         )

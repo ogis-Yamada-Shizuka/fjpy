@@ -17,7 +17,7 @@ end
 
 =begin
 
-  <%= link_to t('views.worker.index'), workers_path %>
+  <%= link_to t('views.user.index'), users_path %>
   <%= link_to t('views.division.index'), divisions_path %>
 =end
 

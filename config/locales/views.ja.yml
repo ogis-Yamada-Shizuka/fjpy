@@ -59,7 +59,7 @@ ja:
       new: 部署の登録
       edit: 部署の更新
       show: 部署の確認
-    worker:
+    user:
       index: 作業者の一覧
       new: 作業者の登録
       edit: 作業者の更新

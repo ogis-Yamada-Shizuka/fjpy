@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.string   "targetyearmonth"
     t.integer  "equipment_id"
     t.integer  "status_id"
-    t.integer  "worker_id"
+    t.integer  "user_id"
     t.integer  "result_id"
     t.date     "processingdate"
     t.datetime "created_at"
@@ -98,11 +98,11 @@ ActiveRecord::Schema.define(version: 20150414012918) do
   add_index "inspections", ["equipment_id"], name: "index_inspections_on_equipment_id"
   add_index "inspections", ["result_id"], name: "index_inspections_on_result_id"
   add_index "inspections", ["status_id"], name: "index_inspections_on_status_id"
-  add_index "inspections", ["worker_id"], name: "index_inspections_on_worker_id"
+  add_index "inspections", ["user_id"], name: "index_inspections_on_user_id"
 
   create_table "kirokus", force: true do |t|
     t.integer  "inspection_id"
-    t.integer  "worker_id"
+    t.integer  "user_id"
     t.decimal  "latitude",      precision: 11, scale: 8
     t.decimal  "longitude",     precision: 11, scale: 8
     t.datetime "created_at"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20150414012918) do
   end
 
   add_index "kirokus", ["inspection_id"], name: "index_kirokus_on_inspection_id"
-  add_index "kirokus", ["worker_id"], name: "index_kirokus_on_worker_id"
+  add_index "kirokus", ["user_id"], name: "index_kirokus_on_user_id"
 
   create_table "measurements", force: true do |t|
     t.integer  "metercount"
@@ -167,19 +167,19 @@ ActiveRecord::Schema.define(version: 20150414012918) do
     t.datetime "updated_at"
   end
 
-  create_table "weathers", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "workers", force: true do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.integer  "division_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "workers", ["division_id"], name: "index_workers_on_division_id"
+  add_index "users", ["division_id"], name: "index_users_on_division_id"
+
+  create_table "weathers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

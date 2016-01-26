@@ -1,4 +1,4 @@
-class Worker < ActiveRecord::Base
+class User < ActiveRecord::Base
   belongs_to :division
 
 

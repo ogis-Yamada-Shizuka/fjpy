@@ -63,10 +63,10 @@
 <ellipse fill="none" stroke="black" cx="849" cy="-255" rx="40.4202" ry="18"/>
 <text text-anchor="middle" x="849" y="-251.3" font-family="Times,serif" font-size="14.00">Division</text>
 </g>
-<!-- Worker -->
-<g id="node9" class="node"><title>Worker</title>
+<!-- User -->
+<g id="node9" class="node"><title>User</title>
 <ellipse fill="none" stroke="black" cx="946" cy="-255" rx="38.0212" ry="18"/>
-<text text-anchor="middle" x="946" y="-251.3" font-family="Times,serif" font-size="14.00">Worker</text>
+<text text-anchor="middle" x="946" y="-251.3" font-family="Times,serif" font-size="14.00">User</text>
 </g>
 <!-- Note -->
 <g id="node10" class="node"><title>Note</title>

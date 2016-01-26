@@ -57,10 +57,10 @@
 <ellipse fill="none" stroke="black" cx="427.092" cy="-368" rx="87.1846" ry="18"/>
 <text text-anchor="middle" x="427.092" y="-364.3" font-family="Times,serif" font-size="14.00">InspectionsController</text>
 </g>
-<!-- WorkersController -->
-<g id="node10" class="node"><title>WorkersController</title>
+<!-- UsersController -->
+<g id="node10" class="node"><title>UsersController</title>
 <ellipse fill="none" stroke="black" cx="477.343" cy="-428" rx="77.1866" ry="18"/>
-<text text-anchor="middle" x="477.343" y="-424.3" font-family="Times,serif" font-size="14.00">WorkersController</text>
+<text text-anchor="middle" x="477.343" y="-424.3" font-family="Times,serif" font-size="14.00">UsersController</text>
 </g>
 <!-- ResultsController -->
 <g id="node11" class="node"><title>ResultsController</title>
