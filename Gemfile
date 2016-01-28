@@ -73,7 +73,7 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'railroady'
+  gem 'rubocop', require: false
 end
 
 gem 'devise'
-
