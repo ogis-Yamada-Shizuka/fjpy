@@ -1,6 +1,6 @@
 class InspectionSchedulesController < ApplicationController
   before_action :set_inspection_schedule, only: [
-    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :closeInspection
+    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :close_inspection
   ]
 
   # GET /inspection_schedules
@@ -87,7 +87,7 @@ class InspectionSchedulesController < ApplicationController
   end
 
   # 点検完了の登録
-  def closeInspection
+  def close_inspection
     @approval = @inspection_schedule.build_approval
     @approval.signature = params[:sign]
 
