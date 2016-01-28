@@ -52,11 +52,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # Inspection の結果変更
   def judging(inspection_result)
-    self.result_id = if inspection_result.check.tone_id != 4
-                       Result.of_ok
-                     else
-                       Result.of_ng
-    end
+    self.result_id = inspection_result.check.tone_id != 4 ? Result.of_ok : Result.of_ng
     self.processingdate = current_date
   end
 
