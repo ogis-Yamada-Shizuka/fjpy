@@ -1,5 +1,7 @@
 class InspectionSchedulesController < ApplicationController
-  before_action :set_inspection_schedule, only: [:show, :edit, :update, :destroy, :do_inspection, :done_inspection, :closeInspection]
+  before_action :set_inspection_schedule, only: [
+    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :closeInspection
+  ]
 
   # GET /inspection_schedules
   # GET /inspection_schedules.json
@@ -111,6 +113,8 @@ class InspectionSchedulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def inspection_schedule_params
-    params.require(:inspection_schedule).permit(:targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate)
+    params.require(:inspection_schedule).permit(
+      :targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate
+    )
   end
 end
