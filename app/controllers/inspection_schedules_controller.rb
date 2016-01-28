@@ -4,10 +4,9 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules
   # GET /inspection_schedules.json
   def index
-    #@inspection_schedules = InspectionSchedule.all
+    # @inspection_schedules = InspectionSchedule.all
     @search = InspectionSchedule.search(params[:q])
     @inspection_schedules = @search.result.order(:targetyearmonth, :id).page(params[:page])
-
   end
 
   # GET /inspection_schedules/1
@@ -21,7 +20,7 @@ class InspectionSchedulesController < ApplicationController
     @inspection_results = @inspection_schedule.inspection_result.all
     @inspection_result = @inspection_schedule.inspection_result.build
     @inspection_result.user_id = @inspection_schedule.user_id
-    @check =  @inspection_result.build_check
+    @check = @inspection_result.build_check
     @measurement = @inspection_result.build_measurement
     @note = @inspection_result.build_note
   end
@@ -47,7 +46,7 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save
-        format.html { redirect_to @inspection_schedule, notice: 'InspectionSchedule was successfully created.' }
+        format.html { redirect_to @inspection_schedule, notice: "InspectionSchedule was successfully created." }
         format.json { render :show, status: :created, location: @inspection_schedule }
       else
         format.html { render :new }
@@ -61,7 +60,7 @@ class InspectionSchedulesController < ApplicationController
   def update
     respond_to do |format|
       if @inspection_schedule.update(inspection_schedule_params)
-        format.html { redirect_to @inspection_schedule, notice: 'InspectionSchedule was successfully updated.' }
+        format.html { redirect_to @inspection_schedule, notice: "InspectionSchedule was successfully updated." }
         format.json { render :show, status: :ok, location: @inspection_schedule }
       else
         format.html { render :edit }
@@ -75,7 +74,7 @@ class InspectionSchedulesController < ApplicationController
   def destroy
     @inspection_schedule.destroy
     respond_to do |format|
-      format.html { redirect_to inspection_schedules_url, notice: 'InspectionSchedule was successfully destroyed.' }
+      format.html { redirect_to inspection_schedules_url, notice: "InspectionSchedule was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -86,7 +85,7 @@ class InspectionSchedulesController < ApplicationController
   end
 
   # 点検完了の登録
-  def  closeInspection
+  def closeInspection
     @approval = @inspection_schedule.build_approval
     @approval.signature = params[:sign]
 
@@ -94,7 +93,7 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save && @approval.save
-        format.html { redirect_to inspection_schedule_url, notice: 'InspectionSchedule was successfully closed.' }
+        format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully closed." }
         format.json { head :no_content }
       else
         format.html { render :done_inspection }
@@ -104,13 +103,14 @@ class InspectionSchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_inspection_schedule
-      @inspection_schedule = InspectionSchedule.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def inspection_schedule_params
-      params.require(:inspection_schedule).permit(:targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_inspection_schedule
+    @inspection_schedule = InspectionSchedule.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def inspection_schedule_params
+    params.require(:inspection_schedule).permit(:targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate)
+  end
 end

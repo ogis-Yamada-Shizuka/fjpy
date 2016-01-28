@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   # CSV Upload
-  require 'csv'
+  require "csv"
   def self.import(file)
     CSV.foreach(file.path, encoding: "SJIS:UTF-8", headers: true) do |row|
       model = find_by_id(row["id"]) || new
@@ -14,5 +14,4 @@ class User < ActiveRecord::Base
       model.save!
     end
   end
-
 end

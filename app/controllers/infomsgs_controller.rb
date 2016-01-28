@@ -4,7 +4,7 @@ class InfomsgsController < ApplicationController
   # GET /infomsgs
   # GET /infomsgs.json
   def index
-    @infomsgs = Infomsg.all.order('effective_date DESC')
+    @infomsgs = Infomsg.all.order("effective_date DESC")
   end
 
   # GET /infomsgs/1
@@ -28,7 +28,7 @@ class InfomsgsController < ApplicationController
 
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.save
-        format.html { redirect_to @infomsg, notice: 'Infomsg was successfully created.' }
+        format.html { redirect_to @infomsg, notice: "Infomsg was successfully created." }
         format.json { render :show, status: :created, location: @infomsg }
       else
         format.html { render :new }
@@ -40,11 +40,11 @@ class InfomsgsController < ApplicationController
   # PATCH/PUT /infomsgs/1
   # PATCH/PUT /infomsgs/1.json
   def update
-    @infomsg.assign_attributes(infomsg_params)  # password error で入力値がクリアされないよう先にセットしておく
+    @infomsg.assign_attributes(infomsg_params) # password error で入力値がクリアされないよう先にセットしておく
 
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.update(infomsg_params)
-        format.html { redirect_to @infomsg, notice: 'Infomsg was successfully updated.' }
+        format.html { redirect_to @infomsg, notice: "Infomsg was successfully updated." }
         format.json { render :show, status: :ok, location: @infomsg }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class InfomsgsController < ApplicationController
   def destroy
     @infomsg.destroy
     respond_to do |format|
-      format.html { redirect_to infomsgs_url, notice: 'Infomsg was successfully destroyed.' }
+      format.html { redirect_to infomsgs_url, notice: "Infomsg was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,7 +67,7 @@ class InfomsgsController < ApplicationController
     @infomsg = Infomsg.find(params[:id][:trg])
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.destroy
-        format.html { redirect_to infomsgs_url, notice: 'Infomsg was successfully destroyed.' }
+        format.html { redirect_to infomsgs_url, notice: "Infomsg was successfully destroyed." }
         format.json { head :no_content }
       else
         format.html { render :show }
@@ -76,25 +76,24 @@ class InfomsgsController < ApplicationController
     end
   end
 
-
   private
-  
-    def admin?(pass)
-      if pass == Rails.application.secrets.infomsg_admn_pass
-        admin = true
-      else
-        @infomsg.errors[:base] << 'パスワードが違います。'
-        admin = false
-      end
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_infomsg
-      @infomsg = Infomsg.find(params[:id])
+  def admin?(pass)
+    if pass == Rails.application.secrets.infomsg_admn_pass
+      admin = true
+    else
+      @infomsg.errors[:base] << "パスワードが違います。"
+      admin = false
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def infomsg_params
-      params.require(:infomsg).permit(:effective_date, :title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_infomsg
+    @infomsg = Infomsg.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def infomsg_params
+    params.require(:infomsg).permit(:effective_date, :title, :description)
+  end
 end
