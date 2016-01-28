@@ -8,10 +8,10 @@ module Common
   end
 
   def current_date
-    Date.today.in_time_zone.to_s[0..9]
+    Time.zone.today.in_time_zone.to_s[0..9]
   end
 
   def current_month
-    Date.today.in_time_zone.to_s[0..6]
+    Time.zone.today.in_time_zone.to_s[0..6]
   end
 end

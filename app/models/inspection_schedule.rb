@@ -12,7 +12,7 @@ class InspectionSchedule < ActiveRecord::Base
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
-    limit_date = Time.now.prev_year
+    limit_date = Time.zone.now.prev_year
     InspectionSchedule.select("equipment_id, max(targetyearmonth) ")
                       .group("equipment_id")
                       .having("max(targetyearmonth) < '#{limit_date.strftime('%Y%m')}'")
