@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :set_currentparams
 
   def set_currentparams
-    @currentDate  = currentDate
+    @current_date  = current_date
     @currentMonth = currentMonth
   end
 

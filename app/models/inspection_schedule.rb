@@ -45,7 +45,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   def close_inspection
     self.status_id = Status.of_done
-    self.processingdate = currentDate
+    self.processingdate = current_date
   end
 
   # Inspection の結果変更
@@ -55,7 +55,7 @@ class InspectionSchedule < ActiveRecord::Base
                      else
                        Result.of_ng
     end
-    self.processingdate = currentDate
+    self.processingdate = current_date
   end
 
   # 点検中(doing)かどうか

@@ -7,7 +7,7 @@ module Common
     STDOUT.puts(Rails.application.class.parent_name + ":" + @@h.to_json)
   end
 
-  def currentDate
+  def current_date
     Date.today.in_time_zone.to_s[0..9]
   end
 
