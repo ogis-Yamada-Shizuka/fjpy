@@ -296,7 +296,7 @@
 <text text-anchor="start" x="217" y="-844.3" font-family="Times,serif" font-size="14.00">import</text>
 <text text-anchor="start" x="217" y="-829.3" font-family="Times,serif" font-size="14.00">index</text>
 <text text-anchor="start" x="217" y="-814.3" font-family="Times,serif" font-size="14.00">new</text>
-<text text-anchor="start" x="217" y="-799.3" font-family="Times,serif" font-size="14.00">noInspectionList</text>
+<text text-anchor="start" x="217" y="-799.3" font-family="Times,serif" font-size="14.00">no_inspection_list</text>
 <text text-anchor="start" x="217" y="-784.3" font-family="Times,serif" font-size="14.00">show</text>
 <text text-anchor="start" x="217" y="-769.3" font-family="Times,serif" font-size="14.00">update</text>
 <polyline fill="none" stroke="black" points="209,-761.5 341,-761.5 "/>

@@ -74,7 +74,7 @@ class EquipmentController < ApplicationController
     redirect_to equipment_index_url, notice: "Equipment imported."
   end
 
-  def noInspectionList
+  def no_inspection_list
     @equipment = Equipment.no_inspection_list
   end
 
