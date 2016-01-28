@@ -80,10 +80,10 @@ class InfomsgsController < ApplicationController
 
   def admin?(pass)
     if pass == Rails.application.secrets.infomsg_admn_pass
-      admin = true
+      true
     else
       @infomsg.errors[:base] << "パスワードが違います。"
-      admin = false
+      false
     end
   end
 
