@@ -81,7 +81,7 @@ class InspectionSchedulesController < ApplicationController
     end
   end
 
-  def createInspectionSchedules
+  def create_inspection_schedules
     InspectionSchedule.bulk_create(InspectionScheduleParam.new(params), current_date)
     redirect_to noinspection_list_url
   end

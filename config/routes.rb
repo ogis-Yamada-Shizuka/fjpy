@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
 # 装置システムの点検予定を作成する
   get 'noinspection_list' => 'equipment#no_inspection_list'
-  post 'create_inspection_schedules' => 'inspection_schedules#createInspectionSchedules'
+  post 'create_inspection_schedules' => 'inspection_schedules#create_inspection_schedules'
 
 
 
