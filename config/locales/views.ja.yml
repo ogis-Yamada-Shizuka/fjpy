@@ -2,7 +2,7 @@ ja:
   views:
     navbar:
       current_date: 本日
-      currentMonth: 当月
+      current_month: 当月
     menu:
       show:
         title: メニュー

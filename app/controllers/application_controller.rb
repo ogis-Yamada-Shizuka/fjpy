@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def set_currentparams
     @current_date  = current_date
-    @currentMonth = currentMonth
+    @current_month = current_month
   end
 
   protected

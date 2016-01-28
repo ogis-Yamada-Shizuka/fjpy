@@ -11,7 +11,7 @@ module Common
     Date.today.in_time_zone.to_s[0..9]
   end
 
-  def currentMonth
+  def current_month
     Date.today.in_time_zone.to_s[0..6]
   end
 end
