@@ -5,22 +5,27 @@ class ApplicationController < ActionController::Base
 
   include Common
 
-  before_filter :authenticate_user!
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   before_action :set_currentparams
 
   def set_currentparams
-    @currentDate  = currentDate
-    @currentMonth = currentMonth
+    @current_date  = current_date
+    @current_month = current_month
   end
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:userid, :name, :email, :password, :password_confirmation, :remember_me, :company_id) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:userid, :name, :email, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:userid, :name, :email, :password, :password_confirmation, :current_password, :company_id) }
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:userid, :name, :email, :password, :password_confirmation, :remember_me, :company_id)
+    end
+    devise_parameter_sanitizer.for(:sign_in) do |u|
+      u.permit(:userid, :name, :email, :password, :remember_me)
+    end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:userid, :name, :email, :password, :password_confirmation, :current_password, :company_id)
+    end
   end
-
 end

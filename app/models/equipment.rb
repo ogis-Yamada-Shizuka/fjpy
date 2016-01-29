@@ -6,7 +6,7 @@ class Equipment < ActiveRecord::Base
   has_many :inspection_schedules
 
   # CSV Upload
-  require 'csv'
+  require "csv"
   def self.import(file)
     CSV.foreach(file.path, encoding: "SJIS:UTF-8", headers: true) do |row|
       model = find_by_id(row["id"]) || new
@@ -16,7 +16,6 @@ class Equipment < ActiveRecord::Base
   end
 
   def self.no_inspection_list
-
     equipment_list = InspectionSchedule.old_inspection_equipment_list
 
     Equipment.includes(:inspection_schedules)
@@ -24,5 +23,4 @@ class Equipment < ActiveRecord::Base
              .where(InspectionSchedule.arel_table[:equipment_id].eq(nil)
              .or(InspectionSchedule.arel_table[:equipment_id].in(equipment_list)))
   end
-
 end

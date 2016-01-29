@@ -10,14 +10,16 @@ class InspectionSchedule < ActiveRecord::Base
   include Common
   after_commit :dump
 
+  scope :old_inspection_equipments, lambda { |limit_date|
+    group(:equipment_id).having("max(targetyearmonth) < '#{limit_date.strftime('%Y%m')}'")
+  }
+
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
-    limit_date = Time.now.prev_year
     InspectionSchedule.select("equipment_id, max(targetyearmonth) ")
-              .group("equipment_id")
-              .having("max(targetyearmonth) < '#{limit_date.strftime('%Y%m')}'")
-              .pluck(:equipment_id)
+                      .old_inspection_equipments(Time.zone.now.prev_year)
+                      .pluck(:equipment_id)
   end
 
   # 装置システムの点検予定をまとめて作成
@@ -41,48 +43,44 @@ class InspectionSchedule < ActiveRecord::Base
 
   # InspectionSchedule のステータス変更
   def start_inspection
-    self.status_id = Status.of_doing;
+    self.status_id = Status.of_doing
   end
+
   def close_inspection
-    self.status_id = Status.of_done;
-    self.processingdate = currentDate
+    self.status_id = Status.of_done
+    self.processingdate = current_date
   end
 
-# Inspection の結果変更
+  # Inspection の結果変更
   def judging(inspection_result)
-    if(inspection_result.check.tone_id!=4)
-      self.result_id = Result.of_ok;
-    else
-      self.result_id = Result.of_ng;
-    end
-    self.processingdate = currentDate
+    self.result_id = inspection_result.check.tone_id != 4 ? Result.of_ok : Result.of_ng
+    self.processingdate = current_date
   end
 
-# 点検中(doing)かどうか
+  # 点検中(doing)かどうか
   def doing?
-    if self.status.id == Status.of_doing
+    if status.id == Status.of_doing
       true
     else
       false
     end
   end
 
-# 完了している状態かどうか
+  # 完了している状態かどうか
   def close?
-    if self.status.id == Status.of_done
+    if status.id == Status.of_done
       true
     else
       false
     end
   end
 
-# 点検開始して良いかどうか
+  # 点検開始して良いかどうか
   def can_inspection?
-    if self.status.id == Status.of_done
+    if status.id == Status.of_done
       false # 完了 してたらダメ
     else
       true # 完了してなければ良い（とりあえず）
     end
   end
-
 end

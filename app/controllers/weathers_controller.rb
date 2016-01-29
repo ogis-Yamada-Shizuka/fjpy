@@ -28,7 +28,7 @@ class WeathersController < ApplicationController
 
     respond_to do |format|
       if @weather.save
-        format.html { redirect_to @weather, notice: 'Weather was successfully created.' }
+        format.html { redirect_to @weather, notice: "Weather was successfully created." }
         format.json { render :show, status: :created, location: @weather }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class WeathersController < ApplicationController
   def update
     respond_to do |format|
       if @weather.update(weather_params)
-        format.html { redirect_to @weather, notice: 'Weather was successfully updated.' }
+        format.html { redirect_to @weather, notice: "Weather was successfully updated." }
         format.json { render :show, status: :ok, location: @weather }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class WeathersController < ApplicationController
   def destroy
     @weather.destroy
     respond_to do |format|
-      format.html { redirect_to weathers_url, notice: 'Weather was successfully destroyed.' }
+      format.html { redirect_to weathers_url, notice: "Weather was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_weather
-      @weather = Weather.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def weather_params
-      params.require(:weather).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_weather
+    @weather = Weather.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def weather_params
+    params.require(:weather).permit(:name)
+  end
 end

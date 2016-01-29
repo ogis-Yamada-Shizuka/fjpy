@@ -14,7 +14,7 @@ class InspectionResultsController < ApplicationController
       marker.lat inspection_result.latitude
       marker.lng inspection_result.longitude
       marker.infowindow inspection_result.updated_at.to_s
-      marker.json({title: inspection_result.user_id.to_s})
+      marker.json(title: inspection_result.user_id.to_s)
     end
   end
 
@@ -35,12 +35,12 @@ class InspectionResultsController < ApplicationController
     # TODO: ここで落ちる kilogy からのバグがある。(inspection_schedule_id を hidden で入れる？)
     inspection = InspectionSchedule.find(params[:inspection_result][:inspection_schedule_id])
 
-    inspection.start_inspection  # 点検開始
-    inspection.judging(@inspection_result)  # 点検結果を判断
+    inspection.start_inspection # 点検開始
+    inspection.judging(@inspection_result) # 点検結果を判断
 
     respond_to do |format|
       if @inspection_result.save && inspection.save
-        format.html { redirect_to @inspection_result, notice: 'InspectionResult was successfully created.' }
+        format.html { redirect_to @inspection_result, notice: "InspectionResult was successfully created." }
         format.json { render :show, status: :created, location: @inspection_result }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class InspectionResultsController < ApplicationController
   def update
     respond_to do |format|
       if @inspection_result.update(inspection_result_params)
-        format.html { redirect_to @inspection_result, notice: 'InspectionResult was successfully updated.' }
+        format.html { redirect_to @inspection_result, notice: "InspectionResult was successfully updated." }
         format.json { render :show, status: :ok, location: @inspection_result }
       else
         format.html { render :edit }
@@ -68,23 +68,24 @@ class InspectionResultsController < ApplicationController
   def destroy
     @inspection_result.destroy
     respond_to do |format|
-      format.html { redirect_to inspection_results_url, notice: 'InspectionResult was successfully destroyed.' }
+      format.html { redirect_to inspection_results_url, notice: "InspectionResult was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_inspection_result
-      @inspection_result = InspectionResult.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def inspection_result_params
-      params.require(:inspection_result).permit(
-        :inspection_schedule_id, :user_id, :latitude, :longitude,
-        measurement_attributes: [:id, :inspection_result_id, :metercount, :testervalue, :point],
-        check_attributes: [:id, :inspection_result_id, :weather_id, :exterior_id, :tone_id, :stain_id],
-        note_attributes: [:id, :inspection_result_id, :memo, :picture] )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_inspection_result
+    @inspection_result = InspectionResult.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def inspection_result_params
+    params.require(:inspection_result).permit(
+      :inspection_schedule_id, :user_id, :latitude, :longitude,
+      measurement_attributes: [:id, :inspection_result_id, :metercount, :testervalue, :point],
+      check_attributes: [:id, :inspection_result_id, :weather_id, :exterior_id, :tone_id, :stain_id],
+      note_attributes: [:id, :inspection_result_id, :memo, :picture])
+  end
 end
