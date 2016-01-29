@@ -29,6 +29,11 @@ ja:
       do_inspecrion: 点検開始
       done_inspection: 点検の完了
       close_inspecrion: 点検完了(承認)
+    inspection_request:
+      index: 点検依頼一覧
+      new: 点検依頼の登録
+      edit: 点検依頼の更新
+      show: 点検依頼の確認
     equipment:
       index: 装置システム一覧
       new: 装置システムの登録

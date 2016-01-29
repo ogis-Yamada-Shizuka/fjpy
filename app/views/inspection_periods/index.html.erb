@@ -1,0 +1,23 @@
+<h1>Listing inspection_periods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inspection_periods.each do |inspection_period| %>
+      <tr>
+        <td><%= link_to 'Show', inspection_period %></td>
+        <td><%= link_to 'Edit', edit_inspection_period_path(inspection_period) %></td>
+        <td><%= link_to 'Destroy', inspection_period, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inspection period', new_inspection_period_path %>
