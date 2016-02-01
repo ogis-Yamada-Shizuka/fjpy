@@ -22,3 +22,8 @@ crumb :equipment_no_inspection_index do
   link t('views.equipment.no_inspection_index'), nil
   parent :maint
 end
+
+crumb :equipment_make_inspection_schedules do
+  link t('views.equipment.make_inspection_schedules'), nil
+  parent :maint
+end
