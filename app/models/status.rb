@@ -1,4 +1,6 @@
 class Status < ActiveRecord::Base
+  scope :not_done, -> { where.not(id: Constants::Status::ID_DONE) }
+
   def self.of_unallocated
     Constants::Status::ID_UNALLOCATED
   end
@@ -13,5 +15,9 @@ class Status < ActiveRecord::Base
 
   def self.of_done
     Constants::Status::ID_DONE
+  end
+
+  def self.not_done_ids
+    not_done.ids
   end
 end
