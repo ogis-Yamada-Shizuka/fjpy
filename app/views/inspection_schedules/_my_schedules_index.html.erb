@@ -1,32 +1,4 @@
-<% breadcrumb :inspection_schedule_index %>
-<h1><%= t('views.inspection_schedule.index') %></h1>
-
-<% if @my_schedules.any? %>
-  <%= render 'my_schedules_index' %>
-<% end %>
-
-<h2><%= t('views.inspection_schedule.all_schedules') %></h2>
-<div class="well col-md-8 col-sm-8 col-xs-8">
-
- <%= search_form_for @search do |f| %>
-    <div>
-      <p>
-        <%= t('activerecord.attributes.inspection_schedule.service_id') %>
-        <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
-        <%= t('activerecord.attributes.inspection_schedule.status_id') %>
-        <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
-        <%= t('activerecord.attributes.equipment.place_id') %>
-        <%= f.collection_select(:equipment_place_id_eq, Place.all, :id, :name, :include_blank => true ) %>
-      </p>
-    </div>
-    <div>
-      <%= f.submit t('helpers.submit.search') %>
-    </div>
-  <% end %>
-
-
-</div>
-
+<h2><%= t('views.inspection_schedule.my_schedules') %></h2>
 <table>
   <thead>
     <tr>
@@ -34,7 +6,6 @@
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.result_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
       <th colspan="4"></th>
@@ -42,13 +13,12 @@
   </thead>
 
   <tbody>
-    <% @inspection_schedules.each do |inspection_schedule| %>
+    <% @my_schedules.each do |inspection_schedule| %>
       <tr>
         <td><%= inspection_schedule.targetyearmonth %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.status.name %></td>
-        <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.result.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
         <td>
@@ -84,8 +54,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= paginate(@inspection_schedules) %>
-<br>
-
-<%= link_to t('views.link_to.new'), new_inspection_schedule_path %>
