@@ -16,8 +16,10 @@ Branch.create(id: 2, code: 'OSK-01', name: '大阪第１')
 Branch.create(id: 3, code: 'OSK-02', name: '大阪第２')
 Branch.create(id: 4, code: 'NGY-01', name: '名古屋営業所')
 Branch.create(id: 5, code: 'TKY-01', name: '東京支社')
-Service.create(id: 6, code: 'SER-01', name: 'なにわサービス')
-Service.create(id: 7, code: 'SER-02', name: '大阪点検サポート')
+Service.create(id: 6, code: 'SER-01', name: 'なにわサービス', branch_id: 2)
+Service.create(id: 7, code: 'SER-02', name: '大阪点検サポート', branch_id: 3)
+Service.create(id: 8, code: 'SER-01', name: '(有)難波設備', branch_id: 2)
+Service.create(id: 9, code: 'SER-02', name: '阪神施設管理(株)', branch_id: 3)
 if Rails.env.development?
   Company.connection.execute("update sqlite_sequence set seq=7 where name='companies'")
 else

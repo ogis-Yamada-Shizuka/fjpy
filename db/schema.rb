@@ -53,10 +53,13 @@ ActiveRecord::Schema.define(version: 20160126091537) do
   create_table "companies", force: true do |t|
     t.string   "code"
     t.string   "name"
+    t.integer  "branch_id"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "companies", ["branch_id"], name: "index_companies_on_branch_id"
 
   create_table "equipment", force: true do |t|
     t.string   "name"
