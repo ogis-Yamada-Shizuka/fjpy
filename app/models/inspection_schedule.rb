@@ -41,6 +41,10 @@ class InspectionSchedule < ActiveRecord::Base
     end
   end
 
+  def self.make_branch_yyyym(current_date)
+    puts "########################## To Do ################################3"
+  end
+
   # InspectionSchedule のステータス変更
   def start_inspection
     self.status_id = Status.of_doing
