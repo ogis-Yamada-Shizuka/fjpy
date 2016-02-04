@@ -1,7 +1,7 @@
 <% breadcrumb :inspection_schedule_index %>
 <h1><%= t('views.inspection_schedule.index') %></h1>
 
-<% if @my_schedules.any? %>
+<% if current_user.service_employee? && @my_schedules.any? %>
   <%= render 'my_schedules_index' %>
 <% end %>
 
