@@ -4,7 +4,6 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :service
   belongs_to :result
   has_many :inspection_result
-  has_one :approval
   has_many :inspection_requests
 
   include Common
@@ -41,8 +40,22 @@ class InspectionSchedule < ActiveRecord::Base
     end
   end
 
-  def self.make_branch_yyyym(current_date)
-    puts "########################## To Do ################################3"
+  # 指示
+  def self.make_branch_yyyym(target_brahch_id, target_year, target_month, current_date)
+    equipments = Equipment.where(branch_id: target_brahch_id)
+    equipments.each do |equipment|
+      if equipment.is_inspection_yearmonth(target_year, target_month)
+        new_inspection_schedule = new(
+          targetyearmonth: target_year+target_month,
+          equipment_id: equipment.id,
+          status_id: Status.of_unallocated,
+          service_id: equipment.service_id,
+          result_id: Result.of_preinitiation,
+          processingdate: current_date
+        )
+        new_inspection_schedule.save
+      end
+    end
   end
 
   # InspectionSchedule のステータス変更

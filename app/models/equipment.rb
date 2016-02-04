@@ -24,4 +24,10 @@ class Equipment < ActiveRecord::Base
              .where(InspectionSchedule.arel_table[:equipment_id].eq(nil)
              .or(InspectionSchedule.arel_table[:equipment_id].in(equipment_list)))
   end
+
+  # 渡された年月が自分の点検年月にあたるかどうかを Yes/No で回答する
+  def is_inspection_yearmonth(target_year, target_month)
+    return true  # とりあえず問答無用で treu を返す
+  end
+
 end
