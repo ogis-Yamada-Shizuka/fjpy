@@ -3,11 +3,11 @@
 
 <div class="well col-md-4 col-sm-4 col-xs-4">
 
-  <%= search_form_for @search do |f| %>
+ <%= search_form_for @search do |f| %>
     <div>
     <p>
-    <%= t('activerecord.attributes.inspection_schedule.user_id') %>
-    <%= f.collection_select(:user_id_eq, User.all, :id, :name, :include_blank => true ) %>
+    <%= t('activerecord.attributes.inspection_schedule.service_id') %>
+    <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
     <%= t('activerecord.attributes.inspection_schedule.status_id') %>
     <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
     </div>
@@ -17,6 +17,7 @@
     </div>
   <% end %>
 
+
 </div>
 
 <table>
@@ -25,7 +26,7 @@
       <th><%= t('activerecord.attributes.inspection_schedule.targetyearmonth') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_schedule.user_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.result_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
       <th colspan="4"></th>
@@ -38,7 +39,7 @@
         <td><%= inspection_schedule.targetyearmonth %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.status.name %></td>
-        <td><%= inspection_schedule.user.name %></td>
+        <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.result.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
         <td>

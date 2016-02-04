@@ -1,7 +1,8 @@
 class Equipment < ActiveRecord::Base
   belongs_to :system_model
   belongs_to :place
-  belongs_to :company
+  belongs_to :branch
+  belongs_to :service
 
   has_many :inspection_schedules
 

@@ -4,7 +4,7 @@ class CreateInspectionSchedules < ActiveRecord::Migration
       t.string :targetyearmonth
       t.references :equipment, index: true
       t.references :status, index: true
-      t.references :user, index: true
+      t.references :service, index: true
       t.references :result, index: true
       t.date :processingdate
 
