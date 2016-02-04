@@ -40,6 +40,7 @@ ja:
       edit: 装置システムの更新
       show: 装置システムの確認
       no_inspection_index: 装置システム一覧(点検予定なし)
+      make_inspection_schedules: 装置システム点検予定作成
     place:
       index: 場所の一覧
       new: 場所の登録

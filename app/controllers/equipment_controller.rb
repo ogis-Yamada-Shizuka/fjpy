@@ -78,6 +78,9 @@ class EquipmentController < ApplicationController
     @equipment = Equipment.no_inspection_list
   end
 
+  def make_inspection_schedules
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -87,6 +90,6 @@ class EquipmentController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def equipment_params
-    params.require(:equipment).permit(:name, :system_model_id, :place_id, :company_id)
+    params.require(:equipment).permit(:name, :system_model_id, :place_id, :branch_id, :service_id)
   end
 end

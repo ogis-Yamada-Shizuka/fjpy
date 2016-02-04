@@ -24,8 +24,12 @@
     <%= f.collection_select( :place_id, Place.all, :id, :name ) %>
   </div>
   <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.collection_select( :company_id, Company.all, :id, :name ) %>
+    <%= f.label :branch_id %><br>
+    <%= f.collection_select( :branch_id, Branch.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :service_id %><br>
+    <%= f.collection_select( :service_id, Service.all, :id, :name ) %>
   </div>
   <div class="actions">
     <%= f.submit %>

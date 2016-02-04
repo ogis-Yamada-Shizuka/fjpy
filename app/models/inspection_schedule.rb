@@ -1,7 +1,7 @@
 class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :status
-  belongs_to :user
+  belongs_to :service
   belongs_to :result
   has_many :inspection_result
   has_one :approval
