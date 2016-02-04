@@ -8,7 +8,7 @@ class InspectionSchedulesController < ApplicationController
   def index
     @search = InspectionSchedule.search(params[:q])
     @inspection_schedules = @search.result.order(:targetyearmonth, :id).page(params[:page])
-    @my_schedules = InspectionSchedule.my_schedules(current_user)
+    @my_schedules = InspectionSchedule.my_schedules(current_user.company)
   end
 
   # GET /inspection_schedules/1

@@ -15,8 +15,8 @@ class InspectionSchedule < ActiveRecord::Base
   }
 
   scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
-  scope :my_schedules, ->(user) {
-    includes(equipment: :place).where(user: user).not_done.includes(:equipment).order("equipment_id")
+  scope :my_schedules, ->(service) {
+    includes(equipment: :place).where(service: service).not_done.includes(:equipment).order("equipment_id")
   }
 
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
