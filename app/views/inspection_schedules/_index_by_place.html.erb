@@ -1,4 +1,4 @@
-<h2><%= t('views.inspection_schedule.my_schedules', company_name: current_user.company.name) %></h2>
+<h2><%= t('views.inspection_schedule.schedules_by_place', place_name: @inspection_schedule.place.name) %></h2>
 <table>
   <thead>
     <tr>
@@ -6,6 +6,7 @@
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.result_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
       <th colspan="4"></th>
@@ -13,12 +14,13 @@
   </thead>
 
   <tbody>
-    <% @my_schedules.each do |inspection_schedule| %>
+    <% @same_place_inspection_schedules.each do |inspection_schedule| %>
       <tr>
         <td><%= inspection_schedule.targetyearmonth %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.status.name %></td>
+        <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.result.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
         <td>

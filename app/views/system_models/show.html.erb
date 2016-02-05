@@ -1,8 +1,16 @@
+<% breadcrumb :system_model_show %>
+<h1><%= t('views.system_model.show') %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t('activerecord.attributes.system_model.name') %>:</strong>
   <%= @system_model.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.system_model.inspection_cycle_month') %>:</strong>
+  <%= @system_model.inspection_cycle_month %>
 </p>
 
 <%= link_to 'Edit', edit_system_model_path(@system_model) %> |

@@ -30,7 +30,7 @@ ja:
       done_inspection: 点検の完了
       close_inspecrion: 点検完了(承認)
       my_schedules: "%{company_name}の点検予定一覧"
-      index_by_place: "%{place_name}の点検予定を全て見る"
+      schedules_by_place: "%{place_name}の点検予定一覧"
       all_schedules: 全ての点検予定一覧
     inspection_request:
       index: 点検依頼一覧
@@ -44,6 +44,11 @@ ja:
       show: 装置システムの確認
       no_inspection_index: 装置システム一覧(点検予定なし)
       make_inspection_schedules: 装置システム点検予定作成
+    system_model:
+      index: 型式一覧
+      new: 型式の登録
+      edit: 型式の更新
+      show: 型式の確認
     place:
       index: 場所の一覧
       new: 場所の登録

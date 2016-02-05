@@ -15,8 +15,10 @@ class InspectionSchedule < ActiveRecord::Base
 
   scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
   scope :my_schedules, ->(service) {
-    includes(equipment: :place).where(service: service).not_done.includes(:equipment).order("equipment_id")
+    includes(equipment: :place).where(service: service).not_done.order_by_targetyearmonth
   }
+  scope :with_place, ->(place) { joins(equipment: :place).where('equipment.place_id = ?', place.id) }
+  scope :order_by_targetyearmonth, -> { order(:targetyearmonth, :id) }
 
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。

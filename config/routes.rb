@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :inspection_periods
-
   resources :inspection_requests
 
   resources :comments
