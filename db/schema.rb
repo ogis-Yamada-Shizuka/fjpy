@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160126084149) do
 
   create_table "system_models", force: true do |t|
     t.string   "name"
+    t.integer  "inspection_cycle_month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
