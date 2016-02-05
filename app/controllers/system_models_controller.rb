@@ -70,6 +70,6 @@ class SystemModelsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def system_model_params
-    params.require(:system_model).permit(:name)
+    params.require(:system_model).permit(:name, :inspection_cycle_month)
   end
 end

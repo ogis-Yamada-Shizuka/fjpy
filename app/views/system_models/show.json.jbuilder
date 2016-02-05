@@ -1,1 +1,1 @@
-json.extract! @system_model, :id, :name, :created_at, :updated_at
+json.extract! @system_model, :id, :name, :inspection_cycle_month, :created_at, :updated_at

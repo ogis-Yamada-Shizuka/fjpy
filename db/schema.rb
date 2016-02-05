@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126091537) do
+ActiveRecord::Schema.define(version: 20160126084149) do
 
   create_table "approvals", force: true do |t|
     t.integer  "inspection_result_id"
@@ -86,11 +86,6 @@ ActiveRecord::Schema.define(version: 20160126091537) do
     t.date     "effective_date"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "inspection_periods", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -174,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160126091537) do
 
   create_table "system_models", force: true do |t|
     t.string   "name"
+    t.integer  "inspection_cycle_month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
