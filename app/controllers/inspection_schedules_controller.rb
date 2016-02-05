@@ -15,6 +15,7 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @inspection_results = @inspection_schedule.inspection_result.all
+    @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order(:targetyearmonth, :id)
   end
 
   # GET /inspection_schedules/1/do_inspection
