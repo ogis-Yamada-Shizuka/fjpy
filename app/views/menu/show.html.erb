@@ -17,7 +17,7 @@
 <div class="bs-callout bs-callout-danger">
     <h4><%= t('views.menu.show.daily_work') %></h4>
     <p>
-      <%= link_to t('views.inspection.index'), inspections_path %>
+      <%= link_to t('views.inspection_schedule.index'), inspection_schedules_path %>
     </p>
 </div>
 
@@ -25,6 +25,9 @@
     <h4><%= t('views.menu.show.management_work') %></h4>
     <p>
       <%= link_to t('views.equipment.no_inspection_index'), noinspection_list_path %>
+    </p>
+    <p>
+      <%= link_to t('views.equipment.make_inspection_schedules'), make_inspection_schedules_path %>
     </p>
 </div>
 
@@ -42,12 +45,9 @@
 <div class="bs-callout bs-callout-default">
   <h4><%= t('views.menu.show.maintanance_sys') %></h4>
   <p>
-    <%= link_to t('views.worker.index'), workers_path %>
+    <%= link_to t('views.user.index'), users_path %>
   </p>
   <p>
-    <%= link_to t('views.division.index'), divisions_path %>
+    <%= link_to t('views.company.index'), companies_path %>
   </p>
 </div>
-
-
-

@@ -1,0 +1,11 @@
+<% breadcrumb :inspection_schedule_show %>
+<h1><%= t('views.inspection_schedule.show') %></h1>
+<p id="notice"><%= notice %></p>
+
+<%= render 'show', inspection_schedule: @inspection_schedule %>
+
+<%= render 'inspection_results/index', inspection_results: @inspection_results %>
+
+<hr>
+<%= link_to 'Edit', edit_inspection_schedule_path(@inspection_schedule) %> |
+<%= link_to 'Back', inspection_schedules_path %>

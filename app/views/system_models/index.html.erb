@@ -1,0 +1,25 @@
+<h1>Listing system_models</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @system_models.each do |system_model| %>
+      <tr>
+        <td><%= system_model.name %></td>
+        <td><%= link_to 'Show', system_model %></td>
+        <td><%= link_to 'Edit', edit_system_model_path(system_model) %></td>
+        <td><%= link_to 'Destroy', system_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New SystemModel', new_system_model_path %>

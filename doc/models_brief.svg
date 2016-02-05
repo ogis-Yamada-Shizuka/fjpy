@@ -58,15 +58,15 @@
 <ellipse fill="none" stroke="black" cx="749" cy="-255" rx="40.4202" ry="18"/>
 <text text-anchor="middle" x="749" y="-251.3" font-family="Times,serif" font-size="14.00">Weather</text>
 </g>
-<!-- Division -->
-<g id="node8" class="node"><title>Division</title>
+<!-- Company -->
+<g id="node8" class="node"><title>Company</title>
 <ellipse fill="none" stroke="black" cx="849" cy="-255" rx="40.4202" ry="18"/>
-<text text-anchor="middle" x="849" y="-251.3" font-family="Times,serif" font-size="14.00">Division</text>
+<text text-anchor="middle" x="849" y="-251.3" font-family="Times,serif" font-size="14.00">Company</text>
 </g>
-<!-- Worker -->
-<g id="node9" class="node"><title>Worker</title>
+<!-- User -->
+<g id="node9" class="node"><title>User</title>
 <ellipse fill="none" stroke="black" cx="946" cy="-255" rx="38.0212" ry="18"/>
-<text text-anchor="middle" x="946" y="-251.3" font-family="Times,serif" font-size="14.00">Worker</text>
+<text text-anchor="middle" x="946" y="-251.3" font-family="Times,serif" font-size="14.00">User</text>
 </g>
 <!-- Note -->
 <g id="node10" class="node"><title>Note</title>
@@ -88,13 +88,13 @@
 <ellipse fill="none" stroke="black" cx="374" cy="-162" rx="47.169" ry="18"/>
 <text text-anchor="middle" x="374" y="-158.3" font-family="Times,serif" font-size="14.00">Inspection</text>
 </g>
-<!-- Kiroku -->
-<g id="node16" class="node"><title>Kiroku</title>
+<!-- InspectionResult -->
+<g id="node16" class="node"><title>InspectionResult</title>
 <ellipse fill="none" stroke="black" cx="374" cy="-90" rx="35.6194" ry="18"/>
-<text text-anchor="middle" x="374" y="-86.3" font-family="Times,serif" font-size="14.00">Kiroku</text>
+<text text-anchor="middle" x="374" y="-86.3" font-family="Times,serif" font-size="14.00">InspectionResult</text>
 </g>
-<!-- Inspection&#45;&gt;Kiroku -->
-<g id="edge2" class="edge"><title>Inspection&#45;&gt;Kiroku</title>
+<!-- Inspection&#45;&gt;InspectionResult -->
+<g id="edge2" class="edge"><title>Inspection&#45;&gt;InspectionResult</title>
 <path fill="none" stroke="#799381" d="M374,-135.64C374,-130.063 374,-124.132 374,-118.476"/>
 <ellipse fill="none" stroke="#799381" cx="374" cy="-139.697" rx="4" ry="4"/>
 <polygon fill="#799381" stroke="#799381" points="374,-118.104 378.5,-108.104 374,-113.104 374,-108.104 374,-108.104 374,-108.104 374,-113.104 369.5,-108.104 374,-118.104 374,-118.104"/>
@@ -110,14 +110,14 @@
 <ellipse fill="none" stroke="#73feb7" cx="374" cy="-232.884" rx="4" ry="4"/>
 <polygon fill="#73feb7" stroke="#73feb7" points="374,-190.04 378.5,-180.04 374,-185.04 374,-180.04 374,-180.04 374,-180.04 374,-185.04 369.5,-180.04 374,-190.04 374,-190.04"/>
 </g>
-<!-- Kiroku&#45;&gt;Check -->
-<g id="edge4" class="edge"><title>Kiroku&#45;&gt;Check</title>
+<!-- InspectionResult&#45;&gt;Check -->
+<g id="edge4" class="edge"><title>InspectionResult&#45;&gt;Check</title>
 <path fill="none" stroke="#8a4f9f" d="M350.571,-68.2398C340.183,-59.036 328.009,-48.2483 317.707,-39.1199"/>
 <ellipse fill="none" stroke="#8a4f9f" cx="353.864" cy="-71.1583" rx="4.00002" ry="4.00002"/>
 <ellipse fill="#8a4f9f" stroke="#8a4f9f" cx="314.561" cy="-36.3324" rx="4.00002" ry="4.00002"/>
 </g>
-<!-- Kiroku&#45;&gt;Note -->
-<g id="edge6" class="edge"><title>Kiroku&#45;&gt;Note</title>
+<!-- InspectionResult&#45;&gt;Note -->
+<g id="edge6" class="edge"><title>InspectionResult&#45;&gt;Note</title>
 <path fill="none" stroke="#cc1bce" d="M374,-63.6398C374,-57.348 374,-50.6053 374,-44.3156"/>
 <ellipse fill="none" stroke="#cc1bce" cx="374" cy="-67.6966" rx="4" ry="4"/>
 <ellipse fill="#cc1bce" stroke="#cc1bce" cx="374" cy="-40.1043" rx="4" ry="4"/>
@@ -127,8 +127,8 @@
 <ellipse fill="none" stroke="black" cx="480" cy="-18" rx="59.1941" ry="18"/>
 <text text-anchor="middle" x="480" y="-14.3" font-family="Times,serif" font-size="14.00">Measurement</text>
 </g>
-<!-- Kiroku&#45;&gt;Measurement -->
-<g id="edge5" class="edge"><title>Kiroku&#45;&gt;Measurement</title>
+<!-- InspectionResult&#45;&gt;Measurement -->
+<g id="edge5" class="edge"><title>InspectionResult&#45;&gt;Measurement</title>
 <path fill="none" stroke="#fb6cfd" d="M401.668,-70.7286C416.411,-60.9929 434.572,-48.9993 449.695,-39.0127"/>
 <ellipse fill="none" stroke="#fb6cfd" cx="398.027" cy="-73.1329" rx="4.00002" ry="4.00002"/>
 <ellipse fill="#fb6cfd" stroke="#fb6cfd" cx="453.068" cy="-36.785" rx="4.00002" ry="4.00002"/>

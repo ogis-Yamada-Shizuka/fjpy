@@ -1,7 +1,6 @@
 class Place < ActiveRecord::Base
-
   # CSV Upload
-  require 'csv'
+  require "csv"
   def self.import(file)
     CSV.foreach(file.path, encoding: "SJIS:UTF-8", headers: true) do |row|
       model = find_by_id(row["id"]) || new
@@ -9,5 +8,4 @@ class Place < ActiveRecord::Base
       model.save!
     end
   end
-
 end

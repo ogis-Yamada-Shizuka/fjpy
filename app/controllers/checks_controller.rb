@@ -28,7 +28,7 @@ class ChecksController < ApplicationController
 
     respond_to do |format|
       if @check.save
-        format.html { redirect_to @check, notice: 'Check was successfully created.' }
+        format.html { redirect_to @check, notice: "Check was successfully created." }
         format.json { render :show, status: :created, location: @check }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ChecksController < ApplicationController
   def update
     respond_to do |format|
       if @check.update(check_params)
-        format.html { redirect_to @check, notice: 'Check was successfully updated.' }
+        format.html { redirect_to @check, notice: "Check was successfully updated." }
         format.json { render :show, status: :ok, location: @check }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class ChecksController < ApplicationController
   def destroy
     @check.destroy
     respond_to do |format|
-      format.html { redirect_to checks_url, notice: 'Check was successfully destroyed.' }
+      format.html { redirect_to checks_url, notice: "Check was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_check
-      @check = Check.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def check_params
-      params.require(:check).permit(:kiroku_id, :weather_id, :exterior_id, :tone_id, :stain_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_check
+    @check = Check.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def check_params
+    params.require(:check).permit(:inspection_result_id, :weather_id, :exterior_id, :tone_id, :stain_id)
+  end
 end

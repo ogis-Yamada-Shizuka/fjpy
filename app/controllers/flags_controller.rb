@@ -28,7 +28,7 @@ class FlagsController < ApplicationController
 
     respond_to do |format|
       if @flag.save
-        format.html { redirect_to @flag, notice: 'Flag was successfully created.' }
+        format.html { redirect_to @flag, notice: "Flag was successfully created." }
         format.json { render :show, status: :created, location: @flag }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FlagsController < ApplicationController
   def update
     respond_to do |format|
       if @flag.update(flag_params)
-        format.html { redirect_to @flag, notice: 'Flag was successfully updated.' }
+        format.html { redirect_to @flag, notice: "Flag was successfully updated." }
         format.json { render :show, status: :ok, location: @flag }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class FlagsController < ApplicationController
   def destroy
     @flag.destroy
     respond_to do |format|
-      format.html { redirect_to flags_url, notice: 'Flag was successfully destroyed.' }
+      format.html { redirect_to flags_url, notice: "Flag was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flag
-      @flag = Flag.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def flag_params
-      params.require(:flag).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flag
+    @flag = Flag.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def flag_params
+    params.require(:flag).permit(:name)
+  end
 end

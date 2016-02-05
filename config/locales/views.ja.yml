@@ -1,8 +1,8 @@
 ja:
   views:
     navbar:
-      currentDate: 本日
-      currentMonth: 当月
+      current_date: 本日
+      current_month: 当月
     menu:
       show:
         title: メニュー
@@ -21,30 +21,39 @@ ja:
       destroy: 削除
       csv_download: CSVダウンロード
       csv_upload: CSVアップロード
-    inspection:
-      index: 点検一覧
-      new: 点検の登録
-      edit: 点検の更新
-      show: 点検の確認
+    inspection_schedule:
+      index: 点検予定一覧
+      new: 点検予定の登録
+      edit: 点検予定の更新
+      show: 点検予定の確認
       do_inspecrion: 点検開始
       done_inspection: 点検の完了
       close_inspecrion: 点検完了(承認)
+      my_schedules: "%{company_name}の点検予定一覧"
+      index_by_place: "%{place_name}の点検予定を全て見る"
+      all_schedules: 全ての点検予定一覧
+    inspection_request:
+      index: 点検依頼一覧
+      new: 点検依頼の登録
+      edit: 点検依頼の更新
+      show: 点検依頼の確認
     equipment:
-      index: 設備一覧
-      new: 設備の登録
-      edit: 設備の更新
-      show: 設備の確認
-      no_inspection_index: 設備一覧(点検予定なし)
+      index: 装置システム一覧
+      new: 装置システムの登録
+      edit: 装置システムの更新
+      show: 装置システムの確認
+      no_inspection_index: 装置システム一覧(点検予定なし)
+      make_inspection_schedules: 装置システム点検予定作成
     place:
       index: 場所の一覧
       new: 場所の登録
       edit: 場所の更新
       show: 場所の確認
-    kiroku:
-      index: 記録一覧
-      new: 記録の登録
-      edit: 記録の更新
-      show: 記録の確認
+    inspection_result:
+      index: 点検実績一覧
+      new: 点検実績の登録
+      edit: 点検実績の更新
+      show: 点検実績の確認
     check:
       check: チェック結果
       show: チェック結果の確認
@@ -52,14 +61,17 @@ ja:
       measurement: 計測結果
       show: 計測結果の確認
     note:
-      note: その他記録
-      show: その他記録の確認
-    division:
-      index: 部署の一覧
-      new: 部署の登録
-      edit: 部署の更新
-      show: 部署の確認
-    worker:
+      note: その他点検実績
+      show: その他点検実績の確認
+    company:
+      index: 会社の一覧
+      new: 会社の登録
+      edit: 会社の更新
+      show: 会社の確認
+      head: YES本社
+      branch: YES拠点
+      service: サービス会社(拠点)
+    user:
       index: 作業者の一覧
       new: 作業者の登録
       edit: 作業者の更新

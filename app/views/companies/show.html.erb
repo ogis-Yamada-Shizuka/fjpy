@@ -1,0 +1,22 @@
+<% breadcrumb :company_show %>
+<h1><%= t('views.company.show') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @company.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= t("views.company.#{@company.type.downcase}") %>
+</p>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

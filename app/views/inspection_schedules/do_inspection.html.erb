@@ -1,0 +1,33 @@
+<% breadcrumb :inspection_do_inspection %>
+<h1><%= t('views.inspection_schedule.do_inspecrion') %></h1>
+
+<%= form_for(@inspection_result) do |f| %>
+  <% if @inspection_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection_result.errors.count, "error") %> prohibited this inspection_result from being saved:</h2>
+
+      <ul>
+      <% @inspection_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-3 col-sm-3 col-xs-4">
+    <%= render 'show', inspection_schedule: @inspection_schedule %>
+  </div>
+
+    <%= render 'inspection_results/form_do_inspection', f: f %>
+
+
+  <div class="actions">
+    <%= f.submit "点検実績登録" %>
+  </div>
+
+<% end %>
+
+<hr>
+<%= link_to 'Edit', edit_inspection_schedule_path(@inspection_schedule) %> |
+<%= link_to 'Back', inspection_schedules_path %>

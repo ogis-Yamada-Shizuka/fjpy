@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
+  resources :inspection_periods
+
+  resources :inspection_requests
+
   resources :comments
 
   resources :topics
@@ -13,7 +19,7 @@ Rails.application.routes.draw do
 
   root to: 'menu#show'
 
-  resources :kirokus
+  resources :inspection_results
 
   resources :notes
 
@@ -25,40 +31,42 @@ Rails.application.routes.draw do
 
   resources :checkresults
 
-  resources :inspections
+  resources :inspection_schedules
 
   # 点検を実施する
-  get 'inspections/:id/do_inspection' => 'inspections#do_inspection' , as: 'do_inspection'
-  get 'inspections/:id/done_inspection' => 'inspections#done_inspection' , as: 'done_inspection'
+  get 'inspection_schedules/:id/do_inspection' => 'inspection_schedules#do_inspection' , as: 'do_inspection'
+  get 'inspection_schedules/:id/done_inspection' => 'inspection_schedules#done_inspection' , as: 'done_inspection'
 
   # 点検を完了(StatusをDoneに）する
-  post 'inspections/:id/close_inspection' => 'inspections#closeInspection'
+  post 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection'
 
   resources :results
 
   resources :statuses
 
   resources :equipment do
-    collection { post :import }  # for CSV Upload 
+    collection { post :import }  # for CSV Upload
   end
 
   resources :places do
-    collection { post :import }  # for CSV Upload 
+    collection { post :import }  # for CSV Upload
   end
 
-  resources :types
+  resources :system_models
 
-  resources :workers do
-    collection { post :import }  # for CSV Upload 
+  resources :users do
+    collection { post :import }  # for CSV Upload
   end
 
-  resources :divisions
+  resources :companies
 
-# 設備の点検予定を作成する
-  get 'noinspection_list' => 'equipment#noInspectionList'
-  post 'create_inspections' => 'inspections#createInspections'
+# 装置システムの点検予定を作成する
+  get 'noinspection_list' => 'equipment#no_inspection_list'
+  post 'create_inspection_schedules' => 'inspection_schedules#create_inspection_schedules'
 
-
+# 装置システムの点検予定を作成する(ACST向け新バージョン)
+  get 'make_inspection_schedules' => 'equipment#make_inspection_schedules'
+  post 'make_inspection_schedules_branch_yyyymm' => 'inspection_schedules#make_branch_yyyymm'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
