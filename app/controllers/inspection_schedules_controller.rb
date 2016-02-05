@@ -6,9 +6,9 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules
   # GET /inspection_schedules.json
   def index
-    # @inspection_schedules = InspectionSchedule.all
     @search = InspectionSchedule.search(params[:q])
     @inspection_schedules = @search.result.order(:targetyearmonth, :id).page(params[:page])
+    @my_schedules = InspectionSchedule.my_schedules(current_user.company)
   end
 
   # GET /inspection_schedules/1

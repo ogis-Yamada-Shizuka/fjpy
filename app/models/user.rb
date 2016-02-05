@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
       model.save!
     end
   end
+
+  def service_employee?
+    company.try(:type) == 'Service'
+  end
 end

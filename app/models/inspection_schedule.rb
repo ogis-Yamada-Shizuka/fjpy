@@ -14,6 +14,11 @@ class InspectionSchedule < ActiveRecord::Base
     group(:equipment_id).having("max(targetyearmonth) < '#{limit_date.strftime('%Y%m')}'")
   }
 
+  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
+  scope :my_schedules, ->(service) {
+    includes(equipment: :place).where(service: service).not_done.includes(:equipment).order("equipment_id")
+  }
+
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
@@ -82,5 +87,9 @@ class InspectionSchedule < ActiveRecord::Base
     else
       true # 完了してなければ良い（とりあえず）
     end
+  end
+
+  def place
+    equipment.place
   end
 end

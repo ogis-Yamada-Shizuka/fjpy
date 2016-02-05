@@ -1,17 +1,24 @@
 <% breadcrumb :inspection_schedule_index %>
 <h1><%= t('views.inspection_schedule.index') %></h1>
 
-<div class="well col-md-4 col-sm-4 col-xs-4">
+<% if current_user.service_employee? && @my_schedules.any? %>
+  <%= render 'my_schedules_index' %>
+<% end %>
+
+<h2 id="all"><%= t('views.inspection_schedule.all_schedules') %></h2>
+<div class="well col-md-8 col-sm-8 col-xs-8">
 
  <%= search_form_for @search do |f| %>
     <div>
-    <p>
-    <%= t('activerecord.attributes.inspection_schedule.service_id') %>
-    <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
-    <%= t('activerecord.attributes.inspection_schedule.status_id') %>
-    <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
+      <p>
+        <%= t('activerecord.attributes.inspection_schedule.service_id') %>
+        <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
+        <%= t('activerecord.attributes.inspection_schedule.status_id') %>
+        <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
+        <%= t('activerecord.attributes.equipment.place_id') %>
+        <%= f.collection_select(:equipment_place_id_eq, Place.all, :id, :name, :include_blank => true ) %>
+      </p>
     </div>
-    </p>
     <div>
       <%= f.submit t('helpers.submit.search') %>
     </div>
@@ -25,6 +32,7 @@
     <tr>
       <th><%= t('activerecord.attributes.inspection_schedule.targetyearmonth') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.result_id') %></th>
@@ -38,6 +46,7 @@
       <tr>
         <td><%= inspection_schedule.targetyearmonth %></td>
         <td><%= inspection_schedule.equipment.name %></td>
+        <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.status.name %></td>
         <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.result.name %></td>
