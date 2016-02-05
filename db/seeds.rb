@@ -313,6 +313,8 @@ if Rails.env.development?
 else
   InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")
 end
+
+=begin
 InspectionSchedule.create(targetyearmonth: '201502', equipment_id: 2, status_id: 2, service_id: 7, result_id: 4, processingdate: '2015-03-01' )
 InspectionSchedule.create(targetyearmonth: '201503', equipment_id: 3, status_id: 2, service_id: 6, result_id: 4, processingdate: '2015-03-01' )
 InspectionSchedule.create(targetyearmonth: '201504', equipment_id: 4, status_id: 2, service_id: 7, result_id: 4, processingdate: '2015-03-01' )
@@ -397,3 +399,4 @@ InspectionSchedule.create(targetyearmonth: '201510', equipment_id: 2, status_id:
 InspectionSchedule.create(targetyearmonth: '201401', equipment_id: 3, status_id: 2, service_id: 6, result_id: 4, processingdate: '2015-03-01' )
 InspectionSchedule.create(targetyearmonth: '201402', equipment_id: 4, status_id: 2, service_id: 7, result_id: 4, processingdate: '2015-03-01' )
 InspectionSchedule.create(targetyearmonth: '201403', equipment_id: 5, status_id: 2, service_id: 6, result_id: 4, processingdate: '2015-03-01' )
+=end

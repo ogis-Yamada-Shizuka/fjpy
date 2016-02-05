@@ -93,6 +93,8 @@
 
       <ul class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav">
+          <li class="navbar-brand-small">[<%= current_user.name %>] </li>
+          <li class="navbar-brand-small">所属:<%= current_user.company.name %> </li>
           <li class="navbar-brand-small"><%= t('views.navbar.current_date') %>:<%= @current_date  %> </li>
           <li class="navbar-brand-small"><%= t('views.navbar.current_month') %>:<%= @current_month  %> </li>
         </ul>

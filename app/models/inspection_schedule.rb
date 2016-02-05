@@ -4,7 +4,6 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :service
   belongs_to :result
   has_many :inspection_result
-  has_one :approval
   has_many :inspection_requests
 
   include Common
@@ -42,6 +41,28 @@ class InspectionSchedule < ActiveRecord::Base
         new_inspection_schedule.save
       else
         false
+      end
+    end
+  end
+
+  # 拠点が管轄する装置システムの点検予定を作成する
+  #   target_brahch_id 点検予定を作成する対象の拠点
+  #   target_year      点検予定作成対象の年
+  #   target_month     点検予定作成対象の月
+  def self.make_branch_yyyym(target_brahch_id, target_year, target_month, current_date)
+    equipments = Equipment.where(branch_id: target_brahch_id)
+    equipments.each do |equipment|
+      if equipment.is_inspection_yearmonth(target_year, target_month) && # 該当装置システムの点検年月にあたる
+         !equipment.exist_inspection(target_year, target_month)          # 該当年月の点検スケジュールが未だ無い
+        new_inspection_schedule = new(
+          targetyearmonth: target_year+target_month,
+          equipment_id: equipment.id,
+          status_id: Status.of_unallocated,
+          service_id: equipment.service_id,
+          result_id: Result.of_preinitiation,
+          processingdate: current_date
+        )
+        new_inspection_schedule.save
       end
     end
   end
