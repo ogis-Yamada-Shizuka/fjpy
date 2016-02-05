@@ -28,9 +28,9 @@ end
 
 # SystemModel(型式)テーブルに初期値を投入(全件削除して再投入)
 SystemModel.delete_all
-SystemModel.create(id: 1, name: '通常用')
-SystemModel.create(id: 2, name: '非常用')
-SystemModel.create(id: 3, name: '携帯用')
+SystemModel.create(id: 1, name: '通常用', inspection_cycle_month: 6)
+SystemModel.create(id: 2, name: '非常用', inspection_cycle_month: 12)
+SystemModel.create(id: 3, name: '携帯用', inspection_cycle_month: 36)
 if Rails.env.development?
   SystemModel.connection.execute("update sqlite_sequence set seq=3 where name='system_models'")
 else

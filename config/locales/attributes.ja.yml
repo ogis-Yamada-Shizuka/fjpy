@@ -48,6 +48,9 @@ ja:
         branch_id: 管轄
         service_id: 担当サービス会社
         last_update: 最終更新日時
+      system_model:
+        name: 名称
+        inspection_cycle_month: 点検周期[月]
       infomsg:
         effective_date: 発効日
         title: タイトル
