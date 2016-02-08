@@ -69,11 +69,11 @@ gem "ransack"
 gem "kaminari"
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
+
   gem "railroady"
   gem "rubocop", require: false
 end
 
 gem "devise"
-
-gem 'pry-rails'
-gem 'pry-byebug'
