@@ -6,7 +6,7 @@
 <% end %>
 
 <h2 id="all"><%= t('views.inspection_schedule.all_schedules') %></h2>
-<div class="well col-md-8 col-sm-8 col-xs-8">
+<div class="well col-md-15 col-sm-15 col-xs-15">
 
  <%= search_form_for @search do |f| %>
     <div>
@@ -17,6 +17,8 @@
         <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
         <%= t('activerecord.attributes.equipment.place_id') %>
         <%= f.collection_select(:equipment_place_id_eq, Place.all, :id, :name, :include_blank => true ) %>
+        <%= t('activerecord.attributes.inspection_schedule.targetyearmonth') %>
+        <%= f.text_field :targetyearmonth_eq %>
       </p>
     </div>
     <div>
