@@ -17,19 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :equipment_id %><br>
-    <%= f.collection_select( :equipment_id, Equipment.all, :id, :name ) %>
+    <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :status_id %><br>
-    <%= f.collection_select( :status_id, Status.all, :id, :name ) %>
+    <%= f.collection_select(:status_id, Status.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :service_id %><br>
-    <%= f.collection_select( :service_id, Service.all, :id, :name ) %>
+    <%= f.collection_select(:service_id, Service.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :result_id %><br>
-    <%= f.collection_select( :result_id, Result.all, :id, :name ) %>
+    <%= f.collection_select(:result_id, Result.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :processingdate %><br>
