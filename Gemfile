@@ -74,3 +74,6 @@ group :development, :test do
 end
 
 gem "devise"
+
+gem 'pry-rails'
+gem 'pry-byebug'
