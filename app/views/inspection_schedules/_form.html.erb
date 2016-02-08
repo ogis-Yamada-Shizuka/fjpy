@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :service_id %><br>
-    <%= f.collection_select(:service_id, Service.all, :id, :name) %>
+    <%= render_service_select(f) %>
   </div>
   <div class="field">
     <%= f.label :result_id %><br>

@@ -15,6 +15,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def head_employee?
+    company.try(:type) == 'Head'
+  end
+
+  def branch_employee?
+    company.try(:type) == 'Branch'
+  end
+
   def service_employee?
     company.try(:type) == 'Service'
   end
