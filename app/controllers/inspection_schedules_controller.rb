@@ -22,7 +22,7 @@ class InspectionSchedulesController < ApplicationController
   def do_inspection
     @inspection_results = @inspection_schedule.inspection_result.all
     @inspection_result = @inspection_schedule.inspection_result.build
-    @inspection_result.user_id = @inspection_schedule.user_id
+    @inspection_result.user = current_user
     @check = @inspection_result.build_check
     @measurement = @inspection_result.build_measurement
     @note = @inspection_result.build_note
