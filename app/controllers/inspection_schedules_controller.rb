@@ -7,8 +7,7 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules.json
   def index
     @search = InspectionSchedule.search(params[:q])
-    @inspection_schedules = @search.result.order(:targetyearmonth, :id).page(params[:page])
-    @my_schedules = InspectionSchedule.my_schedules(current_user.company)
+    @inspection_schedules = my_schedules.order_by_targetyearmonth.page(params[:page])
   end
 
   # GET /inspection_schedules/1
@@ -123,5 +122,15 @@ class InspectionSchedulesController < ApplicationController
     params.require(:inspection_schedule).permit(
       :targetyearmonth, :equipment_id, :status_id, :user_id, :result_id, :processingdate
     )
+  end
+
+  # ユーザーの所属により表示する点検予定を制御
+  # YES本社: 検索結果の点検予定
+  # YES拠点: 管轄のサービス会社の点検予定
+  # サービス会社: 自身のサービス会社の点検予定
+  def my_schedules
+    return @search.result.order_by_targetyearmonth if current_user.head_employee?
+    return InspectionSchedule.with_service_companies(current_user.jurisdiction_services) if current_user.branch_employee?
+    return InspectionSchedule.with_service_companies(current_user.company) if current_user.service_employee?
   end
 end
