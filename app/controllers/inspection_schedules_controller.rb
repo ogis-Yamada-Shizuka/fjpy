@@ -124,13 +124,21 @@ class InspectionSchedulesController < ApplicationController
     )
   end
 
-  # ユーザーの所属により表示する点検予定を制御
-  # YES本社: 検索結果の点検予定
-  # YES拠点: 管轄のサービス会社の点検予定
-  # サービス会社: 自身のサービス会社の点検予定
+  # 表示する点検予定を返す
   def my_schedules
-    return @search.result.order_by_targetyearmonth if current_user.head_employee?
-    return InspectionSchedule.with_service_companies(current_user.jurisdiction_services) if current_user.branch_employee?
-    return InspectionSchedule.with_service_companies(current_user.company) if current_user.service_employee?
+    # YES本社: 検索結果の点検予定
+    if current_user.head_employee?
+      return @search.result.order_by_targetyearmonth
+    end
+
+    # YES拠点: 管轄のサービス会社の点検予定
+    if current_user.branch_employee?
+      return InspectionSchedule.with_service_companies(current_user.jurisdiction_services)
+    end
+
+    # サービス会社: 自身のサービス会社の点検予定
+    if current_user.service_employee?
+      return InspectionSchedule.with_service_companies(current_user.company)
+    end
   end
 end
