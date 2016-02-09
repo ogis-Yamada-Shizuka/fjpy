@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def service_employee?
     company.try(:type) == 'Service'
   end
+
+  def jurisdiction_services
+    branch_employee? ? company.services : []
+  end
 end
