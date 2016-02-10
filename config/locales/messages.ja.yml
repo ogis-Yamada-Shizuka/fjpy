@@ -1,0 +1,4 @@
+ja:
+  controllers:
+    inspection_schedules:
+      make_branch_yyyymm: 点検予定を生成しました。

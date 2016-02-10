@@ -1,0 +1,30 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - bin/**/*
+    - db/schema.rb
+    - db/migrate/*.rb
+    - db/seeds.rb
+    - config/**/*
+
+Rails:
+  Enabled: true
+
+# Use only ascii symbols in comments.
+Style/AsciiComments:
+  Enabled: false
+
+# Do not use block comments.
+Style/BlockComments:
+  Enabled: false
+
+# Missing top-level class documentation comment.
+Style/Documentation:
+  Enabled: false
+
+# Line is too long.
+Metrics/LineLength:
+  Max: 128
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

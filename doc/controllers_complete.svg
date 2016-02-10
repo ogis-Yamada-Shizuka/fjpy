@@ -156,10 +156,10 @@
 <text text-anchor="start" x="559" y="-365.3" font-family="Times,serif" font-size="14.00">inspection_params</text>
 <text text-anchor="start" x="559" y="-350.3" font-family="Times,serif" font-size="14.00">set_inspection</text>
 </g>
-<!-- WorkersController -->
-<g id="node10" class="node"><title>WorkersController</title>
+<!-- UsersController -->
+<g id="node10" class="node"><title>UsersController</title>
 <path fill="none" stroke="black" d="M164,-171.5C164,-171.5 259,-171.5 259,-171.5 265,-171.5 271,-177.5 271,-183.5 271,-183.5 271,-387.5 271,-387.5 271,-393.5 265,-399.5 259,-399.5 259,-399.5 164,-399.5 164,-399.5 158,-399.5 152,-393.5 152,-387.5 152,-387.5 152,-183.5 152,-183.5 152,-177.5 158,-171.5 164,-171.5"/>
-<text text-anchor="middle" x="211.5" y="-384.3" font-family="Times,serif" font-size="14.00">WorkersController</text>
+<text text-anchor="middle" x="211.5" y="-384.3" font-family="Times,serif" font-size="14.00">UsersController</text>
 <polyline fill="none" stroke="black" points="152,-376.5 271,-376.5 "/>
 <text text-anchor="start" x="160" y="-361.3" font-family="Times,serif" font-size="14.00">create</text>
 <text text-anchor="start" x="160" y="-346.3" font-family="Times,serif" font-size="14.00">destroy</text>
@@ -172,8 +172,8 @@
 <polyline fill="none" stroke="black" points="152,-248.5 271,-248.5 "/>
 <polyline fill="none" stroke="black" points="152,-224.5 271,-224.5 "/>
 <text text-anchor="start" x="160" y="-209.3" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="160" y="-194.3" font-family="Times,serif" font-size="14.00">set_worker</text>
-<text text-anchor="start" x="160" y="-179.3" font-family="Times,serif" font-size="14.00">worker_params</text>
+<text text-anchor="start" x="160" y="-194.3" font-family="Times,serif" font-size="14.00">set_user</text>
+<text text-anchor="start" x="160" y="-179.3" font-family="Times,serif" font-size="14.00">user_params</text>
 </g>
 <!-- ResultsController -->
 <g id="node11" class="node"><title>ResultsController</title>
@@ -296,7 +296,7 @@
 <text text-anchor="start" x="217" y="-844.3" font-family="Times,serif" font-size="14.00">import</text>
 <text text-anchor="start" x="217" y="-829.3" font-family="Times,serif" font-size="14.00">index</text>
 <text text-anchor="start" x="217" y="-814.3" font-family="Times,serif" font-size="14.00">new</text>
-<text text-anchor="start" x="217" y="-799.3" font-family="Times,serif" font-size="14.00">noInspectionList</text>
+<text text-anchor="start" x="217" y="-799.3" font-family="Times,serif" font-size="14.00">no_inspection_list</text>
 <text text-anchor="start" x="217" y="-784.3" font-family="Times,serif" font-size="14.00">show</text>
 <text text-anchor="start" x="217" y="-769.3" font-family="Times,serif" font-size="14.00">update</text>
 <polyline fill="none" stroke="black" points="209,-761.5 341,-761.5 "/>
@@ -305,10 +305,10 @@
 <text text-anchor="start" x="217" y="-707.3" font-family="Times,serif" font-size="14.00">equipment_params</text>
 <text text-anchor="start" x="217" y="-692.3" font-family="Times,serif" font-size="14.00">set_equipment</text>
 </g>
-<!-- KirokusController -->
-<g id="node18" class="node"><title>KirokusController</title>
+<!-- InspectionResultsController -->
+<g id="node18" class="node"><title>InspectionResultsController</title>
 <path fill="none" stroke="black" d="M620,-912.5C620,-912.5 712,-912.5 712,-912.5 718,-912.5 724,-918.5 724,-924.5 724,-924.5 724,-1113.5 724,-1113.5 724,-1119.5 718,-1125.5 712,-1125.5 712,-1125.5 620,-1125.5 620,-1125.5 614,-1125.5 608,-1119.5 608,-1113.5 608,-1113.5 608,-924.5 608,-924.5 608,-918.5 614,-912.5 620,-912.5"/>
-<text text-anchor="middle" x="666" y="-1110.3" font-family="Times,serif" font-size="14.00">KirokusController</text>
+<text text-anchor="middle" x="666" y="-1110.3" font-family="Times,serif" font-size="14.00">InspectionResultsController</text>
 <polyline fill="none" stroke="black" points="608,-1102.5 724,-1102.5 "/>
 <text text-anchor="start" x="616" y="-1087.3" font-family="Times,serif" font-size="14.00">create</text>
 <text text-anchor="start" x="616" y="-1072.3" font-family="Times,serif" font-size="14.00">destroy</text>
@@ -320,8 +320,8 @@
 <polyline fill="none" stroke="black" points="608,-989.5 724,-989.5 "/>
 <polyline fill="none" stroke="black" points="608,-965.5 724,-965.5 "/>
 <text text-anchor="start" x="616" y="-950.3" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="616" y="-935.3" font-family="Times,serif" font-size="14.00">kiroku_params</text>
-<text text-anchor="start" x="616" y="-920.3" font-family="Times,serif" font-size="14.00">set_kiroku</text>
+<text text-anchor="start" x="616" y="-935.3" font-family="Times,serif" font-size="14.00">inspection_result_params</text>
+<text text-anchor="start" x="616" y="-920.3" font-family="Times,serif" font-size="14.00">set_inspection_result</text>
 </g>
 <!-- CommentsController -->
 <g id="node19" class="node"><title>CommentsController</title>
@@ -341,10 +341,10 @@
 <text text-anchor="start" x="730" y="-194.3" font-family="Times,serif" font-size="14.00">comment_params</text>
 <text text-anchor="start" x="730" y="-179.3" font-family="Times,serif" font-size="14.00">set_comment</text>
 </g>
-<!-- DivisionsController -->
-<g id="node20" class="node"><title>DivisionsController</title>
+<!-- CompaniesController -->
+<g id="node20" class="node"><title>CompaniesController</title>
 <path fill="none" stroke="black" d="M772,-418.5C772,-418.5 872,-418.5 872,-418.5 878,-418.5 884,-424.5 884,-430.5 884,-430.5 884,-619.5 884,-619.5 884,-625.5 878,-631.5 872,-631.5 872,-631.5 772,-631.5 772,-631.5 766,-631.5 760,-625.5 760,-619.5 760,-619.5 760,-430.5 760,-430.5 760,-424.5 766,-418.5 772,-418.5"/>
-<text text-anchor="middle" x="822" y="-616.3" font-family="Times,serif" font-size="14.00">DivisionsController</text>
+<text text-anchor="middle" x="822" y="-616.3" font-family="Times,serif" font-size="14.00">CompaniesController</text>
 <polyline fill="none" stroke="black" points="760,-608.5 884,-608.5 "/>
 <text text-anchor="start" x="768" y="-593.3" font-family="Times,serif" font-size="14.00">create</text>
 <text text-anchor="start" x="768" y="-578.3" font-family="Times,serif" font-size="14.00">destroy</text>
@@ -356,8 +356,8 @@
 <polyline fill="none" stroke="black" points="760,-495.5 884,-495.5 "/>
 <polyline fill="none" stroke="black" points="760,-471.5 884,-471.5 "/>
 <text text-anchor="start" x="768" y="-456.3" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="768" y="-441.3" font-family="Times,serif" font-size="14.00">division_params</text>
-<text text-anchor="start" x="768" y="-426.3" font-family="Times,serif" font-size="14.00">set_division</text>
+<text text-anchor="start" x="768" y="-441.3" font-family="Times,serif" font-size="14.00">company_params</text>
+<text text-anchor="start" x="768" y="-426.3" font-family="Times,serif" font-size="14.00">set_company</text>
 </g>
 <!-- ApplicationController -->
 <g id="node21" class="node"><title>ApplicationController</title>

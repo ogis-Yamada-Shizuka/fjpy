@@ -9,8 +9,8 @@
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.type_id') %>:</strong>
-  <%= @equipment.type.name %>
+  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
+  <%= @equipment.system_model.name %>
 </p>
 
 <p>
@@ -19,8 +19,13 @@
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.division_id') %>:</strong>
-  <%= @equipment.division.name %>
+  <strong><%= t('activerecord.attributes.equipment.branch_id') %>:</strong>
+  <%= @equipment.branch.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.service_id') %>:</strong>
+  <%= @equipment.service.name %>
 </p>
 
 <%= link_to 'Edit', edit_equipment_path(@equipment) %> |

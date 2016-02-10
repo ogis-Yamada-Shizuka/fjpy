@@ -1,0 +1,19 @@
+<% breadcrumb :equipment_make_inspection_schedules %>
+<h1><%= t('views.equipment.make_inspection_schedules') %></h1>
+
+<%= form_tag action='make_inspection_schedules_branch_yyyymm' do %>
+  <div>
+    <div>
+    点検年
+      <%= select :when, :year, (2016..2026).map { |y| ["#{y}年", y.to_s] }, :selected => "2016" %>
+    </div>
+    <div>
+    点検月
+      <%= select :when, :month, (1..12).map { |m| ["#{m}月", format("%02d", m)] }, :selected => "04" %>
+    </div>
+  </div>
+  <div>
+    <%= submit_tag('点検予定の生成') %>
+  </div>
+</div>
+<% end %>

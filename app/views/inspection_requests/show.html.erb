@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @inspection_request.service %>
+</p>
+
+<p>
+  <strong>Inspect schedule:</strong>
+  <%= @inspection_request.inspect_schedule %>
+</p>
+
+<p>
+  <strong>Schedule:</strong>
+  <%= @inspection_request.schedule %>
+</p>
+
+<%= link_to 'Edit', edit_inspection_request_path(@inspection_request) %> |
+<%= link_to 'Back', inspection_requests_path %>

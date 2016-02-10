@@ -16,16 +16,20 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :type_id %><br>
-    <%= f.collection_select( :type_id, Type.all, :id, :name ) %>
+    <%= f.label :system_model_id %><br>
+    <%= f.collection_select( :system_model_id, SystemModel.all, :id, :name ) %>
   </div>
   <div class="field">
     <%= f.label :place_id %><br>
     <%= f.collection_select( :place_id, Place.all, :id, :name ) %>
   </div>
   <div class="field">
-    <%= f.label :division_id %><br>
-    <%= f.collection_select( :division_id, Division.all, :id, :name ) %>
+    <%= f.label :branch_id %><br>
+    <%= f.collection_select( :branch_id, Branch.all, :id, :name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :service_id %><br>
+    <%= f.collection_select( :service_id, Service.all, :id, :name ) %>
   </div>
   <div class="actions">
     <%= f.submit %>

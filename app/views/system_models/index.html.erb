@@ -1,0 +1,28 @@
+<% breadcrumb :system_model_index %>
+<h1><%= t('views.system_model.index') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.system_model.name') %></th>
+      <th><%= t('activerecord.attributes.system_model.inspection_cycle_month') %></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @system_models.each do |system_model| %>
+      <tr>
+        <td><%= system_model.name %></td>
+        <td><%= system_model.inspection_cycle_month %></td>
+        <td><%= link_to t('views.link_to.show'), system_model %></td>
+        <td><%= link_to t('views.link_to.edit'), edit_system_model_path(system_model) %></td>
+        <td><%= link_to t('views.link_to.destroy'), system_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to link_to t('views.link_to.new'), new_system_model_path %>

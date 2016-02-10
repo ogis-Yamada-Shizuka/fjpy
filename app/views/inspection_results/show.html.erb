@@ -1,0 +1,17 @@
+<h1><%= t('views.inspection_result.show') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<%= render 'checks/inspection_result_show', check: @inspection_result.check %>
+
+<%= render 'measurements/inspection_result_show', measurement: @inspection_result.measurement %>
+
+<%= render 'notes/inspection_result_show', note: @inspection_result.note %>
+
+<%= render 'show', inspection_result: @inspection_result %>
+
+<%= link_to t('views.inspection_schedule.index'), inspection_schedules_path %>
+
+<hr>
+<%= link_to 'Edit', edit_inspection_result_path(@inspection_result) %> |
+<%= link_to 'Back', inspection_results_path %>
