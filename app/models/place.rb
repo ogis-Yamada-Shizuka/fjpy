@@ -1,4 +1,6 @@
 class Place < ActiveRecord::Base
+  belongs_to :branch
+
   # CSV Upload
   require "csv"
   def self.import(file)

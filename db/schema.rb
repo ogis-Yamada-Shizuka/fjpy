@@ -140,9 +140,12 @@ ActiveRecord::Schema.define(version: 20160126074226) do
   create_table "places", force: true do |t|
     t.string   "name"
     t.text     "address"
+    t.integer  "branch_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "places", ["branch_id"], name: "index_places_on_branch_id"
 
   create_table "result_statuses", force: true do |t|
     t.string   "name"
