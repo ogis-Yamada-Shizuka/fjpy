@@ -28,8 +28,8 @@
     <%= render_service_select(f) %>
   </div>
   <div class="field">
-    <%= f.label :result_id %><br>
-    <%= f.collection_select(:result_id, Result.all, :id, :name) %>
+    <%= f.label :result_status_id %><br>
+    <%= f.collection_select(:result_status_id, ResultStatus.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :processingdate %><br>

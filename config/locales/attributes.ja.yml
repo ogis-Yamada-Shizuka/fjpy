@@ -6,7 +6,7 @@ ja:
         equipment_id: 対象装置システム
         status_id: 進捗状況
         service_id: 担当サービス会社
-        result_id: 点検結果
+        result_status_id: 点検結果
         processingdate: 処理日
       inspection_result:
         user_id: 点検実績記録者

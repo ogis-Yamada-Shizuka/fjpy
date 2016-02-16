@@ -2,7 +2,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :status
   belongs_to :service
-  belongs_to :result
+  belongs_to :result_status
   has_many :inspection_result
   has_many :inspection_requests
 
@@ -37,7 +37,7 @@ class InspectionSchedule < ActiveRecord::Base
           equipment_id: equipment_id,
           status_id: 1,
           user_id: params.user_id,
-          result_id: 4,
+          result_status_id: 4,
           processingdate: current_date
         )
         new_inspection_schedule.save
@@ -61,7 +61,7 @@ class InspectionSchedule < ActiveRecord::Base
           equipment_id: equipment.id,
           status_id: Status.of_unallocated,
           service_id: equipment.service_id,
-          result_id: Result.of_preinitiation,
+          result_status_id: ResultStatus.of_preinitiation,
           processingdate: current_date
         )
         new_inspection_schedule.save
@@ -81,7 +81,8 @@ class InspectionSchedule < ActiveRecord::Base
 
   # Inspection の結果変更
   def judging(inspection_result)
-    self.result_id = inspection_result.check.tone_id != 4 ? Result.of_ok : Result.of_ng
+    self.result_status_id =
+      inspection_result.check.tone_id != 4 ? ResultStatus.of_ok : ResultStatus.of_ng
     self.processingdate = current_date
   end
 

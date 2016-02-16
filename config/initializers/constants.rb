@@ -6,7 +6,7 @@ module Constants
     ID_DONE          = 4 # 完了
   end
 
-  module Result
+  module ResultStatus
     ID_OK            = 1 # 合格
     ID_NG            = 2 # 不合格
     ID_UNKNOWN       = 3 # 状態不明
