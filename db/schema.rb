@@ -103,12 +103,13 @@ ActiveRecord::Schema.define(version: 20160126074226) do
   add_index "inspection_results", ["user_id"], name: "index_inspection_results_on_user_id"
 
   create_table "inspection_schedules", force: true do |t|
+    t.datetime "target_yearmonth"
     t.datetime "candidate_datetime1"
     t.datetime "candidate_datetime2"
     t.datetime "candidate_datetime3"
     t.text     "candidate_datetime_memo"
-    t.datetime "target_datetime"
-    t.text     "target_datetime_memo"
+    t.datetime "confirm_datetime"
+    t.text     "confirm_datetime_memo"
     t.string   "author"
     t.string   "customer"
     t.integer  "equipment_id"

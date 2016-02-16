@@ -2,12 +2,13 @@ ja:
   activerecord:
     attributes:
       inspection_schedule:
+        target_yearmonth: 年月
         candidate_datetime1: 候補日時1
         candidate_datetime2: 候補日時2
         candidate_datetime3: 候補日時3
         candidate_datetime_memo: 候補日時メモ
-        target_datetime: 点検予定日時
-        target_datetime_memo: 点検予定日時メモ
+        confirm_datetime: 点検予定日時
+        confirm_datetime_memo: 点検予定日時メモ
         author: アポ担当者(YES拠点)
         customer: アポ担当者(顧客)
         equipment_id: 対象装置システム

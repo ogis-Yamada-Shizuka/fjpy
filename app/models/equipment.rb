@@ -31,11 +31,11 @@ class Equipment < ActiveRecord::Base
     res = true # 戻り値を設定。点検予定が１つも無いときは true で抜けるよ。
 
     # 点検予定の最未来のものを取る(１件だけ)
-    inspection_schedules = self.inspection_schedules.order(target_datetime: :desc).limit(1)
+    inspection_schedules = self.inspection_schedules.order(target_yearmonth: :desc).limit(1)
 
     inspection_schedules.each do | last_inspection_schedule |
       # 最未来の点検予定の年月を年と月に分割
-      last_ym = last_inspection_schedule.target_datetime.scan(/.{1,#{4}}/)
+      last_ym = last_inspection_schedule.target_yearmonth.scan(/.{1,#{4}}/)
 
       # 型式の点検周期(月)を年と月に分割
       inc_year  = self.system_model.inspection_cycle_month/12
@@ -57,7 +57,7 @@ class Equipment < ActiveRecord::Base
 
   # 渡された年月の点検予定が存在するかを Yes/No で回答する
   def exist_inspection(target_year, target_month)
-    if InspectionSchedule.where(equipment_id: self.id, target_datetime: target_year+target_month).count == 0
+    if InspectionSchedule.where(equipment_id: self.id, target_yearmonth: target_year+target_month).count == 0
       return false # ない
     else
       return true # ある

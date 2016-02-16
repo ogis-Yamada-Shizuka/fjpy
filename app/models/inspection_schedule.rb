@@ -9,7 +9,7 @@ class InspectionSchedule < ActiveRecord::Base
   after_commit :dump
 
   scope :old_inspection_equipments, lambda { |limit_date|
-    group(:equipment_id).having("max(target_datetime) < '#{limit_date.strftime('%Y%m')}'")
+    group(:equipment_id).having("max(target_yearmonth) < '#{limit_date.strftime('%Y%m')}'")
   }
 
   scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
@@ -17,12 +17,12 @@ class InspectionSchedule < ActiveRecord::Base
     includes(equipment: :place).where(service: service_companies)
   }
   scope :with_place, ->(place) { joins(equipment: :place).where('equipment.place_id = ?', place.id) }
-  scope :order_by_target_datetime, -> { order(:target_datetime, :id) }
+  scope :order_by_target_yearmonth, -> { order(:target_yearmonth, :id) }
 
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
-    InspectionSchedule.select("equipment_id, max(target_datetime) ")
+    InspectionSchedule.select("equipment_id, max(target_yearmonth) ")
                       .old_inspection_equipments(Time.zone.now.prev_year)
                       .pluck(:equipment_id)
   end
@@ -32,7 +32,7 @@ class InspectionSchedule < ActiveRecord::Base
     params.targets.try(:map) do |equipment_id|
       if User.exists?(id: params.user_id)
         new_inspection_schedule = new(
-          target_datetime: params.target_datetime,
+          target_yearmonth: params.target_yearmonth,
           equipment_id: equipment_id,
           status_id: 1,
           user_id: params.user_id,
@@ -56,7 +56,7 @@ class InspectionSchedule < ActiveRecord::Base
       if equipment.is_inspection_datetime(target_year, target_month) && # 該当装置システムの点検年月にあたる
          !equipment.exist_inspection(target_year, target_month)          # 該当年月の点検スケジュールが未だ無い
         new_inspection_schedule = new(
-          target_datetime: target_year+target_month,
+          target_yearmonth: target_year+target_month,
           equipment_id: equipment.id,
           status_id: Status.of_unallocated,
           service_id: equipment.service_id,
