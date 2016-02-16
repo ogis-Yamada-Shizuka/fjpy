@@ -60,7 +60,7 @@ class InspectionSchedule < ActiveRecord::Base
           equipment_id: equipment.id,
           status_id: Status.of_unallocated,
           service_id: equipment.service_id,
-          result_status_id: ResultStatus.of_preinitiation,
+          result_status_id: ResultStatus.of_requested,
           processingdate: current_date
         )
         new_inspection_schedule.save
@@ -81,7 +81,7 @@ class InspectionSchedule < ActiveRecord::Base
   # Inspection の結果変更
   def judging(inspection_result)
     self.result_status_id =
-      inspection_result.check.tone_id != 4 ? ResultStatus.of_ok : ResultStatus.of_ng
+      inspection_result.check.tone_id != 4 ? ResultStatus.of_completed : ResultStatus.of_ng
     self.processingdate = current_date
   end
 

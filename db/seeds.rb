@@ -96,10 +96,9 @@ end
 
 # ResultStatus(結果)テーブルに初期値を投入(全件削除して再投入)
 ResultStatus.delete_all
-ResultStatus.create(id: Constants::ResultStatus::ID_OK, name: '合格')
-ResultStatus.create(id: Constants::ResultStatus::ID_NG, name: '不合格')
-ResultStatus.create(id: Constants::ResultStatus::ID_UNKNOWN, name: '状態不明')
-ResultStatus.create(id: Constants::ResultStatus::ID_PREINITIATION, name: '検査前')
+['点検依頼済み', '候補日回答済み', '日程確認済み', '点検実施中', '顧客承認済み', '完了', 'NG'].each.with_index(1) do |name, id|
+  ResultStatus.create(id: id, name: name)
+end
 if Rails.env.development?
   ResultStatus.connection.execute("update sqlite_sequence set seq=4 where name='result_status'")
 else
