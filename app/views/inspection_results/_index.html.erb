@@ -1,15 +1,15 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= t('activerecord.attributes.inspection_result.user_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_result.latitude') %></th>
-      <th><%= t('activerecord.attributes.inspection_result.longitude') %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if inspection_result.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.inspection_result.user_id') %></th>
+        <th><%= t('activerecord.attributes.inspection_result.latitude') %></th>
+        <th><%= t('activerecord.attributes.inspection_result.longitude') %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% inspection_results.each do |inspection_result| %>
+    <tbody>
       <tr>
         <td><%= inspection_result.user.name %></td>
         <td><%= inspection_result.latitude %></td>
@@ -18,6 +18,6 @@
         <td><%= link_to t('views.link_to.edit'), edit_inspection_result_path(inspection_result) %></td>
         <td><%= link_to t('views.link_to.destroy'), inspection_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>

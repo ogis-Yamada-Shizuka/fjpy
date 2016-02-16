@@ -118,14 +118,14 @@ ActiveRecord::Schema.define(version: 20160126084149) do
     t.integer  "equipment_id"
     t.integer  "status_id"
     t.integer  "service_id"
-    t.integer  "result_id"
+    t.integer  "result_status_id"
     t.date     "processingdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "inspection_schedules", ["equipment_id"], name: "index_inspection_schedules_on_equipment_id"
-  add_index "inspection_schedules", ["result_id"], name: "index_inspection_schedules_on_result_id"
+  add_index "inspection_schedules", ["result_status_id"], name: "index_inspection_schedules_on_result_status_id"
   add_index "inspection_schedules", ["service_id"], name: "index_inspection_schedules_on_service_id"
   add_index "inspection_schedules", ["status_id"], name: "index_inspection_schedules_on_status_id"
 
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20160126084149) do
     t.datetime "updated_at"
   end
 
-  create_table "results", force: true do |t|
+  create_table "result_statuses", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   # 点検を完了(StatusをDoneに）する
   post 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection'
 
-  resources :results
+  resources :result_statuses
 
   resources :statuses
 

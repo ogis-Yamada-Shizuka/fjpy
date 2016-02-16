@@ -13,14 +13,12 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1
   # GET /inspection_schedules/1.json
   def show
-    @inspection_results = @inspection_schedule.inspection_result.all
     @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_targetyearmonth
   end
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    @inspection_results = @inspection_schedule.inspection_result.all
-    @inspection_result = @inspection_schedule.inspection_result.build
+    @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
     @inspection_result.user = current_user
     @check = @inspection_result.build_check
     @measurement = @inspection_result.build_measurement
@@ -29,7 +27,7 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/done_inspection
   def done_inspection
-    @inspection_results = @inspection_schedule.inspection_result.all
+    @inspection_result = @inspection_schedule.result
   end
 
   # GET /inspection_schedules/new
@@ -94,7 +92,7 @@ class InspectionSchedulesController < ApplicationController
 
   # 点検完了の登録
   def close_inspection
-    @approval = @inspection_schedule.build_approval
+    @approval = @inspection_schedule.result.build_approval
     @approval.signature = params[:sign]
 
     @inspection_schedule.close_inspection
@@ -120,7 +118,7 @@ class InspectionSchedulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def inspection_schedule_params
     params.require(:inspection_schedule).permit(
-      :targetyearmonth, :equipment_id, :status_id, :service_id, :result_id, :processingdate
+      :targetyearmonth, :equipment_id, :status_id, :service_id, :result_status_id, :processingdate
     )
   end
 
