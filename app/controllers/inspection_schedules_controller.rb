@@ -13,14 +13,13 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1
   # GET /inspection_schedules/1.json
   def show
-    @inspection_results = @inspection_schedule.inspection_result.all
+    @inspection_result = @inspection_schedule.result
     @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_targetyearmonth
   end
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    @inspection_results = @inspection_schedule.inspection_result.all
-    @inspection_result = @inspection_schedule.inspection_result.build
+    @inspection_result = @inspection_schedule.result.build
     @inspection_result.user = current_user
     @check = @inspection_result.build_check
     @measurement = @inspection_result.build_measurement
@@ -29,7 +28,7 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/done_inspection
   def done_inspection
-    @inspection_results = @inspection_schedule.inspection_result.all
+    @inspection_result = @inspection_schedule.result
   end
 
   # GET /inspection_schedules/new

@@ -9,15 +9,13 @@
   </thead>
 
   <tbody>
-    <% inspection_results.each do |inspection_result| %>
-      <tr>
-        <td><%= inspection_result.user.name %></td>
-        <td><%= inspection_result.latitude %></td>
-        <td><%= inspection_result.longitude %></td>
-        <td><%= link_to t('views.link_to.show'), inspection_result %></td>
-        <td><%= link_to t('views.link_to.edit'), edit_inspection_result_path(inspection_result) %></td>
-        <td><%= link_to t('views.link_to.destroy'), inspection_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= inspection_result.user.name %></td>
+      <td><%= inspection_result.latitude %></td>
+      <td><%= inspection_result.longitude %></td>
+      <td><%= link_to t('views.link_to.show'), inspection_result %></td>
+      <td><%= link_to t('views.link_to.edit'), edit_inspection_result_path(inspection_result) %></td>
+      <td><%= link_to t('views.link_to.destroy'), inspection_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   </tbody>
 </table>

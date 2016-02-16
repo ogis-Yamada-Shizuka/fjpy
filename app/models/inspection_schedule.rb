@@ -3,7 +3,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :status
   belongs_to :service
   belongs_to :result_status
-  has_many :inspection_result
+  has_one :result, class_name: 'InspectionResult'
   has_many :inspection_requests
 
   include Common
