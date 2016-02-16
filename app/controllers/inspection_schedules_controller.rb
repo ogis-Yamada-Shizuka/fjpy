@@ -13,13 +13,12 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1
   # GET /inspection_schedules/1.json
   def show
-    @inspection_result = @inspection_schedule.result
     @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_targetyearmonth
   end
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    @inspection_result = @inspection_schedule.result.build
+    @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
     @inspection_result.user = current_user
     @check = @inspection_result.build_check
     @measurement = @inspection_result.build_measurement
@@ -93,7 +92,7 @@ class InspectionSchedulesController < ApplicationController
 
   # 点検完了の登録
   def close_inspection
-    @approval = @inspection_schedule.build_approval
+    @approval = @inspection_schedule.result.build_approval
     @approval.signature = params[:sign]
 
     @inspection_schedule.close_inspection

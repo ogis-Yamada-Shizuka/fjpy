@@ -116,4 +116,8 @@ class InspectionSchedule < ActiveRecord::Base
   def place
     equipment.place
   end
+
+  def result_name
+    result.try(:result_status).try(:name)
+  end
 end
