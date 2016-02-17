@@ -30,4 +30,20 @@ class User < ActiveRecord::Base
   def jurisdiction_services
     branch_employee? ? company.services : []
   end
+
+  def places
+    return Place.where(branch: company) if branch_employee?
+    return Place.where(branch: company.branch) if service_employee?
+    Place.all
+  end
+
+  def branch
+    service_employee? ? company.branch : company
+  end
+
+  def services
+    return Service.where(branch: company) if branch_employee?
+    return company if service_employee?
+    Service.all
+  end
 end
