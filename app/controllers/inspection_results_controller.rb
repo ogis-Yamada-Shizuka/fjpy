@@ -4,7 +4,8 @@ class InspectionResultsController < ApplicationController
   # GET /inspection_results
   # GET /inspection_results.json
   def index
-    @inspection_results = InspectionResult.all
+    # TODO: ここやることないので except していいかも。
+    @inspection_result = InspectionResult.first
   end
 
   # GET /inspection_results/1

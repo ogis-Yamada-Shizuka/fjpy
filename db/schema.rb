@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126084149) do
+ActiveRecord::Schema.define(version: 20160126074226) do
 
   create_table "approvals", force: true do |t|
     t.integer  "inspection_result_id"
@@ -90,17 +90,6 @@ ActiveRecord::Schema.define(version: 20160126084149) do
     t.datetime "updated_at"
   end
 
-  create_table "inspection_requests", force: true do |t|
-    t.integer  "service_id"
-    t.integer  "inspect_schedule_id"
-    t.date     "schedule"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "inspection_requests", ["inspect_schedule_id"], name: "index_inspection_requests_on_inspect_schedule_id"
-  add_index "inspection_requests", ["service_id"], name: "index_inspection_requests_on_service_id"
-
   create_table "inspection_results", force: true do |t|
     t.integer  "inspection_schedule_id"
     t.integer  "user_id"
@@ -114,18 +103,26 @@ ActiveRecord::Schema.define(version: 20160126084149) do
   add_index "inspection_results", ["user_id"], name: "index_inspection_results_on_user_id"
 
   create_table "inspection_schedules", force: true do |t|
-    t.string   "targetyearmonth"
+    t.datetime "target_yearmonth"
+    t.datetime "candidate_datetime1"
+    t.datetime "candidate_datetime2"
+    t.datetime "candidate_datetime3"
+    t.text     "candidate_datetime_memo"
+    t.datetime "confirm_datetime"
+    t.text     "confirm_datetime_memo"
+    t.string   "author"
+    t.string   "customer"
     t.integer  "equipment_id"
     t.integer  "status_id"
     t.integer  "service_id"
-    t.integer  "result_id"
+    t.integer  "result_status_id"
     t.date     "processingdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "inspection_schedules", ["equipment_id"], name: "index_inspection_schedules_on_equipment_id"
-  add_index "inspection_schedules", ["result_id"], name: "index_inspection_schedules_on_result_id"
+  add_index "inspection_schedules", ["result_status_id"], name: "index_inspection_schedules_on_result_status_id"
   add_index "inspection_schedules", ["service_id"], name: "index_inspection_schedules_on_service_id"
   add_index "inspection_schedules", ["status_id"], name: "index_inspection_schedules_on_status_id"
 
@@ -151,11 +148,14 @@ ActiveRecord::Schema.define(version: 20160126084149) do
   create_table "places", force: true do |t|
     t.string   "name"
     t.text     "address"
+    t.integer  "branch_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "results", force: true do |t|
+  add_index "places", ["branch_id"], name: "index_places_on_branch_id"
+
+  create_table "result_statuses", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
