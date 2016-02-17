@@ -83,27 +83,15 @@ else
   Place.connection.execute("SELECT SETVAL('places_id_seq', 30, TRUE)")
 end
 
-# Status(状況)テーブルに初期値を投入(全件削除して再投入)
-Status.delete_all
-Status.create(id: Constants::Status::ID_UNALLOCATED, name: '担当未割当')
-Status.create(id: Constants::Status::ID_READY, name: '実施待ち')
-Status.create(id: Constants::Status::ID_DOING, name: '実施中')
-Status.create(id: Constants::Status::ID_DONE, name: '完了')
-if Rails.env.development?
-  Status.connection.execute("update sqlite_sequence set seq=4 where name='statuses'")
-else
-  Status.connection.execute("SELECT SETVAL('statuses_id_seq', 4, TRUE)")
-end
-
-# ResultStatus(結果)テーブルに初期値を投入(全件削除して再投入)
-ResultStatus.delete_all
+# ScheduleStatus(結果)テーブルに初期値を投入(全件削除して再投入)
+ScheduleStatus.delete_all
 ['点検依頼済み', '候補日回答済み', '日程確認済み', '点検実施中', '顧客承認済み', '完了', 'NG'].each.with_index(1) do |name, id|
-  ResultStatus.create(id: id, name: name)
+  ScheduleStatus.create(id: id, name: name)
 end
 if Rails.env.development?
-  ResultStatus.connection.execute("update sqlite_sequence set seq=4 where name='result_status'")
+  ScheduleStatus.connection.execute("update sqlite_sequence set seq=4 where name='schedule_status'")
 else
-  ResultStatus.connection.execute("SELECT SETVAL('result_status_id_seq', 4, TRUE)")
+  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_status_id_seq', 4, TRUE)")
 end
 
 # Weather(天気)テーブルに初期値を投入(全件削除して再投入)

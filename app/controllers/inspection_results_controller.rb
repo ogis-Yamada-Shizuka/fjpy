@@ -37,7 +37,6 @@ class InspectionResultsController < ApplicationController
     inspection = InspectionSchedule.find(params[:inspection_result][:inspection_schedule_id])
 
     inspection.start_inspection # 点検開始
-    inspection.judging(@inspection_result) # 点検結果を判断
 
     respond_to do |format|
       if @inspection_result.save && inspection.save

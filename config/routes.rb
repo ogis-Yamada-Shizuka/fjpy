@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :schedule_statuses
+
   devise_for :users
 
   resources :comments
@@ -35,10 +37,6 @@ Rails.application.routes.draw do
 
   # 点検を完了(StatusをDoneに）する
   post 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection'
-
-  resources :result_statuses
-
-  resources :statuses
 
   resources :equipment do
     collection { post :import }  # for CSV Upload

@@ -118,7 +118,7 @@ class InspectionSchedulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def inspection_schedule_params
     params.require(:inspection_schedule).permit(
-      :target_yearmonth, :equipment_id, :status_id, :service_id, :result_status_id, :processingdate
+      :target_yearmonth, :equipment_id, :service_id, :schedule_status_id, :processingdate
     )
   end
 

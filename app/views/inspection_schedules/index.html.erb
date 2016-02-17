@@ -9,8 +9,8 @@
         <p>
           <%= t('activerecord.attributes.inspection_schedule.service_id') %>
           <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
-          <%= t('activerecord.attributes.inspection_schedule.status_id') %>
-          <%= f.collection_select(:status_id_eq, Status.all, :id, :name, :include_blank => true ) %>
+          <%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %>
+          <%= f.collection_select(:schedule_status_id_eq, ScheduleStatus.all, :id, :name, :include_blank => true ) %>
           <%= t('activerecord.attributes.equipment.place_id') %>
           <%= f.collection_select(:equipment_place_id_eq, Place.all, :id, :name, :include_blank => true ) %>
           <%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %>
@@ -30,9 +30,8 @@
       <th><%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_schedule.status_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_schedule.result_status_id') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
       <th colspan="4"></th>
     </tr>
@@ -44,9 +43,8 @@
         <td><%= inspection_schedule.target_yearmonth %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.place.name %></td>
-        <td><%= inspection_schedule.status.name %></td>
         <td><%= inspection_schedule.service.name %></td>
-        <td><%= inspection_schedule.result_name %></td>
+        <td><%= inspection_schedule.schedule_status.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
         <td>
           <% if inspection_schedule.can_inspection? %>
