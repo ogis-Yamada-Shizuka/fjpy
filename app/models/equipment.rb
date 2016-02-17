@@ -1,4 +1,6 @@
 class Equipment < ActiveRecord::Base
+  include Common
+
   belongs_to :system_model
   belongs_to :place
   belongs_to :branch
@@ -21,7 +23,7 @@ class Equipment < ActiveRecord::Base
 
   def create_inspection_schedule
     InspectionSchedule.create(
-      target_yearmonth: nil, # TODO: 今日から点検周期プラスした時間
+      target_yearmonth: first_inspection_cycle,
       equipment: self,
       service: service,
       schedule_status_id: ScheduleStatus.of_requested # TODO: 点検依頼済みで良いのか？
@@ -67,4 +69,9 @@ class Equipment < ActiveRecord::Base
     end
   end
 
+  private
+
+  def first_inspection_cycle
+    Date.parse(current_date) >> system_model.inspection_cycle_month
+  end
 end
