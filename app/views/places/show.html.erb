@@ -12,5 +12,10 @@
   <%= @place.address %>
 </p>
 
+<p>
+  <strong>Branch:</strong>
+  <%= @place.branch.try(:name) %>
+</p>
+
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>

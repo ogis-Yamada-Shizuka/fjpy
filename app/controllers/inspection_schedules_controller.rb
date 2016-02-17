@@ -7,13 +7,13 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules.json
   def index
     @search = InspectionSchedule.search(params[:q])
-    @inspection_schedules = my_schedules.order_by_targetyearmonth.page(params[:page])
+    @inspection_schedules = my_schedules.order_by_target_yearmonth.page(params[:page])
   end
 
   # GET /inspection_schedules/1
   # GET /inspection_schedules/1.json
   def show
-    @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_targetyearmonth
+    @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_target_yearmonth
   end
 
   # GET /inspection_schedules/1/do_inspection
@@ -118,7 +118,7 @@ class InspectionSchedulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def inspection_schedule_params
     params.require(:inspection_schedule).permit(
-      :targetyearmonth, :equipment_id, :status_id, :service_id, :result_status_id, :processingdate
+      :target_yearmonth, :equipment_id, :status_id, :service_id, :result_status_id, :processingdate
     )
   end
 
@@ -126,7 +126,7 @@ class InspectionSchedulesController < ApplicationController
   def my_schedules
     # YES本社: 検索結果の点検予定
     if current_user.head_employee?
-      return @search.result.order_by_targetyearmonth
+      return @search.result.order_by_target_yearmonth
     end
 
     # YES拠点: 管轄のサービス会社の点検予定

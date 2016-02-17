@@ -32,11 +32,6 @@ ja:
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
       all_schedules: 全ての点検予定一覧
-    inspection_request:
-      index: 点検依頼一覧
-      new: 点検依頼の登録
-      edit: 点検依頼の更新
-      show: 点検依頼の確認
     equipment:
       index: 装置システム一覧
       new: 装置システムの登録

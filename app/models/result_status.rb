@@ -1,17 +1,9 @@
 class ResultStatus < ActiveRecord::Base
-  def self.of_ok
-    Constants::ResultStatus::ID_OK
-  end
-
-  def self.of_ng
-    Constants::ResultStatus::ID_NG
-  end
-
-  def self.of_unknown
-    Constants::ResultStatus::ID_UNKNOWN
-  end
-
-  def self.of_preinitiation
-    Constants::ResultStatus::ID_PREINITIATION
+  class << self
+    Constants::ResultStatus.constants.each_with_index do |id, i|
+      define_method "of_#{id.to_s.sub(/ID_/, '').downcase}" do
+        Constants::ResultStatus.constants[i]
+      end
+    end
   end
 end
