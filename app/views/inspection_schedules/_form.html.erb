@@ -20,10 +20,6 @@
     <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :status_id %><br>
-    <%= f.collection_select(:status_id, Status.all, :id, :name) %>
-  </div>
-  <div class="field">
     <%= f.label :service_id %><br>
     <%= render_service_select(f) %>
   </div>

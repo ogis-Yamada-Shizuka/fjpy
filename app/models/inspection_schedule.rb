@@ -1,6 +1,5 @@
 class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
-  belongs_to :status
   belongs_to :service
   belongs_to :result_status
   has_one :result, class_name: 'InspectionResult'
@@ -12,7 +11,7 @@ class InspectionSchedule < ActiveRecord::Base
     group(:equipment_id).having("max(target_yearmonth) < '#{limit_date.strftime('%Y%m')}'")
   }
 
-  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
+# TODO: SceduleStatusで書き換える必要がある筈。いったんコメントアウト。  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
   scope :with_service_companies, ->(service_companies) {
     includes(equipment: :place).where(service: service_companies)
   }
@@ -34,7 +33,6 @@ class InspectionSchedule < ActiveRecord::Base
         new_inspection_schedule = new(
           target_yearmonth: params.target_yearmonth,
           equipment_id: equipment_id,
-          status_id: 1,
           user_id: params.user_id,
           result_status_id: 4,
           processingdate: current_date
@@ -58,7 +56,6 @@ class InspectionSchedule < ActiveRecord::Base
         new_inspection_schedule = new(
           target_yearmonth: target_year+target_month,
           equipment_id: equipment.id,
-          status_id: Status.of_unallocated,
           service_id: equipment.service_id,
           result_status_id: ResultStatus.of_requested,
           processingdate: current_date
@@ -69,6 +66,7 @@ class InspectionSchedule < ActiveRecord::Base
   end
 
   # InspectionSchedule のステータス変更
+  # TODO: この先 SchedluleStatus に対する変更として直す必要あり。いったんこのまま。
   def start_inspection
     self.status_id = Status.of_doing
   end
