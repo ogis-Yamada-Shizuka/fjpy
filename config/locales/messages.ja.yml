@@ -2,3 +2,5 @@ ja:
   controllers:
     inspection_schedules:
       make_branch_yyyymm: 点検予定を生成しました。
+    system_errors:
+      schedule_status_error: 【システムエラー】点検開始できない状態の点検予定に対して点検開始しようとしました。

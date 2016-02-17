@@ -18,11 +18,19 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
-    @inspection_result.user = current_user
-    @check = @inspection_result.build_check
-    @measurement = @inspection_result.build_measurement
-    @note = @inspection_result.build_note
+    if @inspection_schedule.can_inspection? # 点検開始して良い状態か？
+      if @inspection_schedule.result.nil? # 初回か？ → 初回なら点検実績を新規作成
+        @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
+        @inspection_result.user = current_user
+        @check = @inspection_result.build_check
+        @measurement = @inspection_result.build_measurement
+        @note = @inspection_result.build_note
+      else
+        @inspection_result = @inspection_schedule.result
+      end
+    else # ここには来ない筈。万一の場合のために menu に戻ってメッセージを出すようにしておく。
+        redirect_to root_path, notice: t('controllers.system_errors.schedule_status_error')
+    end
   end
 
   # GET /inspection_schedules/1/done_inspection

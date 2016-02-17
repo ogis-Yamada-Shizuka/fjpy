@@ -70,6 +70,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検中に変更
   def start_inspection
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 start_inspection"
     self.schedule_status.id = ScheduleStatus.of_in_progress
   end
 
@@ -99,10 +100,11 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検開始して良いかどうか
   def can_inspection?
-    if schedule_status.id == ScheduleStatus.of_approved
-      false # 承認 してたらダメ
+    if schedule_status.id == ScheduleStatus.of_in_progress or 
+       schedule_status.id == ScheduleStatus.of_dates_confirmed
+      true
     else
-      true # 承認してなければ良い（とりあえず）
+      false
     end
   end
 
