@@ -16,15 +16,6 @@ class Equipment < ActiveRecord::Base
     end
   end
 
-  def self.no_inspection_list
-    equipment_list = InspectionSchedule.old_inspection_equipment_list
-
-    Equipment.includes(:inspection_schedules)
-             .references(:inspection_schedules)
-             .where(InspectionSchedule.arel_table[:equipment_id].eq(nil)
-             .or(InspectionSchedule.arel_table[:equipment_id].in(equipment_list)))
-  end
-
   # 渡された年月が自分の点検年月にあたるかを Yes/No で回答する
   def is_inspection_datetime(target_year, target_month)
 
