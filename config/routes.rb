@@ -38,8 +38,6 @@ Rails.application.routes.draw do
 
   resources :result_statuses
 
-  resources :statuses
-
   resources :equipment do
     collection { post :import }  # for CSV Upload
   end
