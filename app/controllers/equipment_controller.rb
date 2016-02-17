@@ -74,13 +74,6 @@ class EquipmentController < ApplicationController
     redirect_to equipment_index_url, notice: "Equipment imported."
   end
 
-  def no_inspection_list
-    @equipment = Equipment.no_inspection_list
-  end
-
-  def make_inspection_schedules
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
