@@ -1,4 +1,6 @@
 class Equipment < ActiveRecord::Base
+  include Common
+
   belongs_to :system_model
   belongs_to :place
   belongs_to :branch
@@ -6,14 +8,26 @@ class Equipment < ActiveRecord::Base
 
   has_many :inspection_schedules
 
+  after_create :create_inspection_schedule
+
   # CSV Upload
   require "csv"
+
   def self.import(file)
     CSV.foreach(file.path, encoding: "SJIS:UTF-8", headers: true) do |row|
       model = find_by_id(row["id"]) || new
       model.attributes = row.to_hash.slice(*column_names)
       model.save!
     end
+  end
+
+  def create_inspection_schedule
+    InspectionSchedule.create(
+      target_yearmonth: first_inspection_cycle,
+      equipment: self,
+      service: service,
+      schedule_status_id: ScheduleStatus.of_requested
+    )
   end
 
   # 渡された年月が自分の点検年月にあたるかを Yes/No で回答する
@@ -55,4 +69,14 @@ class Equipment < ActiveRecord::Base
     end
   end
 
+  # 次回の点検予定
+  def next_inspection_schedule
+    inspection_schedules.not_done.order_by_target_yearmonth.first
+  end
+
+  private
+
+  def first_inspection_cycle
+    Date.parse(current_date) >> system_model.inspection_cycle_month
+  end
 end

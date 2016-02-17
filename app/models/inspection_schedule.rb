@@ -11,7 +11,7 @@ class InspectionSchedule < ActiveRecord::Base
     group(:equipment_id).having("max(target_yearmonth) < '#{limit_date.strftime('%Y%m')}'")
   }
 
-# TODO: ScheduleStatusで書き換える必要がある筈。いったんコメントアウト。  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
+  scope :not_done, -> { includes(:schedule_status).where(schedule_status_id: ScheduleStatus.not_done_ids) }
   scope :with_service_companies, ->(service_companies) {
     includes(equipment: :place).where(service: service_companies)
   }
@@ -112,5 +112,9 @@ class InspectionSchedule < ActiveRecord::Base
 
   def result_name
     result.try(:schedule_status).try(:name)
+  end
+
+  def target
+    target_yearmonth.strftime("%Y年%m月")
   end
 end
