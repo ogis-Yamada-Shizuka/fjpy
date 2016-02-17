@@ -6,14 +6,26 @@ class Equipment < ActiveRecord::Base
 
   has_many :inspection_schedules
 
+  after_create :create_inspection_schedule
+
   # CSV Upload
   require "csv"
+
   def self.import(file)
     CSV.foreach(file.path, encoding: "SJIS:UTF-8", headers: true) do |row|
       model = find_by_id(row["id"]) || new
       model.attributes = row.to_hash.slice(*column_names)
       model.save!
     end
+  end
+
+  def create_inspection_schedule
+    InspectionSchedule.create(
+      target_yearmonth: nil, # TODO: 今日から点検周期プラスした時間
+      equipment: self,
+      service: service,
+      schedule_status_id: ScheduleStatus.of_requested # TODO: 点検依頼済みで良いのか？
+    )
   end
 
   # 渡された年月が自分の点検年月にあたるかを Yes/No で回答する
