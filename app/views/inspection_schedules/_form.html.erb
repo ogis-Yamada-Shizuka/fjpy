@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :target_yearmonth %><br>
-    <%= f.text_field :target_yearmonth %>
+    <%= f.date_select :target_yearmonth %>
   </div>
   <div class="field">
     <%= f.label :equipment_id %><br>
@@ -24,8 +24,8 @@
     <%= render_service_select(f) %>
   </div>
   <div class="field">
-    <%= f.label :result_status_id %><br>
-    <%= f.collection_select(:result_status_id, ResultStatus.all, :id, :name) %>
+    <%= f.label :schedule_status_id %><br>
+    <%= f.collection_select(:schedule_status_id, ScheduleStatus.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :processingdate %><br>

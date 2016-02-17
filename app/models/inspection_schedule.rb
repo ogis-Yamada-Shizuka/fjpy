@@ -1,7 +1,7 @@
 class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :service
-  belongs_to :result_status
+  belongs_to :schedule_status
   has_one :result, class_name: 'InspectionResult'
 
   include Common
@@ -11,7 +11,7 @@ class InspectionSchedule < ActiveRecord::Base
     group(:equipment_id).having("max(target_yearmonth) < '#{limit_date.strftime('%Y%m')}'")
   }
 
-# TODO: SceduleStatusで書き換える必要がある筈。いったんコメントアウト。  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
+# TODO: ScheduleStatusで書き換える必要がある筈。いったんコメントアウト。  scope :not_done, -> { includes(:status).where(status_id: Status.not_done_ids) }
   scope :with_service_companies, ->(service_companies) {
     includes(equipment: :place).where(service: service_companies)
   }
@@ -34,7 +34,7 @@ class InspectionSchedule < ActiveRecord::Base
           target_yearmonth: params.target_yearmonth,
           equipment_id: equipment_id,
           user_id: params.user_id,
-          result_status_id: 4,
+          schedule_status_id: ScheduleStatus.of_requested,
           processingdate: current_date
         )
         new_inspection_schedule.save
@@ -57,7 +57,7 @@ class InspectionSchedule < ActiveRecord::Base
           target_yearmonth: target_year+target_month,
           equipment_id: equipment.id,
           service_id: equipment.service_id,
-          result_status_id: ResultStatus.of_requested,
+          schedule_status_id: ScheduleStatus.of_requested,
           processingdate: current_date
         )
         new_inspection_schedule.save
@@ -66,26 +66,22 @@ class InspectionSchedule < ActiveRecord::Base
   end
 
   # InspectionSchedule のステータス変更
-  # TODO: この先 SchedluleStatus に対する変更として直す必要あり。いったんこのまま。
+  # TODO: 後で全ケース作る
+
+  # 点検中に変更
   def start_inspection
-    self.status_id = Status.of_doing
+    self.schedule_status.id = ScheduleStatus.of_in_progress
   end
 
+  # 完了に変更
   def close_inspection
-    self.status_id = Status.of_done
-    self.processingdate = current_date
-  end
-
-  # Inspection の結果変更
-  def judging(inspection_result)
-    self.result_status_id =
-      inspection_result.check.tone_id != 4 ? ResultStatus.of_completed : ResultStatus.of_ng
+    self.schedule_status.id = ScheduleStatus.of_completed
     self.processingdate = current_date
   end
 
   # 点検中(doing)かどうか
   def doing?
-    if status.id == Status.of_doing
+    if schedule_status.id == ScheduleStatus.of_in_progress
       true
     else
       false
@@ -94,7 +90,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 完了している状態かどうか
   def close?
-    if status.id == Status.of_done
+    if schedule_status.id == ScheduleStatus.of_completed
       true
     else
       false
@@ -103,10 +99,10 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検開始して良いかどうか
   def can_inspection?
-    if status.id == Status.of_done
-      false # 完了 してたらダメ
+    if schedule_status.id == ScheduleStatus.of_approved
+      false # 承認 してたらダメ
     else
-      true # 完了してなければ良い（とりあえず）
+      true # 承認してなければ良い（とりあえず）
     end
   end
 
@@ -115,6 +111,6 @@ class InspectionSchedule < ActiveRecord::Base
   end
 
   def result_name
-    result.try(:result_status).try(:name)
+    result.try(:schedule_status).try(:name)
   end
 end
