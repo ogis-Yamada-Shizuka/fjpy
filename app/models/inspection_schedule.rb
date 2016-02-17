@@ -70,7 +70,6 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検中に変更
   def start_inspection
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 start_inspection"
     self.schedule_status.id = ScheduleStatus.of_in_progress
   end
 
