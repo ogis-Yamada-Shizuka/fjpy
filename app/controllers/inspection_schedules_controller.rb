@@ -1,6 +1,6 @@
 class InspectionSchedulesController < ApplicationController
   before_action :set_inspection_schedule, only: [
-    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :close_inspection
+    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :approve_inspection
   ]
 
   # GET /inspection_schedules
@@ -98,12 +98,12 @@ class InspectionSchedulesController < ApplicationController
     redirect_to root_path, notice: t('controllers.inspection_schedules.make_branch_yyyymm')
   end
 
-  # 点検完了の登録
-  def close_inspection
+  # 承認の登録
+  def approve_inspection
     @approval = @inspection_schedule.result.build_approval
     @approval.signature = params[:sign]
 
-    @inspection_schedule.close_inspection
+    @inspection_schedule.approve_inspection
 
     respond_to do |format|
       if @inspection_schedule.save && @approval.save
