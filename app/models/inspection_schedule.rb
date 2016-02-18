@@ -88,7 +88,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検中(doing)かどうか
   def doing?
-    if schedule_status.id == ScheduleStatus.of_in_progress
+    if schedule_status_id == ScheduleStatus.of_in_progress
       true
     else
       false
@@ -97,7 +97,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 完了している状態かどうか
   def close?
-    if schedule_status.id == ScheduleStatus.of_completed
+    if schedule_status_id == ScheduleStatus.of_completed
       true
     else
       false
@@ -106,8 +106,8 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 点検開始して良いかどうか
   def can_inspection?
-    if schedule_status.id == ScheduleStatus.of_in_progress or 
-       schedule_status.id == ScheduleStatus.of_dates_confirmed
+    if schedule_status_id == ScheduleStatus.of_in_progress or
+       schedule_status_id == ScheduleStatus.of_dates_confirmed
       true
     else
       false

@@ -29,7 +29,7 @@ class InspectionSchedulesController < ApplicationController
         @inspection_result = @inspection_schedule.result
       end
     else # ここには来ない筈。万一の場合のために menu に戻ってメッセージを出すようにしておく。
-        redirect_to root_path, notice: t('controllers.system_errors.schedule_status_error')
+        redirect_to root_path, notice: t('controllers.system_errors.can_not_start_inspection')
     end
   end
 
