@@ -120,10 +120,19 @@ class InspectionSchedule < ActiveRecord::Base
     end
   end
 
+  # 点検を完了できるかどうか(顧客の承認がされている状態なら完了できる)
+  def can_close_inspection?
+    if schedule_status_id == ScheduleStatus.of_approved
+      true
+    else
+      false
+    end
+  end
   def place
     equipment.place
   end
 
+  # TODO: result_name 誰も使っていないなら消す
   def result_name
     result.try(:schedule_status).try(:name)
   end

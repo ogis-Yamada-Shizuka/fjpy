@@ -1,0 +1,19 @@
+<h1><%= t('views.inspection_schedule.close_inspecrion') %></h1>
+
+<%= render 'show', inspection_schedule: @inspection_schedule %>
+
+<%= render 'inspection_results/show', inspection_result: @inspection_schedule.result %>
+
+<%= render 'checks/inspection_result_show', check: @inspection_schedule.result.check %>
+
+<%= render 'measurements/inspection_result_show', measurement: @inspection_schedule.result.measurement %>
+
+<%= render 'notes/inspection_result_show', note: @inspection_schedule.result.note %>
+
+
+<%= form_tag action='complete_inspection' do %>
+  <div class="actions">
+    <%= submit_tag(t('views.inspection_schedule.close_inspecrion'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
+  </div>
+
+<% end %>

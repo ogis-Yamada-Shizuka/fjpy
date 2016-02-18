@@ -32,7 +32,7 @@ ja:
       show: 点検予定の確認
       do_inspecrion: 点検実施
       done_inspection: 承認(作業終了)
-      close_inspecrion: 点検完了
+      close_inspecrion: 点検の完了
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
     equipment:
@@ -66,7 +66,6 @@ ja:
       show: その他点検実績の確認
     approval:
       signature_not_yet: 未(承認前)
-
     company:
       index: 会社の一覧
       new: 会社の登録

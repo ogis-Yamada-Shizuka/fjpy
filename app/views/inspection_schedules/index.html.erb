@@ -33,19 +33,25 @@
       <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
-        <td><%= inspection_schedule.target_yearmonth %></td>
+        <td><%= inspection_schedule.target %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.schedule_status.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
+        <td>
+          <%= link_to inspection_schedule do %>
+            <i class="fa fa-newspaper-o fa-fw"></i>
+            <%= t('views.link_to.show') %>
+          <% end %>
+        </td>
         <td>
           <% if inspection_schedule.can_inspection? %>
             <%= link_to  do_inspection_path(inspection_schedule) do %>
@@ -55,13 +61,13 @@
           <% end %>
         </td>
         <td>
-          <%= link_to inspection_schedule do %>
-            <i class="fa fa-newspaper-o fa-fw"></i>
-            <%= t('views.link_to.show') %>
-          <% end %>
-        </td>
-        <td>
           <%= link_to_if(inspection_schedule.doing?, t('views.inspection_schedule.done_inspection'), done_inspection_path(inspection_schedule) ){} %>
+        </td>
+        <td>          <% if inspection_schedule.can_close_inspection? %>
+            <%= link_to  close_inspection_path(inspection_schedule) do %>
+              <%= t('views.inspection_schedule.close_inspecrion') %>
+            <% end %>
+          <% end %>
         </td>
         <td>
           <%= link_to edit_inspection_schedule_path(inspection_schedule) do %>
