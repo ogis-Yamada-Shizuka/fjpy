@@ -65,19 +65,26 @@ class InspectionSchedule < ActiveRecord::Base
     end
   end
 
-  # InspectionSchedule のステータス変更
+  ###
+  # ステータス変更シリーズ
   # TODO: 後で全ケース作る
+  ###
 
-  # 点検中に変更
+  # 点検実施中に変更
   def start_inspection
-    self.schedule_status.id = ScheduleStatus.of_in_progress
+    self.schedule_status_id = ScheduleStatus.of_in_progress
+    self.processingdate = current_date
   end
 
   # 完了に変更
   def close_inspection
-    self.schedule_status.id = ScheduleStatus.of_completed
+    self.schedule_status_id = ScheduleStatus.of_completed
     self.processingdate = current_date
   end
+
+  ###
+  # ステータス変更の可否を答えるシリーズ
+  ###
 
   # 点検中(doing)かどうか
   def doing?
