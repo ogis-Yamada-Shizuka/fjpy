@@ -92,42 +92,27 @@ class InspectionSchedule < ActiveRecord::Base
   # ステータス変更の可否を答えるシリーズ
   ###
 
-  # 点検中(doing)かどうか
-  def doing?
-    if schedule_status_id == ScheduleStatus.of_in_progress
-      true
-    else
-      false
-    end
-  end
-
-  # 完了している状態かどうか
-  def close?
-    if schedule_status_id == ScheduleStatus.of_completed
-      true
-    else
-      false
-    end
-  end
-
   # 点検開始して良いかどうか
   def can_inspection?
-    if schedule_status_id == ScheduleStatus.of_in_progress or
-       schedule_status_id == ScheduleStatus.of_dates_confirmed
-      true
-    else
-      false
-    end
+    schedule_status_id == ScheduleStatus.of_in_progress or
+    schedule_status_id == ScheduleStatus.of_dates_confirmed
+  end
+
+  # 点検中(doing)かどうか
+  def doing?
+    schedule_status_id == ScheduleStatus.of_in_progress
   end
 
   # 点検を完了できるかどうか(顧客の承認がされている状態なら完了できる)
   def can_close_inspection?
-    if schedule_status_id == ScheduleStatus.of_approved
-      true
-    else
-      false
-    end
+    schedule_status_id == ScheduleStatus.of_approved
   end
+
+  # 完了している状態かどうか
+  def close?
+    schedule_status_id == ScheduleStatus.of_completed
+  end
+
   def place
     equipment.place
   end
