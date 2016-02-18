@@ -76,6 +76,12 @@ class InspectionSchedule < ActiveRecord::Base
     self.processingdate = current_date
   end
 
+  # 顧客承認済みに変更
+  def approve_inspection
+    self.schedule_status_id = ScheduleStatus.of_approved
+    self.processingdate = current_date
+  end
+
   # 完了に変更
   def close_inspection
     self.schedule_status_id = ScheduleStatus.of_completed

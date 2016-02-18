@@ -76,4 +76,4 @@ ja:
         created_at: 登録日
         updated_at: 最終更新日
       approval:
-        signature: 署名
+        signature: お客様署名(承認)
