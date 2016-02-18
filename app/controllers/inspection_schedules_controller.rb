@@ -1,6 +1,6 @@
 class InspectionSchedulesController < ApplicationController
   before_action :set_inspection_schedule, only: [
-    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :approve_inspection
+    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
   ]
 
   # GET /inspection_schedules
@@ -36,6 +36,9 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1/done_inspection
   def done_inspection
     @inspection_result = @inspection_schedule.result
+  end
+
+  def close_inspection
   end
 
   # GET /inspection_schedules/new
@@ -107,6 +110,22 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save && @approval.save
+        format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully approved." }
+        format.json { head :no_content }
+      else
+        format.html { render :done_inspection }
+        format.json { render json: @inspection_schedule.errors, status: :unprocessable_close }
+      end
+    end
+  end
+
+  # 完了の登録
+  def complete_inspection
+
+    @inspection_schedule.close_inspection
+
+    respond_to do |format|
+      if @inspection_schedule.save
         format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully closed." }
         format.json { head :no_content }
       else

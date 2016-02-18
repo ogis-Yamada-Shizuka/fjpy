@@ -33,10 +33,14 @@ Rails.application.routes.draw do
 
   # 点検を実施する
   get 'inspection_schedules/:id/do_inspection' => 'inspection_schedules#do_inspection' , as: 'do_inspection'
-  get 'inspection_schedules/:id/done_inspection' => 'inspection_schedules#done_inspection' , as: 'done_inspection'
 
-  # 点検を完了(StatusをDoneに）する
+  # 点検を承認する(顧客にサインをもらう)
+  get 'inspection_schedules/:id/done_inspection' => 'inspection_schedules#done_inspection' , as: 'done_inspection'
   post 'inspection_schedules/:id/approve_inspection' => 'inspection_schedules#approve_inspection'
+
+  # 点検を完了する
+  get 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection', as: 'close_inspection'
+  post 'inspection_schedules/:id/complete_inspection' => 'inspection_schedules#complete_inspection'
 
   resources :equipment do
     collection { post :import }  # for CSV Upload
