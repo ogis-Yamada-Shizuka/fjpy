@@ -32,7 +32,6 @@ module ApplicationHelper
   end
 
   # 点検予定一覧画面に進捗状況のクエリパラメーターを与えたパスを生成
-
   Constants::ScheduleStatus.constants.each do |id|
     schedule_status_name = id.to_s.sub(/ID_/, '').downcase
     define_method "inspection_schedules_path_of_#{schedule_status_name}" do
