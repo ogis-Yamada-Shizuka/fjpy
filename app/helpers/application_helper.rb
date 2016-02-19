@@ -36,6 +36,6 @@ module ApplicationHelper
 
   # 直近(2ヶ月後以前)
   def latest_parameter
-    "q[target_yearmonth_date_lteq]=#{Date.parse(current_date) >> 2}"
+    "q[target_yearmonth_date_lteq]=#{Date.parse(current_date) >> Constants::LATEST_MONTH}"
   end
 end
