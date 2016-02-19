@@ -248,6 +248,13 @@ else
   Equipment.connection.execute("SELECT SETVAL('equipment_id_seq',1,FALSE)")
 end
 
+InspectionSchedule.delete_all
+if Rails.env.development?
+  InspectionSchedule.connection.execute("delete from sqlite_sequence where name='inspection_schedules'")
+else
+  InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")
+end
+
 Equipment.create( name: '冷蔵庫', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 6 )
 Equipment.create( name: '洗濯機', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 6 )
 Equipment.create( name: '発電機', system_model_id: 2, place_id: 2, branch_id: 2, service_id: 6 )
@@ -278,15 +285,6 @@ Equipment.create( name: '発電施設', system_model_id: 1, place_id: 21, branch
 Equipment.create( name: 'ポータブルテレビ', system_model_id: 2, place_id: 22, branch_id: 5, service_id: 12 )
 Equipment.create( name: 'バッテリー', system_model_id: 3, place_id: 23, branch_id: 5, service_id: 12 )
 Equipment.create( name: '拡声器', system_model_id: 4, place_id: 24, branch_id: 5, service_id: 12 )
-
-
-# InspectionSchedule(点検予定)テーブルにテスト用初期値を投入（全件削除して再投入）
-InspectionSchedule.delete_all
-if Rails.env.development?
-  InspectionSchedule.connection.execute("delete from sqlite_sequence where name='inspection_schedules'")
-else
-  InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")
-end
 
 =begin
 InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
