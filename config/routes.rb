@@ -29,7 +29,14 @@ Rails.application.routes.draw do
 
   resources :checkresults
 
-  resources :inspection_schedules
+  resources :inspection_schedules do
+    collection do
+      get 'requested_soon'
+      get 'date_answered'
+      get 'target'
+      get 'done'
+    end
+  end
 
   # 点検を実施する
   get 'inspection_schedules/:id/do_inspection' => 'inspection_schedules#do_inspection' , as: 'do_inspection'

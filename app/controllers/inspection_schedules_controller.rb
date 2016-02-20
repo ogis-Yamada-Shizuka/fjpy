@@ -3,11 +3,37 @@ class InspectionSchedulesController < ApplicationController
     :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
   ]
 
+  before_action :set_query_to_params, only: %i(index requested_soon date_answered target done)
+  before_action :set_inspection_schedules, only: :index
+
   # GET /inspection_schedules
   # GET /inspection_schedules.json
   def index
-    @search = InspectionSchedule.search(params[:q])
-    @inspection_schedules = my_schedules.order_by_target_yearmonth.page(params[:page])
+  end
+
+  def requested_soon
+    params[:q][:schedule_status_id_eq] = ScheduleStatus.of_requested
+    params[:q][:target_yearmonth_date_lteq] = Date.parse(current_date) >> Constants::LATEST_MONTH
+    set_inspection_schedules
+    render :index
+  end
+
+  def date_answered
+    params[:q][:schedule_status_id_eq] = ScheduleStatus.of_date_answered
+    set_inspection_schedules
+    render :index
+  end
+
+  def target
+    params[:q][:schedule_status_id_in] = ScheduleStatus.inspection_target_ids
+    set_inspection_schedules
+    render :index
+  end
+
+  def done
+    params[:q][:schedule_status_id_in] = ScheduleStatus.done_ids
+    set_inspection_schedules
+    render :index
   end
 
   # GET /inspection_schedules/1
@@ -136,6 +162,15 @@ class InspectionSchedulesController < ApplicationController
   end
 
   private
+
+  def set_query_to_params
+    params[:q] ||= {}
+  end
+
+  def set_inspection_schedules
+    @search = InspectionSchedule.search(params[:q])
+    @inspection_schedules = my_schedules.order_by_target_yearmonth.page(params[:page])
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_inspection_schedule

@@ -1,4 +1,20 @@
 module InspectionScheduleHelper
+  # 見出し
+  def render_index_title
+    case params[:action]
+    when 'requested_soon'
+      return t('views.inspection_schedule.requested_soon_index')
+    when 'date_answered'
+      return t('views.inspection_schedule.answered_index')
+    when 'target'
+      return t('views.inspection_schedule.targets_index')
+    when 'done'
+      return t('views.inspection_schedule.done_index')
+    else
+      return t('views.inspection_schedule.index')
+    end
+  end
+
   # 担当サービス会社の選択 UI をレンダリングする
   def render_service_select(f)
     # YES 本社なら全サービス会社から選択可能

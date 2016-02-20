@@ -22,8 +22,9 @@ ja:
       csv_download: CSVダウンロード
       csv_upload: CSVアップロード
     inspection_schedule:
+      index: 点検予定一覧
       requested_soon_index: 点検依頼一覧(直近のみ)
-      answerd_index: 候補日回答済一覧
+      answered_index: 候補日回答済一覧
       targets_index: 点検作業対象一覧
       done_index: 点検作業完了一覧
       all_schedules_index: 点検予定一覧(すべて)
