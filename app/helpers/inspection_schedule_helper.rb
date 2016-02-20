@@ -2,16 +2,11 @@ module InspectionScheduleHelper
   # 見出し
   def render_index_title
     case params[:action]
-    when 'requested_soon'
-      return t('views.inspection_schedule.requested_soon_index')
-    when 'date_answered'
-      return t('views.inspection_schedule.answered_index')
-    when 'target'
-      return t('views.inspection_schedule.targets_index')
-    when 'done'
-      return t('views.inspection_schedule.done_index')
-    else
-      return t('views.inspection_schedule.index')
+      when 'requested_soon' then t('views.inspection_schedule.requested_soon_index')
+      when 'date_answered' then t('views.inspection_schedule.answered_index')
+      when 'target' then t('views.inspection_schedule.targets_index')
+      when 'done' then t('views.inspection_schedule.done_index')
+      else t('views.inspection_schedule.index')
     end
   end
 
