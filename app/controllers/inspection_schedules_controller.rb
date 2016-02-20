@@ -116,11 +116,6 @@ class InspectionSchedulesController < ApplicationController
     end
   end
 
-  def create_inspection_schedules
-    InspectionSchedule.bulk_create(InspectionScheduleParam.new(params), current_date)
-    redirect_to noinspection_list_url
-  end
-
   # 点検予定の生成(YES拠点の指定年月)
   def make_branch_yyyymm
     InspectionSchedule.make_branch_yyyym(current_user.company_id, params[:when][:year], params[:when][:month], current_date)
