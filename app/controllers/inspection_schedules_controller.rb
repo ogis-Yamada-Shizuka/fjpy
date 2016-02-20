@@ -79,7 +79,7 @@ class InspectionSchedulesController < ApplicationController
   # POST /inspection_schedules
   # POST /inspection_schedules.json
   def create
-    @inspection_schedule = InspectionSchedule.new(inspection_schedule_params)
+    @inspection_schedule = InspectionSchedule.new(inspection_schedule_savable_params)
 
     respond_to do |format|
       if @inspection_schedule.save
@@ -96,7 +96,7 @@ class InspectionSchedulesController < ApplicationController
   # PATCH/PUT /inspection_schedules/1.json
   def update
     respond_to do |format|
-      if @inspection_schedule.update(inspection_schedule_params)
+      if @inspection_schedule.update(inspection_schedule_savable_params)
         format.html { redirect_to @inspection_schedule, notice: "InspectionSchedule was successfully updated." }
         format.json { render :show, status: :ok, location: @inspection_schedule }
       else
@@ -175,8 +175,30 @@ class InspectionSchedulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def inspection_schedule_params
     params.require(:inspection_schedule).permit(
-      :target_yearmonth, :equipment_id, :service_id, :schedule_status_id, :processingdate
+      :target_yearmonth,
+      :candidate_datetime1,
+      :candidate_datetime2,
+      :candidate_datetime3,
+      :candidate_datetime_memo,
+      :confirm_datetime,
+      :confirm_datetime_memo,
+      :author,
+      :customer,
+      :equipment_id,
+      :service_id,
+      :schedule_status_id,
+      :processingdate
     )
+  end
+
+  def inspection_schedule_savable_params
+    target_param = params[:inspection_schedule][:target_yearmonth]
+    params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月") if target_param.present?
+    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime processingdate).each do |attribute|
+      target_param = params[:inspection_schedule][attribute]
+      params[:inspection_schedule][attribute] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
+    end
+    inspection_schedule_params
   end
 
   # 表示する点検予定を返す
