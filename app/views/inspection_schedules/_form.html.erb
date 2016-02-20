@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :target_yearmonth %><br>
-    <%= f.text_field :target_yearmonth, class: 'month datepicker', readonly: true %>
+    <%= month_field(f, :target_yearmonth) %>
   </div>
 
   <div class="field">
@@ -33,17 +33,17 @@
 
   <div class="field">
     <%= f.label :candidate_datetime1 %><br>
-    <%= f.text_field :candidate_datetime1, class: 'date datepicker', readonly: true %>
+    <%= date_field(f, :candidate_datetime1) %>
   </div>
 
   <div class="field">
     <%= f.label :candidate_datetime2 %><br>
-    <%= f.text_field :candidate_datetime2, class: 'date datepicker', readonly: true %>
+    <%= date_field(f, :candidate_datetime2) %>
   </div>
 
   <div class="field">
     <%= f.label :candidate_datetime3 %><br>
-    <%= f.text_field :candidate_datetime3, class: 'date datepicker', readonly: true %>
+    <%= date_field(f, :candidate_datetime3) %>
   </div>
 
   <div class="field">
@@ -53,7 +53,7 @@
 
   <div class="field">
     <%= f.label :confirm_datetime %><br>
-    <%= f.text_field :confirm_datetime, class: 'date datepicker', readonly: true %>
+    <%= date_field(f, :confirm_datetime) %>
   </div>
 
   <div class="field">
@@ -73,7 +73,7 @@
 
   <div class="field">
     <%= f.label :processingdate %><br>
-    <%= f.text_field :processingdate, class: 'date datepicker', readonly: true %>
+    <%= date_field(f, :processingdate) %>
   </div>
 
   <div class="actions">
