@@ -26,24 +26,6 @@ class InspectionSchedule < ActiveRecord::Base
                       .pluck(:equipment_id)
   end
 
-  # 装置システムの点検予定をまとめて作成
-  def self.bulk_create(params, current_date)
-    params.targets.try(:map) do |equipment_id|
-      if User.exists?(id: params.user_id)
-        new_inspection_schedule = new(
-          target_yearmonth: params.target_yearmonth,
-          equipment_id: equipment_id,
-          user_id: params.user_id,
-          schedule_status_id: ScheduleStatus.of_requested,
-          processingdate: current_date
-        )
-        new_inspection_schedule.save
-      else
-        false
-      end
-    end
-  end
-
   # 拠点が管轄する装置システムの点検予定を作成する
   #   target_brahch_id 点検予定を作成する対象の拠点
   #   target_year      点検予定作成対象の年
