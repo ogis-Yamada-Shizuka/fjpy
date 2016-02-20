@@ -4,33 +4,78 @@
       <h2><%= pluralize(@inspection_schedule.errors.count, "error") %> prohibited this inspection_schedule from being saved:</h2>
 
       <ul>
-      <% @inspection_schedule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @inspection_schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= f.label :target_yearmonth %><br>
-    <%= f.date_select :target_yearmonth %>
+    <%= f.text_field :target_yearmonth, class: 'month datepicker', readonly: true %>
   </div>
+
   <div class="field">
     <%= f.label :equipment_id %><br>
     <%= f.collection_select(:equipment_id, Equipment.all, :id, :name) %>
   </div>
+
   <div class="field">
     <%= f.label :service_id %><br>
     <%= render_service_select(f) %>
   </div>
+
   <div class="field">
     <%= f.label :schedule_status_id %><br>
     <%= f.collection_select(:schedule_status_id, ScheduleStatus.all, :id, :name) %>
   </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime1 %><br>
+    <%= f.text_field :candidate_datetime1, class: 'date datepicker', readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime2 %><br>
+    <%= f.text_field :candidate_datetime2, class: 'date datepicker', readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime3 %><br>
+    <%= f.text_field :candidate_datetime3, class: 'date datepicker', readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime_memo %><br>
+    <%= f.text_area :candidate_datetime_memo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirm_datetime %><br>
+    <%= f.text_field :confirm_datetime, class: 'date datepicker', readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirm_datetime_memo %><br>
+    <%= f.text_area :confirm_datetime_memo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= f.label :customer %><br>
+    <%= f.text_field :customer %>
+  </div>
+
   <div class="field">
     <%= f.label :processingdate %><br>
-    <%= f.date_select :processingdate %>
+    <%= f.text_field :processingdate, class: 'date datepicker', readonly: true %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
