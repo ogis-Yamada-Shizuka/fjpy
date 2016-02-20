@@ -4,8 +4,12 @@
       <p>
         <%= t('activerecord.attributes.inspection_schedule.service_id') %>
         <%= f.collection_select(:service_id_eq, Service.all, :id, :name, :include_blank => true ) %>
-        <%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %>
-        <%= f.collection_select(:schedule_status_id_eq, ScheduleStatus.all, :id, :name, :include_blank => true ) %>
+
+        <% if params[:action] == 'index' %>
+          <%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %>
+          <%= f.collection_select(:schedule_status_id_eq, ScheduleStatus.all, :id, :name, :include_blank => true ) %>
+        <% end %>
+
         <%= t('activerecord.attributes.equipment.place_id') %>
         <%= f.collection_select(:equipment_place_id_eq, Place.all, :id, :name, :include_blank => true ) %>
         <%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %>
