@@ -1,6 +1,7 @@
 class InspectionSchedulesController < ApplicationController
   before_action :set_inspection_schedule, only: [
-    :show, :edit, :update, :destroy, :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
+    :show, :edit, :update, :destroy, :answer_date, :confirm_date,
+    :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
   ]
 
   before_action :set_query_to_params, only: %i(index requested_soon date_answered target done)
@@ -74,6 +75,12 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/edit
   def edit
+  end
+
+  def answer_date
+  end
+
+  def confirm_date
   end
 
   # POST /inspection_schedules

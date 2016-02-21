@@ -30,6 +30,7 @@ ja:
       all_schedules_index: 点検予定一覧(すべて)
       new: 点検予定の登録
       edit: 点検予定の更新
+      edit: 点検予定の更新
       show: 点検予定の確認
       answer_date: 候補日時回答
       confirm_date: 日程確定

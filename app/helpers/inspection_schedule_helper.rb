@@ -33,11 +33,11 @@ module InspectionScheduleHelper
 
     # 候補日時回答
     if inspection_schedule.can_answer_date?(current_user)
-      fa_pencil_link_to t('views.inspection_schedule.answer_date'), do_inspection_path(inspection_schedule)
+      fa_pencil_link_to t('views.inspection_schedule.answer_date'), answer_date_path(inspection_schedule)
 
     # 日程確定
-    elsif inspection_schedule.can_answer_date?(current_user)
-      fa_pencil_link_to t('views.inspection_schedule.confirm_date'), do_inspection_path(inspection_schedule)
+    elsif inspection_schedule.can_confirm_date?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.confirm_date'), confirm_date_path(inspection_schedule)
 
     # 点検実施
     elsif inspection_schedule.can_inspection?(current_user)
