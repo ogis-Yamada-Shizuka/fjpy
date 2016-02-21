@@ -12,7 +12,10 @@
       <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
-      <th colspan="5"></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -26,26 +29,12 @@
         <td><%= inspection_schedule.schedule_status.name %></td>
         <td><%= inspection_schedule.processingdate %></td>
         <td>
+          <%= action_link(inspection_schedule) %>
+        </td>
+        <td>
           <%= link_to inspection_schedule do %>
             <i class="fa fa-newspaper-o fa-fw"></i>
             <%= t('views.link_to.show') %>
-          <% end %>
-        </td>
-        <td>
-          <% if inspection_schedule.can_inspection? %>
-            <%= link_to  do_inspection_path(inspection_schedule) do %>
-              <i class="fa fa-pencil fa-fw"></i>
-              <%= t('views.inspection_schedule.do_inspecrion') %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to_if(inspection_schedule.doing?, t('views.inspection_schedule.done_inspection'), done_inspection_path(inspection_schedule) ){} %>
-        </td>
-        <td>          <% if inspection_schedule.can_close_inspection? %>
-            <%= link_to  close_inspection_path(inspection_schedule) do %>
-              <%= t('views.inspection_schedule.close_inspecrion') %>
-            <% end %>
           <% end %>
         </td>
         <td>

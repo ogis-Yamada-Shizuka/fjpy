@@ -28,6 +28,37 @@ module InspectionScheduleHelper
     end
   end
 
+  def action_link(inspection_schedule)
+    fa_pencil = content_tag(:i, '', class: "fa fa-pencil fa-fw")
+
+    # 候補日時回答
+    if inspection_schedule.can_answer_date?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.answer_date'), do_inspection_path(inspection_schedule)
+
+    # 日程確定
+    elsif inspection_schedule.can_answer_date?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.confirm_date'), do_inspection_path(inspection_schedule)
+
+    # 点検実施
+    elsif inspection_schedule.can_inspection?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.do_inspecrion'), do_inspection_path(inspection_schedule)
+
+    # 承認(作業終了)
+    elsif inspection_schedule.can_approval?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.done_inspection'), done_inspection_path(inspection_schedule)
+
+    # 点検の完了
+    elsif inspection_schedule.can_close_inspection?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.close_inspecrion'), close_inspection_path(inspection_schedule)
+    end
+  end
+
+  def fa_pencil_link_to(name, path)
+    link_to(path) do
+      content_tag(:i, '', class: "fa fa-pencil fa-fw") + name
+    end
+  end
+
   def month_field(f, attribute)
     (text_field_for_date(f, attribute, month_or_date: :month) + clear_link(attribute)).html_safe
   end

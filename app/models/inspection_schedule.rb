@@ -2,6 +2,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :service
   belongs_to :schedule_status
+  alias_attribute :status, :schedule_status
   has_one :result, class_name: 'InspectionResult'
 
   include Common
@@ -70,28 +71,44 @@ class InspectionSchedule < ActiveRecord::Base
     self.processingdate = current_date
   end
 
-  ###
-  # ステータス変更の可否を答えるシリーズ
-  ###
+  # 候補日時回答して良いかどうか
+  def can_answer_date?(user = nil)
+    return false unless (user.try(:branch_employee?) || user.try(:service_employee?))
+    schedule_status_id == ScheduleStatus.of_requested
+  end
+
+  # 日程確定して良いかどうか
+  def can_confirm_date?(user = nil)
+    return false unless user.try(:branch_employee?)
+    schedule_status_id == ScheduleStatus.of_date_answered
+  end
 
   # 点検開始して良いかどうか
-  def can_inspection?
-    schedule_status_id == ScheduleStatus.of_in_progress or
+  def can_inspection?(user = nil)
+    return false unless user.try(:service_employee?)
+    (schedule_status_id == ScheduleStatus.of_in_progress && result.blank?) or
     schedule_status_id == ScheduleStatus.of_dates_confirmed
   end
 
   # 点検中(doing)かどうか
-  def doing?
+  def doing?(user = nil)
     schedule_status_id == ScheduleStatus.of_in_progress
   end
 
+  # 承認して良いかどうか
+  def can_approval?(user = nil)
+    return false unless user.try(:service_employee?)
+    doing?
+  end
+
   # 点検を完了できるかどうか(顧客の承認がされている状態なら完了できる)
-  def can_close_inspection?
+  def can_close_inspection?(user = nil)
+    return false unless user.try(:branch_employee?)
     schedule_status_id == ScheduleStatus.of_approved
   end
 
   # 完了している状態かどうか
-  def close?
+  def close?(user = nil)
     schedule_status_id == ScheduleStatus.of_completed
   end
 
@@ -105,6 +122,6 @@ class InspectionSchedule < ActiveRecord::Base
   end
 
   def target
-    target_yearmonth.strftime("%Y年%m月")
+    target_yearmonth.try(:strftime, "%Y年%m月")
   end
 end
