@@ -44,7 +44,7 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    if @inspection_schedule.can_inspection? # 点検開始して良い状態か？
+    if @inspection_schedule.can_inspection?(current_user) # 点検開始して良い状態か？
       if @inspection_schedule.result.nil? # 初回か？ → 初回なら点検実績を新規作成
         @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
         @inspection_result.user = current_user
@@ -55,7 +55,7 @@ class InspectionSchedulesController < ApplicationController
         @inspection_result = @inspection_schedule.result
       end
     else # ここには来ない筈。万一の場合のために menu に戻ってメッセージを出すようにしておく。
-        redirect_to root_path, notice: t('controllers.system_errors.can_not_start_inspection')
+      redirect_to root_path, notice: t('controllers.system_errors.can_not_start_inspection')
     end
   end
 
@@ -210,12 +210,12 @@ class InspectionSchedulesController < ApplicationController
 
     # YES拠点: 管轄のサービス会社の点検予定
     if current_user.branch_employee?
-      return InspectionSchedule.with_service_companies(current_user.jurisdiction_services)
+      return @search.result.with_service_companies(current_user.jurisdiction_services)
     end
 
     # サービス会社: 自身のサービス会社の点検予定
     if current_user.service_employee?
-      return InspectionSchedule.with_service_companies(current_user.company)
+      return @search.result.with_service_companies(current_user.company)
     end
   end
 end
