@@ -30,6 +30,16 @@ class Equipment < ActiveRecord::Base
     )
   end
 
+  # 指定された年月の点検予定を作成する
+  def create_inspection_schedule(yearmonth)
+    InspectionSchedule.create(
+      target_yearmonth: yearmonth,
+      equipment: self,
+      service: service,
+      schedule_status_id: ScheduleStatus.of_requested
+    )
+  end
+
   # 渡された年月が自分の点検年月にあたるかを Yes/No で回答する
   def is_inspection_datetime(target_year, target_month)
 

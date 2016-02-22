@@ -65,11 +65,17 @@ class InspectionSchedule < ActiveRecord::Base
     self.processingdate = current_date
   end
 
-  # 完了に変更
+  # 完了に変更 ＆ 次回の点検予定を自動的に登録
   def close_inspection
     self.schedule_status_id = ScheduleStatus.of_completed
     self.processingdate = current_date
   end
+
+  def create_next_inspection_schedule(yearmonth)
+    equipment = Equipment.where(id: self.equipment_id).first
+    equipment.create_inspection_schedule(yearmonth)
+  end
+
 
   # 候補日時回答して良いかどうか
   def can_answer_date?(user = nil)

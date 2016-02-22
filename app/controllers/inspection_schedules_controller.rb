@@ -154,6 +154,9 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save
+        @inspection_schedule.create_next_inspection_schedule(
+          DateTime.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
+        )  # 次回の点検予定を作成する
         format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully closed." }
         format.json { head :no_content }
       else
