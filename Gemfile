@@ -25,6 +25,7 @@ gem "coffee-rails", "~> 4.0.0"
 
 # Use jquery as the JavaScript library
 gem "jquery-rails"
+gem "jquery-ui-rails"
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem "turbolinks"
 gem "jquery-turbolinks" # turbolink does not work...first aid
@@ -60,6 +61,7 @@ gem "carrierwave"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bootstrap-sass", "~> 3.2.0"
+gem 'bootstrap-datepicker-rails'
 gem "font-awesome-sass"
 
 gem "gretel"

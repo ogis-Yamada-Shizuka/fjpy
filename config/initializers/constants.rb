@@ -1,4 +1,7 @@
 module Constants
+  # 直近
+  LATEST_MONTH = 2
+
   module ScheduleStatus
     ID_REQUESTED       = 1 # 点検依頼済み
     ID_DATE_ANSWERED   = 2 # 候補日回答済み
