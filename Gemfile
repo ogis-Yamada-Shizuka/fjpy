@@ -79,3 +79,8 @@ group :development, :test do
 end
 
 gem "devise"
+
+group :test do
+  gem 'minitest-rails-capybara'
+  gem 'minitest-reporters'
+end
