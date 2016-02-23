@@ -135,4 +135,10 @@ class InspectionSchedule < ActiveRecord::Base
   def target
     target_yearmonth.try(:strftime, "%Y年%m月")
   end
+
+  # 処理日と装置システムの型式に設定された点検周期をもとに次回点検予定の候補年月を答える
+  def next_target_yearmonth
+    equipment = Equipment.where(id: self.equipment_id).first
+    processingdate >> equipment.system_model.inspection_cycle_month
+  end
 end
