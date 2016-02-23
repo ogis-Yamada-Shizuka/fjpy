@@ -89,9 +89,9 @@ ScheduleStatus.delete_all
   ScheduleStatus.create(id: id, name: name)
 end
 if Rails.env.development?
-  ScheduleStatus.connection.execute("update sqlite_sequence set seq=4 where name='schedule_statuses'")
+  ScheduleStatus.connection.execute("update sqlite_sequence set seq=7 where name='schedule_statuses'")
 else
-  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 4, TRUE)")
+  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 7, TRUE)")
 end
 
 # Weather(天気)テーブルに初期値を投入(全件削除して再投入)
