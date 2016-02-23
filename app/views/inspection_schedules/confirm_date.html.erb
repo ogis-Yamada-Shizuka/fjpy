@@ -1,5 +1,5 @@
 <% breadcrumb :inspection_schedule_edit %>
-<h1><%= t('views.inspection_schedule.answer_date') %></h1>
+<h1><%= t('views.inspection_schedule.confirm_date') %></h1>
 
 <%= form_for(@inspection_schedule) do |f| %>
   <% if @inspection_schedule.errors.any? %>
@@ -14,6 +14,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_dates_confirmed %>
+
   <div class="field">
     <%= f.label :confirm_datetime %><br>
     <%= date_field(f, :confirm_datetime) %>
@@ -22,6 +24,16 @@
   <div class="field">
     <%= f.label :confirm_datetime_memo %><br>
     <%= f.text_area :confirm_datetime_memo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= f.label :customer %><br>
+    <%= f.text_field :customer %>
   </div>
 
   <div class="actions">

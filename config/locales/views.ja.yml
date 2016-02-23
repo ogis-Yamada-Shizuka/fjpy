@@ -37,6 +37,7 @@ ja:
       do_inspecrion: 点検実施
       done_inspection: 承認(作業終了)
       close_inspecrion: 点検の完了
+      next_inspection_yearmonth: 次回点検年月
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
     equipment:

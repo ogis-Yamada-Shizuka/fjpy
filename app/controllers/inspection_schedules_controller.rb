@@ -56,7 +56,7 @@ class InspectionSchedulesController < ApplicationController
         @inspection_result = @inspection_schedule.result
       end
     else # ここには来ない筈。万一の場合のために menu に戻ってメッセージを出すようにしておく。
-      redirect_to root_path, notice: t('controllers.system_errors.can_not_start_inspection')
+      redirect_to root_path, notice: t("controllers.system_errors.can_not_start_inspection")
     end
   end
 
@@ -126,7 +126,7 @@ class InspectionSchedulesController < ApplicationController
   # 点検予定の生成(YES拠点の指定年月)
   def make_branch_yyyymm
     InspectionSchedule.make_branch_yyyym(current_user.company_id, params[:when][:year], params[:when][:month], current_date)
-    redirect_to root_path, notice: t('controllers.inspection_schedules.make_branch_yyyymm')
+    redirect_to root_path, notice: t("controllers.inspection_schedules.make_branch_yyyymm")
   end
 
   # 承認の登録
@@ -154,6 +154,9 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save
+        @inspection_schedule.create_next_inspection_schedule(
+          DateTime.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
+        )  # 次回の点検予定を作成する
         format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully closed." }
         format.json { head :no_content }
       else
