@@ -16,6 +16,6 @@
     <strong><%= t('views.inspection_schedule.next_inspection_yearmonth') %>:</strong>
     <%= select :when, :year, (2016..2026).map { |y| ["#{y}年", y.to_s] }, :selected => @inspection_schedule.next_target_yearmonth.strftime("%Y") %>
     <%= select :when, :month, (1..12).map { |m| ["#{m}月", format("%02d", m)] }, :selected => @inspection_schedule.next_target_yearmonth.strftime("%m") %>
-    <%= submit_tag(t('views.inspection_schedule.close_inspecrion'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
+    <%= submit_tag(t('views.inspection_schedule.close_inspecrion')) %>
   </div>
 <% end %>
