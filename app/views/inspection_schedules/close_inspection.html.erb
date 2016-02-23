@@ -14,7 +14,7 @@
 <%= form_tag action='complete_inspection' do %>
   <div class="actions">
     <div>
-      次回点検年月年
+      <%= t('views.inspection_schedule.next_inspection_yearmonth') %>
       <%= select :when, :year, (2016..2026).map { |y| ["#{y}年", y.to_s] }, :selected => "2016" %>
       <%= select :when, :month, (1..12).map { |m| ["#{m}月", format("%02d", m)] }, :selected => "04" %>
     </div>
