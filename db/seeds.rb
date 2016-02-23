@@ -31,11 +31,11 @@ end
 
 # SystemModel(型式)テーブルに初期値を投入(全件削除して再投入)
 SystemModel.delete_all
-SystemModel.create(id: 1, name: '通常用(半年毎点検)', inspection_cycle_month: 6)
-SystemModel.create(id: 2, name: '非常用(１年毎点検)', inspection_cycle_month: 12)
-SystemModel.create(id: 3, name: '携帯用(３年毎点検)', inspection_cycle_month: 36)
-SystemModel.create(id: 4, name: '通常用(毎月点検)', inspection_cycle_month: 1)
-SystemModel.create(id: 5, name: '通常用(隔月点検)', inspection_cycle_month: 2)
+SystemModel.create(id: 1, name: '通常用(毎月点検)', inspection_cycle_month: 1)
+SystemModel.create(id: 2, name: '通常用(隔月点検)', inspection_cycle_month: 2)
+SystemModel.create(id: 3, name: '通常用(半年毎点検)', inspection_cycle_month: 6)
+SystemModel.create(id: 4, name: '非常用(１年毎点検)', inspection_cycle_month: 12)
+SystemModel.create(id: 5, name: '携帯用(３年毎点検)', inspection_cycle_month: 36)
 if Rails.env.development?
   SystemModel.connection.execute("update sqlite_sequence set seq=5 where name='system_models'")
 else
@@ -85,13 +85,13 @@ end
 
 # ScheduleStatus(結果)テーブルに初期値を投入(全件削除して再投入)
 ScheduleStatus.delete_all
-['点検依頼済み', '候補日回答済み', '日程確認済み', '点検実施中', '顧客承認済み', '完了', 'NG'].each.with_index(1) do |name, id|
+['点検依頼済', '候補日回答済', '日程確定済', '点検実施中', '顧客承認済', '完了', 'NG'].each.with_index(1) do |name, id|
   ScheduleStatus.create(id: id, name: name)
 end
 if Rails.env.development?
-  ScheduleStatus.connection.execute("update sqlite_sequence set seq=4 where name='schedule_status'")
+  ScheduleStatus.connection.execute("update sqlite_sequence set seq=7 where name='schedule_statuses'")
 else
-  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_status_id_seq', 4, TRUE)")
+  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 7, TRUE)")
 end
 
 # Weather(天気)テーブルに初期値を投入(全件削除して再投入)
@@ -255,22 +255,22 @@ else
   InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")
 end
 
-Equipment.create( name: '冷蔵庫', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 6 )
+Equipment.create( name: '冷蔵庫', system_model_id: 1, place_id: 1, branch_id: 2, service_id: 6 )
 Equipment.create( name: '洗濯機', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 6 )
-Equipment.create( name: '発電機', system_model_id: 2, place_id: 2, branch_id: 2, service_id: 6 )
-Equipment.create( name: '懐中電灯', system_model_id: 2, place_id: 3, branch_id: 2, service_id: 6 )
-Equipment.create( name: 'ラジオ', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 7 )
+Equipment.create( name: '発電機', system_model_id: 3, place_id: 2, branch_id: 2, service_id: 6 )
+Equipment.create( name: '懐中電灯', system_model_id: 4, place_id: 3, branch_id: 2, service_id: 6 )
+Equipment.create( name: 'ラジオ', system_model_id: 1, place_id: 1, branch_id: 2, service_id: 7 )
 Equipment.create( name: '大型テレビ', system_model_id: 2, place_id: 1, branch_id: 2, service_id: 7 )
-Equipment.create( name: '発電施設', system_model_id: 2, place_id: 4, branch_id: 2, service_id: 7 )
-Equipment.create( name: 'ポータブルテレビ', system_model_id: 2, place_id: 5, branch_id: 2, service_id: 7 )
-Equipment.create( name: 'バッテリー', system_model_id: 2, place_id: 6, branch_id: 3, service_id: 8 )
+Equipment.create( name: '発電施設', system_model_id: 3, place_id: 4, branch_id: 2, service_id: 7 )
+Equipment.create( name: 'ポータブルテレビ', system_model_id: 4, place_id: 5, branch_id: 2, service_id: 7 )
+Equipment.create( name: 'バッテリー', system_model_id: 1, place_id: 6, branch_id: 3, service_id: 8 )
 Equipment.create( name: '拡声器', system_model_id: 2, place_id: 6, branch_id: 3, service_id: 8 )
-Equipment.create( name: '冷蔵庫', system_model_id: 2, place_id: 7, branch_id: 3, service_id: 8 )
-Equipment.create( name: '洗濯機', system_model_id: 2, place_id: 8, branch_id: 3, service_id: 8 )
-Equipment.create( name: '発電機', system_model_id: 2, place_id: 6, branch_id: 3, service_id: 9 )
+Equipment.create( name: '冷蔵庫', system_model_id: 3, place_id: 7, branch_id: 3, service_id: 8 )
+Equipment.create( name: '洗濯機', system_model_id: 4, place_id: 8, branch_id: 3, service_id: 8 )
+Equipment.create( name: '発電機', system_model_id: 1, place_id: 6, branch_id: 3, service_id: 9 )
 Equipment.create( name: '懐中電灯', system_model_id: 2, place_id: 6, branch_id: 3, service_id: 9 )
-Equipment.create( name: 'ラジオ', system_model_id: 2, place_id: 9, branch_id: 3, service_id: 9 )
-Equipment.create( name: '大型テレビ', system_model_id: 2, place_id: 10, branch_id: 3, service_id: 9 )
+Equipment.create( name: 'ラジオ', system_model_id: 3, place_id: 9, branch_id: 3, service_id: 9 )
+Equipment.create( name: '大型テレビ', system_model_id: 4, place_id: 10, branch_id: 3, service_id: 9 )
 Equipment.create( name: '発電施設', system_model_id: 1, place_id: 11, branch_id: 4, service_id: 10 )
 Equipment.create( name: 'ポータブルテレビ', system_model_id: 2, place_id: 12, branch_id: 4, service_id: 10 )
 Equipment.create( name: 'バッテリー', system_model_id: 3, place_id: 13, branch_id: 4, service_id: 10 )
