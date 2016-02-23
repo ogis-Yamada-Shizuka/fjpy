@@ -23,27 +23,28 @@ ja:
       csv_upload: CSVアップロード
     inspection_schedule:
       index: 点検予定一覧
+      requested_soon_index: 点検依頼一覧(直近のみ)
+      answered_index: 候補日回答済一覧
+      targets_index: 点検作業対象一覧
+      done_index: 点検作業完了一覧
+      all_schedules_index: 点検予定一覧(すべて)
       new: 点検予定の登録
       edit: 点検予定の更新
+      edit: 点検予定の更新
       show: 点検予定の確認
-      do_inspecrion: 点検開始
-      done_inspection: 点検の完了
-      close_inspecrion: 点検完了(承認)
+      answer_date: 候補日時回答
+      confirm_date: 日程確定
+      do_inspecrion: 点検実施
+      done_inspection: 承認(作業終了)
+      close_inspecrion: 点検の完了
+      next_inspection_yearmonth: 次回点検年月
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
-      all_schedules: 全ての点検予定一覧
-    inspection_request:
-      index: 点検依頼一覧
-      new: 点検依頼の登録
-      edit: 点検依頼の更新
-      show: 点検依頼の確認
     equipment:
       index: 装置システム一覧
       new: 装置システムの登録
       edit: 装置システムの更新
       show: 装置システムの確認
-      no_inspection_index: 装置システム一覧(点検予定なし)
-      make_inspection_schedules: 装置システム点検予定作成
     system_model:
       index: 型式一覧
       new: 型式の登録
@@ -68,6 +69,8 @@ ja:
     note:
       note: その他点検実績
       show: その他点検実績の確認
+    approval:
+      signature_not_yet: 未(承認前)
     company:
       index: 会社の一覧
       new: 会社の登録

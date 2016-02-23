@@ -41,7 +41,10 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('views.menu.show.daily_work') %><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to t('views.inspection_schedule.index'), inspection_schedules_path %></li>
+              <li><%= link_to t('views.inspection_schedule.requested_soon_index'), requested_soon_inspection_schedules_path %></li>
+              <li><%= link_to t('views.inspection_schedule.answered_index'), date_answered_inspection_schedules_path %></li>
+              <li><%= link_to t('views.inspection_schedule.targets_index'), target_inspection_schedules_path %></li>
+              <li><%= link_to t('views.inspection_schedule.done_index'), done_inspection_schedules_path %></li>
             </ul>
           </li>
 
@@ -49,9 +52,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('views.menu.show.management_work') %><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to t('views.equipment.no_inspection_index'), noinspection_list_path %></li>
-              <li><%= link_to t('views.equipment.make_inspection_schedules'), make_inspection_schedules_path %></li>
-              <li><%= link_to t('views.inspection_request.index'), inspection_requests_path %></li>
+              <li><%= link_to t('views.inspection_schedule.all_schedules_index'), inspection_schedules_path %></li>
+              <li> <%= link_to t('views.equipment.index'), equipment_index_path %></li>
+              <li><%= link_to t('views.place.index'), places_path %></li>
             </ul>
           </li>
 
@@ -59,8 +62,6 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('views.menu.show.maintanance_master') %><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li> <%= link_to t('views.equipment.index'), equipment_index_path %></li>
-              <li><%= link_to t('views.place.index'), places_path %></li>
               <li><%= link_to t('views.system_model.index'), system_models_path %></li>
             </ul>
           </li>

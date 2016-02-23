@@ -10,7 +10,7 @@ crumb :inspection_schedule_edit do
 end
 
 crumb :inspection_schedule_index do
-  link t('views.inspection_schedule.index'), nil
+  link t('views.inspection_schedule.requested_soon_index'), nil
   parent :daily_work
 end
 

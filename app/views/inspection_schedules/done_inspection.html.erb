@@ -4,52 +4,51 @@
 
 <hr>
 
-<% @inspection_results.each do |inspection_result| %>
-  <table>
-    <tr>
-      <td><%= t('activerecord.attributes.inspection_result.user_id') %>:<%= inspection_result.user.name %></td>
-      <td><%= t('activerecord.attributes.inspection_result.updated_at') %>:<%= inspection_result.updated_at %></td>
-    </tr>
-    <tr><td colspan="2">
-      <table border=1>
-        <tr>
-          <th><%= t('activerecord.attributes.check.weather_id') %></th>
-          <th><%= t('activerecord.attributes.check.exterior_id') %></th>
-          <th><%= t('activerecord.attributes.check.tone_id') %></th>
-          <th><%= t('activerecord.attributes.check.stain_id') %></th>
-        </tr>
-        <tr>
-          <td><%= inspection_result.check.weather.name %></td>
-          <td><%= inspection_result.check.exterior.name %></td>
-          <td><%= inspection_result.check.tone.name %></td>
-          <td><%= inspection_result.check.stain.name %></td>
-        </tr>
-      </table>
-    </td></tr>
-    <tr><td colspan="2">
-      <table border=1>
-        <tr>
-          <th><%= t('activerecord.attributes.measurement.metercount') %></th>
-          <th><%= t('activerecord.attributes.measurement.testervalue') %></th>
-          <th><%= t('activerecord.attributes.measurement.point') %></th>
-        </tr>
-        <tr>
-          <td><%= inspection_result.measurement.metercount %></td>
-          <td><%= inspection_result.measurement.testervalue %></td>
-          <td><%= inspection_result.measurement.point %></td>
-        </tr>
-      </table>
-    </td></tr>
-    <tr><th colspan="2"><%= t('activerecord.attributes.note.memo') %></th></tr>
-    <tr><td colspan="2"><%= inspection_result.note.memo %></td></tr>
-    <tr><th colspan="2"><%= t('activerecord.attributes.note.picture') %></th></tr>
-    <tr><td colspan="2"><%= image_tag(inspection_result.note.picture_url, width: 600) if inspection_result.note.picture.present? %></td></tr>
+<table>
+  <tr>
+    <td><%= t('activerecord.attributes.inspection_result.user_id') %>:<%= @inspection_result.user.name %></td>
+    <td><%= t('activerecord.attributes.inspection_result.updated_at') %>:<%= @inspection_result.updated_at %></td>
+  </tr>
+  <tr><td colspan="2">
+    <table border=1>
+      <tr>
+        <th><%= t('activerecord.attributes.check.weather_id') %></th>
+        <th><%= t('activerecord.attributes.check.exterior_id') %></th>
+        <th><%= t('activerecord.attributes.check.tone_id') %></th>
+        <th><%= t('activerecord.attributes.check.stain_id') %></th>
+      </tr>
+      <tr>
+        <td><%= @inspection_result.check.weather.name %></td>
+        <td><%= @inspection_result.check.exterior.name %></td>
+        <td><%= @inspection_result.check.tone.name %></td>
+        <td><%= @inspection_result.check.stain.name %></td>
+      </tr>
+    </table>
+  </td></tr>
+  <tr><td colspan="2">
+    <table border=1>
+      <tr>
+        <th><%= t('activerecord.attributes.measurement.metercount') %></th>
+        <th><%= t('activerecord.attributes.measurement.testervalue') %></th>
+        <th><%= t('activerecord.attributes.measurement.point') %></th>
+      </tr>
+      <tr>
+        <td><%= @inspection_result.measurement.metercount %></td>
+        <td><%= @inspection_result.measurement.testervalue %></td>
+        <td><%= @inspection_result.measurement.point %></td>
+      </tr>
+    </table>
+  </td></tr>
+  <tr><th colspan="2"><%= t('activerecord.attributes.note.memo') %></th></tr>
+  <tr><td colspan="2"><%= @inspection_result.note.memo %></td></tr>
+  <tr><th colspan="2"><%= t('activerecord.attributes.note.picture') %></th></tr>
+  <tr><td colspan="2"><%= image_tag(@inspection_result.note.picture_url, width: 600) if @inspection_result.note.picture.present? %></td></tr>
 </table>
-<% end %>
+
 <hr>
 
 <%= t('activerecord.attributes.approval.signature') %><br />
-<%= form_tag action='close_inspection' do %>
+<%= form_tag action='approve_inspection' do %>
   <div>
     <script type="text/javascript" src="./libs/fabric.js"></script>
     <canvas id="canvas" width="300" height="300" style="border:1px solid;">ご利用のブラウザでは署名欄は表示できません。</canvas>
@@ -64,6 +63,6 @@
   </div>
   <hr>
   <div class="actions">
-    <%= submit_tag(t('views.inspection_schedule.close_inspecrion'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
+    <%= submit_tag(t('views.inspection_schedule.done_inspection'), :onclick =>"document.getElementById('sign').value = canvas.toSVG()") %>
   </div>
 <% end %>

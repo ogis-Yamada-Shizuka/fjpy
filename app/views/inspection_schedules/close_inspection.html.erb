@@ -1,0 +1,21 @@
+<h1><%= t('views.inspection_schedule.close_inspecrion') %></h1>
+
+<%= render 'show', inspection_schedule: @inspection_schedule %>
+
+<%= render 'inspection_results/show', inspection_result: @inspection_schedule.result %>
+
+<%= render 'checks/inspection_result_show', check: @inspection_schedule.result.check %>
+
+<%= render 'measurements/inspection_result_show', measurement: @inspection_schedule.result.measurement %>
+
+<%= render 'notes/inspection_result_show', note: @inspection_schedule.result.note %>
+
+
+<%= form_tag action='complete_inspection' do %>
+  <div class="well well-sm">
+    <strong><%= t('views.inspection_schedule.next_inspection_yearmonth') %>:</strong>
+    <%= select :when, :year, (2016..2026).map { |y| ["#{y}年", y.to_s] }, :selected => @inspection_schedule.next_target_yearmonth.strftime("%Y") %>
+    <%= select :when, :month, (1..12).map { |m| ["#{m}月", format("%02d", m)] }, :selected => @inspection_schedule.next_target_yearmonth.strftime("%m") %>
+    <%= submit_tag(t('views.inspection_schedule.close_inspecrion')) %>
+  </div>
+<% end %>

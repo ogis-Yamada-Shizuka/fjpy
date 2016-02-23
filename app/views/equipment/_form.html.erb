@@ -17,19 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :system_model_id %><br>
-    <%= f.collection_select( :system_model_id, SystemModel.all, :id, :name ) %>
+    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :place_id %><br>
-    <%= f.collection_select( :place_id, Place.all, :id, :name ) %>
+    <%= f.collection_select(:place_id, current_user.places, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :branch_id %><br>
-    <%= f.collection_select( :branch_id, Branch.all, :id, :name ) %>
+    <%= render_branch_select(f) %>
   </div>
   <div class="field">
     <%= f.label :service_id %><br>
-    <%= f.collection_select( :service_id, Service.all, :id, :name ) %>
+    <%= f.collection_select(:service_id, current_user.services, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

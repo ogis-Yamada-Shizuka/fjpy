@@ -4,7 +4,8 @@ class InspectionResultsController < ApplicationController
   # GET /inspection_results
   # GET /inspection_results.json
   def index
-    @inspection_results = InspectionResult.all
+    # TODO: ここやることないので except していいかも。
+    @inspection_result = InspectionResult.first
   end
 
   # GET /inspection_results/1
@@ -32,11 +33,9 @@ class InspectionResultsController < ApplicationController
   def create
     @inspection_result = InspectionResult.new(inspection_result_params)
 
-    # TODO: ここで落ちる kilogy からのバグがある。(inspection_schedule_id を hidden で入れる？)
-    inspection = InspectionSchedule.find(params[:inspection_result][:inspection_schedule_id])
+    inspection = InspectionSchedule.where(id: params[:inspection_result][:inspection_schedule_id]).first
 
-    inspection.start_inspection # 点検開始
-    inspection.judging(@inspection_result) # 点検結果を判断
+    inspection.start_inspection # 点検開始(ステータスを点検実施中に変える)
 
     respond_to do |format|
       if @inspection_result.save && inspection.save

@@ -28,5 +28,11 @@
   <%= @equipment.service.name %>
 </p>
 
+<% if @next_inspection_schedule.present? %>
+  <p>
+    <%= link_to "直近の点検予定を確認する(#{@next_inspection_schedule.target})", inspection_schedule_path(@next_inspection_schedule) %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_equipment_path(@equipment) %> |
 <%= link_to 'Back', equipment_index_path %>

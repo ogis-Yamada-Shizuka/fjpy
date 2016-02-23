@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  resources :schedule_statuses
 
-  resources :inspection_requests
+  devise_for :users
 
   resources :comments
 
@@ -29,18 +29,31 @@ Rails.application.routes.draw do
 
   resources :checkresults
 
-  resources :inspection_schedules
+  resources :inspection_schedules do
+    collection do
+      get 'requested_soon'
+      get 'date_answered'
+      get 'target'
+      get 'done'
+    end
+  end
+
+  # 候補日時を回答する
+  get 'inspection_schedules/:id/answer_date' => 'inspection_schedules#answer_date' , as: 'answer_date'
+
+  # 日程確定する
+  get 'inspection_schedules/:id/confirm_date' => 'inspection_schedules#confirm_date' , as: 'confirm_date'
 
   # 点検を実施する
   get 'inspection_schedules/:id/do_inspection' => 'inspection_schedules#do_inspection' , as: 'do_inspection'
+
+  # 点検を承認する(顧客にサインをもらう)
   get 'inspection_schedules/:id/done_inspection' => 'inspection_schedules#done_inspection' , as: 'done_inspection'
+  post 'inspection_schedules/:id/approve_inspection' => 'inspection_schedules#approve_inspection'
 
-  # 点検を完了(StatusをDoneに）する
-  post 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection'
-
-  resources :results
-
-  resources :statuses
+  # 点検を完了する
+  get 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection', as: 'close_inspection'
+  post 'inspection_schedules/:id/complete_inspection' => 'inspection_schedules#complete_inspection'
 
   resources :equipment do
     collection { post :import }  # for CSV Upload
@@ -58,13 +71,6 @@ Rails.application.routes.draw do
 
   resources :companies
 
-# 装置システムの点検予定を作成する
-  get 'noinspection_list' => 'equipment#no_inspection_list'
-  post 'create_inspection_schedules' => 'inspection_schedules#create_inspection_schedules'
-
-# 装置システムの点検予定を作成する(ACST向け新バージョン)
-  get 'make_inspection_schedules' => 'equipment#make_inspection_schedules'
-  post 'make_inspection_schedules_branch_yyyymm' => 'inspection_schedules#make_branch_yyyymm'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

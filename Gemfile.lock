@@ -32,16 +32,18 @@ GEM
     bcrypt (3.1.10)
     bcrypt (3.1.10-x64-mingw32)
     bcrypt (3.1.10-x86-mingw32)
+    bootstrap-datepicker-rails (1.5.0)
+      railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
-    byebug (8.2.1)
+    byebug (8.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    coderay (1.1.0)
+    coderay (1.1.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -49,7 +51,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    devise (3.4.1)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -60,13 +62,13 @@ GEM
     execjs (2.6.0)
     font-awesome-sass (4.5.0)
       sass (>= 3.2)
-    geocoder (1.2.14)
+    geocoder (1.3.1)
     gmaps4rails (2.1.2)
     gretel (3.0.8)
       rails (>= 3.2.0)
     hike (1.2.3)
     i18n (0.7.0)
-    jbuilder (2.4.0)
+    jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (3.1.4)
@@ -75,6 +77,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -87,7 +91,7 @@ GEM
     minitest (5.8.4)
     multi_json (1.11.2)
     orm_adapter (0.5.0)
-    parser (2.3.0.2)
+    parser (2.3.0.6)
       ast (~> 2.2)
     pg (0.18.4)
     pg (0.18.4-x64-mingw32)
@@ -122,7 +126,7 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_serve_static_assets (0.0.4)
+    rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.4)
     railties (4.1.1)
       actionpack (= 4.1.1)
@@ -137,14 +141,16 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
-    rdoc (4.2.1)
+    rdoc (4.2.2)
+      json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
-    rubocop (0.36.0)
-      parser (>= 2.3.0.0, < 3.0)
+    rubocop (0.37.2)
+      parser (>= 2.3.0.4, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 0.3)
     ruby-progressbar (1.7.5)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -156,7 +162,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
-    spring (1.6.2)
+    spring (1.6.3)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -179,12 +185,13 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2015.7)
+    tzinfo-data (1.2016.1)
       tzinfo (>= 1.0.0)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
+    unicode-display_width (0.3.1)
+    warden (1.2.6)
       rack (>= 1.0)
 
 PLATFORMS
@@ -193,6 +200,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
   carrierwave
   coffee-rails (~> 4.0.0)
@@ -204,6 +212,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   kaminari
   pg
   pry-byebug
@@ -220,3 +229,6 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.11.2
