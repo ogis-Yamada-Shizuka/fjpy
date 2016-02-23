@@ -73,7 +73,6 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 指定された年月で次回の点検予定を作成する
   def create_next_inspection_schedule(yearmonth)
-    equipment = Equipment.where(id: self.equipment_id).first
     InspectionSchedule.create(
       target_yearmonth: yearmonth,
       equipment: equipment,
@@ -138,7 +137,6 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 処理日と装置システムの型式に設定された点検周期をもとに次回点検予定の候補年月を答える
   def next_target_yearmonth
-    equipment = Equipment.where(id: self.equipment_id).first
     processingdate >> equipment.system_model.inspection_cycle_month
   end
 end
