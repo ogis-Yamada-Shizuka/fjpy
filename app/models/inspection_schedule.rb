@@ -71,11 +71,16 @@ class InspectionSchedule < ActiveRecord::Base
     self.processingdate = current_date
   end
 
+  # 指定された年月で次回の点検予定を作成する
   def create_next_inspection_schedule(yearmonth)
     equipment = Equipment.where(id: self.equipment_id).first
-    equipment.create_inspection_schedule(yearmonth)
+    InspectionSchedule.create(
+      target_yearmonth: yearmonth,
+      equipment: equipment,
+      service: service,
+      schedule_status_id: ScheduleStatus.of_requested
+    )
   end
-
 
   # 候補日時回答して良いかどうか
   def can_answer_date?(user = nil)
