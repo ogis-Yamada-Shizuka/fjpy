@@ -1,0 +1,45 @@
+<% breadcrumb :inspection_schedule_edit %>
+<h1><%= t('views.inspection_schedule.answer_date') %></h1>
+
+<%= form_for(@inspection_schedule) do |f| %>
+  <% if @inspection_schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection_schedule.errors.count, "error") %> prohibited this inspection_schedule from being saved:</h2>
+
+      <ul>
+        <% @inspection_schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_date_answered %>
+
+  <div class="field">
+    <%= f.label :candidate_datetime1 %><br>
+    <%= date_field(f, :candidate_datetime1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime2 %><br>
+    <%= date_field(f, :candidate_datetime2) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime3 %><br>
+    <%= date_field(f, :candidate_datetime3) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_datetime_memo %><br>
+    <%= f.text_area :candidate_datetime_memo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @inspection_schedule %> |
+<%= link_to 'Back', inspection_schedules_path %>

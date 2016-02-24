@@ -17,29 +17,35 @@
 <div class="bs-callout bs-callout-danger">
     <h4><%= t('views.menu.show.daily_work') %></h4>
     <p>
-      <%= link_to t('views.inspection_schedule.index'), inspection_schedules_path %>
+      <%= link_to t('views.inspection_schedule.requested_soon_index'), requested_soon_inspection_schedules_path %>
+    </p>
+    <p>
+      <%= link_to t('views.inspection_schedule.answered_index'), date_answered_inspection_schedules_path %>
+    </p>
+    <p>
+      <%= link_to t('views.inspection_schedule.targets_index'), target_inspection_schedules_path %>
+    </p>
+    <p>
+      <%= link_to t('views.inspection_schedule.done_index'), done_inspection_schedules_path %>
     </p>
 </div>
 
 <div class="bs-callout bs-callout-primary">
     <h4><%= t('views.menu.show.management_work') %></h4>
     <p>
-      <%= link_to t('views.equipment.no_inspection_index'), noinspection_list_path %>
+      <%= link_to t('views.inspection_schedule.all_schedules_index'), inspection_schedules_path %>
     </p>
-    <p>
-      <%= link_to t('views.equipment.make_inspection_schedules'), make_inspection_schedules_path %>
-    </p>
-</div>
-
-
-<div class="bs-callout bs-callout-warning">
-  <h4><%= t('views.menu.show.maintanance_master') %></h4>
   <p>
     <%= link_to t('views.equipment.index'), equipment_index_path %>
   </p>
   <p>
     <%= link_to t('views.place.index'), places_path %>
   </p>
+</div>
+
+
+<div class="bs-callout bs-callout-warning">
+  <h4><%= t('views.menu.show.maintanance_master') %></h4>
   <p>
     <%= link_to t('views.system_model.index'), system_models_path %>
   </p>

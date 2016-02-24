@@ -1,6 +1,6 @@
 <p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.targetyearmonth') %>:</strong>
-  <%= inspection_schedule.targetyearmonth %>
+  <strong><%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %>:</strong>
+  <%= inspection_schedule.target_yearmonth.strftime("%Y年%m月") %>
 </p>
 
 <p>
@@ -9,20 +9,56 @@
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.status_id') %>:</strong>
-  <%= inspection_schedule.status.name %>
-</p>
-<p>
   <strong><%= t('activerecord.attributes.inspection_schedule.service_id') %>:</strong>
   <%= inspection_schedule.service.name %>
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.result_id') %>:</strong>
-  <%= inspection_schedule.result.name %>
+  <strong><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %>:</strong>
+  <%= inspection_schedule.schedule_status.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime1') %>:</strong>
+  <%= inspection_schedule.candidate_datetime1.try(:strftime, "%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime2') %>:</strong>
+  <%= inspection_schedule.candidate_datetime2.try(:strftime, "%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime3') %>:</strong>
+  <%= inspection_schedule.candidate_datetime3.try(:strftime, "%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime_memo') %>:</strong>
+  <%= inspection_schedule.candidate_datetime_memo %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime') %>:</strong>
+  <%= inspection_schedule.confirm_datetime.try(:strftime, "%Y年%m月%d日") %>
 </p>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.processingdate') %>:</strong>
-  <%= inspection_schedule.processingdate %>
+  <%= inspection_schedule.processingdate.try(:strftime, "%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime_memo') %>:</strong>
+  <%= inspection_schedule.confirm_datetime_memo %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.author') %>:</strong>
+  <%= inspection_schedule.author %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.customer') %>:</strong>
+  <%= inspection_schedule.customer %>
 </p>

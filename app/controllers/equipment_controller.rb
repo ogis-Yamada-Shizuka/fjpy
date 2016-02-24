@@ -18,6 +18,7 @@ class EquipmentController < ApplicationController
   # GET /equipment/1
   # GET /equipment/1.json
   def show
+    @next_inspection_schedule = @equipment.next_inspection_schedule
   end
 
   # GET /equipment/new
@@ -72,13 +73,6 @@ class EquipmentController < ApplicationController
   def import
     Equipment.import(params[:file])
     redirect_to equipment_index_url, notice: "Equipment imported."
-  end
-
-  def no_inspection_list
-    @equipment = Equipment.no_inspection_list
-  end
-
-  def make_inspection_schedules
   end
 
   private

@@ -165,7 +165,7 @@
 <text text-anchor="middle" x="453" y="-513.8" font-family="Times,serif" font-size="14.00">Inspection</text>
 <polyline fill="none" stroke="black" points="381,-506 525,-506 "/>
 <text text-anchor="start" x="389" y="-490.8" font-family="Times,serif" font-size="14.00">id :integer</text>
-<text text-anchor="start" x="389" y="-475.8" font-family="Times,serif" font-size="14.00">targetyearmonth :string</text>
+<text text-anchor="start" x="389" y="-475.8" font-family="Times,serif" font-size="14.00">target_yearmonth :string</text>
 <text text-anchor="start" x="389" y="-460.8" font-family="Times,serif" font-size="14.00">equipment_id :integer</text>
 <text text-anchor="start" x="389" y="-445.8" font-family="Times,serif" font-size="14.00">status_id :integer</text>
 <text text-anchor="start" x="389" y="-430.8" font-family="Times,serif" font-size="14.00">user_id :integer</text>

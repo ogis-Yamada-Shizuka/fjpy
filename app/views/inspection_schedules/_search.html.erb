@@ -1,0 +1,26 @@
+<div class="well">
+  <%= search_form_for @search, url: { action: params[:action] }, class: 'form-inline' do |f| %>
+    <% multiple_for_bootstrap = { multiple: true, class: 'form-control' } %>
+    <div class="form-group">
+      <%= f.label t('activerecord.attributes.inspection_schedule.service_id') %>
+      <br>
+      <%= f.collection_select(:service_id_in, Service.all, :id, :name, {}, multiple_for_bootstrap) %>
+    </div>
+
+    <% if params[:action] == 'index' %>
+      <div class="form-group">
+        <%= f.label t('activerecord.attributes.inspection_schedule.schedule_status_id') %>
+        <br>
+        <%= f.collection_select(:schedule_status_id_in, ScheduleStatus.all, :id, :name, {}, multiple_for_bootstrap) %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label t('activerecord.attributes.equipment.place_id') %>
+      <br>
+      <%= f.collection_select(:equipment_place_id_in, Place.all, :id, :name, {}, multiple_for_bootstrap) %>
+    </div>
+
+    <%= f.submit t('helpers.submit.search'), class: 'btn btn-default' %>
+  <% end %>
+</div>
