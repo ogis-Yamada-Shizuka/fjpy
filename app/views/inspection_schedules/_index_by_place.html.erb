@@ -15,7 +15,7 @@
   <tbody>
     <% @same_place_inspection_schedules.each do |inspection_schedule| %>
       <tr>
-        <td><%= inspection_schedule.target_yearmonth %></td>
+        <td><%= inspection_schedule.target %></td>
         <td><%= inspection_schedule.equipment.name %></td>
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.service.name %></td>
