@@ -62,7 +62,10 @@ ActiveRecord::Schema.define(version: 20160217030958) do
   add_index "companies", ["branch_id"], name: "index_companies_on_branch_id"
 
   create_table "equipment", force: true do |t|
-    t.string   "name"
+    t.string   "serial_number"
+    t.integer  "inspection_cycle_month"
+    t.boolean  "inspection_contract"
+    t.datetime "start_date"
     t.integer  "system_model_id"
     t.integer  "place_id"
     t.integer  "branch_id"
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160217030958) do
     t.integer  "equipment_id"
     t.integer  "service_id"
     t.integer  "schedule_status_id"
+    t.integer  "user_id"
     t.date     "processingdate"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -123,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160217030958) do
   add_index "inspection_schedules", ["equipment_id"], name: "index_inspection_schedules_on_equipment_id"
   add_index "inspection_schedules", ["schedule_status_id"], name: "index_inspection_schedules_on_schedule_status_id"
   add_index "inspection_schedules", ["service_id"], name: "index_inspection_schedules_on_service_id"
+  add_index "inspection_schedules", ["user_id"], name: "index_inspection_schedules_on_user_id"
 
   create_table "measurements", force: true do |t|
     t.integer  "metercount"
