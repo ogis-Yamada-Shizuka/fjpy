@@ -28,8 +28,8 @@ module Acst
     end
 
     config.generators do |g|
-      # use minispec for BDD test in spec method 
-      g.test_framework :minitest, spec: true
+      # use minispec for BDD test in spec method or not 
+      g.test_framework :minitest, spec: false
     end
 
   
