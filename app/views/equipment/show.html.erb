@@ -14,13 +14,13 @@
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.inspection_cycle_month') %>:</strong>
-  <%= @equipment.inspection_cycle_month %>
+  <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
+  <%= if @equipment.inspection_contract then t('views.equipment.inspection_contract_true') else t('views.equipment.inspection_contract_true') end %>
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
-  <%= if @equipment.inspection_contract then t('views.equipment.inspection_contract_true') else t('views.equipment.inspection_contract_true') end %>
+  <strong><%= t('activerecord.attributes.equipment.inspection_cycle_month') %>:</strong>
+  <%= @equipment.inspection_cycle_month %>
 </p>
 
 <p>
