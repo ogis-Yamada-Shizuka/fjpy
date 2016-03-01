@@ -2,6 +2,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :service
   belongs_to :schedule_status
+  belongs_to :user
   alias_attribute :status, :schedule_status
   has_one :result, class_name: 'InspectionResult'
 
