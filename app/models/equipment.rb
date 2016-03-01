@@ -26,7 +26,7 @@ class Equipment < ActiveRecord::Base
       target_yearmonth: first_inspection_cycle,
       equipment: self,
       service: service,
-      schedule_status_id: ScheduleStatus.of_requested
+      schedule_status_id: ScheduleStatus.of_need_request
     )
   end
 

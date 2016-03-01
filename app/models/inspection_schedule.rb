@@ -78,7 +78,7 @@ class InspectionSchedule < ActiveRecord::Base
       target_yearmonth: yearmonth,
       equipment: equipment,
       service: service,
-      schedule_status_id: ScheduleStatus.of_requested
+      schedule_status_id: ScheduleStatus.of_need_request
     )
   end
 
