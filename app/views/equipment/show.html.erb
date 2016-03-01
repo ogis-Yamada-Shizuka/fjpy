@@ -4,13 +4,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
+  <%= @equipment.system_model.name %>
+</p>
+
+<p>
   <strong><%= t('activerecord.attributes.equipment.serial_number') %>:</strong>
   <%= @equipment.serial_number %>
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
-  <%= @equipment.system_model.name %>
+  <strong><%= t('activerecord.attributes.equipment.inspection_cycle_month') %>:</strong>
+  <%= @equipment.inspection_cycle_month %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
+  <%= if @equipment.inspection_contract then t('views.equipment.inspection_contract_true') else t('views.equipment.inspection_contract_true') end %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.start_date') %>:</strong>
+  <%= date_value(@equipment.start_date) %>
 </p>
 
 <p>
