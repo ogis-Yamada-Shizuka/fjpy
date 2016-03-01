@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   get 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection', as: 'close_inspection'
   post 'inspection_schedules/:id/complete_inspection' => 'inspection_schedules#complete_inspection'
 
+  # 装置システムの点検周期を一括返還する
+  get 'equipment/placed_equipment/:place_id' => 'equipment#placed_equipment', as: 'placed_equipment'
+
   resources :equipment do
     collection { post :import }  # for CSV Upload
   end
