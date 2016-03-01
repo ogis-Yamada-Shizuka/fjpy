@@ -85,7 +85,7 @@ end
 
 # ScheduleStatus(結果)テーブルに初期値を投入(全件削除して再投入)
 ScheduleStatus.delete_all
-['点検依頼済', '候補日回答済', '日程確定済', '点検実施中', '顧客承認済', '完了', 'NG'].each.with_index(1) do |name, id|
+['要点検依頼', '点検依頼済', '候補日回答済', '日程確定済', '点検実施中', '顧客承認済', '完了', 'NG'].each.with_index(1) do |name, id|
   ScheduleStatus.create(id: id, name: name)
 end
 if Rails.env.development?
