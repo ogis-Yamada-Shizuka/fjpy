@@ -4,7 +4,7 @@ class InspectionSchedulesController < ApplicationController
     :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
   ]
 
-  before_action :set_query_to_params, only: %i(index need_request ed_soon date_answered target done)
+  before_action :set_query_to_params, only: %i(index need_request requested_soon date_answered target done)
   before_action :set_inspection_schedules, only: :index
 
   # GET /inspection_schedules
