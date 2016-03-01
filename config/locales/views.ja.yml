@@ -33,6 +33,7 @@ ja:
       edit: 点検予定の更新
       edit: 点検予定の更新
       show: 点検予定の確認
+      inspection_request: 点検依頼
       answer_date: 候補日時回答
       confirm_date: 日程確定
       do_inspecrion: 点検実施

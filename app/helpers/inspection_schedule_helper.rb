@@ -32,8 +32,12 @@ module InspectionScheduleHelper
   def action_link(inspection_schedule)
     fa_pencil = content_tag(:i, '', class: "fa fa-pencil fa-fw")
 
+    # 点検依頼
+    if inspection_schedule.can_inspection_request?(current_user)
+      fa_pencil_link_to t('views.inspection_schedule.inspection_request'), inspection_request_path(inspection_schedule)
+
     # 候補日時回答
-    if inspection_schedule.can_answer_date?(current_user)
+    elsif inspection_schedule.can_answer_date?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.answer_date'), answer_date_path(inspection_schedule)
 
     # 日程確定

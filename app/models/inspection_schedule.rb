@@ -61,6 +61,12 @@ class InspectionSchedule < ActiveRecord::Base
     )
   end
 
+  # 点検を依頼して良いかどうか
+  def can_inspection_request?(user = nil)
+    return false unless user.try(:branch_employee?)
+    schedule_status_id == ScheduleStatus.of_need_request
+  end
+
   # 候補日時回答して良いかどうか
   def can_answer_date?(user = nil)
     return false unless (user.try(:branch_employee?) || user.try(:service_employee?))

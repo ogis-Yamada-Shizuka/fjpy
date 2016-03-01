@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 点検を依頼する
+  get 'inspection_schedules/:id/inspection_request' => 'inspection_schedules#inspection_request' , as: 'inspection_request'
+
   # 候補日時を回答する
   get 'inspection_schedules/:id/answer_date' => 'inspection_schedules#answer_date' , as: 'answer_date'
 
