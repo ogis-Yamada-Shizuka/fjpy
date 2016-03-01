@@ -207,7 +207,8 @@ class InspectionSchedulesController < ApplicationController
       :equipment_id,
       :service_id,
       :schedule_status_id,
-      :processingdate
+      :processingdate,
+      :user_id
     )
   end
 
