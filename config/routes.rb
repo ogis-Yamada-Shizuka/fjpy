@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :inspection_schedules do
     collection do
+      get 'need_request'
       get 'requested_soon'
       get 'date_answered'
       get 'target'
