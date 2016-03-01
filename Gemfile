@@ -80,17 +80,8 @@ end
 
 gem "devise"
 
-# group :test do
-#  gem 'capybara'
-#  gem 'minitest-capybara'
-#  gem 'minitest-rails-capybara'
-#  gem 'minitest-reporters'
-# end
-# group :test do
-#   gem 'capybara', '~> 2.0'
-#   gem 'minitest-capybara', '~> 0.8'
-# end
 group :test do
   gem 'capybara'
   gem 'minitest-capybara'
+  gem "capybara-webkit"
 end

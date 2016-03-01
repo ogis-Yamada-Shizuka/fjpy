@@ -23,7 +23,7 @@ Service.create(id: 9, code: 'SER-04', name: '阪神施設管理(株)', branch_id
 Service.create(id: 10, code: 'SER-05', name: '(株)名古屋設備点検', branch_id: 4)
 Service.create(id: 11, code: 'SER-06', name: '中京サービス', branch_id: 4)
 Service.create(id: 12, code: 'SER-07', name: 'むさしサポート(株)', branch_id: 5)
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Company.connection.execute("update sqlite_sequence set seq=12 where name='companies'")
 else
   Company.connection.execute("SELECT SETVAL('companies_id_seq', 12, TRUE)")
@@ -36,7 +36,7 @@ SystemModel.create(id: 2, name: '通常用(隔月点検)', inspection_cycle_mont
 SystemModel.create(id: 3, name: '通常用(半年毎点検)', inspection_cycle_month: 6)
 SystemModel.create(id: 4, name: '非常用(１年毎点検)', inspection_cycle_month: 12)
 SystemModel.create(id: 5, name: '携帯用(３年毎点検)', inspection_cycle_month: 36)
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   SystemModel.connection.execute("update sqlite_sequence set seq=5 where name='system_models'")
 else
   SystemModel.connection.execute("SELECT SETVAL('system_models_id_seq', 5, TRUE)")
@@ -77,7 +77,7 @@ Place.create(id: 28, name: '株式会社ストアバイエルクリエイト', a
 Place.create(id: 29, name: '松本大学', address: '鳥取県倉吉市見日町', branch_id: 5)
 Place.create(id: 30, name: 'フジゴルフプラス株式会社', address: '上北郡七戸町中村53丁目8378-2885', branch_id: 5)
 
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Place.connection.execute("update sqlite_sequence set seq=30 where name='places'")
 else
   Place.connection.execute("SELECT SETVAL('places_id_seq', 30, TRUE)")
@@ -88,7 +88,7 @@ ScheduleStatus.delete_all
 ['要点検依頼', '点検依頼済', '候補日回答済', '日程確定済', '点検実施中', '顧客承認済', '完了', 'NG'].each.with_index(1) do |name, id|
   ScheduleStatus.create(id: id, name: name)
 end
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   ScheduleStatus.connection.execute("update sqlite_sequence set seq=7 where name='schedule_statuses'")
 else
   ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 7, TRUE)")
@@ -100,7 +100,7 @@ Weather.create(id: 1, name: '晴')
 Weather.create(id: 2, name: '曇')
 Weather.create(id: 3, name: '雨')
 Weather.create(id: 4, name: '雪')
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Weather.connection.execute("update sqlite_sequence set seq=4 where name='weathers'")
 else
   Weather.connection.execute("SELECT SETVAL('weathers_id_seq', 4, TRUE)")
@@ -112,7 +112,7 @@ Checkresult.create(id: 1, name: '優')
 Checkresult.create(id: 2, name: '良')
 Checkresult.create(id: 3, name: '可')
 Checkresult.create(id: 4, name: '不可')
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Checkresult.connection.execute("update sqlite_sequence set seq=4 where name='checkresults'")
 else
   Checkresult.connection.execute("SELECT SETVAL('checkresults_id_seq', 4, TRUE)")
@@ -122,7 +122,7 @@ end
 Flag.delete_all
 Flag.create(id: 1, name: 'Open')
 Flag.create(id: 2, name: 'Close')
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Weather.connection.execute("update sqlite_sequence set seq=2 where name='flasg'")
 else
   Weather.connection.execute("SELECT SETVAL('flags_id_seq', 2, TRUE)")
@@ -134,7 +134,7 @@ end
 
 # User(作業者)テーブルにテスト用初期値を投入（全件削除して再投入）
 User.delete_all
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   User.connection.execute("delete from sqlite_sequence where name='users'")
 else
   User.connection.execute("SELECT SETVAL('users_id_seq',1,FALSE)")
@@ -242,14 +242,14 @@ User.create( userid: 'User00', name: '本村結芽', company_id: 5, email: 'user
 
 # Equipment(装置システム)テーブルにテスト用初期値を投入（全件削除して再投入）
 Equipment.delete_all
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Equipment.connection.execute("delete from sqlite_sequence where name='equipment'")
 else
   Equipment.connection.execute("SELECT SETVAL('equipment_id_seq',1,FALSE)")
 end
 
 InspectionSchedule.delete_all
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   InspectionSchedule.connection.execute("delete from sqlite_sequence where name='inspection_schedules'")
 else
   InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")

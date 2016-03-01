@@ -23,7 +23,7 @@
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
         <td><%= inspection_schedule.target %></td>
-        <td><%= inspection_schedule.equipment.serial_number %></td>
+        <td><%= inspection_schedule.equipment.serial_number %></td >
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.schedule_status.name %></td>
