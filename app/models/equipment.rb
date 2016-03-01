@@ -8,6 +8,8 @@ class Equipment < ActiveRecord::Base
 
   has_many :inspection_schedules
 
+  validates :serial_number, presence: true, uniqueness: { scope: :system_model }
+  validates :serial_number, :format => { :with => /\A[A-Z0-9-]+\z/, :message => "は半角英数字とハイフンのみで記入して下さい" }
   after_create :create_inspection_schedule
 
   # CSV Upload
