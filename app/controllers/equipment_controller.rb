@@ -87,7 +87,20 @@ class EquipmentController < ApplicationController
   end
 
   def placed_equipment
-    @equipment = Equipment.where(place_id: params[:place_id])
+    @place = Place.where(id: params[:place_id]).first
+    @equipment = Equipment.where(place: @place)
+
+  end
+
+  def change_inspection_cycle
+    params[:check].each do |key, val|
+      if val=="1"
+        equipment = Equipment.where(id: key).first
+        equipment.inspection_cycle_month = params[:new_inspection_cycle_month]
+        equipment.save
+      end
+    end
+     redirect_to equipment_index_url
   end
 
   private

@@ -1,13 +1,14 @@
 
-<h1><%= t('views.equipment.xxxxx') %></h1>
+<h1><%= t('views.equipment.placed_equipment', place_name: @place.name) %></h1>
 
+<%= form_tag action='change_inspection_cycle' do %>
 <table>
   <thead>
     <tr>
-      <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
+      <th></th>
       <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
-      <th><%= t('activerecord.attributes.equipment.place_id') %></th>
-      <th><%= t('activerecord.attributes.equipment.branch_id') %></th>
+      <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
+      <th><%= t('activerecord.attributes.equipment.inspection_cycle_month') %></th>
       <th><%= t('activerecord.attributes.equipment.service_id') %></th>
       <th><%= t('activerecord.attributes.equipment.last_update') %></th>
       <th colspan="5"></th>
@@ -17,10 +18,10 @@
   <tbody>
     <% @equipment.each do |equipment| %>
       <tr>
-        <td><%= equipment.serial_number %></td>
+        <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}" %></td>
         <td><%= equipment.system_model.name %></td>
-        <td><%= equipment.place.name %></td>
-        <td><%= equipment.branch.name %></td>
+        <td><%= equipment.serial_number %></td>
+        <td><%= equipment.inspection_cycle_month %></td>
         <td><%= equipment.service.name %></td>
         <td><%= equipment.updated_at %></td>
         <td><%= link_to t('views.link_to.show'), equipment %></td>
@@ -33,17 +34,15 @@
 
 <br>
 
-<%= link_to link_to t('views.link_to.new'), new_equipment_path %>
+<% unless @equipment.empty? %>
+  <div class="well col-md-10 col-sm-10 col-xs-10">
+    <div><%= t('views.equipment.change_inspection_cycle_comment') %></div>
+    <div>
+      <%= number_field_tag :new_inspection_cycle_month %>
+      <%= submit_tag(t('views.equipment.change_inspection_cycle')) %>
+    </div>
+  </div>
+<% end %>
 
-<br><hr><br>
 
-<p>
-  <%= link_to t('views.link_to.csv_download'), equipment_index_path(format: :csv) %>
-</p>
-
-<p>
-  <%= form_tag import_equipment_index_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag t('views.link_to.csv_upload') %>
-  <% end %>
-</p>
+<% end %>
