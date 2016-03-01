@@ -8,7 +8,9 @@ class Equipment < ActiveRecord::Base
 
   has_many :inspection_schedules
 
-  after_create :create_inspection_schedule
+  validates :serial_number, presence: true, uniqueness: { scope: :system_model }
+  validates :serial_number, :format => { :with => /\A[A-Z0-9-]+\z/, :message => "は半角英数字とハイフンのみで記入して下さい" }
+  after_create :create_inspection_schedule, :if => :inspection_contract
 
   # CSV Upload
   require "csv"
@@ -30,45 +32,6 @@ class Equipment < ActiveRecord::Base
     )
   end
 
-  # 渡された年月が自分の点検年月にあたるかを Yes/No で回答する
-  def is_inspection_datetime(target_year, target_month)
-
-    res = true # 戻り値を設定。点検予定が１つも無いときは true で抜けるよ。
-
-    # 点検予定の最未来のものを取る(１件だけ)
-    inspection_schedules = self.inspection_schedules.order(target_yearmonth: :desc).limit(1)
-
-    inspection_schedules.each do | last_inspection_schedule |
-      # 最未来の点検予定の年月を年と月に分割
-      last_ym = last_inspection_schedule.target_yearmonth.scan(/.{1,#{4}}/)
-
-      # 型式の点検周期(月)を年と月に分割
-      inc_year  = self.system_model.inspection_cycle_month/12
-      inc_month = self.system_model.inspection_cycle_month%12
-
-      # 最未来の点検予定から起算した次回の点検年と月を計算
-      next_y = last_ym[0].to_i+inc_year
-      next_m = last_ym[1].to_i+inc_month
-
-      if target_year.to_i==next_y and target_month.to_i==next_m
-        res = true # 一致の時
-      else
-        res = false
-      end
-    end
-
-    return res
-  end
-
-  # 渡された年月の点検予定が存在するかを Yes/No で回答する
-  def exist_inspection(target_year, target_month)
-    if InspectionSchedule.where(equipment_id: self.id, target_yearmonth: target_year+target_month).count == 0
-      return false # ない
-    else
-      return true # ある
-    end
-  end
-
   # 次回の点検予定
   def next_inspection_schedule
     inspection_schedules.not_done.order_by_target_yearmonth.first
@@ -77,6 +40,6 @@ class Equipment < ActiveRecord::Base
   private
 
   def first_inspection_cycle
-    Date.parse(current_date) >> system_model.inspection_cycle_month
+    Date.parse(start_date.to_s[0..9]) >> inspection_cycle_month
   end
 end

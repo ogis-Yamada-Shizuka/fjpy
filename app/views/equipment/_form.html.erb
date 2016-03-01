@@ -12,12 +12,24 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :system_model_id %><br>
+    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name) %>
+  </div>
+  <div class="field">
     <%= f.label :serial_number %><br>
     <%= f.text_field :serial_number %>
   </div>
   <div class="field">
-    <%= f.label :system_model_id %><br>
-    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name) %>
+    <%= f.label :inspection_contract %>
+    <%= f.check_box :inspection_contract, {:checked => true} %>
+  </div>
+  <div class="field">
+    <%= f.label :inspection_cycle_month %><br>
+    <%= f.number_field :inspection_cycle_month %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date, {} %>
   </div>
   <div class="field">
     <%= f.label :place_id %><br>

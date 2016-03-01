@@ -50,6 +50,9 @@ ja:
         company_id: 所属
       equipment:
         serial_number: シリアルNo.
+        inspection_cycle_month: 点検周期
+        inspection_contract: 点検契約
+        start_date: 試運転日
         system_model_id: 型式
         place_id: 設置場所
         branch_id: 管轄

@@ -46,6 +46,8 @@ ja:
       new: 装置システムの登録
       edit: 装置システムの更新
       show: 装置システムの確認
+      inspection_contract_true: 有
+      inspection_contract_false: 無
     system_model:
       index: 型式一覧
       new: 型式の登録
