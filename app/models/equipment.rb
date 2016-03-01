@@ -10,7 +10,8 @@ class Equipment < ActiveRecord::Base
 
   validates :serial_number, presence: true, uniqueness: { scope: :system_model }
   validates :serial_number, format: { with: /\A[A-Z0-9-]+\z/, message: "は半角英数字とハイフンのみで記入して下さい" }
-  after_create :create_inspection_schedule, if: :inspection_contract
+  after_save :create_inspection_schedule, if: :contracted?
+  after_save :destroy_inspection_schedule, if: :discarded_contract?
 
   # CSV Upload
   require "csv"
@@ -32,6 +33,10 @@ class Equipment < ActiveRecord::Base
     )
   end
 
+  def destroy_inspection_schedule
+    InspectionSchedule.where(equipment: self, schedule_status_id: ScheduleStatus.of_need_request).delete_all
+  end
+
   # 次回の点検予定
   def next_inspection_schedule
     inspection_schedules.not_done.order_by_target_yearmonth.first
@@ -40,6 +45,16 @@ class Equipment < ActiveRecord::Base
   private
 
   def first_inspection_cycle
-    Date.parse(start_date.to_s[0..9]) >> inspection_cycle_month
+    today = Date.parse(current_date)
+    first_inspection_day = Date.parse(start_date.to_s[0..9]) >> inspection_cycle_month
+    (today < first_inspection_day) ? first_inspection_day : today
+  end
+
+  def contracted?
+    changed.include?('inspection_contract') && inspection_contract
+  end
+
+  def discarded_contract?
+    changed.include?('inspection_contract') && !inspection_contract
   end
 end
