@@ -10,7 +10,7 @@ class Equipment < ActiveRecord::Base
 
   validates :serial_number, presence: true, uniqueness: { scope: :system_model }
   validates :serial_number, :format => { :with => /\A[A-Z0-9-]+\z/, :message => "は半角英数字とハイフンのみで記入して下さい" }
-  after_create :create_inspection_schedule
+  after_create :create_inspection_schedule, :if => :inspection_contract
 
   # CSV Upload
   require "csv"
@@ -79,6 +79,6 @@ class Equipment < ActiveRecord::Base
   private
 
   def first_inspection_cycle
-    Date.parse(current_date) >> system_model.inspection_cycle_month
+    Date.parse(start_date.to_s[0..9]) >> inspection_cycle_month
   end
 end
