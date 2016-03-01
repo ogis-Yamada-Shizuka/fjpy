@@ -4,7 +4,7 @@
 <table>
   <thead>
     <tr>
-      <th><%= t('activerecord.attributes.equipment.name') %></th>
+      <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
       <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.equipment.branch_id') %></th>
@@ -17,7 +17,7 @@
   <tbody>
     <% @equipment.each do |equipment| %>
       <tr>
-        <td><%= equipment.name %></td>
+        <td><%= equipment.serial_number %></td>
         <td><%= equipment.system_model.name %></td>
         <td><%= equipment.place.name %></td>
         <td><%= equipment.branch.name %></td>
