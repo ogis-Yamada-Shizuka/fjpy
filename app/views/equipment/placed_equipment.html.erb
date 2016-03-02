@@ -38,6 +38,7 @@
   <div class="well col-md-10 col-sm-10 col-xs-10">
     <div><%= t('views.equipment.change_inspection_cycle_comment') %></div>
     <div>
+      <%= hidden_field_tag :place_id, :place_id, :value => @place.id %>
       <%= number_field_tag :new_inspection_cycle_month %>
       <%= submit_tag(t('views.equipment.change_inspection_cycle')) %>
     </div>
