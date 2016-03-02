@@ -37,6 +37,16 @@ class Equipment < ActiveRecord::Base
     InspectionSchedule.where(equipment: self, schedule_status_id: ScheduleStatus.of_need_request).delete_all
   end
 
+  def self.bulk_change_inspection_cycle(target_list, new_inspection_cycle_month)
+    target_list.each do |key, val|
+      if val=="1"
+        equipment = Equipment.where(id: key).first
+        equipment.inspection_cycle_month = new_inspection_cycle_month
+        equipment.save
+      end
+    end
+  end
+
   # 次回の点検予定
   def next_inspection_schedule
     inspection_schedules.not_done.order_by_target_yearmonth.first

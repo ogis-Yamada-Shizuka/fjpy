@@ -6,7 +6,18 @@ class EquipmentController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @equipment = Equipment.all
+        # YES本社：全件
+        if current_user.head_employee?
+          @equipment = Equipment.all
+        end
+        # YES拠点：自拠点が管轄しているもののみ
+        if current_user.branch_employee?
+           @equipment = Equipment.where(branch_id: current_user.company_id)
+        end
+        # サービス会社の場合：デフォルトの担当として割り当てられているもののみ
+        if current_user.service_employee?
+           @equipment = Equipment.where(service_id: current_user.company_id)
+        end
       end
       format.csv do
         @equipment = Equipment.all
@@ -73,6 +84,18 @@ class EquipmentController < ApplicationController
   def import
     Equipment.import(params[:file])
     redirect_to equipment_index_url, notice: "Equipment imported."
+  end
+
+  def placed_equipment
+    @place = Place.where(id: params[:place_id]).first
+    @equipment = Equipment.where(place: @place)
+
+  end
+
+  # 点検周期を一括で変更する
+  def change_inspection_cycle
+    Equipment.bulk_change_inspection_cycle(params[:check], params[:new_inspection_cycle_month])
+    redirect_to placed_equipment_path(params[:place_id])
   end
 
   private
