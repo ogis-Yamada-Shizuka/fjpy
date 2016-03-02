@@ -8,6 +8,7 @@ class Equipment < ActiveRecord::Base
 
   has_many :inspection_schedules
 
+  after_initialize :set_default_value, if: :new_record? # 新規作成の場合はデフォルト値を入れる
   validates :serial_number, presence: true, uniqueness: { scope: :system_model }
   validates :serial_number, format: { with: /\A[A-Z0-9-]+\z/, message: "は半角英数字とハイフンのみで記入して下さい" }
   after_save :create_inspection_schedule, if: :contracted?
@@ -22,6 +23,11 @@ class Equipment < ActiveRecord::Base
       model.attributes = row.to_hash.slice(*column_names)
       model.save!
     end
+  end
+
+  # デフォルト値の設定をする
+  def set_default_value
+    self.inspection_contract = true # 点検契約はデフォルトではONにしておく
   end
 
   def create_inspection_schedule
