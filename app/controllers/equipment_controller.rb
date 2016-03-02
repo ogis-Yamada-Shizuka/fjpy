@@ -94,13 +94,7 @@ class EquipmentController < ApplicationController
 
   # 点検周期を一括で変更する
   def change_inspection_cycle
-    params[:check].each do |key, val|
-      if val=="1"
-        equipment = Equipment.where(id: key).first
-        equipment.inspection_cycle_month = params[:new_inspection_cycle_month]
-        equipment.save
-      end
-    end
+    Equipment.bulk_change_inspection_cycle(params[:check], params[:new_inspection_cycle_month])
     redirect_to placed_equipment_path(params[:place_id])
   end
 
