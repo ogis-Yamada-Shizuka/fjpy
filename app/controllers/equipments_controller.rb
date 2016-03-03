@@ -1,8 +1,8 @@
-class EquipmentController < ApplicationController
-  before_action :set_equipment, only: [:show, :edit, :update, :destroy]
+class EquipmentsController < ApplicationController
+  before_action :set_equipment, only: %i(show edit update destroy set_inspection_cycle)
 
-  # GET /equipment
-  # GET /equipment.json
+  # GET /equipments
+  # GET /equipments.json
   def index
     respond_to do |format|
       format.html do
@@ -26,23 +26,23 @@ class EquipmentController < ApplicationController
     end
   end
 
-  # GET /equipment/1
-  # GET /equipment/1.json
+  # GET /equipments/1
+  # GET /equipments/1.json
   def show
     @next_inspection_schedule = @equipment.next_inspection_schedule
   end
 
-  # GET /equipment/new
+  # GET /equipments/new
   def new
     @equipment = Equipment.new
   end
 
-  # GET /equipment/1/edit
+  # GET /equipments/1/edit
   def edit
   end
 
-  # POST /equipment
-  # POST /equipment.json
+  # POST /equipments
+  # POST /equipments.json
   def create
     @equipment = Equipment.new(equipment_params)
 
@@ -57,8 +57,8 @@ class EquipmentController < ApplicationController
     end
   end
 
-  # PATCH/PUT /equipment/1
-  # PATCH/PUT /equipment/1.json
+  # PATCH/PUT /equipments/1
+  # PATCH/PUT /equipments/1.json
   def update
     respond_to do |format|
       if @equipment.update(equipment_params)
@@ -71,8 +71,8 @@ class EquipmentController < ApplicationController
     end
   end
 
-  # DELETE /equipment/1
-  # DELETE /equipment/1.json
+  # DELETE /equipments/1
+  # DELETE /equipments/1.json
   def destroy
     @equipment.destroy
     respond_to do |format|
@@ -89,13 +89,16 @@ class EquipmentController < ApplicationController
   def placed_equipment
     @place = Place.where(id: params[:place_id]).first
     @equipment = Equipment.where(place: @place)
-
   end
 
   # 点検周期を一括で変更する
   def change_inspection_cycle
     Equipment.bulk_change_inspection_cycle(params[:check], params[:new_inspection_cycle_month])
     redirect_to placed_equipment_path(params[:place_id])
+  end
+
+  def set_inspection_cycle
+    @system_model = SystemModel.find(params[:system_model_id])
   end
 
   private

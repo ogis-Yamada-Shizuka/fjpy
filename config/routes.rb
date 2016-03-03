@@ -63,8 +63,9 @@ Rails.application.routes.draw do
   get 'equipment/placed_equipment/:place_id' => 'equipment#placed_equipment', as: 'placed_equipment'
   post 'equipment/placed_equipment/change_inspection_cycle' => 'equipment#change_inspection_cycle'
 
-  resources :equipment do
+  resources :equipments do
     collection { post :import }  # for CSV Upload
+    member { get :set_inspection_cycle }
   end
 
   resources :places do

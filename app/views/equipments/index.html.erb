@@ -38,11 +38,11 @@
 <br><hr><br>
 
 <p>
-  <%= link_to t('views.link_to.csv_download'), equipment_index_path(format: :csv) %>
+  <%= link_to t('views.link_to.csv_download'), equipments_path(format: :csv) %>
 </p>
 
 <p>
-  <%= form_tag import_equipment_index_path, multipart: true do %>
+  <%= form_tag import_equipments_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag t('views.link_to.csv_upload') %>
   <% end %>
