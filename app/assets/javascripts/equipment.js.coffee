@@ -1,7 +1,7 @@
 $ ->
   $('select#equipment_system_model_id').change ->
     $.ajax
-      url: 'change_system_model'
+      url: '/equipment/change_system_model'
       type: 'GET'
       data: system_model_id: $(this).val()
 
@@ -10,6 +10,6 @@ $ ->
 
 @change_inspection_contract = ->
   $.ajax
-    url: 'change_inspection_contract'
+    url: '/equipment/change_inspection_contract'
     type: 'GET'
     data: checked: $('input#equipment_inspection_contract').prop('checked')
