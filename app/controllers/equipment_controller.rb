@@ -35,6 +35,7 @@ class EquipmentController < ApplicationController
   # GET /equipment/new
   def new
     @equipment = Equipment.new
+    @system_models = SystemModel.all
   end
 
   # GET /equipment/1/edit
