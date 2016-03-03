@@ -1,3 +1,15 @@
+<script>
+  function change_system_model(){
+    var inspection_cycle_table = []
+    <% @system_models.each do |s| %>
+      <%= format("inspection_cycle_table.push(%d)", s.inspection_cycle_month ) %>
+    <% end %>
+    selected = document.getElementById("equipment_system_model_id").value
+    defaule_inspection_cycle = inspection_cycle_table[selected-1]
+    document.getElementById("equipment_inspection_cycle_month").value = defaule_inspection_cycle
+  }
+</script>
+
 <%= form_for(@equipment) do |f| %>
   <% if @equipment.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +25,7 @@
 
   <div class="field">
     <%= f.label :system_model_id %><br>
-    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name) %>
+    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name, {}, {:onchange => 'change_system_model()'}) %>
   </div>
   <div class="field">
     <%= f.label :serial_number %><br>
