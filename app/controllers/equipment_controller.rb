@@ -1,8 +1,8 @@
-class EquipmentsController < ApplicationController
+class EquipmentController < ApplicationController
   before_action :set_equipment, only: %i(show edit update destroy set_inspection_cycle)
 
-  # GET /equipments
-  # GET /equipments.json
+  # GET /equipment
+  # GET /equipment.json
   def index
     respond_to do |format|
       format.html do
@@ -26,23 +26,23 @@ class EquipmentsController < ApplicationController
     end
   end
 
-  # GET /equipments/1
-  # GET /equipments/1.json
+  # GET /equipment/1
+  # GET /equipment/1.json
   def show
     @next_inspection_schedule = @equipment.next_inspection_schedule
   end
 
-  # GET /equipments/new
+  # GET /equipment/new
   def new
     @equipment = Equipment.new
   end
 
-  # GET /equipments/1/edit
+  # GET /equipment/1/edit
   def edit
   end
 
-  # POST /equipments
-  # POST /equipments.json
+  # POST /equipment
+  # POST /equipment.json
   def create
     @equipment = Equipment.new(equipment_params)
 
@@ -57,8 +57,8 @@ class EquipmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /equipments/1
-  # PATCH/PUT /equipments/1.json
+  # PATCH/PUT /equipment/1
+  # PATCH/PUT /equipment/1.json
   def update
     respond_to do |format|
       if @equipment.update(equipment_params)
@@ -71,8 +71,8 @@ class EquipmentsController < ApplicationController
     end
   end
 
-  # DELETE /equipments/1
-  # DELETE /equipments/1.json
+  # DELETE /equipment/1
+  # DELETE /equipment/1.json
   def destroy
     @equipment.destroy
     respond_to do |format|
