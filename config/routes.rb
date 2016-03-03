@@ -65,7 +65,10 @@ Rails.application.routes.draw do
 
   resources :equipment do
     collection { post :import }  # for CSV Upload
-    member { get :set_inspection_cycle }
+    member do
+      get :change_system_model
+      get :change_inspection_contract
+    end
   end
 
   resources :places do

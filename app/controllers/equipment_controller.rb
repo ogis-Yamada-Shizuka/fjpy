@@ -97,8 +97,12 @@ class EquipmentController < ApplicationController
     redirect_to placed_equipment_path(params[:place_id])
   end
 
-  def set_inspection_cycle
+  def change_system_model
     @system_model = SystemModel.find(params[:system_model_id])
+  end
+
+  def change_inspection_contract
+    @inspection_contract = (params[:checked] == 'true')
   end
 
   private
