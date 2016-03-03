@@ -1,0 +1,5 @@
+new_inspection:
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment: new_equipment
+  service_id: 6
+  schedule_status_id: 2

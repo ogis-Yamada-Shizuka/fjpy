@@ -1,0 +1,9 @@
+new_equipment:
+  serial_number: 'NEW_EQP'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6

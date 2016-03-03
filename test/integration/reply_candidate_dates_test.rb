@@ -1,14 +1,22 @@
 # key in command below to run
 # rake test TEST='test/integration/reply_candidate_dates_test.rb'
 require "test_helper"
+require "integration_test_helper"
 require "capybara/rails"
+require 'rails/test_help'
 
-class ReplyCandidateDatesTest < Minitest::Capybara::Test
+
+class ReplyCandidateDatesTest < AcstIntegrationTest
+
+  fixtures :equipment, :inspection_schedules
+
   def test_reply_candidate_dates
     # ---------------------------------------------------
     # サービス会社ユーザーが直近の点検依頼に対して候補日を回答(登録)する。
     # ---------------------------------------------------
-    # 
+
+    # 試行錯誤する
+    # self.use_transactional_fixtures = true
 
     # 2.a User06でログイン
     visit '/'

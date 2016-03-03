@@ -1,9 +1,10 @@
 # key in command below to run
 # rake test TEST='test/integration/new_equipment_test.rb'
 require "test_helper"
+require "integration_test_helper"
 require "capybara/rails"
 
-class NewEquipmentTest < Minitest::Capybara::Test
+class NewEquipmentTest < AcstIntegrationTest
   def test_new_equipment
     # ---------------------------------------------------
     # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。

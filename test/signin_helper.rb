@@ -1,5 +1,6 @@
 require "test_helper"
 require "capybara/rails"
+require 'minitest/autorun'
 
 module SigninTest
   def test_signin( user )
