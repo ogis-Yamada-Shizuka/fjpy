@@ -1,5 +1,5 @@
 # key in command below to run
-# rake test TEST='test/features/sprint2_test.rb'
+# rake test TEST='test/integration/signin_test.rb'
 require "test_helper"
 require "capybara/rails"
 

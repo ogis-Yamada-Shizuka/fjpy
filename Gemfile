@@ -83,5 +83,8 @@ gem "devise"
 group :test do
   gem 'capybara'
   gem 'minitest-capybara'
+  # gem 'minitest-capybara-webkit'
   gem "capybara-webkit"
+  gem "poltergeist"
+  gem "database_cleaner"
 end
