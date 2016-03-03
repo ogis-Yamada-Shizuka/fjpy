@@ -64,7 +64,11 @@ Rails.application.routes.draw do
   post 'equipment/placed_equipment/change_inspection_cycle' => 'equipment#change_inspection_cycle'
 
   resources :equipment do
-    collection { post :import }  # for CSV Upload
+    collection do
+      post :import  # for CSV Upload
+      get :change_system_model
+      get :change_inspection_contract
+    end
   end
 
   resources :places do

@@ -1,5 +1,5 @@
 class EquipmentController < ApplicationController
-  before_action :set_equipment, only: [:show, :edit, :update, :destroy]
+  before_action :set_equipment, only: %i(show edit update destroy set_inspection_cycle)
 
   # GET /equipment
   # GET /equipment.json
@@ -89,13 +89,20 @@ class EquipmentController < ApplicationController
   def placed_equipment
     @place = Place.where(id: params[:place_id]).first
     @equipment = Equipment.where(place: @place)
-
   end
 
   # 点検周期を一括で変更する
   def change_inspection_cycle
     Equipment.bulk_change_inspection_cycle(params[:check], params[:new_inspection_cycle_month])
     redirect_to placed_equipment_path(params[:place_id])
+  end
+
+  def change_system_model
+    @system_model = SystemModel.find(params[:system_model_id])
+  end
+
+  def change_inspection_contract
+    @inspection_contract = (params[:checked] == 'true')
   end
 
   private
