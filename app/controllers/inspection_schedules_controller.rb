@@ -73,6 +73,7 @@ class InspectionSchedulesController < ApplicationController
   end
 
   def close_inspection
+    @marker = @inspection_schedule.result.setup_marker
   end
 
   # GET /inspection_schedules/new
