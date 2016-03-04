@@ -62,3 +62,8 @@
   <strong><%= t('activerecord.attributes.inspection_schedule.customer') %>:</strong>
   <%= inspection_schedule.customer %>
 </p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.user') %>:</strong>
+  <%= inspection_schedule.user.try(:name) %>
+</p>
