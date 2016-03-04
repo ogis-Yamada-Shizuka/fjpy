@@ -73,6 +73,12 @@ class InspectionSchedulesController < ApplicationController
   end
 
   def close_inspection
+    @marker = Gmaps4rails.build_markers(@inspection_schedule.result) do |inspection_result, marker|
+      marker.lat inspection_result.latitude
+      marker.lng inspection_result.longitude
+      marker.infowindow inspection_result.updated_at.to_s
+      marker.json(title: inspection_result.user_id.to_s)
+    end
   end
 
   # GET /inspection_schedules/new
