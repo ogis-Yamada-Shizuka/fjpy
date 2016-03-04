@@ -10,6 +10,7 @@ class Equipment < ActiveRecord::Base
 
   validates :serial_number, presence: true, uniqueness: { scope: :system_model }
   validates :serial_number, format: { with: /\A[A-Z0-9-]+\z/, message: "は半角英数字とハイフンのみで記入して下さい" }
+  after_create :create_inspection_schedule, if: lambda { inspection_contract }
   after_save :create_inspection_schedule, if: :contracted?
   after_save :destroy_inspection_schedule, if: :discarded_contract?
 
