@@ -11,12 +11,7 @@ class InspectionResultsController < ApplicationController
   # GET /inspection_results/1
   # GET /inspection_results/1.json
   def show
-    @marker = Gmaps4rails.build_markers(@inspection_result) do |inspection_result, marker|
-      marker.lat inspection_result.latitude
-      marker.lng inspection_result.longitude
-      marker.infowindow inspection_result.updated_at.to_s
-      marker.json(title: inspection_result.user_id.to_s)
-    end
+    @marker = @inspection_result.setup_marker
   end
 
   # GET /inspection_results/new

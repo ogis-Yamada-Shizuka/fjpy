@@ -23,6 +23,7 @@ ja:
       csv_upload: CSVアップロード
     inspection_schedule:
       index: 点検予定一覧
+      need_request_index: 要点検依頼一覧
       requested_soon_index: 点検依頼一覧(直近のみ)
       answered_index: 候補日回答済一覧
       targets_index: 点検作業対象一覧
@@ -32,6 +33,7 @@ ja:
       edit: 点検予定の更新
       edit: 点検予定の更新
       show: 点検予定の確認
+      inspection_request: 点検依頼
       answer_date: 候補日時回答
       confirm_date: 日程確定
       do_inspecrion: 点検実施
@@ -45,6 +47,11 @@ ja:
       new: 装置システムの登録
       edit: 装置システムの更新
       show: 装置システムの確認
+      inspection_contract_true: 有
+      inspection_contract_false: 無
+      placed_equipment: "%{place_name}の装置システム一覧"
+      change_inspection_cycle_comment: 上記一覧で選択(チェック)した設備の点検周期を一括変更します
+      change_inspection_cycle: 点検周期変更
     system_model:
       index: 型式一覧
       new: 型式の登録
@@ -55,6 +62,7 @@ ja:
       new: 場所の登録
       edit: 場所の更新
       show: 場所の確認
+      placed_equipment: 装置システム一覧
     inspection_result:
       index: 点検実績一覧
       new: 点検実績の登録

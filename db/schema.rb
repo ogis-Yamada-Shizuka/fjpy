@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20160217030958) do
   create_table "equipment", force: true do |t|
     t.string   "serial_number"
     t.integer  "inspection_cycle_month"
-    t.boolean  "inspection_contract"
+    t.boolean  "inspection_contract",    default: true, null: false
     t.datetime "start_date"
     t.integer  "system_model_id"
     t.integer  "place_id"
