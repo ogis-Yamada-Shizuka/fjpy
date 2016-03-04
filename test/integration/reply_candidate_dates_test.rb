@@ -4,7 +4,7 @@ require "test_helper"
 require "integration_test_helper"
 require "capybara/rails"
 require 'rails/test_help'
-
+require 'headless'
 
 class ReplyCandidateDatesTest < AcstIntegrationTest
 
@@ -16,7 +16,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # ---------------------------------------------------
 
     # 試行錯誤する
-    # self.use_transactional_fixtures = true
+    self.use_transactional_fixtures = false
 
     # 2.a User06でログイン
     visit '/'
@@ -61,13 +61,16 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # fill_in 'inspection_schedule_candidate_datetime1',     with: '2016/04/10'
     # fill_in 'inspection_schedule_candidate_datetime2',     with: '2016/04/20'
     # fill_in 'inspection_schedule_candidate_datetime3',     with: '2016/04/30'
-    # page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
-    # page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
-    # page.execute_script("$('#inspection_schedule_candidate_datetime3').val('10/04/2016')")
+    
+    # Capybara.current_driver = :webkit 
+    page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
+    page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
+    page.execute_script("$('#inspection_schedule_candidate_datetime3').val('10/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime1').datepicker('setDate', '10/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime2').datepicker('setDate', '20/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime3').datepicker('setDate', '30/04/2016')")
-
+    # Capybara.use_default_driver 
+    
     fill_in 'inspection_schedule_candidate_datetime_memo', with: 'メモです'
     
     # 登録ボタンをクリック

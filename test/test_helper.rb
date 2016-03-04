@@ -2,7 +2,6 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 require 'rails/test_help'
 # require 'database_cleaner'
-# require 'capybara-webkit'
 
 # Capybara.javascript_driver = :webkit 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`

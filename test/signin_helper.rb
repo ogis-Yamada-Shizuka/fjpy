@@ -1,5 +1,6 @@
 require "test_helper"
 require "capybara/rails"
+require 'capybara-webkit'
 require 'minitest/autorun'
 
 module SigninTest

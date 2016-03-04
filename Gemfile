@@ -84,7 +84,8 @@ group :test do
   gem 'capybara'
   gem 'minitest-rails'
   gem 'minitest-capybara'
-  # gem 'minitest-capybara-webkit'
+  gem 'capybara-webkit'
+  gem 'headless'
   # gem 'minitest-metadata'
   gem "poltergeist"
   gem "database_cleaner"
