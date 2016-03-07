@@ -42,7 +42,7 @@ ja:
       next_inspection_yearmonth: 次回点検年月
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
-      yes_branch_staff: 担当者
+      yes_branch_staff: 担当
       yes_branch_staff_mark: ＊
     equipment:
       index: 装置システム一覧
