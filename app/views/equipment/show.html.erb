@@ -49,5 +49,26 @@
   </p>
 <% end %>
 
+<hr>
+<p>
+  <strong><%= t('views.equipment.inspection_histories') %> </strong>
+</p>
+  <table>
+    <tr>
+      <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
+      <th></th>
+    </tr>
+    <% @inspection_histories.each do |schedule| %>
+    <tr>
+      <td><%= schedule.processingdate %></td>
+      <td><%= schedule.service.name %></td>
+      <td><%= link_to t('views.link_to.show'), inspection_result_path(schedule.result) %></td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+
 <%= link_to 'Edit', edit_equipment_path(@equipment) %> |
 <%= link_to 'Back', equipment_index_path %>
