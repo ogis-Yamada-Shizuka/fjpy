@@ -6,6 +6,9 @@
 <table>
   <thead>
     <tr>
+        <% if current_user.branch_employee? %>
+          <th><%= t('views.inspection_schedule.yes_branch_staff')%></th>
+        <% end %>
       <th><%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.equipment_id') %></th>
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
@@ -22,6 +25,14 @@
   <tbody>
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
+        <% if current_user.branch_employee? %>
+          <td>
+            <% if(inspection_schedule.user.present? &&
+               inspection_schedule.user.id == current_user.id) %>
+              <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
+            <% end %>
+          </td>
+        <% end %>
         <td><%= inspection_schedule.target %></td>
         <td><%= inspection_schedule.equipment.serial_number %></td>
         <td><%= inspection_schedule.place.name %></td>
