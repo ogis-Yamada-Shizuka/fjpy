@@ -6,7 +6,15 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @places = Place.all
+        # YES本社：全件
+        if current_user.head_employee?
+          @places = Place.all
+        end
+        # YES拠点：自拠点が管轄しているもののみ
+        if current_user.branch_employee?
+          @places= Place.where(branch_id: current_user.company_id)
+        end
+        # サービス会社：なし
       end
       format.csv do
         @places = Place.all

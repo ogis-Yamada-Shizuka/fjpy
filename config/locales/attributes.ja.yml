@@ -11,6 +11,7 @@ ja:
         confirm_datetime_memo: 点検予定日時メモ
         author: アポ担当者(YES拠点)
         customer: アポ担当者(顧客)
+        user: 点検依頼者
         equipment_id: 対象装置システム
         service_id: 担当サービス会社
         schedule_status_id: 進捗状況
@@ -49,7 +50,10 @@ ja:
         company: 会社
         company_id: 所属
       equipment:
-        name: 名称
+        serial_number: シリアルNo.
+        inspection_cycle_month: 点検周期
+        inspection_contract: 点検契約
+        start_date: 試運転日
         system_model_id: 型式
         place_id: 設置場所
         branch_id: 管轄
