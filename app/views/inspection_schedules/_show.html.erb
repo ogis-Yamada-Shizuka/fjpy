@@ -5,7 +5,7 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.equipment_id') %>:</strong>
-  <%= inspection_schedule.equipment.serial_number %>
+  <%= link_to inspection_schedule.equipment.serial_number, equipment_path(inspection_schedule.equipment) %>
 </p>
 
 <p>

@@ -30,6 +30,7 @@ class EquipmentController < ApplicationController
   # GET /equipment/1.json
   def show
     @next_inspection_schedule = @equipment.next_inspection_schedule
+    @inspection_histories = @equipment.inspection_schedules.where(schedule_status: ScheduleStatus.of_completed)
   end
 
   # GET /equipment/new
