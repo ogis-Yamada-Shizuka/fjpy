@@ -48,6 +48,7 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_target_yearmonth
+    @marker = @inspection_schedule.result.setup_marker
   end
 
   # GET /inspection_schedules/1/do_inspection
