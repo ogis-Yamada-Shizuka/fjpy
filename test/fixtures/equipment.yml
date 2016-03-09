@@ -1,5 +1,26 @@
-new_equipment:
-  serial_number: 'NEW_EQP'
+equipment_for_request_inspection:
+  id: 101
+  serial_number: 'S010-001'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
+equipment_for_reply_candidate_date:
+  id: 102
+  serial_number: 'S010-002'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
+equipment_for_comfirm_date:
+  id: 103
+  serial_number: 'S010-003'
   inspection_cycle_month: 2
   inspection_contract: true
   start_date: <%= Date.today() %>

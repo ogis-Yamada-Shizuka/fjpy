@@ -15,9 +15,6 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # サービス会社ユーザーが直近の点検依頼に対して候補日を回答(登録)する。
     # ---------------------------------------------------
 
-    # 試行錯誤する
-    self.use_transactional_fixtures = false
-
     # 2.a User06でログイン
     visit '/'
     
@@ -35,11 +32,12 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     assert_content 'ログインしました'
     assert_content 'メニュー'
     assert_content 'なにわサービス'
-
-    # 2.b 装置システム一覧に遷移
+    assert_content '平良朱里'
+    
+    # 1.b メニュー画面に遷移
     visit '/'
 
-    # 最初に見つけた（メニューの  ）点検依頼一覧(直近のみ)リンクをクリックする
+    # 最初に見つけた（メニューの ）点検依頼一覧(直近のみ)リンクをクリックする
     click_link '点検依頼一覧(直近のみ)', match: :first
 
     # 点検依頼一覧(直近のみに遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
@@ -49,7 +47,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
   
     # 2.c
     # テーブルの中の名称「」の行の候補日時回答リンクをクリック
-    find(:xpath, "//tr[td[contains(.,'NEW_EQP')]]/td/a", :text => '候補日時回答').click
+    find(:xpath, "//tr[td[contains(.,'S010-002')]]/td/a", :text => '候補日時回答').click
       
     # 候補日回答画面に遷移したことを確認
     assert_content '候補日時回答'
@@ -58,14 +56,14 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # Capybara.javascript_driver = :webkit
     
     # 候補日1-3を入力
-    # fill_in 'inspection_schedule_candidate_datetime1',     with: '2016/04/10'
-    # fill_in 'inspection_schedule_candidate_datetime2',     with: '2016/04/20'
-    # fill_in 'inspection_schedule_candidate_datetime3',     with: '2016/04/30'
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 10)
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 20)
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 30)
     
-    # Capybara.current_driver = :webkit 
-    page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
-    page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
-    page.execute_script("$('#inspection_schedule_candidate_datetime3').val('10/04/2016')")
+    # page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
+    # page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
+    # page.execute_script("$('#inspection_schedule_candidate_datetime3').val('10/04/2016')")
+
     # page.execute_script("$('inspection_schedule_candidate_datetime1').datepicker('setDate', '10/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime2').datepicker('setDate', '20/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime3').datepicker('setDate', '30/04/2016')")
@@ -78,6 +76,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
 
     # 確認画面で入力した候補日が正しく表示されることを確認する
     assert_content '点検予定の確認'
+    assert_content 'S010-002'
 
     # datepickerによる日付のセットがうまく行かないので、テスト範囲から除外
     #assert_content '2016年04月10日'　datepickerでの入力のため、うまく値がセットできていない。

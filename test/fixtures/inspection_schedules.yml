@@ -1,5 +1,24 @@
-new_inspection:
+schedule_for_request_inspection:
+  id: 101
   target_yearmonth: <%= Date.today.advance(months: 2) %>
-  equipment: new_equipment
+  equipment_id: 101
   service_id: 6
+  user_id: 2
+  schedule_status_id: 1
+schedule_for_reply_candidate_date:
+  id: 102
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment_id: 102
+  service_id: 6
+  user_id: 6
   schedule_status_id: 2
+schedule_for_comfirm_date:
+  id: 103
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Date.new(2016, 4, 10) %>
+  candidate_datetime2: <%= Date.new(2016, 4, 20) %>
+  candidate_datetime3: <%= Date.new(2016, 4, 30) %>
+  equipment_id: 103
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 3

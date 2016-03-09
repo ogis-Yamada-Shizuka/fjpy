@@ -10,7 +10,7 @@ class NewEquipmentTest < AcstIntegrationTest
     # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。
     # ---------------------------------------------------
     # 
-    # 1.a User03でログイン
+    # 1.a User02でログイン
     visit '/'
     
     # ログイン画面が表示されたことを確認
@@ -27,6 +27,7 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content 'ログインしました'
     assert_content 'メニュー'
     assert_content '大阪第１'
+    assert_content '村山音々'
 
     # 1.b メニュー画面に遷移
     visit '/'
@@ -38,7 +39,7 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content 'シリアルNo.'
     assert_content '型式'
     assert_content '設置場所'
-  
+
     # 新規登録リンクをクリック    
     click_link '新規登録'
     
@@ -47,18 +48,25 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '装置システムの登録'
  
     # 新しい装置システムを入力
-    # 装置名、型式、担当サービス会社を指定、それ以外はデフォルト
-    fill_in 'equipment_serial_number', with: 'NEW_EQP'
     select  '通常用(隔月点検)', from: 'equipment_system_model_id'
+    fill_in 'シリアルNo.', with: 'S010-000'
+    check   '点検契約'
+    fill_in '点検周期', with: 2
+    select  '2016', from: 'equipment_start_date_1i'
+    select  '3月',  from: 'equipment_start_date_2i'
+    select  '10',   from: 'equipment_start_date_3i'
+    select  'ゴム工業エイチ関西株式会社', from: 'equipment_place_id'
+    assert_content '大阪第１'
     select  'なにわサービス',   from: 'equipment_service_id'
-    
+   
     # 登録ボタンをクリック
     click_button '登録する'
 
     # 1.d 詳細画面
     # 装置システムのshow画面が表示されることを確認する
+    assert_content 'Equipment was successfully created.'
     assert_content '装置システムの確認'
-    assert_content 'NEW_EQP'
+    assert_content 'S010-000'
     assert_content '通常用(隔月点検)'
     assert_content 'なにわサービス'
     assert_content '直近の点検予定を確認する(2016年05月)'
@@ -72,11 +80,9 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '設置場所'
 
     # 一覧の中に、先ほど登録した装置システムが存在することを確認する
-    assert_content 'NEW_EQP'
+    assert_content 'S010-000'
 
-    # SYS01の年月が「2016年04月」の点検予定が作成されている
-    # 現在はまだ一覧には表示されないので下記は失敗になる
-    # assert_content '2016年05月'
-
+    puts Equipment.find(101).to_s
+    
   end
 end
