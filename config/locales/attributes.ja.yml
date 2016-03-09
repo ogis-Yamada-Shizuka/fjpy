@@ -7,8 +7,8 @@ ja:
         candidate_datetime2: 候補日時2
         candidate_datetime3: 候補日時3
         candidate_datetime_memo: 候補日時メモ
-        confirm_datetime: 点検予定日時
-        confirm_datetime_memo: 点検予定日時メモ
+        confirm_datetime: 作業確定日時
+        confirm_datetime_memo: 作業確定日時メモ
         author: アポ担当者(YES拠点)
         customer: アポ担当者(顧客)
         user: 点検依頼者
@@ -20,7 +20,7 @@ ja:
         user_id: 点検実績記録者
         latitude: 緯度
         longitude: 経度
-        updated_at: 最終更新日
+        updated_at: 最終更新日時
       check:
         inspection_result_id: 点検実績番号
         weather_id: 天候
