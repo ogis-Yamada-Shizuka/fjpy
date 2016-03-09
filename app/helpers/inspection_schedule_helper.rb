@@ -98,7 +98,7 @@ module InspectionScheduleHelper
   end
 
   def datetime_value(date)
-    date.strftime("%Y年%m月%d日 %hh時") if date.present?
+    date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
 end
