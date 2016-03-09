@@ -17,6 +17,9 @@
 <div class="bs-callout bs-callout-danger">
     <h4><%= t('views.menu.show.daily_work') %></h4>
     <p>
+      <%= link_to t('views.inspection_schedule.need_request_index'), need_request_inspection_schedules_path %>
+    </p>
+    <p>
       <%= link_to t('views.inspection_schedule.requested_soon_index'), requested_soon_inspection_schedules_path %>
     </p>
     <p>

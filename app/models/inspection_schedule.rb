@@ -2,6 +2,7 @@ class InspectionSchedule < ActiveRecord::Base
   belongs_to :equipment
   belongs_to :service
   belongs_to :schedule_status
+  belongs_to :user
   alias_attribute :status, :schedule_status
   has_one :result, class_name: 'InspectionResult'
 
@@ -25,27 +26,6 @@ class InspectionSchedule < ActiveRecord::Base
     InspectionSchedule.select("equipment_id, max(target_yearmonth) ")
                       .old_inspection_equipments(Time.zone.now.prev_year)
                       .pluck(:equipment_id)
-  end
-
-  # 拠点が管轄する装置システムの点検予定を作成する
-  #   target_brahch_id 点検予定を作成する対象の拠点
-  #   target_year      点検予定作成対象の年
-  #   target_month     点検予定作成対象の月
-  def self.make_branch_yyyym(target_brahch_id, target_year, target_month, current_date)
-    equipments = Equipment.where(branch_id: target_brahch_id)
-    equipments.each do |equipment|
-      if equipment.is_inspection_datetime(target_year, target_month) && # 該当装置システムの点検年月にあたる
-         !equipment.exist_inspection(target_year, target_month)          # 該当年月の点検スケジュールが未だ無い
-        new_inspection_schedule = new(
-          target_yearmonth: target_year+target_month,
-          equipment_id: equipment.id,
-          service_id: equipment.service_id,
-          schedule_status_id: ScheduleStatus.of_requested,
-          processingdate: current_date
-        )
-        new_inspection_schedule.save
-      end
-    end
   end
 
   ###
@@ -77,8 +57,14 @@ class InspectionSchedule < ActiveRecord::Base
       target_yearmonth: yearmonth,
       equipment: equipment,
       service: service,
-      schedule_status_id: ScheduleStatus.of_requested
+      schedule_status_id: ScheduleStatus.of_need_request
     )
+  end
+
+  # 点検を依頼して良いかどうか
+  def can_inspection_request?(user = nil)
+    return false unless user.try(:branch_employee?)
+    schedule_status_id == ScheduleStatus.of_need_request
   end
 
   # 候補日時回答して良いかどうか

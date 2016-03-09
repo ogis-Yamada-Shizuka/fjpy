@@ -1,7 +1,10 @@
 class CreateEquipment < ActiveRecord::Migration
   def change
     create_table :equipment do |t|
-      t.string :name
+      t.string :serial_number
+      t.integer :inspection_cycle_month
+      t.boolean :inspection_contract, default: true, null: false
+      t.datetime :start_date
       t.references :system_model, index: true
       t.references :place, index: true
       t.references :branch, index: true
