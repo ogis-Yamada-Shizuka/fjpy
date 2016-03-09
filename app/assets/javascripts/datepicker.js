@@ -9,4 +9,10 @@ $(document).ready(function(){
     language: 'ja',
     minViewMode : 'months'
   });
+
+  $(".datetime.datetimepicker").datetimepicker({
+    locale: 'ja',
+    format: 'YYYY年MM月DD日 HH時',
+    dayViewHeaderFormat: 'YYYY年 MM月'
+  });
 });

@@ -216,9 +216,11 @@ class InspectionSchedulesController < ApplicationController
   def inspection_schedule_savable_params
     target_param = params[:inspection_schedule][:target_yearmonth]
     params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月") if target_param.present?
-    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime processingdate).each do |attribute|
+    target_param = params[:inspection_schedule][:processingdate]
+    params[:inspection_schedule][:processingdate] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
+    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime ).each do |attribute|
       target_param = params[:inspection_schedule][attribute]
-      params[:inspection_schedule][attribute] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
+      params[:inspection_schedule][attribute] = DateTime.strptime(target_param, "%Y年%m月%d日 %H時")  if target_param.present?
     end
     inspection_schedule_params
   end

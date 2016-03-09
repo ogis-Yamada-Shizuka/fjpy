@@ -20,17 +20,17 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime1') %>:</strong>
-  <%= inspection_schedule.candidate_datetime1.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime1.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime2') %>:</strong>
-  <%= inspection_schedule.candidate_datetime2.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime2.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime3') %>:</strong>
-  <%= inspection_schedule.candidate_datetime3.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime3.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
