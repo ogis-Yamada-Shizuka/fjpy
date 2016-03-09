@@ -37,20 +37,20 @@
             <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
           <% end %>
         </td>
-        <%= content_tag :td, inspection_schedule.target if show_target_yearmonth? %>
-        <%= content_tag :td, inspection_schedule.confirm_datetime if show_confirm_datetime? %>
+        <%= content_tag :td, l(inspection_schedule.target_yearmonth, format: :target_yearmonth) if show_target_yearmonth? %>
+        <%= content_tag :td, l(inspection_schedule.confirm_datetime, format: :confirm) if show_confirm_datetime? %>
         <%= content_tag :td, inspection_schedule.equipment.system_model.name if show_system_model_id? %>
         <%= content_tag :td, inspection_schedule.equipment.serial_number if show_serial_number? %>
         <%= content_tag :td, inspection_schedule.equipment.place.name if show_place_id? %>
         <%= content_tag :td, inspection_schedule.service.name if show_service_id? %>
         <% if show_candidate_datetime? %>
-          <%= content_tag :td, inspection_schedule.candidate_datetime1 %>
-          <%= content_tag :td, inspection_schedule.candidate_datetime2 %>
-          <%= content_tag :td, inspection_schedule.candidate_datetime3 %>
+          <%= content_tag :td, l(inspection_schedule.candidate_datetime1, format: :candidate) %>
+          <%= content_tag :td, l(inspection_schedule.candidate_datetime2, format: :candidate) %>
+          <%= content_tag :td, l(inspection_schedule.candidate_datetime3, format: :candidate) %>
         <% end %>
         <%= content_tag :td, inspection_schedule.author if show_author? %>
         <%= content_tag :td, inspection_schedule.customer if show_customer? %>
-        <%= content_tag :td, inspection_schedule.processingdate if show_processingdate? %>
+        <%= content_tag :td, l(inspection_schedule.processingdate) if show_processingdate? %>
         <%= content_tag :td, inspection_schedule.schedule_status.name if show_schedule_status_id? %>
         <%= content_tag :td, action_link(inspection_schedule) if show_action? %>
         <td>
