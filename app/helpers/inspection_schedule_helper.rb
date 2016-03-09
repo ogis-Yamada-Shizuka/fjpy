@@ -106,7 +106,7 @@ module InspectionScheduleHelper
   end
 
   # 型式
-  def show_system_model_id?
+  def show_system_model?
     permit_action?(%i(index need_request requested_soon date_answered target done)) &&
     permit_company?(%i(head branch service))
   end
@@ -118,13 +118,13 @@ module InspectionScheduleHelper
   end
 
   # 設置場所
-  def show_place_id?
+  def show_place?
     permit_action?(%i(index need_request requested_soon date_answered target done)) &&
     permit_company?(%i(head branch service))
   end
 
   # 担当サービス会社
-  def show_service_id?
+  def show_service?
     permit_action?(%i(index requested_soon date_answered target done)) &&
     permit_company?(%i(head branch))
   end
@@ -154,7 +154,7 @@ module InspectionScheduleHelper
   end
 
   # 進捗状況
-  def show_schedule_status_id?
+  def show_schedule_status?
     permit_action?(%i(index)) &&
     permit_company?(%i(head branch service))
   end
