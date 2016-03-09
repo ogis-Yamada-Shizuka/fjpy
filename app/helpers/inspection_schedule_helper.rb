@@ -73,14 +73,14 @@ module InspectionScheduleHelper
   end
 
   def datetime_field(f, attribute)
-    (text_field_for_date(f, attribute, month_or_date: :datetime , pick: :datetimepicker, readonly: false ) + clear_link(attribute)).html_safe
+    (text_field_for_date(f, attribute, month_or_date: :datetime , pick: :datetimepicker ) + clear_link(attribute)).html_safe
   end
 
-  def text_field_for_date(f, attribute, month_or_date: 'date', pick: 'datepicker', readonly: true)
+  def text_field_for_date(f, attribute, month_or_date: 'date', pick: 'datepicker')
     f.text_field(
       attribute,
       class: "#{month_or_date} #{pick}",
-      readonly: readonly,
+      readonly: true,
       value: send("#{month_or_date}_value", @inspection_schedule.send(attribute))
     )
   end

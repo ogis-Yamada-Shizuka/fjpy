@@ -12,6 +12,7 @@ $(document).ready(function(){
 
   $(".datetime.datetimepicker").datetimepicker({
     locale: 'ja',
+    ignoreReadonly: true,
     format: 'YYYY年MM月DD日 HH時',
     dayViewHeaderFormat: 'YYYY年 MM月'
   });
