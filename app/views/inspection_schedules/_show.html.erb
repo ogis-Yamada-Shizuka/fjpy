@@ -5,7 +5,7 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.equipment_id') %>:</strong>
-  <%= inspection_schedule.equipment.name %>
+  <%= link_to inspection_schedule.equipment.serial_number, equipment_path(inspection_schedule.equipment) %>
 </p>
 
 <p>
@@ -20,17 +20,17 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime1') %>:</strong>
-  <%= inspection_schedule.candidate_datetime1.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime1.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime2') %>:</strong>
-  <%= inspection_schedule.candidate_datetime2.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime2.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime3') %>:</strong>
-  <%= inspection_schedule.candidate_datetime3.try(:strftime, "%Y年%m月%d日") %>
+  <%= inspection_schedule.candidate_datetime3.try(:strftime, "%Y年%m月%d日　%H時") %>
 </p>
 
 <p>
@@ -44,13 +44,13 @@
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.processingdate') %>:</strong>
-  <%= inspection_schedule.processingdate.try(:strftime, "%Y年%m月%d日") %>
+  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime_memo') %>:</strong>
+  <%= inspection_schedule.confirm_datetime_memo %>
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime_memo') %>:</strong>
-  <%= inspection_schedule.confirm_datetime_memo %>
+  <strong><%= t('activerecord.attributes.inspection_schedule.processingdate') %>:</strong>
+  <%= inspection_schedule.processingdate.try(:strftime, "%Y年%m月%d日") %>
 </p>
 
 <p>
@@ -61,4 +61,9 @@
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.customer') %>:</strong>
   <%= inspection_schedule.customer %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_schedule.user') %>:</strong>
+  <%= inspection_schedule.user.try(:name) %>
 </p>

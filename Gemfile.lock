@@ -36,6 +36,8 @@ GEM
       railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (8.2.2)
     carrierwave (0.10.0)
@@ -89,6 +91,8 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (5.8.4)
+    momentjs-rails (2.11.0)
+      railties (>= 3.1)
     multi_json (1.11.2)
     orm_adapter (0.5.0)
     parser (2.3.0.6)
@@ -202,6 +206,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
+  bootstrap3-datetimepicker-rails
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
@@ -214,6 +219,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   kaminari
+  momentjs-rails
   pg
   pry-byebug
   pry-rails

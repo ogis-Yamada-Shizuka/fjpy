@@ -1,15 +1,22 @@
 class InspectionSchedulesController < ApplicationController
-  before_action :set_inspection_schedule, only: [
-    :show, :edit, :update, :destroy, :answer_date, :confirm_date,
-    :do_inspection, :done_inspection, :approve_inspection, :close_inspection, :complete_inspection
-  ]
+  before_action :set_inspection_schedule, only: %i(
+    show edit update destroy inspection_request answer_date confirm_date do_inspection
+    done_inspection approve_inspection close_inspection complete_inspection
+  )
 
-  before_action :set_query_to_params, only: %i(index requested_soon date_answered target done)
+  before_action :set_query_to_params, only: %i(index need_request requested_soon date_answered target done)
   before_action :set_inspection_schedules, only: :index
 
   # GET /inspection_schedules
   # GET /inspection_schedules.json
   def index
+  end
+
+  def need_request
+    params[:q][:schedule_status_id_eq] = ScheduleStatus.of_need_request
+    params[:q][:target_yearmonth_date_lteq] = Date.parse(current_date) >> Constants::LATEST_MONTH
+    set_inspection_schedules
+    render :index
   end
 
   def requested_soon
@@ -41,6 +48,7 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @same_place_inspection_schedules = InspectionSchedule.with_place(@inspection_schedule.place).order_by_target_yearmonth
+    @marker = @inspection_schedule.result.try(:setup_marker)
   end
 
   # GET /inspection_schedules/1/do_inspection
@@ -66,6 +74,7 @@ class InspectionSchedulesController < ApplicationController
   end
 
   def close_inspection
+    @marker = @inspection_schedule.result.setup_marker
   end
 
   # GET /inspection_schedules/new
@@ -75,6 +84,9 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/edit
   def edit
+  end
+
+  def inspection_request
   end
 
   def answer_date
@@ -197,16 +209,19 @@ class InspectionSchedulesController < ApplicationController
       :equipment_id,
       :service_id,
       :schedule_status_id,
-      :processingdate
+      :processingdate,
+      :user_id
     )
   end
 
   def inspection_schedule_savable_params
     target_param = params[:inspection_schedule][:target_yearmonth]
     params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月") if target_param.present?
-    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime processingdate).each do |attribute|
+    target_param = params[:inspection_schedule][:processingdate]
+    params[:inspection_schedule][:processingdate] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
+    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime ).each do |attribute|
       target_param = params[:inspection_schedule][attribute]
-      params[:inspection_schedule][attribute] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
+      params[:inspection_schedule][attribute] = DateTime.strptime(target_param, "%Y年%m月%d日 %H時")  if target_param.present?
     end
     inspection_schedule_params
   end

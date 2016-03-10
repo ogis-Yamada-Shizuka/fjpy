@@ -4,7 +4,7 @@
 
 <%= render 'show', inspection_schedule: @inspection_schedule %>
 
-<%= render 'inspection_results/index', inspection_result: @inspection_schedule.result %>
+<%= render 'inspection_results/show', inspection_result: @inspection_schedule.result if @inspection_schedule.result.present? %>
 
 <hr>
 
