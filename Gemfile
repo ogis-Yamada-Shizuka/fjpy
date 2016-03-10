@@ -81,3 +81,14 @@ group :development, :test do
 end
 
 gem "devise"
+
+group :test do
+  gem 'capybara'
+  gem 'minitest-rails'
+  gem 'minitest-capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
+  # gem 'minitest-metadata'
+  gem "poltergeist"
+  gem "database_cleaner"
+end
