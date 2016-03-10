@@ -72,10 +72,14 @@ module InspectionScheduleHelper
     (text_field_for_date(f, attribute) + clear_link(attribute)).html_safe
   end
 
-  def text_field_for_date(f, attribute, month_or_date: 'date')
+  def datetime_field(f, attribute)
+    (text_field_for_date(f, attribute, month_or_date: :datetime , pick: :datetimepicker ) + clear_link(attribute)).html_safe
+  end
+
+  def text_field_for_date(f, attribute, month_or_date: 'date', pick: 'datepicker')
     f.text_field(
       attribute,
-      class: "#{month_or_date} datepicker",
+      class: "#{month_or_date} #{pick}",
       readonly: true,
       value: send("#{month_or_date}_value", @inspection_schedule.send(attribute))
     )
@@ -91,5 +95,117 @@ module InspectionScheduleHelper
 
   def date_value(date)
     date.strftime("%Y年%m月%d日") if date.present?
+  end
+
+  def datetime_value(date)
+    date.strftime("%Y年%m月%d日 %HH時") if date.present?
+  end
+
+  # 年月
+  def show_target_yearmonth?
+    permit_action?(%i(index need_request requested_soon date_answered)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 点検予定日時(作業確定日時)
+  def show_confirm_datetime?
+    permit_action?(%i(index target done)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 型式
+  def show_system_model?
+    permit_action?(%i(index need_request requested_soon date_answered target done)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # シリアルNo.
+  def show_serial_number?
+    permit_action?(%i(index need_request requested_soon date_answered target done)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 設置場所
+  def show_place?
+    permit_action?(%i(index need_request requested_soon date_answered target done)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 担当サービス会社
+  def show_service?
+    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_company?(%i(head branch))
+  end
+
+  # 候補日時1から3
+  def show_candidate_datetime?
+    permit_action?(%i(date_answered)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # アポ担当者(YES拠点)
+  def show_author?
+    permit_action?(%i(target)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # アポ担当者(顧客)
+  def show_customer?
+    permit_action?(%i(target)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 処理日
+  def show_processingdate?
+    permit_action?(%i(target done)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 進捗状況
+  def show_schedule_status?
+    permit_action?(%i(index)) &&
+    permit_company?(%i(head branch service))
+  end
+
+  # 進捗させる系
+  def show_action?
+    case params[:action].to_sym
+      when :index then false
+      when :need_request then true
+      when :requested_soon then true
+      when :date_answered then true
+      when :target then current_user.branch_employee? ? false : true
+      when :done then true
+      else false
+    end
+  end
+
+  # 更新
+  def show_edit?
+    return true if current_user.head_employee?
+    case params[:action].to_sym
+      when :index then false
+      when :need_request then true
+      when :requested_soon then current_user.branch_employee? ? true : false
+      when :date_answered then current_user.branch_employee? ? true : false
+      when :target then current_user.branch_employee? ? false : true
+      when :done then false
+      else false
+    end
+  end
+
+  def permit_action?(actions)
+    actions.include?(params[:action].to_sym)
+  end
+
+  def permit_company?(companies)
+    if current_user.head_employee?
+      return true if companies.include?(:head)
+    elsif current_user.branch_employee?
+      return true if companies.include?(:branch)
+    elsif current_user.service_employee?
+      return true if companies.include?(:service)
+    end
+    false
   end
 end

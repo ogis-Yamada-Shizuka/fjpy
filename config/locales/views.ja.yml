@@ -42,6 +42,8 @@ ja:
       next_inspection_yearmonth: 次回点検年月
       my_schedules: "%{company_name}の点検予定一覧"
       schedules_by_place: "%{place_name}の点検予定一覧"
+      yes_branch_staff: 担当
+      yes_branch_staff_mark: ＊
     equipment:
       index: 装置システム一覧
       new: 装置システムの登録
@@ -52,6 +54,7 @@ ja:
       placed_equipment: "%{place_name}の装置システム一覧"
       change_inspection_cycle_comment: 上記一覧で選択(チェック)した設備の点検周期を一括変更します
       change_inspection_cycle: 点検周期変更
+      inspection_histories: 整備来歴
     system_model:
       index: 型式一覧
       new: 型式の登録

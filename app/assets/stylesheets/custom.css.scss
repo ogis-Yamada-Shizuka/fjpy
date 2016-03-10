@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datepicker';
+@import "bootstrap-datetimepicker";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -86,4 +87,8 @@ p{
   .small {
       font-size: 95%;
   }
+}
+
+.datetimepicker-position{
+    position: relative;
 }
