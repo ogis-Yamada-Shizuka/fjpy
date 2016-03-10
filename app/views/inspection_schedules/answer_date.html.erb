@@ -16,17 +16,17 @@
 
   <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_date_answered %>
 
-  <div class="field">
+  <div class="field datetimepicker-position">
     <%= f.label :candidate_datetime1 %><br>
     <%= datetime_field(f, :candidate_datetime1) %>
   </div>
 
-  <div class="field">
+  <div class="field datetimepicker-position">
     <%= f.label :candidate_datetime2 %><br>
     <%= datetime_field(f, :candidate_datetime2) %>
   </div>
 
-  <div class="field">
+  <div class="field datetimepicker-position">
     <%= f.label :candidate_datetime3 %><br>
     <%= datetime_field(f, :candidate_datetime3) %>
   </div>
