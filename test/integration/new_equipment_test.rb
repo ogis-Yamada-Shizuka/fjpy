@@ -5,9 +5,10 @@ require "integration_test_helper"
 require "capybara/rails"
 
 class NewEquipmentTest < AcstIntegrationTest
-  def test_new_equipment
+  def test_new_equipment_with_contract
     # ---------------------------------------------------
     # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。
+    # 　　保守契約ありの場合（点検予定が作られる）
     # ---------------------------------------------------
     # 
     # User02でログイン

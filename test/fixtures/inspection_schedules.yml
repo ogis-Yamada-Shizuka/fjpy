@@ -1,7 +1,6 @@
 schedule_for_request_inspection:
   id: 101
   target_yearmonth: <%= Date.today.advance(months: 2) %>
-  confirm_datetime: <%= Time.now() %>
   equipment_id: 101
   service_id: 6
   user_id: 2
@@ -9,7 +8,6 @@ schedule_for_request_inspection:
 schedule_for_reply_candidate_date:
   id: 102
   target_yearmonth: <%= Date.today.advance(months: 2) %>
-  confirm_datetime: <%= Time.now() %>
   equipment_id: 102
   service_id: 6
   user_id: 6
