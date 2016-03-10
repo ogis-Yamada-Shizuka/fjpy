@@ -10,7 +10,7 @@ class NewEquipmentTest < AcstIntegrationTest
     # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。
     # ---------------------------------------------------
     # 
-    # 1.a User02でログイン
+    # User02でログイン
     visit '/'
     
     # ログイン画面が表示されたことを確認
@@ -29,7 +29,7 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '大阪第１'
     assert_content '村山音々'
 
-    # 1.b メニュー画面に遷移
+    # メニュー画面に遷移
     visit '/'
 
     # 最初に見つけた（メニューの  ）装置システム一覧リンクをクリックする
@@ -43,7 +43,6 @@ class NewEquipmentTest < AcstIntegrationTest
     # 新規登録リンクをクリック    
     click_link '新規登録'
     
-    # 1.c 新規登録画面
     # 新規登録画面に遷移したことを検証する
     assert_content '装置システムの登録'
  
@@ -62,7 +61,7 @@ class NewEquipmentTest < AcstIntegrationTest
     # 登録ボタンをクリック
     click_button '登録する'
 
-    # 1.d 詳細画面
+    # 詳細画面
     # 装置システムのshow画面が表示されることを確認する
     assert_content 'Equipment was successfully created.'
     assert_content '装置システムの確認'
@@ -73,7 +72,7 @@ class NewEquipmentTest < AcstIntegrationTest
 
     click_link 'Back'
 
-    # 1.e 装置システム一覧
+    # 装置システム一覧
     # 装置システム一覧に遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
     assert_content 'シリアルNo.'
     assert_content '型式'
@@ -81,8 +80,6 @@ class NewEquipmentTest < AcstIntegrationTest
 
     # 一覧の中に、先ほど登録した装置システムが存在することを確認する
     assert_content 'S010-000'
-
-    puts Equipment.find(101).to_s
-    
+   
   end
 end

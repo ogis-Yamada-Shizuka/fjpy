@@ -14,7 +14,8 @@ class RequestInspectionTest < AcstIntegrationTest
     # ---------------------------------------------------
     # 拠点ユーザーがサービス会社に対して点検依頼を行う。
     # ---------------------------------------------------
-    # 1.a User02でログイン
+
+    # User02でログイン
     visit '/'
 
    # ユーザＩＤとパスワードを入力
@@ -36,17 +37,16 @@ class RequestInspectionTest < AcstIntegrationTest
     # 最初に見つけた（メニューの  ）要点検依頼一覧リンクをクリックする
     click_link '要点検依頼一覧', match: :first
 
-    # 装置システム一覧に遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
+    # 要点検依頼一覧に遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
     assert_content '年月'
-    assert_content '対象装置システム'
+    assert_content 'シリアルNo.'
     assert_content '設置場所'
     assert_content '担当サービス会社'
   
-    # 2.c
-    # テーブルの中の名称「」の行の候補日時回答リンクをクリック
+    # テーブルの中の該当シリアルNoの行の点検依頼リンクをクリック
     find(:xpath, "//tr[td[contains(.,'S010-001')]]/td/a", :text => '点検依頼').click
       
-    # 候補日回答画面に遷移したことを確認
+    # 点検依頼画面に遷移したことを確認
     assert_content '点検依頼'
     assert_content '担当サービス会社'
     
@@ -54,12 +54,11 @@ class RequestInspectionTest < AcstIntegrationTest
     select 'なにわサービス', from: '担当サービス会社'
     click_button '更新する'
 
+    # 点検予定の確認に遷移したこと、点検依頼済みになっていることを確認
     assert_content '点検予定の確認'
     assert_content 'S010-001'
     assert_content '点検依頼済'
     assert_content '点検依頼者: 村山音々'
     
-    click_link 'Back'
-
   end
 end

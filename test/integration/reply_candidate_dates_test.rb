@@ -15,7 +15,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # サービス会社ユーザーが直近の点検依頼に対して候補日を回答(登録)する。
     # ---------------------------------------------------
 
-    # 2.a User06でログイン
+    # User06でログイン
     visit '/'
     
     # ログイン画面が表示されたことを確認
@@ -34,31 +34,27 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     assert_content 'なにわサービス'
     assert_content '平良朱里'
     
-    # 1.b メニュー画面に遷移
+    # メニュー画面に遷移
     visit '/'
 
     # 最初に見つけた（メニューの ）点検依頼一覧(直近のみ)リンクをクリックする
     click_link '点検依頼一覧(直近のみ)', match: :first
 
-    # 点検依頼一覧(直近のみに遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
+    # 点検依頼一覧(直近)のみに遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
     assert_content '年月'
-    assert_content '対象装置システム'
+    assert_content 'シリアルNo.'
     assert_content '設置場所'
   
-    # 2.c
-    # テーブルの中の名称「」の行の候補日時回答リンクをクリック
+    # テーブルの中の該当シリアルNoの行の候補日時回答リンクをクリック
     find(:xpath, "//tr[td[contains(.,'S010-002')]]/td/a", :text => '候補日時回答').click
       
     # 候補日回答画面に遷移したことを確認
     assert_content '候補日時回答'
- 
-    # datepickerによる日付のセットがうまく行かないので、テスト範囲から除外
-    # Capybara.javascript_driver = :webkit
-    
+   
     # 候補日1-3を入力
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 10)
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 20)
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Date.new(2016, 4, 30)
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 10, 10, 00, 00)
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 20, 11, 00, 00)
+    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 30, 13, 00, 00)
     
     # page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
     # page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
@@ -67,7 +63,6 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # page.execute_script("$('inspection_schedule_candidate_datetime1').datepicker('setDate', '10/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime2').datepicker('setDate', '20/04/2016')")
     # page.execute_script("$('inspection_schedule_candidate_datetime3').datepicker('setDate', '30/04/2016')")
-    # Capybara.use_default_driver 
     
     fill_in 'inspection_schedule_candidate_datetime_memo', with: 'メモです'
     
@@ -87,8 +82,6 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     
     # ステータスが候補日回答済みになっていることを確認する
     assert_content '候補日回答済'
-
-    click_link 'Back'
 
   end
 end

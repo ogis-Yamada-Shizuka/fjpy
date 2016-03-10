@@ -7,7 +7,7 @@ require "capybara/rails"
 class SigninTest < AcstIntegrationTest
   def test_signin
     # 
-    # User03でログイン
+    # サインインのみのテスト（User03でログイン）
     # 
     visit '/'
     
