@@ -16,7 +16,7 @@
 
   <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_dates_confirmed %>
 
-  <div class="field">
+  <div class="field datetimepicker-position">
     <%= f.label :confirm_datetime %><br>
     <%= datetime_field(f, :confirm_datetime) %>
   </div>
