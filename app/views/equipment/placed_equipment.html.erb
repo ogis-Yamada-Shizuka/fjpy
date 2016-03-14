@@ -10,7 +10,6 @@
       <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
       <th><%= t('activerecord.attributes.equipment.inspection_cycle_month') %></th>
       <th><%= t('activerecord.attributes.equipment.service_id') %></th>
-      <th><%= t('activerecord.attributes.equipment.last_update') %></th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -23,7 +22,6 @@
         <td><%= equipment.serial_number %></td>
         <td><%= equipment.inspection_cycle_month %></td>
         <td><%= equipment.service.name %></td>
-        <td><%= equipment.updated_at %></td>
         <td><%= link_to t('views.link_to.show'), equipment %></td>
         <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
         <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
