@@ -36,19 +36,16 @@ class InspectionSchedule < ActiveRecord::Base
   # 点検実施中に変更
   def start_inspection
     self.schedule_status_id = ScheduleStatus.of_in_progress
-    self.processingdate = current_date
   end
 
   # 顧客承認済みに変更
   def approve_inspection
     self.schedule_status_id = ScheduleStatus.of_approved
-    self.processingdate = current_date
   end
 
   # 完了に変更 ＆ 次回の点検予定を自動的に登録
   def close_inspection
     self.schedule_status_id = ScheduleStatus.of_completed
-    self.processingdate = current_date
   end
 
   # 指定された年月で次回の点検予定を作成する
@@ -123,6 +120,6 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 処理日と装置システムの型式に設定された点検周期をもとに次回点検予定の候補年月を答える
   def next_target_yearmonth
-    processingdate >> equipment.system_model.inspection_cycle_month
+    result.processingdate >> equipment.system_model.inspection_cycle_month
   end
 end

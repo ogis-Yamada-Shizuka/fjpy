@@ -155,12 +155,6 @@ module InspectionScheduleHelper
     permit_company?(%i(head branch service))
   end
 
-  # 処理日
-  def show_processingdate?
-    permit_action?(%i(target done)) &&
-    permit_company?(%i(head branch service))
-  end
-
   # 進捗状況
   def show_schedule_status?
     permit_action?(%i(index)) &&

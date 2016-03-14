@@ -20,7 +20,6 @@
       <% end %>
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.author') if show_author? %>
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.customer') if show_customer? %>
-      <%= content_tag :th, t('activerecord.attributes.inspection_schedule.processingdate') if show_processingdate? %>
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.schedule_status_id') if show_schedule_status? %>
       <%= content_tag :th if show_action? %>
       <th></th>
@@ -50,8 +49,6 @@
         <% end %>
         <%= content_tag :td, inspection_schedule.author if show_author? %>
         <%= content_tag :td, inspection_schedule.customer if show_customer? %>
-        <%= content_tag :td, l(inspection_schedule.processingdate) if show_processingdate? %>
-        <%= content_tag :td, inspection_schedule.schedule_status.name if show_schedule_status? %>
         <%= content_tag :td, action_link(inspection_schedule) if show_action? %>
         <td>
           <%= link_to inspection_schedule do %>

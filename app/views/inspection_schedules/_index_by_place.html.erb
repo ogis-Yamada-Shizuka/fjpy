@@ -7,7 +7,6 @@
       <th><%= t('activerecord.attributes.equipment.place_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
       <th><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %></th>
-      <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -20,7 +19,6 @@
         <td><%= inspection_schedule.place.name %></td>
         <td><%= inspection_schedule.service.name %></td>
         <td><%= inspection_schedule.schedule_status.name %></td>
-        <td><%= inspection_schedule.processingdate %></td>
         <td>
           <% if inspection_schedule.can_inspection? %>
             <%= link_to  do_inspection_path(inspection_schedule) do %>
