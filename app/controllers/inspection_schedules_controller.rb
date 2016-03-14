@@ -209,7 +209,6 @@ class InspectionSchedulesController < ApplicationController
       :equipment_id,
       :service_id,
       :schedule_status_id,
-      :processingdate,
       :user_id
     )
   end
@@ -217,8 +216,6 @@ class InspectionSchedulesController < ApplicationController
   def inspection_schedule_savable_params
     target_param = params[:inspection_schedule][:target_yearmonth]
     params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月") if target_param.present?
-    target_param = params[:inspection_schedule][:processingdate]
-    params[:inspection_schedule][:processingdate] = Date.strptime(target_param, "%Y年%m月%d日") if target_param.present?
     %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime ).each do |attribute|
       target_param = params[:inspection_schedule][attribute]
       params[:inspection_schedule][attribute] = DateTime.strptime(target_param, "%Y年%m月%d日 %H時")  if target_param.present?
