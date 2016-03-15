@@ -190,7 +190,7 @@ module InspectionScheduleHelper
 
   # 削除
   def show_delete?
-    current_user.head_employee?
+    permit_company?(%i(head))
   end
 
   def permit_action?(actions)
