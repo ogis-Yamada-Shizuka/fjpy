@@ -1,3 +1,10 @@
+schedule_for_turn_off_contract:
+  id: 3
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment_id: 3
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 1
 schedule_for_request_inspection:
   id: 101
   target_yearmonth: <%= Date.today.advance(months: 2) %>
@@ -10,7 +17,7 @@ schedule_for_reply_candidate_date:
   target_yearmonth: <%= Date.today.advance(months: 2) %>
   equipment_id: 102
   service_id: 6
-  user_id: 6
+  user_id: 2
   schedule_status_id: 2
 schedule_for_comfirm_date:
   id: 103
@@ -22,3 +29,17 @@ schedule_for_comfirm_date:
   service_id: 6
   user_id: 2
   schedule_status_id: 3
+schedule_for_inspection_result:
+  id: 104
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Time.local(2016, 4, 11, 10, 00, 00) %>
+  candidate_datetime2: <%= Time.local(2016, 4, 21, 11, 00, 00) %>
+  candidate_datetime3: <%= Time.local(2016, 4, 31, 13, 00, 00) %>
+  confirm_datetime: <%= Time.local(2016, 4, 21, 10, 00, 00) %>
+  confirm_datetime_memo: 午前中に作業してほしいとのことでした
+  author: 東風平頌栄
+  customer: 南風原林賢様
+  equipment_id: 104
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 4

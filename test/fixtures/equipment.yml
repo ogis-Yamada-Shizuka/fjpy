@@ -1,6 +1,26 @@
+equipment_for_turn_on_contract:
+  id: 2
+  serial_number: 'S010-002'
+  inspection_cycle_month: 2
+  inspection_contract: false
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
+equipment_for_turn_off_contract:
+  id: 3
+  serial_number: 'S010-003'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
 equipment_for_request_inspection:
   id: 101
-  serial_number: 'S010-001'
+  serial_number: 'S010-010'
   inspection_cycle_month: 2
   inspection_contract: true
   start_date: <%= Date.today() %>
@@ -10,7 +30,7 @@ equipment_for_request_inspection:
   service_id: 6
 equipment_for_reply_candidate_date:
   id: 102
-  serial_number: 'S010-002'
+  serial_number: 'S010-020'
   inspection_cycle_month: 2
   inspection_contract: true
   start_date: <%= Date.today() %>
@@ -20,7 +40,17 @@ equipment_for_reply_candidate_date:
   service_id: 6
 equipment_for_comfirm_date:
   id: 103
-  serial_number: 'S010-003'
+  serial_number: 'S010-030'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
+equipment_for_inspection_result:
+  id: 104
+  serial_number: 'S010-040'
   inspection_cycle_month: 2
   inspection_contract: true
   start_date: <%= Date.today() %>

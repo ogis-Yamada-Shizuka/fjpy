@@ -15,6 +15,9 @@ class ComfirmDateTest < AcstIntegrationTest
     # 拠点ユーザーが点検予定を確定する
     # ---------------------------------------------------
 
+    # テスト対象シリアルNo.
+    serial_no = "S010-030"
+
     # User02でログイン
     visit '/'
 
@@ -46,7 +49,7 @@ class ComfirmDateTest < AcstIntegrationTest
     assert_content '担当サービス会社'
   
     # テーブルの中の該当シリアルNoの行の候補日時回答リンクをクリック
-    find(:xpath, "//tr[td[contains(.,'S010-003')]]/td/a", :text => '日程確定').click
+    find(:xpath, "//tr[td[contains(.,'" + serial_no + "')]]/td/a", :text => '日程確定').click    
       
     # 日程確定画面に遷移したことを確認
     assert_content '日程確定'
@@ -64,7 +67,7 @@ class ComfirmDateTest < AcstIntegrationTest
     # 点検依頼が登録されたことを確認する。
     assert_content '点検予定の確認'
     assert_content 'InspectionSchedule was successfully updated.'
-    assert_content 'S010-003'
+    assert_content serial_no
     assert_content '点検依頼済'
     assert_content '作業確定日時:'
     assert_content '午前中をご希望です'

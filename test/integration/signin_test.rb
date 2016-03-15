@@ -5,6 +5,9 @@ require "integration_test_helper"
 require "capybara/rails"
 
 class SigninTest < AcstIntegrationTest
+
+    fixtures :equipment, :inspection_schedules
+  
   def test_signin
     # 
     # サインインのみのテスト（User03でログイン）

@@ -1,22 +1,25 @@
 # key in command below to run
-# rake test TEST='test/integration/new_equipment_test.rb'
+# rake test TEST='test/integration/edit_equipment_test.rb'
 require "test_helper"
 require "integration_test_helper"
 require "capybara/rails"
 
-class NewEquipmentTest < AcstIntegrationTest
-  def test_new_equipment_with_contract
+class EditEquipmentTest < AcstIntegrationTest
+
+  fixtures :equipment, :inspection_schedules
+
+  def test_edit_equipment_turn_on_contract
     # ---------------------------------------------------
-    # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。
-    # 　　保守契約ありの場合（点検予定が作られる）
+    # YES拠点ユーザーが自拠点で管轄する装置を変更登録する。
+    # 　　保守契約なしからありに変更（新たに点検予定が作られる）
     # ---------------------------------------------------
     
     # テスト対象シリアルNo.
-    serial_no = "S010-000"
+    serial_no = "S010-002"
         
     # User02でログイン
     visit '/'
-    
+ 
     # ログイン画面が表示されたことを確認
     assert_content 'ログイン'
     
@@ -44,37 +47,28 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '型式'
     assert_content '設置場所'
 
-    # 新規登録リンクをクリック    
-    click_link '新規登録'
+    # テーブルの中の該当シリアルNoの行の編集リンクをクリック
+    find(:xpath, "//tr[td[contains(.,'" + serial_no + "')]]/td/a", :text => '更新').click    
     
-    # 新規登録画面に遷移したことを検証する
-    assert_content '装置システムの登録'
+    # 編集登録画面に遷移したことを検証する
+    assert_content '装置システムの更新'
  
-    # 新しい装置システムを入力
-    select  '通常用(隔月点検)', from: 'equipment_system_model_id'
-    fill_in 'シリアルNo.', with: serial_no
+    # 点検契約のみをＯＮにする
     # 契約ありを選択
-    check   '点検契約'
-    fill_in '点検周期', with: 2
-    select  '2016', from: 'equipment_start_date_1i'
-    select  '3月',  from: 'equipment_start_date_2i'
-    select  '10',   from: 'equipment_start_date_3i'
-    select  'ゴム工業エイチ関西株式会社', from: 'equipment_place_id'
-    assert_content '大阪第１'
-    select  'なにわサービス',   from: 'equipment_service_id'
+    check '点検契約'
    
     # 登録ボタンをクリック
-    click_button '登録する'
+    click_button '更新する'
 
     # 詳細画面
     # 装置システムのshow画面が表示されることを確認する
-    assert_content 'Equipment was successfully created.'
+    assert_content 'Equipment was successfully updated.'
     assert_content '装置システムの確認'
     assert_content serial_no
     assert_content '通常用(隔月点検)'
     assert_content 'なにわサービス'
     
-    # 契約ありなので、点検予定が作られていることを確認する
+    # 契約ありになったので、点検予定が作られていないことを確認する
     assert_link '直近の点検予定を確認する'
 
     click_link 'Back'
@@ -85,18 +79,18 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '型式'
     assert_content '設置場所'
 
-    # 一覧の中に、先ほど登録した装置システムが存在することを確認する
+    # 一覧の中に、先ほど変更した装置システムが存在することを確認する
     assert_content serial_no
    
   end
-  def test_new_equipment_without_contract
+  def test_edit_equipment_turn_off_contract
     # ---------------------------------------------------
-    # YES拠点ユーザーが自拠点で管轄する装置を新規登録する。
-    # 　　保守契約なしの場合（点検予定が作られない）
+    # YES拠点ユーザーが自拠点で管轄する装置を変更登録する。
+    # 　　保守契約なしからありに変更（新たに点検予定が作られる）
     # ---------------------------------------------------
     
     # テスト対象シリアルNo.
-    serial_no = "S010-001"
+    serial_no = "S010-003"
         
     # User02でログイン
     visit '/'
@@ -128,38 +122,29 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content '型式'
     assert_content '設置場所'
 
-    # 新規登録リンクをクリック    
-    click_link '新規登録'
+    # テーブルの中の該当シリアルNoの行の編集リンクをクリック
+    find(:xpath, "//tr[td[contains(.,'" + serial_no + "')]]/td/a", :text => '更新').click    
     
-    # 新規登録画面に遷移したことを検証する
-    assert_content '装置システムの登録'
+    # 編集登録画面に遷移したことを検証する
+    assert_content '装置システムの更新'
  
-    # 新しい装置システムを入力
-    select  '通常用(隔月点検)', from: 'equipment_system_model_id'
-    fill_in 'シリアルNo.', with: serial_no
-    # 契約無しを選択
-    uncheck '点検契約'
-    fill_in '点検周期', with: 2
-    select  '2016', from: 'equipment_start_date_1i'
-    select  '3月',  from: 'equipment_start_date_2i'
-    select  '10',   from: 'equipment_start_date_3i'
-    select  'ゴム工業エイチ関西株式会社', from: 'equipment_place_id'
-    assert_content '大阪第１'
-    select  'なにわサービス',   from: 'equipment_service_id'
+    # 点検契約のみをＯＮにする
+    # 契約ありを選択
+    check '点検契約'
    
     # 登録ボタンをクリック
-    click_button '登録する'
+    click_button '更新する'
 
     # 詳細画面
     # 装置システムのshow画面が表示されることを確認する
-    assert_content 'Equipment was successfully created.'
+    assert_content 'Equipment was successfully updated.'
     assert_content '装置システムの確認'
     assert_content serial_no
     assert_content '通常用(隔月点検)'
     assert_content 'なにわサービス'
     
     # 契約なしなので、点検予定が作られていないことを確認する
-    assert_no_link '直近の点検予定を確認する'
+    assert_link    '直近の点検予定を確認する'
 
     click_link 'Back'
 
@@ -173,5 +158,4 @@ class NewEquipmentTest < AcstIntegrationTest
     assert_content serial_no
    
   end
-
 end

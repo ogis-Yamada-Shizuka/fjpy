@@ -15,6 +15,14 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # サービス会社ユーザーが直近の点検依頼に対して候補日を回答(登録)する。
     # ---------------------------------------------------
 
+    # テスト対象シリアルNo.
+    serial_no = "S010-020"
+    
+    # 候補日時
+    candidate_datetime1 = Time.local(2016, 4, 10, 10, 00, 00)
+    candidate_datetime2 = Time.local(2016, 4, 20, 11, 00, 00)
+    candidate_datetime3 = Time.local(2016, 4, 30, 13, 00, 00)
+
     # User06でログイン
     visit '/'
     
@@ -37,24 +45,25 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     # メニュー画面に遷移
     visit '/'
 
-    # 最初に見つけた（メニューの ）点検依頼一覧(直近のみ)リンクをクリックする
-    click_link '点検依頼一覧(直近のみ)', match: :first
-
-    # 点検依頼一覧(直近)のみに遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
+    # 最初に見つけた（メニューの ）点検依頼一覧リンクをクリックする
+    click_link '点検依頼一覧', {match: :first, exact: true}
+    
+    # 点検依頼一覧のみに遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
+    assert_content '点検依頼一覧'
     assert_content '年月'
     assert_content 'シリアルNo.'
     assert_content '設置場所'
   
     # テーブルの中の該当シリアルNoの行の候補日時回答リンクをクリック
-    find(:xpath, "//tr[td[contains(.,'S010-002')]]/td/a", :text => '候補日時回答').click
-      
+    find(:xpath, "//tr[td[contains(.,'" + serial_no + "')]]/td/a", :text => '候補日時回答').click    
+
     # 候補日回答画面に遷移したことを確認
     assert_content '候補日時回答'
    
     # 候補日1-3を入力
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 10, 10, 00, 00)
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 20, 11, 00, 00)
-    fill_in 'inspection_schedule_candidate_datetime1',     with: Time.local(2016, 4, 30, 13, 00, 00)
+    # fill_in 'inspection_schedule_candidate_datetime1',     with: candidate_datetime1
+    # fill_in 'inspection_schedule_candidate_datetime2',     with: candidate_datetime2
+    # fill_in 'inspection_schedule_candidate_datetime3',     with: candidate_datetime3
     
     # page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
     # page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
@@ -71,12 +80,12 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
 
     # 確認画面で入力した候補日が正しく表示されることを確認する
     assert_content '点検予定の確認'
-    assert_content 'S010-002'
+    assert_content serial_no
 
     # datepickerによる日付のセットがうまく行かないので、テスト範囲から除外
-    #assert_content '2016年04月10日'　datepickerでの入力のため、うまく値がセットできていない。
-    #assert_content '2016年04月20日'　datepickerでの入力のため、うまく値がセットできていない。
-    #assert_content '2016年04月30日'　datepickerでの入力のため、うまく値がセットできていない。
+    # assert_content candidate_datetime1.try(:strftime, "%Y年%m月%d日　%H時")
+    # assert_content candidate_datetime2.try(:strftime, "%Y年%m月%d日　%H時")
+    # assert_content candidate_datetime3.try(:strftime, "%Y年%m月%d日　%H時")
 
     assert_content 'メモです'
     
