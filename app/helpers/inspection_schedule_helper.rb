@@ -101,7 +101,7 @@ module InspectionScheduleHelper
     date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
-  # 年月
+  # 予定年月
   def show_target_yearmonth?
     permit_action?(%i(index need_request requested_soon date_answered)) &&
     permit_company?(%i(head branch service))
@@ -186,6 +186,11 @@ module InspectionScheduleHelper
       when :done then false
       else false
     end
+  end
+
+  # 削除
+  def show_delete?
+    current_user.head_employee?
   end
 
   def permit_action?(actions)
