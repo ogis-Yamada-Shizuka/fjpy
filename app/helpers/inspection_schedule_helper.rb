@@ -101,6 +101,12 @@ module InspectionScheduleHelper
     date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
+  # 担当
+  def show_yes_branch_staff?
+    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_company?(%i(branch))
+  end
+
   # 予定年月
   def show_target_yearmonth?
     permit_action?(%i(index need_request requested_soon date_answered)) &&

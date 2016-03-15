@@ -6,7 +6,7 @@
 <table>
   <thead>
     <tr>
-      <%= content_tag :th, t('views.inspection_schedule.yes_branch_staff') %>
+      <%= content_tag :th, t('views.inspection_schedule.yes_branch_staff') if show_yes_branch_staff? %>
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.target_yearmonth') if show_target_yearmonth? %>
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.confirm_datetime') if show_confirm_datetime? %>
       <%= content_tag :th, t('activerecord.attributes.equipment.system_model_id') if show_system_model? %>
@@ -30,12 +30,13 @@
   <tbody>
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
-        <td>
-          <% if(inspection_schedule.user.present? &&
-             inspection_schedule.user.id == current_user.id) %>
+        <% if( show_yes_branch_staff? &&
+               inspection_schedule.user.present? &&
+               inspection_schedule.user.id == current_user.id) %>
+          <td>
             <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
-          <% end %>
-        </td>
+          </td>
+        <% end %>
         <%= content_tag :td, l(inspection_schedule.target_yearmonth, format: :target_yearmonth) if show_target_yearmonth? %>
         <%= content_tag :td, l(inspection_schedule.confirm_datetime, format: :confirm) if show_confirm_datetime? %>
         <%= content_tag :td, inspection_schedule.equipment.system_model.name if show_system_model? %>
