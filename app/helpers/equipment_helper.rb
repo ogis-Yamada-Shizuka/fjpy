@@ -26,8 +26,8 @@ module EquipmentHelper
     @equipment.new_record? ? current_user.branch.id : @equipment.branch_id
   end
 
-  def inspection_contract_string
-    if @equipment.inspection_contract then
+  def inspection_contract_string(equipment)
+    if equipment.inspection_contract then
       t('views.equipment.inspection_contract_true')
     else
       t('views.equipment.inspection_contract_false')
