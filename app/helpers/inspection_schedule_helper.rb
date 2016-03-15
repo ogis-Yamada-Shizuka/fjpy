@@ -194,11 +194,6 @@ module InspectionScheduleHelper
     end
   end
 
-  # 削除
-  def show_delete?
-    permit_company?(%i(head))
-  end
-
   def permit_action?(actions)
     actions.include?(params[:action].to_sym)
   end

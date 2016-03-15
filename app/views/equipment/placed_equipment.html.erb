@@ -28,7 +28,7 @@
         <td><%= equipment.service.name %></td>
         <td><%= link_to t('views.link_to.show'), equipment %></td>
         <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
-        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } if show_delete? %></td>
+        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } if admin? %></td>
       </tr>
     <% end %>
   </tbody>
