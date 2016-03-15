@@ -1,1 +1,2 @@
 $('input#equipment_inspection_cycle_month').prop('disabled', <%= !@inspection_contract %>);
+$('input#equipment_inspection_cycle_month').val('<%= @system_model.inspection_cycle_month if @inspection_contract %>');

@@ -12,4 +12,4 @@ $ ->
   $.ajax
     url: '/equipment/change_inspection_contract'
     type: 'GET'
-    data: checked: $('input#equipment_inspection_contract').prop('checked')
+    data: checked: $('input#equipment_inspection_contract').prop('checked'), system_model_id: $('select#equipment_system_model_id').val()

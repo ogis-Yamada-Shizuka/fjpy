@@ -8,23 +8,27 @@
       <th></th>
       <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
       <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
+      <th><%= t('activerecord.attributes.equipment.start_date') %></th>
+      <th><%= t('activerecord.attributes.equipment.inspection_contract') %></th>
       <th><%= t('activerecord.attributes.equipment.inspection_cycle_month') %></th>
       <th><%= t('activerecord.attributes.equipment.service_id') %></th>
-      <th colspan="5"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @equipment.each do |equipment| %>
       <tr>
-        <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}" %></td>
+        <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}", :disabled => !equipment.inspection_contract %></td>
         <td><%= equipment.system_model.name %></td>
         <td><%= equipment.serial_number %></td>
-        <td><%= equipment.inspection_cycle_month %></td>
+        <td><%= l(equipment.start_date, format: :start_date) %></td>
+        <td><%= inspection_contract_string(equipment) %></td>
+        <td><%= equipment.inspection_cycle_month if equipment.inspection_contract %></td>
         <td><%= equipment.service.name %></td>
         <td><%= link_to t('views.link_to.show'), equipment %></td>
         <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
-        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } if admin? %></td>
       </tr>
     <% end %>
   </tbody>
