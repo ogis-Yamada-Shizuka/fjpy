@@ -1,51 +1,49 @@
 
 <h1><%= t('views.equipment.placed_equipment', place_name: @place.name) %></h1>
 
-<%= form_tag action='change_inspection_cycle' do %>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
-      <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
-      <th><%= t('activerecord.attributes.equipment.start_date') %></th>
-      <th><%= t('activerecord.attributes.equipment.inspection_contract') %></th>
-      <th><%= t('activerecord.attributes.equipment.inspection_cycle_month') %></th>
-      <th><%= t('activerecord.attributes.equipment.service_id') %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @equipment.each do |equipment| %>
+<%= form_tag change_inspection_cycle_path(@place) do %>
+  <table>
+    <thead>
       <tr>
-        <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}", :disabled => !equipment.inspection_contract %></td>
-        <td><%= equipment.system_model.name %></td>
-        <td><%= equipment.serial_number %></td>
-        <td><%= l(equipment.start_date, format: :start_date) %></td>
-        <td><%= inspection_contract_string(equipment) %></td>
-        <td><%= equipment.inspection_cycle_month if equipment.inspection_contract %></td>
-        <td><%= equipment.service.name %></td>
-        <td><%= link_to t('views.link_to.show'), equipment %></td>
-        <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
-        <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } if admin? %></td>
+        <th></th>
+        <th><%= t('activerecord.attributes.equipment.system_model_id') %></th>
+        <th><%= t('activerecord.attributes.equipment.serial_number') %></th>
+        <th><%= t('activerecord.attributes.equipment.start_date') %></th>
+        <th><%= t('activerecord.attributes.equipment.inspection_contract') %></th>
+        <th><%= t('activerecord.attributes.equipment.inspection_cycle_month') %></th>
+        <th><%= t('activerecord.attributes.equipment.service_id') %></th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @equipment.each do |equipment| %>
+        <tr>
+          <td><%= check_box 'check', equipment.id, :id => "equipment_#{equipment.id}", :disabled => !equipment.inspection_contract %></td>
+          <td><%= equipment.system_model.name %></td>
+          <td><%= equipment.serial_number %></td>
+          <td><%= l(equipment.start_date, format: :start_date) %></td>
+          <td><%= inspection_contract_string(equipment) %></td>
+          <td><%= equipment.inspection_cycle_month if equipment.inspection_contract %></td>
+          <td><%= equipment.service.name %></td>
+          <td><%= link_to t('views.link_to.show'), equipment %></td>
+          <td><%= link_to t('views.link_to.edit'), edit_equipment_path(equipment) %></td>
+          <td><%= link_to t('views.link_to.destroy'), equipment, method: :delete, data: { confirm: 'Are you sure?' } if admin? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% unless @equipment.empty? %>
-  <div class="well col-md-10 col-sm-10 col-xs-10">
-    <div><%= t('views.equipment.change_inspection_cycle_comment') %></div>
-    <div>
-      <%= hidden_field_tag :place_id, :place_id, :value => @place.id %>
-      <%= number_field_tag :new_inspection_cycle_month %>
-      <%= submit_tag(t('views.equipment.change_inspection_cycle')) %>
+  <br>
+
+  <% unless @equipment.empty? %>
+    <div class="well col-md-10 col-sm-10 col-xs-10">
+      <div><%= t('views.equipment.change_inspection_cycle_comment') %></div>
+      <div>
+        <%= number_field_tag :new_inspection_cycle_month %>
+        <%= submit_tag(t('views.equipment.change_inspection_cycle')) %>
+      </div>
     </div>
-  </div>
-<% end %>
-
+  <% end %>
 
 <% end %>
