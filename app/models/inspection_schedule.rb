@@ -53,7 +53,7 @@ class InspectionSchedule < ActiveRecord::Base
     InspectionSchedule.create(
       target_yearmonth: yearmonth,
       equipment: equipment,
-      service: service,
+      service: equipment.service,
       schedule_status_id: ScheduleStatus.of_need_request
     )
   end
