@@ -48,7 +48,7 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @same_place_inspection_schedules =
-      InspectionSchedule.with_place(@inspection_schedule.place).where.not(id: @inspection_schedule).order_by_target_yearmonth
+      InspectionSchedule.with_place(@inspection_schedule.place).not_done.where.not(id: @inspection_schedule).order_by_target_yearmonth
     @marker = @inspection_schedule.result.try(:setup_marker)
   end
 
