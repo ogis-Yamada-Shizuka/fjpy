@@ -50,6 +50,7 @@
         <% end %>
         <%= content_tag :td, inspection_schedule.author if show_author? %>
         <%= content_tag :td, inspection_schedule.customer if show_customer? %>
+        <%= content_tag :td, inspection_schedule.status.name if show_schedule_status? %>
         <%= content_tag :td, action_link(inspection_schedule) if show_action? %>
         <td>
           <%= link_to inspection_schedule do %>
