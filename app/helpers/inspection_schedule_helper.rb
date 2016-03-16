@@ -121,7 +121,8 @@ module InspectionScheduleHelper
       attribute,
       class: "#{month_or_date} #{pick}",
       readonly: true,
-      value: send("#{month_or_date}_value", @inspection_schedule.send(attribute))
+      value: send("#{month_or_date}_value", @inspection_schedule.send(attribute)),
+      size: 24
     )
   end
 
