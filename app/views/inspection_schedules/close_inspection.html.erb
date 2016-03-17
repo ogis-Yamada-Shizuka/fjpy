@@ -1,6 +1,14 @@
 <h1><%= t('views.inspection_schedule.close_inspecrion') %></h1>
 
-<%= render 'show', inspection_schedule: @inspection_schedule %>
+<%= render 'equipment/show_summary', equipment: @inspection_schedule.equipment %>
+
+<%= render 'equipment/show_inspection_cycle_month', equipment: @inspection_schedule.equipment %>
+
+<%= render 'show_target_yearmonth', inspection_schedule: @inspection_schedule %>
+
+<%= render 'show_service', inspection_schedule: @inspection_schedule %>
+
+<%= render 'show_yes_branch_staff', inspection_schedule: @inspection_schedule %>
 
 <%= render 'inspection_results/show', inspection_result: @inspection_schedule.result %>
 

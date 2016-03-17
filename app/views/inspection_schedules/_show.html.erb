@@ -1,64 +1,16 @@
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.target_yearmonth') %>:</strong>
-  <%= l(inspection_schedule.target_yearmonth, format: :target_yearmonth) %>
-</p>
+<%= render('equipment/show_summary', equipment:  inspection_schedule.equipment) %>
 
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.equipment_id') %>:</strong>
-  <%= link_to inspection_schedule.equipment.serial_number, equipment_path(inspection_schedule.equipment) %>
-</p>
+<%= render('show_target_yearmonth', inspection_schedule:  @inspection_schedule) %>
 
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.service_id') %>:</strong>
-  <%= inspection_schedule.service.name %>
-</p>
+<%= render('show_service', inspection_schedule:  @inspection_schedule) %>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_schedule.schedule_status_id') %>:</strong>
   <%= inspection_schedule.schedule_status.name %>
 </p>
 
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime1') %>:</strong>
-  <%= l(inspection_schedule.candidate_datetime1, format: :candidate_long) %>
-</p>
+<%= render('show_candidates', inspection_schedule:  @inspection_schedule) %>
 
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime2') %>:</strong>
-  <%= l(inspection_schedule.candidate_datetime2, format: :candidate_long) %>
-</p>
+<%= render('show_confirms', inspection_schedule:  @inspection_schedule) %>
 
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime3') %>:</strong>
-  <%= l(inspection_schedule.candidate_datetime3, format: :candidate_long) %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.candidate_datetime_memo') %>:</strong>
-  <%= inspection_schedule.candidate_datetime_memo %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime') %>:</strong>
-  <%= l(inspection_schedule.confirm_datetime, format: :confirm_long) %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.confirm_datetime_memo') %>:</strong>
-  <%= inspection_schedule.confirm_datetime_memo %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.author') %>:</strong>
-  <%= inspection_schedule.author %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.customer') %>:</strong>
-  <%= inspection_schedule.customer %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inspection_schedule.user') %>:</strong>
-  <%= inspection_schedule.user.try(:name) %>
-</p>
+<%= render('show_yes_branch_staff', inspection_schedule:  @inspection_schedule) %>

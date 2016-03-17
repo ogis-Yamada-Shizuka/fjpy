@@ -35,10 +35,10 @@ ja:
       show: 点検予定の確認
       inspection_request: 点検依頼
       answer_date: 候補日時回答
-      confirm_date: 日程確定
-      do_inspecrion: 点検実施
-      done_inspection: 承認(作業終了)
-      close_inspecrion: 点検の完了
+      confirm_date: 出張依頼
+      do_inspecrion: 点検報告作成
+      done_inspection: サイン
+      close_inspecrion: 承認
       next_inspection_yearmonth: 次回点検年月
       schedules_by_place: "併設機の点検予定一覧"
       yes_branch_staff: 担当
@@ -66,10 +66,10 @@ ja:
       show: 場所の確認
       placed_equipment: 所有機一覧
     inspection_result:
-      index: 点検実績一覧
-      new: 点検実績の登録
-      edit: 点検実績の更新
-      show: 点検実績の確認
+      index: 点検報告一覧
+      new: 点検報告の登録
+      edit: 点検報告の更新
+      show: 点検報告の確認
     check:
       check: チェック結果
       show: チェック結果の確認

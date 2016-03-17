@@ -17,6 +17,10 @@
   <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_requested %>
   <%= f.hidden_field :user_id, value: current_user.id %>
 
+  <%= render('equipment/show_summary', equipment:  @inspection_schedule.equipment) %>
+
+  <%= render('show_target_yearmonth', inspection_schedule:  @inspection_schedule) %>
+
   <div class="field">
     <%= f.label :service_id %><br>
     <%= render_service_select(f) %>
