@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :serial_number %><br>
-    <%= f.text_field :serial_number %>
+    <%= f.text_field :serial_number, disabled: !@equipment.new_record? %>
   </div>
   <div class="field">
     <%= f.label :inspection_contract %>
