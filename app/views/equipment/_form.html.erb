@@ -15,7 +15,7 @@
 
   <div class="field">
     <%= f.label :system_model_id %><br>
-    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name, :include_blank => true) %>
+    <%= f.collection_select(:system_model_id, SystemModel.all, :id, :name, { :include_blank => true }, { :disabled => !@equipment.new_record? }) %>
   </div>
   <div class="field">
     <%= f.label :serial_number %><br>
