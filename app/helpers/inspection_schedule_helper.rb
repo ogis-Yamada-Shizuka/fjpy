@@ -101,7 +101,13 @@ module InspectionScheduleHelper
     date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
-  # 年月
+  # 担当
+  def show_yes_branch_staff?
+    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_company?(%i(branch))
+  end
+
+  # 予定年月
   def show_target_yearmonth?
     permit_action?(%i(index need_request requested_soon date_answered)) &&
     permit_company?(%i(head branch service))
@@ -152,12 +158,6 @@ module InspectionScheduleHelper
   # アポ担当者(顧客)
   def show_customer?
     permit_action?(%i(target)) &&
-    permit_company?(%i(head branch service))
-  end
-
-  # 処理日
-  def show_processingdate?
-    permit_action?(%i(target done)) &&
     permit_company?(%i(head branch service))
   end
 

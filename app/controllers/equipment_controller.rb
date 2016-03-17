@@ -104,6 +104,7 @@ class EquipmentController < ApplicationController
 
   def change_inspection_contract
     @inspection_contract = (params[:checked] == 'true')
+    @system_model = SystemModel.find(params[:system_model_id])
   end
 
   private
