@@ -101,7 +101,13 @@ module InspectionScheduleHelper
     date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
-  # 年月
+  # 担当
+  def show_yes_branch_staff?
+    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_company?(%i(branch))
+  end
+
+  # 予定年月
   def show_target_yearmonth?
     permit_action?(%i(index need_request requested_soon date_answered)) &&
     permit_company?(%i(head branch service))
@@ -155,12 +161,6 @@ module InspectionScheduleHelper
     permit_company?(%i(head branch service))
   end
 
-  # 処理日
-  def show_processingdate?
-    permit_action?(%i(target done)) &&
-    permit_company?(%i(head branch service))
-  end
-
   # 進捗状況
   def show_schedule_status?
     permit_action?(%i(index)) &&
@@ -207,5 +207,93 @@ module InspectionScheduleHelper
       return true if companies.include?(:service)
     end
     false
+  end
+
+  ################
+  # show およびステータス進める系画面への表示用
+  ################
+
+  # 予定年月
+  def show_target_yearmonth
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.target_yearmonth'),
+      l(@inspection_schedule.target_yearmonth, format: :target_yearmonth)
+    )
+  end
+
+  # 点検実施会社
+  def show_service
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.service_id'),
+      @inspection_schedule.service.name
+    )
+  end
+
+  # ステータス
+  def show_schedule_status
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.schedule_status_id'),
+      @inspection_schedule.schedule_status.name
+    )
+  end
+
+  # 候補日時１～３
+  def show_candidate_datetime1
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.candidate_datetime1'),
+      l(@inspection_schedule.candidate_datetime1, format: :candidate_long)
+    )
+  end
+  def show_candidate_datetime2
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.candidate_datetime2'),
+      l(@inspection_schedule.candidate_datetime2, format: :candidate_long)
+    )
+  end
+  def show_candidate_datetime3
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.candidate_datetime3'),
+      l(@inspection_schedule.candidate_datetime3, format: :candidate_long)
+    )
+  end
+  def show_candidate_datetime_memo
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.candidate_datetime_memo'),
+      @inspection_schedule.candidate_datetime_memo
+    )
+  end
+
+  # 確定日時
+  def show_confirm_datetime
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.confirm_datetime'),
+      l(@inspection_schedule.confirm_datetime, format: :confirm_long)
+    )
+  end
+  def show_confirm_datetime_memo
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.confirm_datetime_memo'),
+      @inspection_schedule.confirm_datetime_memo
+    )
+  end
+  def show_author
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.author'),
+      @inspection_schedule.author
+    )
+  end
+  def show_customer
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.customer'),
+      @inspection_schedule.customer
+    )
+  end
+
+  # 点検依頼者
+  def show_yes_branch_staff
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.user'),
+      (@inspection_schedule.user.name if @inspection_schedule.user.present?)
+    )
   end
 end

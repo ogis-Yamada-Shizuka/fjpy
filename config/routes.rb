@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
   # 同一設置場所の装置システムを表示 ⇒ 点検周期を一括変更する
   get 'equipment/placed_equipment/:place_id' => 'equipment#placed_equipment', as: 'placed_equipment'
-  post 'equipment/placed_equipment/change_inspection_cycle' => 'equipment#change_inspection_cycle'
+  post 'equipment/placed_equipment/:place_id/change_inspection_cycle' => 'equipment#change_inspection_cycle', as: 'change_inspection_cycle'
 
   resources :equipment do
     collection do

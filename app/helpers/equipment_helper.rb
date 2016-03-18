@@ -26,11 +26,43 @@ module EquipmentHelper
     @equipment.new_record? ? current_user.branch.id : @equipment.branch_id
   end
 
-  def inspection_contract_string
-    if @equipment.inspection_contract then
-      t('views.equipment.inspection_contract_true')
-    else
-      t('views.equipment.inspection_contract_false')
-    end
+  def inspection_contract_string(equipment = nil)
+      t("views.equipment.inspection_contract_#{(equipment || @equipment).inspection_contract ? 'true' : 'false'}")
   end
+
+  def show_system_model(equipment = nil)
+    show_attribute(
+      t('activerecord.attributes.equipment.system_model_id'),
+      (equipment || @equipment).system_model.name
+    )
+  end
+
+  def show_serial_number(equipment = nil)
+    show_attribute(
+      t('activerecord.attributes.equipment.serial_number'),
+      (equipment || @equipment).serial_number
+    )
+  end
+
+  def show_start_date(equipment = nil)
+    show_attribute(
+      t('activerecord.attributes.equipment.start_date'),
+      l((equipment || @equipment).start_date, format: :start_date)
+    )
+  end
+
+  def show_place(equipment = nil)
+    show_attribute(
+      t('activerecord.attributes.equipment.place_id'),
+      (equipment || @equipment).place.name
+    )
+  end
+
+  def show_inspection_cycle_month(equipment = nil)
+    show_attribute(
+      t('activerecord.attributes.equipment.inspection_cycle_month'),
+      (equipment || @equipment).inspection_cycle_month.to_s
+    )
+  end
+
 end
