@@ -3,35 +3,20 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
-  <%= @equipment.system_model.name %>
-</p>
+<%= show_system_model %>
 
-<p>
-  <strong><%= t('activerecord.attributes.equipment.serial_number') %>:</strong>
-  <%= @equipment.serial_number %>
-</p>
+<%= show_serial_number %>
+
+<%= show_start_date %>
+
+<%= show_place %>
 
 <p>
   <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
   <%= inspection_contract_string %>
 </p>
 
-<p>
-  <strong><%= t('activerecord.attributes.equipment.inspection_cycle_month') %>:</strong>
-  <%= @equipment.inspection_cycle_month %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.equipment.start_date') %>:</strong>
-  <%= date_value(@equipment.start_date) %>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.equipment.place_id') %>:</strong>
-  <%= @equipment.place.name %>
-</p>
+<%= show_inspection_cycle_month %>
 
 <p>
   <strong><%= t('activerecord.attributes.equipment.branch_id') %>:</strong>
