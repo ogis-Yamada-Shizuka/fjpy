@@ -4,7 +4,7 @@
 <%= show_serial_number(@inspection_schedule.equipment) %>
 <%= show_place(@inspection_schedule.equipment) %>
 
-<%= render('show_target_yearmonth', inspection_schedule:  @inspection_schedule) %>
+<%= show_target_yearmonth %>
 
 <p>
   <strong><%= t('activerecord.attributes.inspection_result.user_id') %>:</strong>

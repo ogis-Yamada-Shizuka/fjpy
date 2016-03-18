@@ -3,14 +3,13 @@
 <%= show_system_model(@inspection_schedule.equipment) %>
 <%= show_serial_number(@inspection_schedule.equipment) %>
 <%= show_place(@inspection_schedule.equipment) %>
+<%= show_inspection_cycle_month(@inspection_schedule.equipment) %>
 
-<%= render 'equipment/show_inspection_cycle_month', equipment: @inspection_schedule.equipment %>
+<%= show_target_yearmonth %>
 
-<%= render 'show_target_yearmonth', inspection_schedule: @inspection_schedule %>
+<%= show_service %>
 
-<%= render 'show_service', inspection_schedule: @inspection_schedule %>
-
-<%= render 'show_yes_branch_staff', inspection_schedule: @inspection_schedule %>
+<%= show_yes_branch_staff %>
 
 <%= render 'inspection_results/show', inspection_result: @inspection_schedule.result %>
 
