@@ -51,7 +51,6 @@ module EquipmentHelper
       '</p>'  ).html_safe
   end
 
-
   def show_place(equipment = nil)
     ( '<p>' +
       show_item_title( t('activerecord.attributes.equipment.place_id') ) +
