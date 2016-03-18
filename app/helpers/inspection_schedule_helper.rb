@@ -222,16 +222,7 @@ module InspectionScheduleHelper
 
   # 更新
   def show_edit?
-    return true if current_user.head_employee?
-    case params[:action].to_sym
-      when :index then false
-      when :need_request then true
-      when :requested_soon then current_user.branch_employee? ? true : false
-      when :date_answered then current_user.branch_employee? ? true : false
-      when :target then current_user.branch_employee? ? false : true
-      when :done then false
-      else false
-    end
+    return true if admin?
   end
 
   def permit_action?(actions)
