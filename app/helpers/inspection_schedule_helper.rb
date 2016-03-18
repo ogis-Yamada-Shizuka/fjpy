@@ -64,6 +64,18 @@ module InspectionScheduleHelper
     end
   end
 
+  def fa_newspaper_link_to(name, path)
+    link_to(path) do
+      content_tag(:i, '', class: "fa fa-newspaper-o fa-fw") + name
+    end
+  end
+
+  def fa_refresh_link_to(name, path)
+    link_to(path) do
+      content_tag(:i, '', class: "fa fa-refresh fa-fw") + name
+    end
+  end
+
   def month_field(f, attribute)
     (text_field_for_date(f, attribute, month_or_date: :month) + clear_link(attribute)).html_safe
   end
@@ -305,4 +317,14 @@ module InspectionScheduleHelper
       (@inspection_schedule.user.name if @inspection_schedule.user.present?)
     )
   end
+
+  # 一覧上の[担当]マーク
+  def yes_branch_staff_mark(inspection_schedule)
+    if( inspection_schedule.user.present?  && inspection_schedule.user.id == current_user.id)
+      return t('views.inspection_schedule.yes_branch_staff_mark')
+    else
+      return ''
+    end
+  end
+
 end

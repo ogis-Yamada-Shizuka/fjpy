@@ -30,13 +30,7 @@
   <tbody>
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
-        <% if show_yes_branch_staff? %>
-          <td>
-            <% if( inspection_schedule.user.present? && inspection_schedule.user.id == current_user.id) %>
-              <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
-            <% end %>
-          </td>
-        <% end %>
+        <%= content_tag :td, yes_branch_staff_mark(inspection_schedule) if show_yes_branch_staff? %>
         <%= content_tag :td, l(inspection_schedule.target_yearmonth, format: :target_yearmonth) if show_target_yearmonth? %>
         <%= content_tag :td, l(inspection_schedule.confirm_datetime, format: :confirm) if show_confirm_datetime? %>
         <%= content_tag :td, inspection_schedule.equipment.system_model.name if show_system_model? %>
@@ -52,28 +46,9 @@
         <%= content_tag :td, inspection_schedule.customer if show_customer? %>
         <%= content_tag :td, inspection_schedule.status.name if show_schedule_status? %>
         <%= content_tag :td, action_link(inspection_schedule) if show_action? %>
-        <td>
-          <%= link_to inspection_schedule do %>
-            <i class="fa fa-newspaper-o fa-fw"></i>
-            <%= t('views.link_to.show') %>
-          <% end %>
-        </td>
-        <td>
-          <% if correct_targetyearmonth?(inspection_schedule) %>
-            <%= link_to correct_targetyearmonth_path(inspection_schedule) do %>
-              <i class="fa fa-refresh fa-fw"></i>
-              <%=  t('views.inspection_schedule.correct_targetyearmonth') %>
-            <% end %>
-          <% end %>          
-        </td>
-        <% if show_edit? %>
-          <td>
-            <%= link_to edit_inspection_schedule_path(inspection_schedule) do %>
-              <i class="fa fa-refresh fa-fw"></i>
-              <%=  t('views.link_to.edit') %>
-            <% end %>
-          </td>
-        <% end %>
+        <%= content_tag :td, fa_newspaper_link_to( t('views.link_to.show'), inspection_schedule_path(inspection_schedule)) %>
+        <%= content_tag :td, fa_refresh_link_to( t('views.inspection_schedule.correct_targetyearmonth'), correct_targetyearmonth_path(inspection_schedule)) if correct_targetyearmonth?(inspection_schedule) %>
+        <%= content_tag :td, fa_refresh_link_to( t('views.link_to.edit'), edit_inspection_schedule_path(inspection_schedule) ) if show_edit? %>
       </tr>
     <% end %>
   </tbody>
