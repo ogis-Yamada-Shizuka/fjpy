@@ -30,11 +30,11 @@
   <tbody>
     <% @inspection_schedules.each do |inspection_schedule| %>
       <tr>
-        <% if( show_yes_branch_staff? &&
-               inspection_schedule.user.present? &&
-               inspection_schedule.user.id == current_user.id) %>
+        <% if show_yes_branch_staff? %>
           <td>
-            <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
+            <% if( inspection_schedule.user.present? && inspection_schedule.user.id == current_user.id) %>
+              <%= t('views.inspection_schedule.yes_branch_staff_mark')%>
+            <% end %>
           </td>
         <% end %>
         <%= content_tag :td, l(inspection_schedule.target_yearmonth, format: :target_yearmonth) if show_target_yearmonth? %>
@@ -57,6 +57,14 @@
             <i class="fa fa-newspaper-o fa-fw"></i>
             <%= t('views.link_to.show') %>
           <% end %>
+        </td>
+        <td>
+          <% if correct_targetyearmonth?(inspection_schedule) %>
+            <%= link_to correct_targetyearmonth_path(inspection_schedule) do %>
+              <i class="fa fa-refresh fa-fw"></i>
+              <%=  t('views.inspection_schedule.correct_targetyearmonth') %>
+            <% end %>
+          <% end %>          
         </td>
         <% if show_edit? %>
           <td>

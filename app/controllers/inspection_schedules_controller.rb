@@ -1,7 +1,7 @@
 class InspectionSchedulesController < ApplicationController
   before_action :set_inspection_schedule, only: %i(
     show edit update destroy inspection_request answer_date confirm_date do_inspection
-    done_inspection approve_inspection close_inspection complete_inspection
+    done_inspection approve_inspection close_inspection complete_inspection correct_targetyearmonth
   )
 
   before_action :set_query_to_params, only: %i(index need_request requested_soon date_answered target done)
@@ -85,6 +85,9 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/edit
   def edit
+  end
+
+  def correct_targetyearmonth
   end
 
   def inspection_request

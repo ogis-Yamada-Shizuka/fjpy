@@ -194,6 +194,15 @@ module InspectionScheduleHelper
     end
   end
 
+  # 予定年月訂正：点検依頼ができる状態の時だけ予定年月の訂正が可能
+  def correct_targetyearmonth?(inspection_schedule)
+    if inspection_schedule.can_inspection_request?(current_user)
+      return true
+    else
+      return false
+    end
+  end
+
   def permit_action?(actions)
     actions.include?(params[:action].to_sym)
   end
