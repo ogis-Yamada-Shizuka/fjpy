@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   get 'inspection_schedules/:id/close_inspection' => 'inspection_schedules#close_inspection', as: 'close_inspection'
   post 'inspection_schedules/:id/complete_inspection' => 'inspection_schedules#complete_inspection'
 
+  # 予定年月を訂正する
+  get 'inspection_schedules/:id/correct_targetyearmonth' => 'inspection_schedules#correct_targetyearmonth' , as: 'correct_targetyearmonth'
+
   # 同一設置場所の装置システムを表示 ⇒ 点検周期を一括変更する
   get 'equipment/placed_equipment/:place_id' => 'equipment#placed_equipment', as: 'placed_equipment'
   post 'equipment/placed_equipment/:place_id/change_inspection_cycle' => 'equipment#change_inspection_cycle', as: 'change_inspection_cycle'

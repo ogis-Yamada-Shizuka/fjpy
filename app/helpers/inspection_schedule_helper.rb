@@ -40,27 +40,67 @@ module InspectionScheduleHelper
     elsif inspection_schedule.can_answer_date?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.answer_date'), answer_date_path(inspection_schedule)
 
-    # 日程確定
+    # 出張依頼
     elsif inspection_schedule.can_confirm_date?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.confirm_date'), confirm_date_path(inspection_schedule)
 
-    # 点検実施
+    # 点検報告作成
     elsif inspection_schedule.can_inspection?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.do_inspecrion'), do_inspection_path(inspection_schedule)
 
-    # 承認(作業終了)
+    # サイン
     elsif inspection_schedule.can_approval?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.done_inspection'), done_inspection_path(inspection_schedule)
 
-    # 点検の完了
+    # 承認
     elsif inspection_schedule.can_close_inspection?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.close_inspecrion'), close_inspection_path(inspection_schedule)
+    end
+  end
+
+  def correct_link(inspection_schedule)
+
+    # 点検依頼可能時　※サービス会社ユーザーは変更不可
+    if inspection_schedule.can_inspection_request?(current_user) && !current_user.service_employee?
+      fa_refresh_link_to t('views.inspection_schedule.correct_targetyearmonth'), correct_targetyearmonth_path(inspection_schedule)
+
+    # 候補日時回答可能時　※サービス会社ユーザーは変更不可
+    elsif inspection_schedule.can_answer_date?(current_user) && !current_user.service_employee?
+      fa_refresh_link_to t('views.inspection_schedule.inspection_request'), inspection_request_path(inspection_schedule)
+
+    # 日程確定可能時
+    elsif inspection_schedule.can_confirm_date?(current_user)
+      fa_refresh_link_to t('views.inspection_schedule.answer_date'), answer_date_path(inspection_schedule)
+
+    # 点検実施可能時(日程確定済の場合)
+    elsif inspection_schedule.schedule_status_id == ScheduleStatus.of_dates_confirmed && !current_user.service_employee?
+      fa_refresh_link_to t('views.inspection_schedule.confirm_date'), confirm_date_path(inspection_schedule)
+
+    # サイン可能時
+    elsif inspection_schedule.can_approval?(current_user)
+      fa_refresh_link_to t('views.inspection_schedule.do_inspecrion'), do_inspection_path(inspection_schedule)
+
+    # 承認可能時　※変更不可
+    elsif inspection_schedule.can_close_inspection?(current_user)
+      ''
     end
   end
 
   def fa_pencil_link_to(name, path)
     link_to(path) do
       content_tag(:i, '', class: "fa fa-pencil fa-fw") + name
+    end
+  end
+
+  def fa_newspaper_link_to(name, path)
+    link_to(path) do
+      content_tag(:i, '', class: "fa fa-newspaper-o fa-fw") + name
+    end
+  end
+
+  def fa_refresh_link_to(name, path)
+    link_to(path) do
+      content_tag(:i, '', class: "fa fa-refresh fa-fw") + name
     end
   end
 
@@ -182,16 +222,7 @@ module InspectionScheduleHelper
 
   # 更新
   def show_edit?
-    return true if current_user.head_employee?
-    case params[:action].to_sym
-      when :index then false
-      when :need_request then true
-      when :requested_soon then current_user.branch_employee? ? true : false
-      when :date_answered then current_user.branch_employee? ? true : false
-      when :target then current_user.branch_employee? ? false : true
-      when :done then false
-      else false
-    end
+    return true if admin?
   end
 
   def permit_action?(actions)
@@ -296,4 +327,14 @@ module InspectionScheduleHelper
       (@inspection_schedule.user.name if @inspection_schedule.user.present?)
     )
   end
+
+  # 一覧上の[担当]マーク
+  def yes_branch_staff_mark(inspection_schedule)
+    if( inspection_schedule.user.present?  && inspection_schedule.user.id == current_user.id)
+      return t('views.inspection_schedule.yes_branch_staff_mark')
+    else
+      return ''
+    end
+  end
+
 end
