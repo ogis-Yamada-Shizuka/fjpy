@@ -31,38 +31,38 @@ module EquipmentHelper
   end
 
   def show_system_model(equipment = nil)
-    ( '<p>' +
-      show_item_title( t('activerecord.attributes.equipment.system_model_id') ) +
-      (equipment || @equipment).system_model.name +
-      '</p>' ).html_safe
+    show_attribute(
+      t('activerecord.attributes.equipment.system_model_id'),
+      (equipment || @equipment).system_model.name
+    )
   end
 
   def show_serial_number(equipment = nil)
-    ( '<p>'+
-      show_item_title( t('activerecord.attributes.equipment.serial_number') ) +
-      (equipment || @equipment).serial_number +
-      '</p>'  ).html_safe
+    show_attribute(
+      t('activerecord.attributes.equipment.serial_number'),
+      (equipment || @equipment).serial_number
+    )
   end
 
   def show_start_date(equipment = nil)
-    ( '<p>'+
-      show_item_title( t('activerecord.attributes.equipment.start_date') ) +
-      l((equipment || @equipment).start_date, format: :start_date) +
-      '</p>'  ).html_safe
+    show_attribute(
+      t('activerecord.attributes.equipment.start_date'),
+      l((equipment || @equipment).start_date, format: :start_date)
+    )
   end
 
   def show_place(equipment = nil)
-    ( '<p>' +
-      show_item_title( t('activerecord.attributes.equipment.place_id') ) +
-      (equipment || @equipment).place.name +
-      '</p>' ).html_safe
+    show_attribute(
+      t('activerecord.attributes.equipment.place_id'),
+      (equipment || @equipment).place.name
+    )
   end
 
   def show_inspection_cycle_month(equipment = nil)
-    ( '<p>' +
-      show_item_title( t('activerecord.attributes.equipment.inspection_cycle_month') ) +
-      (equipment || @equipment).inspection_cycle_month.to_s +
-      '</p>' ).html_safe
+    show_attribute(
+      t('activerecord.attributes.equipment.inspection_cycle_month'),
+      (equipment || @equipment).inspection_cycle_month.to_s
+    )
   end
 
 end

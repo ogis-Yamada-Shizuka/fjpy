@@ -208,4 +208,17 @@ module InspectionScheduleHelper
     end
     false
   end
+
+  ################
+  # show およびステータス進める系画面への表示用
+  ################
+
+  # 予定年月
+  def show_target_yearmonth
+    show_attribute(
+      t('activerecord.attributes.inspection_schedule.target_yearmonth'),
+      l(@inspection_schedule.target_yearmonth, format: :target_yearmonth)
+    )
+  end
+
 end

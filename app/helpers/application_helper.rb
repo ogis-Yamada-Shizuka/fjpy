@@ -3,7 +3,7 @@ module ApplicationHelper
     current_user.admin?
   end
 
-  def show_item_title(title_string)
-    ( '<strong>' + title_string + ':</strong>' ).html_safe
+  def show_attribute(title, value)
+    "<p><strong>#{title}: </strong>#{value}</p>".html_safe
   end
 end
