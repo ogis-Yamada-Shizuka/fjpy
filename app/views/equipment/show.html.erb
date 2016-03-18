@@ -3,21 +3,20 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= render 'show_identifier', equipment: @equipment %>
+<%= show_system_model %>
 
-<p>
-  <strong><%= t('activerecord.attributes.equipment.start_date') %>:</strong>
-  <%= date_value(@equipment.start_date) %>
-</p>
+<%= show_serial_number %>
 
-<%= render 'show_place', equipment: @equipment %>
+<%= show_start_date %>
+
+<%= show_place %>
 
 <p>
   <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
   <%= inspection_contract_string %>
 </p>
 
-<%= render 'show_inspection_cycle_month', equipment: @equipment %>
+<%= show_inspection_cycle_month %>
 
 <p>
   <strong><%= t('activerecord.attributes.equipment.branch_id') %>:</strong>
