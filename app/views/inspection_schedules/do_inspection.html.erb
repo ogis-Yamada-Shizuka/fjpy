@@ -20,7 +20,8 @@
     <%= show_serial_number(@inspection_schedule.equipment) %>
     <%= show_place(@inspection_schedule.equipment) %>
     <%= show_target_yearmonth %>
-    <%= render('show_confirms', inspection_schedule:  @inspection_schedule) %>
+    <%= show_confirm_datetime %>
+    <%= show_confirm_datetime_memo %>
   </div>
 
     <%= render 'inspection_results/form_do_inspection', f: f %>

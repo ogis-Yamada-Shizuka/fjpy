@@ -288,10 +288,12 @@ module InspectionScheduleHelper
       @inspection_schedule.customer
     )
   end
+
+  # 点検依頼者
   def show_yes_branch_staff
     show_attribute(
-      t('activerecord.attributes.inspection_schedule.yes_branch_staff'),
-      @inspection_schedule.user
+      t('activerecord.attributes.inspection_schedule.user'),
+      (@inspection_schedule.user.name if @inspection_schedule.user.present?)
     )
   end
 end

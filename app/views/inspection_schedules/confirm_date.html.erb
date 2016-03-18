@@ -21,10 +21,12 @@
   <%= show_place(@inspection_schedule.equipment) %>
 
   <%= show_target_yearmonth %>
+  <%= show_service %>
 
-  <%=show_service %>
-
-  <%= render('show_candidates', inspection_schedule:  @inspection_schedule) %>
+  <%= show_candidate_datetime1 %>
+  <%= show_candidate_datetime2 %>
+  <%= show_candidate_datetime3 %>
+  <%= show_candidate_datetime_memo %>
 
   <div class="field datetimepicker-position">
     <%= f.label :confirm_datetime %><br>
