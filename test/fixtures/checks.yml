@@ -1,0 +1,13 @@
+check_for_sign:
+  weather_id: 4
+  exterior_id: 1
+  tone_id: 2
+  stain_id: 3
+  inspection_result_id: 105
+check_for_close:
+  weather_id: 4
+  exterior_id: 1
+  tone_id: 2
+  stain_id: 3
+  inspection_result_id: 106
+  

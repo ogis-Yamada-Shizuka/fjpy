@@ -4,13 +4,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.name') %>:</strong>
-  <%= @equipment.name %>
+  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
+  <%= @equipment.system_model.name %>
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.equipment.system_model_id') %>:</strong>
-  <%= @equipment.system_model.name %>
+  <strong><%= t('activerecord.attributes.equipment.serial_number') %>:</strong>
+  <%= @equipment.serial_number %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.inspection_contract') %>:</strong>
+  <%= inspection_contract_string %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.inspection_cycle_month') %>:</strong>
+  <%= @equipment.inspection_cycle_month %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.equipment.start_date') %>:</strong>
+  <%= date_value(@equipment.start_date) %>
 </p>
 
 <p>
@@ -33,6 +48,27 @@
     <%= link_to "直近の点検予定を確認する(#{@next_inspection_schedule.target})", inspection_schedule_path(@next_inspection_schedule) %>
   </p>
 <% end %>
+
+<hr>
+<p>
+  <strong><%= t('views.equipment.inspection_histories') %> </strong>
+</p>
+  <table>
+    <tr>
+      <th><%= t('activerecord.attributes.inspection_schedule.processingdate') %></th>
+      <th><%= t('activerecord.attributes.inspection_schedule.service_id') %></th>
+      <th></th>
+    </tr>
+    <% @inspection_histories.each do |schedule| %>
+    <tr>
+      <td><%= schedule.processingdate %></td>
+      <td><%= schedule.service.name %></td>
+      <td><%= link_to t('views.link_to.show'), inspection_result_path(schedule.result) %></td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
 
 <%= link_to 'Edit', edit_equipment_path(@equipment) %> |
 <%= link_to 'Back', equipment_index_path %>

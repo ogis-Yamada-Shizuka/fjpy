@@ -61,7 +61,9 @@ gem "carrierwave"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bootstrap-sass", "~> 3.2.0"
-gem 'bootstrap-datepicker-rails'
+gem "bootstrap-datepicker-rails"
+gem "bootstrap3-datetimepicker-rails"
+gem "momentjs-rails"
 gem "font-awesome-sass"
 
 gem "gretel"
@@ -79,3 +81,14 @@ group :development, :test do
 end
 
 gem "devise"
+
+group :test do
+  gem 'capybara'
+  gem 'minitest-rails'
+  gem 'minitest-capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
+  # gem 'minitest-metadata'
+  gem "poltergeist"
+  gem "database_cleaner"
+end

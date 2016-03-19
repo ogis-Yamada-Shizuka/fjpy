@@ -23,8 +23,9 @@ module Acst
     config.generators do |g|
       g.assets false
       g.helper false
-      # TODO: テストの方針が確定したら修正する
-      g.test_framework false
+      # minitestを採用
+      g.test_framework :minitest, spec: false
     end
+  
   end
 end

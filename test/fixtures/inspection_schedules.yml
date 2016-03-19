@@ -1,0 +1,75 @@
+schedule_for_turn_off_contract:
+  id: 3
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment_id: 3
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 1
+schedule_for_request_inspection:
+  id: 101
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment_id: 101
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 1
+schedule_for_reply_candidate_date:
+  id: 102
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  equipment_id: 102
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 2
+schedule_for_comfirm_date:
+  id: 103
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Time.local(2016, 4, 10, 10, 00, 00) %>
+  candidate_datetime2: <%= Time.local(2016, 4, 20, 11, 00, 00) %>
+  candidate_datetime3: <%= Time.local(2016, 4, 30, 13, 00, 00) %>
+  equipment_id: 103
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 3
+schedule_for_inspection_result:
+  id: 104
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Time.local(2016, 4, 11, 10, 00, 00) %>
+  candidate_datetime2: <%= Time.local(2016, 4, 21, 11, 00, 00) %>
+  candidate_datetime3: <%= Time.local(2016, 4, 31, 13, 00, 00) %>
+  confirm_datetime: <%= Time.local(2016, 4, 21, 10, 00, 00) %>
+  confirm_datetime_memo: 午前中に作業してほしいとのことでした
+  author: 東風平頌栄
+  customer: 南風原林賢様
+  equipment_id: 104
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 4
+schedule_for_sign:
+  id: 105
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Time.local(2016, 4, 11, 10, 00, 00) %>
+  candidate_datetime2: <%= Time.local(2016, 4, 21, 11, 00, 00) %>
+  candidate_datetime3: <%= Time.local(2016, 4, 31, 13, 00, 00) %>
+  confirm_datetime: <%= Time.local(2016, 4, 21, 23, 00, 00) %>
+  confirm_datetime_memo: 深夜に作業してほしいとのことでした
+  author: 知名定繁
+  customer: 照屋林助様
+  equipment_id: 105
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 5
+schedule_for_close:
+  id: 106
+  target_yearmonth: <%= Date.today.advance(months: 2) %>
+  candidate_datetime1: <%= Time.local(2016, 4, 11, 10, 00, 00) %>
+  candidate_datetime2: <%= Time.local(2016, 4, 21, 11, 00, 00) %>
+  candidate_datetime3: <%= Time.local(2016, 4, 31, 13, 00, 00) %>
+  confirm_datetime: <%= Time.local(2016, 4, 21, 23, 00, 00) %>
+  confirm_datetime_memo: 深夜に作業してほしいとのことでした
+  processingdate: <%= Date.today %>
+  author: 神谷千尋
+  customer: 古謝美佐子
+  equipment_id: 106
+  service_id: 6
+  user_id: 2
+  schedule_status_id: 6
+  

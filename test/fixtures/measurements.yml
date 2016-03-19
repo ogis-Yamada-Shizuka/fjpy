@@ -1,0 +1,10 @@
+measurement_for_sign:
+  metercount: 256
+  testervalue: 512.44
+  point: 80
+  inspection_result_id: 105
+measurement_for_close:
+  metercount: 256
+  testervalue: 512.44
+  point: 80
+  inspection_result_id: 106

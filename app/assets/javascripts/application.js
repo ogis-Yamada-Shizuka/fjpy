@@ -15,6 +15,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-datepicker
+//= require moment
+//= require moment/ja
+//= require bootstrap-datetimepicker
 //= require_tree .
 
 //= require underscore-min
