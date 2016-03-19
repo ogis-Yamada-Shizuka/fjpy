@@ -6,7 +6,7 @@ require "capybara/rails"
 
 class SigninTest < AcstIntegrationTest
 
-    fixtures :equipment, :inspection_schedules
+  fixtures :equipment, :inspection_schedules
   
   def test_signin
     # 
@@ -28,6 +28,7 @@ class SigninTest < AcstIntegrationTest
     assert_content 'ログインしました'
     assert_content 'メニュー'
     assert_content '大阪第１'
+    assert_content '村山音々'
 
   end
 end

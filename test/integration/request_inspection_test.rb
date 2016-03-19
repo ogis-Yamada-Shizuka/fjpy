@@ -19,6 +19,7 @@ class RequestInspectionTest < AcstIntegrationTest
     serial_no = "S010-010"
      
     # User02でログイン
+    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
     visit '/'
 
    # ユーザＩＤとパスワードを入力
@@ -53,11 +54,11 @@ class RequestInspectionTest < AcstIntegrationTest
     assert_content '点検依頼'
     assert_content '担当サービス会社'
     
-    # なにわサービスを選択して、登録ボタンをクリック
+    # 担当サービス会社になにわサービスを選択して、登録ボタンをクリック
     select 'なにわサービス', from: '担当サービス会社'
     click_button '更新する'
 
-    # 点検予定の確認に遷移したこと、点検依頼済みになっていることを確認
+    # 「点検予定の確認」画面に遷移したこと、点検依頼済みになっていることを確認
     assert_content '点検予定の確認'
     assert_content serial_no
     assert_content '点検依頼済'

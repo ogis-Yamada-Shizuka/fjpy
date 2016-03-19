@@ -15,6 +15,7 @@ class NewEquipmentTest < AcstIntegrationTest
     serial_no = "S010-000"
         
     # User02でログイン
+    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
     visit '/'
     
     # ログイン画面が表示されたことを確認

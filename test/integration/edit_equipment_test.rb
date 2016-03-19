@@ -18,6 +18,7 @@ class EditEquipmentTest < AcstIntegrationTest
     serial_no = "S010-002"
         
     # User02でログイン
+    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
     visit '/'
  
     # ログイン画面が表示されたことを確認
@@ -70,18 +71,7 @@ class EditEquipmentTest < AcstIntegrationTest
     
     # 契約ありになったので、点検予定が作られていないことを確認する
     assert_link '直近の点検予定を確認する'
-
-    click_link 'Back'
-
-    # 装置システム一覧
-    # 装置システム一覧に遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
-    assert_content 'シリアルNo.'
-    assert_content '型式'
-    assert_content '設置場所'
-
-    # 一覧の中に、先ほど変更した装置システムが存在することを確認する
-    assert_content serial_no
-   
+ 
   end
   def test_edit_equipment_turn_off_contract
     # ---------------------------------------------------
@@ -130,7 +120,7 @@ class EditEquipmentTest < AcstIntegrationTest
  
     # 点検契約のみをＯＮにする
     # 契約ありを選択
-    check '点検契約'
+    uncheck '点検契約'
    
     # 登録ボタンをクリック
     click_button '更新する'
@@ -144,18 +134,7 @@ class EditEquipmentTest < AcstIntegrationTest
     assert_content 'なにわサービス'
     
     # 契約なしなので、点検予定が作られていないことを確認する
-    assert_link    '直近の点検予定を確認する'
+    assert_no_link    '直近の点検予定を確認する'
 
-    click_link 'Back'
-
-    # 装置システム一覧
-    # 装置システム一覧に遷移したことを検証する（タイトルだとわからないので複数の列ヘッダで検証）
-    assert_content 'シリアルNo.'
-    assert_content '型式'
-    assert_content '設置場所'
-
-    # 一覧の中に、先ほど登録した装置システムが存在することを確認する
-    assert_content serial_no
-   
   end
 end

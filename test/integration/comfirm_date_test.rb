@@ -19,9 +19,10 @@ class ComfirmDateTest < AcstIntegrationTest
     serial_no = "S010-030"
 
     # User02でログイン
+    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
     visit '/'
 
-   # ユーザＩＤとパスワードを入力
+    # ユーザＩＤとパスワードを入力
     fill_in 'user_userid',   with: 'User02'
     fill_in 'user_password', with: 'password'
 

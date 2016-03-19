@@ -24,6 +24,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     candidate_datetime3 = Time.local(2016, 4, 30, 13, 00, 00)
 
     # User06でログイン
+    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
     visit '/'
     
     # ログイン画面が表示されたことを確認
@@ -61,18 +62,9 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     assert_content '候補日時回答'
    
     # 候補日1-3を入力
-    # fill_in 'inspection_schedule_candidate_datetime1',     with: candidate_datetime1
-    # fill_in 'inspection_schedule_candidate_datetime2',     with: candidate_datetime2
-    # fill_in 'inspection_schedule_candidate_datetime3',     with: candidate_datetime3
-    
-    # page.execute_script("$('#inspection_schedule_candidate_datetime1').val('10/04/2016')")
-    # page.execute_script("$('#inspection_schedule_candidate_datetime2').val('10/04/2016')")
-    # page.execute_script("$('#inspection_schedule_candidate_datetime3').val('10/04/2016')")
-
-    # page.execute_script("$('inspection_schedule_candidate_datetime1').datepicker('setDate', '10/04/2016')")
-    # page.execute_script("$('inspection_schedule_candidate_datetime2').datepicker('setDate', '20/04/2016')")
-    # page.execute_script("$('inspection_schedule_candidate_datetime3').datepicker('setDate', '30/04/2016')")
-    
+    fill_in 'inspection_schedule_candidate_datetime1',     with: candidate_datetime1
+    fill_in 'inspection_schedule_candidate_datetime2',     with: candidate_datetime2
+    fill_in 'inspection_schedule_candidate_datetime3',     with: candidate_datetime3    
     fill_in 'inspection_schedule_candidate_datetime_memo', with: 'メモです'
     
     # 登録ボタンをクリック

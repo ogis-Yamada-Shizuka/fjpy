@@ -58,3 +58,23 @@ equipment_for_inspection_result:
   place_id: 1
   branch_id: 2
   service_id: 6
+equipment_for_sign:
+  id: 105
+  serial_number: 'S010-050'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
+equipment_for_close:
+  id: 106
+  serial_number: 'S010-060'
+  inspection_cycle_month: 2
+  inspection_contract: true
+  start_date: <%= Date.today() %>
+  system_model_id: 2
+  place_id: 1
+  branch_id: 2
+  service_id: 6
