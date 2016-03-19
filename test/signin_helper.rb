@@ -3,8 +3,8 @@ require "capybara/rails"
 require 'capybara-webkit'
 require 'minitest/autorun'
 
-module SigninTest
-  def test_signin( user )
+module SigninHelper
+  def signin( user )
     # 
     # User03でログイン
     # 
@@ -24,7 +24,6 @@ module SigninTest
     # ログインに成功したことを検証する
     assert_content 'ログインしました'
     assert_content 'メニュー'
-    assert_content '大阪第１'
 
   end
 end

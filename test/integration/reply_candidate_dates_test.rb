@@ -20,24 +20,7 @@ class ReplyCandidateDatesTest < AcstIntegrationTest
     candidate_datetime3 = Time.local(2016, 4, 30, 13, 00, 00)
 
     # User06でログイン
-    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
-    visit '/'
-    
-    # ログイン画面が表示されたことを確認
-    assert_content 'ログイン'
-    
-    # ユーザＩＤとパスワードを入力
-    fill_in 'user_userid',   with: 'User06'
-    fill_in 'user_password', with: 'password'
-
-    # ログインボタンをクリックする
-    click_on 'Log in'
-
-    # ログインに成功したことを検証する
-    assert_content 'ログインしました'
-    assert_content 'メニュー'
-    assert_content 'なにわサービス'
-    assert_content '平良朱里'
+    signin('User06')    
     
     # メニュー画面に遷移
     visit '/'

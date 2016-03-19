@@ -10,17 +10,7 @@ class SigninTest < AcstIntegrationTest
     # 
     # サインインのみのテスト（User03でログイン）
     # 
-    visit '/'
-    
-    # ログイン画面が表示されたことを確認
-    assert_content 'ログイン'
-    
-    # ユーザＩＤとパスワードを入力
-    fill_in 'user_userid',   with: 'User02'
-    fill_in 'user_password', with: 'password'
-
-    # ログインボタンをクリックする
-    click_on 'Log in'
+    signin('User02')
 
     # ログインに成功したことを検証する
     assert_content 'ログインしました'

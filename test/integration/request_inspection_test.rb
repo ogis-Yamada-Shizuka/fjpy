@@ -15,23 +15,9 @@ class RequestInspectionTest < AcstIntegrationTest
     serial_no = "S010-010"
      
     # User02でログイン
-    # メニュー画面に遷移（セッションがないのでログイン画面が表示されるはず）
-    visit '/'
-
-   # ユーザＩＤとパスワードを入力
-    fill_in 'user_userid',   with: 'User02'
-    fill_in 'user_password', with: 'password'
-
-    # ログインボタンをクリックする
-    click_on 'Log in'
-
-    # ログインに成功したことを検証する
-    assert_content 'ログインしました'
-    assert_content 'メニュー'
-    assert_content '大阪第１'
-    assert_content '村山音々'
-
-    # 2.b 装置システム一覧に遷移
+    signin('User02')    
+    
+    # メニューに遷移
     visit '/'
 
     # 最初に見つけた（メニューの  ）要点検依頼一覧リンクをクリックする
