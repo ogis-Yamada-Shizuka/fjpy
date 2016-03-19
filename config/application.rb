@@ -23,15 +23,9 @@ module Acst
     config.generators do |g|
       g.assets false
       g.helper false
-      # TODO: テストの方針が確定したら修正する
-      g.test_framework false
-    end
-
-    config.generators do |g|
-      # use minispec for BDD test in spec method or not 
+      # minitestを採用
       g.test_framework :minitest, spec: false
     end
-
   
   end
 end

@@ -1,10 +1,9 @@
 # key in command below to run
 # rake test TEST='test/integration/close_inspection_result_test.rb'
 require "test_helper"
-require "integration_test_helper"
-require "capybara/rails"
-require 'rails/test_help'
-require 'headless'
+# require "capybara/rails"
+# require 'rails/test_help'
+# require 'headless'
 
 class CloseInspectionResultTest < AcstIntegrationTest
 
@@ -67,7 +66,7 @@ class CloseInspectionResultTest < AcstIntegrationTest
     # 「点検予定の確認」画面に遷移する
     assert_content '点検予定の確認'
     # ステータスが完了になっていることを確認する
-    assert_content '進捗状況: 完了'
+    assert_content '完了'
          
   end
 end

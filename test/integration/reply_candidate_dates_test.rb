@@ -1,10 +1,6 @@
 # key in command below to run
 # rake test TEST='test/integration/reply_candidate_dates_test.rb'
 require "test_helper"
-require "integration_test_helper"
-require "capybara/rails"
-require 'rails/test_help'
-require 'headless'
 
 class ReplyCandidateDatesTest < AcstIntegrationTest
 

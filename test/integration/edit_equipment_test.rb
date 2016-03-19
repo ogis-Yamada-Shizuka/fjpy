@@ -1,8 +1,6 @@
 # key in command below to run
 # rake test TEST='test/integration/edit_equipment_test.rb'
 require "test_helper"
-require "integration_test_helper"
-require "capybara/rails"
 
 class EditEquipmentTest < AcstIntegrationTest
 

@@ -1,10 +1,6 @@
 # key in command below to run
 # rake test TEST='test/integration/sign_inspection_result_test.rb'
 require "test_helper"
-require "integration_test_helper"
-require "capybara/rails"
-require 'rails/test_help'
-require 'headless'
 
 class SignInspectionResultTest < AcstIntegrationTest
 
@@ -64,7 +60,7 @@ class SignInspectionResultTest < AcstIntegrationTest
 
     # 点検予定の確認　画面に繊維する
     assert_content '点検予定の確認'
-    assert_content '進捗状況: 顧客承認済'
+    assert_content 'サイン済'
     
   end
 end

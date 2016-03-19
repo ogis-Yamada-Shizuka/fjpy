@@ -1,8 +1,6 @@
 # key in command below to run
 # rake test TEST='test/integration/signin_test.rb'
 require "test_helper"
-require "integration_test_helper"
-require "capybara/rails"
 
 class SigninTest < AcstIntegrationTest
 

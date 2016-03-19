@@ -9,6 +9,59 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+# ScheduleStatus(進捗状況)テーブルに初期値を投入(全件削除して再投入)
+ScheduleStatus.delete_all
+['要点検依頼', '点検依頼済', '候補日回答済', '出張依頼済', '点検報告作成済', 'サイン済', '承認済', 'NG'].each.with_index(1) do |name, id|
+  ScheduleStatus.create(id: id, name: name)
+end
+if Rails.env.development? || Rails.env.test?
+  ScheduleStatus.connection.execute("update sqlite_sequence set seq=7 where name='schedule_statuses'")
+else
+  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 7, TRUE)")
+end
+
+# Weather(天気)テーブルに初期値を投入(全件削除して再投入)
+Weather.delete_all
+Weather.create(id: 1, name: '晴')
+Weather.create(id: 2, name: '曇')
+Weather.create(id: 3, name: '雨')
+Weather.create(id: 4, name: '雪')
+if Rails.env.development? || Rails.env.test?
+  Weather.connection.execute("update sqlite_sequence set seq=4 where name='weathers'")
+else
+  Weather.connection.execute("SELECT SETVAL('weathers_id_seq', 4, TRUE)")
+end
+
+# Checkresult(チェック結果)テーブルに初期値を投入(全件削除して再投入)
+Checkresult.delete_all
+Checkresult.create(id: 1, name: '優')
+Checkresult.create(id: 2, name: '良')
+Checkresult.create(id: 3, name: '可')
+Checkresult.create(id: 4, name: '不可')
+if Rails.env.development? || Rails.env.test?
+  Checkresult.connection.execute("update sqlite_sequence set seq=4 where name='checkresults'")
+else
+  Checkresult.connection.execute("SELECT SETVAL('checkresults_id_seq', 4, TRUE)")
+end
+
+# Flag(フラグ)テーブルに初期値を投入(全件削除して再投入)
+Flag.delete_all
+Flag.create(id: 1, name: 'Open')
+Flag.create(id: 2, name: 'Close')
+if Rails.env.development? || Rails.env.test?
+  Weather.connection.execute("update sqlite_sequence set seq=2 where name='flasg'")
+else
+  Weather.connection.execute("SELECT SETVAL('flags_id_seq', 2, TRUE)")
+end
+
+############################################################################
+### ここから先はデモ用サンプルデータの投入 ※いずれ別ファイルに切り出したい
+############################################################################
+
+##########################
+### テスト用にデータを入れる（超暫定)
+##########################
+
 # Company(会社)テーブルに初期値を投入(全件削除して再投入)
 Company.delete_all
 Head.create(id: 1, code: 'HdO-01', name: '本社')
@@ -82,55 +135,6 @@ if Rails.env.development? || Rails.env.test?
 else
   Place.connection.execute("SELECT SETVAL('places_id_seq', 30, TRUE)")
 end
-
-# ScheduleStatus(結果)テーブルに初期値を投入(全件削除して再投入)
-ScheduleStatus.delete_all
-['要点検依頼', '点検依頼済', '候補日回答済', '日程確定済', '点検実施中', '顧客承認済', '完了', 'NG'].each.with_index(1) do |name, id|
-  ScheduleStatus.create(id: id, name: name)
-end
-if Rails.env.development? || Rails.env.test?
-  ScheduleStatus.connection.execute("update sqlite_sequence set seq=7 where name='schedule_statuses'")
-else
-  ScheduleStatus.connection.execute("SELECT SETVAL('schedule_statuses_id_seq', 7, TRUE)")
-end
-
-# Weather(天気)テーブルに初期値を投入(全件削除して再投入)
-Weather.delete_all
-Weather.create(id: 1, name: '晴')
-Weather.create(id: 2, name: '曇')
-Weather.create(id: 3, name: '雨')
-Weather.create(id: 4, name: '雪')
-if Rails.env.development? || Rails.env.test?
-  Weather.connection.execute("update sqlite_sequence set seq=4 where name='weathers'")
-else
-  Weather.connection.execute("SELECT SETVAL('weathers_id_seq', 4, TRUE)")
-end
-
-# Checkresult(チェック結果)テーブルに初期値を投入(全件削除して再投入)
-Checkresult.delete_all
-Checkresult.create(id: 1, name: '優')
-Checkresult.create(id: 2, name: '良')
-Checkresult.create(id: 3, name: '可')
-Checkresult.create(id: 4, name: '不可')
-if Rails.env.development? || Rails.env.test?
-  Checkresult.connection.execute("update sqlite_sequence set seq=4 where name='checkresults'")
-else
-  Checkresult.connection.execute("SELECT SETVAL('checkresults_id_seq', 4, TRUE)")
-end
-
-# Flag(フラグ)テーブルに初期値を投入(全件削除して再投入)
-Flag.delete_all
-Flag.create(id: 1, name: 'Open')
-Flag.create(id: 2, name: 'Close')
-if Rails.env.development? || Rails.env.test?
-  Weather.connection.execute("update sqlite_sequence set seq=2 where name='flasg'")
-else
-  Weather.connection.execute("SELECT SETVAL('flags_id_seq', 2, TRUE)")
-end
-
-##########################
-### テスト用にデータを入れる（超暫定)
-##########################
 
 # User(作業者)テーブルにテスト用初期値を投入（全件削除して再投入）
 User.delete_all
@@ -248,13 +252,13 @@ else
   Equipment.connection.execute("SELECT SETVAL('equipment_id_seq',1,FALSE)")
 end
 
+# 装置システムの登録前に点検予定を全件削除　※装置し捨て鵜登録時に点検予定を自動生成するため
 InspectionSchedule.delete_all
 if Rails.env.development? || Rails.env.test?
   InspectionSchedule.connection.execute("delete from sqlite_sequence where name='inspection_schedules'")
 else
   InspectionSchedule.connection.execute("SELECT SETVAL('inspection_schedules_id_seq',1,FALSE)")
 end
-
 
 start_date_today = Time.zone.today.in_time_zone
 Equipment.create( serial_number: 'SYS-001', inspection_cycle_month: 1, inspection_contract: true, start_date: start_date_today, system_model_id: 1, place_id: 1, branch_id: 2, service_id: 6 )
@@ -287,90 +291,3 @@ Equipment.create( serial_number: 'SYS-027', inspection_cycle_month: 1, inspectio
 Equipment.create( serial_number: 'SYS-028', inspection_cycle_month: 2, inspection_contract: true, start_date: start_date_today, system_model_id: 2, place_id: 22, branch_id: 5, service_id: 12 )
 Equipment.create( serial_number: 'SYS-029', inspection_cycle_month: 6, inspection_contract: true, start_date: start_date_today, system_model_id: 3, place_id: 23, branch_id: 5, service_id: 12 )
 Equipment.create( serial_number: 'SYS-030', inspection_cycle_month: 12, inspection_contract: true, start_date: start_date_today, system_model_id: 4, place_id: 24, branch_id: 5, service_id: 12 )
-
-=begin
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 3, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 4, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 5, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 6, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 7, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 8, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 9, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 10, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 11, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 12, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 13, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 14, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 15, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 16, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 17, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 18, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 19, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 20, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 1, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 3, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 4, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 5, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 6, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 7, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 8, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 9, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 10, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 11, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 12, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 13, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 14, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 15, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 16, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 17, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 18, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 19, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 20, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 1, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 3, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 4, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 5, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 6, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 7, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 8, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 9, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 10, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 11, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 12, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 13, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 14, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 15, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 16, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 17, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 18, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 19, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 20, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 1, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 3, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 4, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 5, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 6, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 7, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 8, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 9, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 10, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 11, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 12, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 13, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201502', equipment_id: 14, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201503', equipment_id: 15, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201504', equipment_id: 16, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201505', equipment_id: 17, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201506', equipment_id: 18, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201507', equipment_id: 19, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201508', equipment_id: 20, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201509', equipment_id: 1, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201510', equipment_id: 2, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201401', equipment_id: 3, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201402', equipment_id: 4, status_id: 2, service_id: 7, result_status_id: 4, processingdate: '2015-03-01' )
-InspectionSchedule.create(target_yearmonth: '201403', equipment_id: 5, status_id: 2, service_id: 6, result_status_id: 4, processingdate: '2015-03-01' )
-=end
