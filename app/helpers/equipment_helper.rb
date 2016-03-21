@@ -27,7 +27,7 @@ module EquipmentHelper
   end
 
   def inspection_contract_string(equipment = nil)
-      t("views.equipment.inspection_contract_#{(equipment || @equipment).inspection_contract ? 'true' : 'false'}")
+    t("views.equipment.inspection_contract_#{(equipment || @equipment).inspection_contract ? 'true' : 'false'}")
   end
 
   def show_system_model(equipment = nil)
@@ -64,5 +64,4 @@ module EquipmentHelper
       (equipment || @equipment).inspection_cycle_month.to_s
     )
   end
-
 end

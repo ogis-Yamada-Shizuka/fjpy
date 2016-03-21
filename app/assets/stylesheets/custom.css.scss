@@ -1,16 +1,14 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import 'bootstrap-datepicker';
-@import "bootstrap-datetimepicker";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 /* extend bootstrap */
 
-.navbar-kilogy {
+.navbar-acst {
   @extend .navbar-default !optional;
   background-color: #F6E6B4;
-
 }
 .navbar-brand-small {
   @extend .navbar-brand !optional;
@@ -18,40 +16,39 @@
 
 }
 
-table{
- @extend .table !optional;
- @extend .table-striped !optional;
- @extend .table-hover !optional;
+table {
+  @extend .table !optional;
+  @extend .table-striped !optional;
+  @extend .table-hover !optional;
 }
 
 .bs-callout {
-    padding: 20px;
-    margin: 20px 0;
-    border: 1px solid #eee;
-    border-left-width: 5px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  code {
     border-radius: 3px;
+  }
 
-    h4{
-      margin-top: 0;
-      margin-bottom: 5px;
-    }
-
-    p:last-child {
-        margin-bottom: 0;
-    }
-
-    code {
-        border-radius: 3px;
-    }
-
-    +.bs-callout {
-        margin-top: -5px;
-    }
-
+  +.bs-callout {
+    margin-top: -5px;
+  }
 }
 
 @mixin callout-default($callout_color: #777777 ) {
-    border-left-color: $callout_color;
+  border-left-color: $callout_color;
   h4 {
     font-weight: bold;
     color: $callout_color;
@@ -83,12 +80,12 @@ table{
 }
 
 
-p{
+p {
   .small {
-      font-size: 95%;
+    font-size: 95%;
   }
 }
 
-.datetimepicker-position{
-    position: relative;
+.form-control[readonly] {
+  background-color: #ffffff;
 }

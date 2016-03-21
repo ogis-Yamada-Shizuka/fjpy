@@ -28,10 +28,10 @@
   <%= show_candidate_datetime3 %>
   <%= show_candidate_datetime_memo %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :confirm_datetime %><br>
     <%= datetime_field(f, :confirm_datetime) %>
-  </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :confirm_datetime_memo %><br>

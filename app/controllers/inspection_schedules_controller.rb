@@ -48,7 +48,11 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @same_place_inspection_schedules =
-      InspectionSchedule.with_place(@inspection_schedule.place).not_done.where.not(id: @inspection_schedule).order_by_target_yearmonth
+      InspectionSchedule
+      .with_place(@inspection_schedule.place)
+      .not_done
+      .where.not(id: @inspection_schedule)
+      .order_by_target_yearmonth
     @marker = @inspection_schedule.result.try(:setup_marker)
   end
 
@@ -65,7 +69,7 @@ class InspectionSchedulesController < ApplicationController
         @inspection_result = @inspection_schedule.result
       end
     else # ここには来ない筈。万一の場合のために menu に戻ってメッセージを出すようにしておく。
-      redirect_to root_path, notice: t("controllers.system_errors.can_not_start_inspection")
+      redirect_to root_path, notice: t('controllers.system_errors.can_not_start_inspection')
     end
   end
 
@@ -106,7 +110,7 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save
-        format.html { redirect_to @inspection_schedule, notice: "InspectionSchedule was successfully created." }
+        format.html { redirect_to @inspection_schedule, notice: 'InspectionSchedule was successfully created.' }
         format.json { render :show, status: :created, location: @inspection_schedule }
       else
         format.html { render :new }
@@ -120,7 +124,7 @@ class InspectionSchedulesController < ApplicationController
   def update
     respond_to do |format|
       if @inspection_schedule.update(inspection_schedule_savable_params)
-        format.html { redirect_to @inspection_schedule, notice: "InspectionSchedule was successfully updated." }
+        format.html { redirect_to @inspection_schedule, notice: 'InspectionSchedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @inspection_schedule }
       else
         format.html { render :edit }
@@ -134,7 +138,7 @@ class InspectionSchedulesController < ApplicationController
   def destroy
     @inspection_schedule.destroy
     respond_to do |format|
-      format.html { redirect_to inspection_schedules_url, notice: "InspectionSchedule was successfully destroyed." }
+      format.html { redirect_to inspection_schedules_url, notice: 'InspectionSchedule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -142,7 +146,7 @@ class InspectionSchedulesController < ApplicationController
   # 点検予定の生成(YES拠点の指定年月)
   def make_branch_yyyymm
     InspectionSchedule.make_branch_yyyym(current_user.company_id, params[:when][:year], params[:when][:month], current_date)
-    redirect_to root_path, notice: t("controllers.inspection_schedules.make_branch_yyyymm")
+    redirect_to root_path, notice: t('controllers.inspection_schedules.make_branch_yyyymm')
   end
 
   # 承認の登録
@@ -154,7 +158,7 @@ class InspectionSchedulesController < ApplicationController
 
     respond_to do |format|
       if @inspection_schedule.save && @approval.save
-        format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully approved." }
+        format.html { redirect_to inspection_schedule_url, notice: 'InspectionSchedule was successfully approved.' }
         format.json { head :no_content }
       else
         format.html { render :done_inspection }
@@ -165,15 +169,14 @@ class InspectionSchedulesController < ApplicationController
 
   # 完了の登録
   def complete_inspection
-
     @inspection_schedule.close_inspection
 
     respond_to do |format|
       if @inspection_schedule.save
         @inspection_schedule.create_next_inspection_schedule(
-          DateTime.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
-        )  # 次回の点検予定を作成する
-        format.html { redirect_to inspection_schedule_url, notice: "InspectionSchedule was successfully closed." }
+          DateTime.zone.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
+        ) # 次回の点検予定を作成する
+        format.html { redirect_to inspection_schedule_url, notice: 'InspectionSchedule was successfully closed.' }
         format.json { head :no_content }
       else
         format.html { render :done_inspection }
@@ -219,10 +222,14 @@ class InspectionSchedulesController < ApplicationController
 
   def inspection_schedule_savable_params
     target_param = params[:inspection_schedule][:target_yearmonth]
-    params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月") if target_param.present?
-    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime ).each do |attribute|
-      target_param = params[:inspection_schedule][attribute]
-      params[:inspection_schedule][attribute] = DateTime.strptime(target_param, "%Y年%m月%d日 %H時")  if target_param.present?
+    if target_param.present?
+      params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月").in_time_zone
+    end
+
+    %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime).each do |attribute|
+      next unless params[:inspection_schedule][attribute].present?
+      target_param = params[:inspection_schedule][attribute].sub(/午前/, 'AM').sub(/午後/, 'PM')
+      params[:inspection_schedule][attribute] = DateTime.strptime(target_param + '+09:00', "%Y年%m月%d日 %p %l時%z")
     end
     inspection_schedule_params
   end
@@ -243,5 +250,7 @@ class InspectionSchedulesController < ApplicationController
     if current_user.service_employee?
       return @search.result.with_service_companies(current_user.company)
     end
+
+    @search.result.order_by_target_yearmonth
   end
 end

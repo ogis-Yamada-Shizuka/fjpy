@@ -4,7 +4,7 @@ class InfomsgsController < ApplicationController
   # GET /infomsgs
   # GET /infomsgs.json
   def index
-    @infomsgs = Infomsg.all.order("effective_date DESC")
+    @infomsgs = Infomsg.all.order('effective_date DESC')
   end
 
   # GET /infomsgs/1
@@ -28,7 +28,7 @@ class InfomsgsController < ApplicationController
 
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.save
-        format.html { redirect_to @infomsg, notice: "Infomsg was successfully created." }
+        format.html { redirect_to @infomsg, notice: 'Infomsg was successfully created.' }
         format.json { render :show, status: :created, location: @infomsg }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class InfomsgsController < ApplicationController
 
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.update(infomsg_params)
-        format.html { redirect_to @infomsg, notice: "Infomsg was successfully updated." }
+        format.html { redirect_to @infomsg, notice: 'Infomsg was successfully updated.' }
         format.json { render :show, status: :ok, location: @infomsg }
       else
         format.html { render :edit }
@@ -58,16 +58,16 @@ class InfomsgsController < ApplicationController
   def destroy
     @infomsg.destroy
     respond_to do |format|
-      format.html { redirect_to infomsgs_url, notice: "Infomsg was successfully destroyed." }
+      format.html { redirect_to infomsgs_url, notice: 'Infomsg was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  def deleteByAdmin
+  def delete_by_admin
     @infomsg = Infomsg.find(params[:id][:trg])
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.destroy
-        format.html { redirect_to infomsgs_url, notice: "Infomsg was successfully destroyed." }
+        format.html { redirect_to infomsgs_url, notice: 'Infomsg was successfully destroyed.' }
         format.json { head :no_content }
       else
         format.html { render :show }

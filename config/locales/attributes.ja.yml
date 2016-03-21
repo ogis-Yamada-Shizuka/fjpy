@@ -60,6 +60,9 @@ ja:
       system_model:
         name: 名称
         inspection_cycle_month: 点検周期[月]
+      place:
+        name: 名称
+        address: 住所
       infomsg:
         effective_date: 発効日
         title: タイトル

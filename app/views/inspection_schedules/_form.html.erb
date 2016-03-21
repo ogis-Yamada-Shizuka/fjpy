@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :target_yearmonth %><br>
     <%= month_field(f, :target_yearmonth) %>
-  </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :equipment_id %><br>
@@ -31,30 +31,30 @@
     <%= f.collection_select(:schedule_status_id, ScheduleStatus.all, :id, :name) %>
   </div>
 
-  <div class="field datetimepicker-position" >
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime1 %><br>
     <%= datetime_field(f, :candidate_datetime1) %>
-  </div>
+  <% end %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime2 %><br>
     <%= datetime_field(f, :candidate_datetime2) %>
-  </div>
+  <% end %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime3 %><br>
     <%= datetime_field(f, :candidate_datetime3) %>
-  </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :candidate_datetime_memo %><br>
     <%= f.text_area :candidate_datetime_memo %>
   </div>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :confirm_datetime %><br>
     <%= datetime_field(f, :confirm_datetime) %>
-  </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :confirm_datetime_memo %><br>
