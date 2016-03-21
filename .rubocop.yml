@@ -4,7 +4,7 @@ AllCops:
     - bin/**/*
     - db/schema.rb
     - db/migrate/*.rb
-    - db/seeds.rb
+    - db/seeds/*.rb
     - config/**/*
 
 Rails:
