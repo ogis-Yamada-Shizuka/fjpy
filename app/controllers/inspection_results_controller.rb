@@ -35,7 +35,7 @@ class InspectionResultsController < ApplicationController
 
     respond_to do |format|
       if @inspection_result.save && inspection.save
-        format.html { redirect_to @inspection_result, notice: "InspectionResult was successfully created." }
+        format.html { redirect_to @inspection_result, notice: 'InspectionResult was successfully created.' }
         format.json { render :show, status: :created, location: @inspection_result }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class InspectionResultsController < ApplicationController
   def update
     respond_to do |format|
       if @inspection_result.update(inspection_result_params)
-        format.html { redirect_to @inspection_result, notice: "InspectionResult was successfully updated." }
+        format.html { redirect_to @inspection_result, notice: 'InspectionResult was successfully updated.' }
         format.json { render :show, status: :ok, location: @inspection_result }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class InspectionResultsController < ApplicationController
   def destroy
     @inspection_result.destroy
     respond_to do |format|
-      format.html { redirect_to inspection_results_url, notice: "InspectionResult was successfully destroyed." }
+      format.html { redirect_to inspection_results_url, notice: 'InspectionResult was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

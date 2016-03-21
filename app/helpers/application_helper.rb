@@ -1,7 +1,5 @@
 module ApplicationHelper
-  def admin?
-    current_user.admin?
-  end
+  delegate :admin?, to: :current_user
 
   def show_attribute(title, value)
     "<p><strong>#{title}: </strong>#{value}</p>".html_safe

@@ -7,21 +7,19 @@ class EquipmentController < ApplicationController
     respond_to do |format|
       format.html do
         # YES本社：全件
-        if current_user.head_employee?
-          @equipment = Equipment.all
-        end
+        @equipment = Equipment.all if current_user.head_employee?
         # YES拠点：自拠点が管轄しているもののみ
         if current_user.branch_employee?
-           @equipment = Equipment.where(branch_id: current_user.company_id)
+          @equipment = Equipment.where(branch_id: current_user.company_id)
         end
         # サービス会社の場合：デフォルトの担当として割り当てられているもののみ
         if current_user.service_employee?
-           @equipment = Equipment.where(service_id: current_user.company_id)
+          @equipment = Equipment.where(service_id: current_user.company_id)
         end
       end
       format.csv do
         @equipment = Equipment.all
-        send_data render_to_string, type: "text/csv; charset=shift_jis"
+        send_data render_to_string, type: 'text/csv; charset=shift_jis'
       end
     end
   end
@@ -49,7 +47,7 @@ class EquipmentController < ApplicationController
 
     respond_to do |format|
       if @equipment.save
-        format.html { redirect_to @equipment, notice: "Equipment was successfully created." }
+        format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
         format.json { render :show, status: :created, location: @equipment }
       else
         format.html { render :new }
@@ -63,7 +61,7 @@ class EquipmentController < ApplicationController
   def update
     respond_to do |format|
       if @equipment.update(equipment_params)
-        format.html { redirect_to @equipment, notice: "Equipment was successfully updated." }
+        format.html { redirect_to @equipment, notice: 'Equipment was successfully updated.' }
         format.json { render :show, status: :ok, location: @equipment }
       else
         format.html { render :edit }
@@ -77,14 +75,14 @@ class EquipmentController < ApplicationController
   def destroy
     @equipment.destroy
     respond_to do |format|
-      format.html { redirect_to equipment_index_url, notice: "Equipment was successfully destroyed." }
+      format.html { redirect_to equipment_index_url, notice: 'Equipment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def import
     Equipment.import(params[:file])
-    redirect_to equipment_index_url, notice: "Equipment imported."
+    redirect_to equipment_index_url, notice: 'Equipment imported.'
   end
 
   def placed_equipment

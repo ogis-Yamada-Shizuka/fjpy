@@ -23,7 +23,7 @@ class InspectionSchedule < ActiveRecord::Base
   # InspectionSchedule上に、1年前以前の情報しかないequipment_idの一覧を取得。
   # TODO: 点検周期を過ぎた情報にする equipment_id にする必要があるはず。
   def self.old_inspection_equipment_list
-    InspectionSchedule.select("equipment_id, max(target_yearmonth) ")
+    InspectionSchedule.select('equipment_id, max(target_yearmonth) ')
                       .old_inspection_equipments(Time.zone.now.prev_year)
                       .pluck(:equipment_id)
   end
@@ -66,7 +66,7 @@ class InspectionSchedule < ActiveRecord::Base
 
   # 候補日時回答して良いかどうか
   def can_answer_date?(user = nil)
-    return false unless (user.try(:branch_employee?) || user.try(:service_employee?))
+    return false unless user.try(:branch_employee?) || user.try(:service_employee?)
     schedule_status_id == ScheduleStatus.of_requested
   end
 
@@ -79,12 +79,12 @@ class InspectionSchedule < ActiveRecord::Base
   # 点検開始して良いかどうか
   def can_inspection?(user = nil)
     return false unless user.try(:service_employee?)
-    (schedule_status_id == ScheduleStatus.of_in_progress && result.blank?) or
-    schedule_status_id == ScheduleStatus.of_dates_confirmed
+    (schedule_status_id == ScheduleStatus.of_in_progress && result.blank?) ||
+      schedule_status_id == ScheduleStatus.of_dates_confirmed
   end
 
   # 点検中(doing)かどうか
-  def doing?(user = nil)
+  def doing?(_user = nil)
     schedule_status_id == ScheduleStatus.of_in_progress
   end
 
@@ -101,13 +101,11 @@ class InspectionSchedule < ActiveRecord::Base
   end
 
   # 完了している状態かどうか
-  def close?(user = nil)
+  def close?(_user = nil)
     schedule_status_id == ScheduleStatus.of_completed
   end
 
-  def place
-    equipment.place
-  end
+  delegate :place, to: :equipment
 
   # TODO: result_name 誰も使っていないなら消す
   def result_name

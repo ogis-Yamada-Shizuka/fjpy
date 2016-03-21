@@ -28,7 +28,7 @@ class ApprovalsController < ApplicationController
 
     respond_to do |format|
       if @approval.save
-        format.html { redirect_to @approval, notice: "Approval was successfully created." }
+        format.html { redirect_to @approval, notice: 'Approval was successfully created.' }
         format.json { render :show, status: :created, location: @approval }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ApprovalsController < ApplicationController
   def update
     respond_to do |format|
       if @approval.update(approval_params)
-        format.html { redirect_to @approval, notice: "Approval was successfully updated." }
+        format.html { redirect_to @approval, notice: 'Approval was successfully updated.' }
         format.json { render :show, status: :ok, location: @approval }
       else
         format.html { render :edit }
@@ -56,13 +56,13 @@ class ApprovalsController < ApplicationController
   def destroy
     @approval.destroy
     respond_to do |format|
-      format.html { redirect_to approvals_url, notice: "Approval was successfully destroyed." }
+      format.html { redirect_to approvals_url, notice: 'Approval was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def signature
-    send_data(@approval.signature, type: "image/png, disposition: :inline")
+    send_data(@approval.signature, type: 'image/png, disposition: :inline')
   end
 
   private

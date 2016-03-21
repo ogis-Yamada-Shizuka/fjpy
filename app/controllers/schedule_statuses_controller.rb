@@ -37,11 +37,12 @@ class ScheduleStatusesController < ApplicationController
   end
 
   private
-    def set_schedule_status
-      @schedule_status = ScheduleStatus.find(params[:id])
-    end
 
-    def schedule_status_params
-      params.require(:schedule_status).permit(:name)
-    end
+  def set_schedule_status
+    @schedule_status = ScheduleStatus.find(params[:id])
+  end
+
+  def schedule_status_params
+    params.require(:schedule_status).permit(:name)
+  end
 end

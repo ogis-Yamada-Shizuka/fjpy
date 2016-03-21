@@ -28,7 +28,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       if @measurement.save
-        format.html { redirect_to @measurement, notice: "Measurement was successfully created." }
+        format.html { redirect_to @measurement, notice: 'Measurement was successfully created.' }
         format.json { render :show, status: :created, location: @measurement }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MeasurementsController < ApplicationController
   def update
     respond_to do |format|
       if @measurement.update(measurement_params)
-        format.html { redirect_to @measurement, notice: "Measurement was successfully updated." }
+        format.html { redirect_to @measurement, notice: 'Measurement was successfully updated.' }
         format.json { render :show, status: :ok, location: @measurement }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MeasurementsController < ApplicationController
   def destroy
     @measurement.destroy
     respond_to do |format|
-      format.html { redirect_to measurements_url, notice: "Measurement was successfully destroyed." }
+      format.html { redirect_to measurements_url, notice: 'Measurement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
