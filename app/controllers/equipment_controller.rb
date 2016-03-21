@@ -7,14 +7,14 @@ class EquipmentController < ApplicationController
     respond_to do |format|
       format.html do
         # YES本社：全件
-        @equipment = Equipment.all if current_user.head_employee?
+        @equipment = Equipment.all.page(params[:page]) if current_user.head_employee?
         # YES拠点：自拠点が管轄しているもののみ
         if current_user.branch_employee?
-          @equipment = Equipment.where(branch_id: current_user.company_id)
+          @equipment = Equipment.where(branch_id: current_user.company_id).page(params[:page])
         end
         # サービス会社の場合：デフォルトの担当として割り当てられているもののみ
         if current_user.service_employee?
-          @equipment = Equipment.where(service_id: current_user.company_id)
+          @equipment = Equipment.where(service_id: current_user.company_id).page(params[:page])
         end
       end
       format.csv do
