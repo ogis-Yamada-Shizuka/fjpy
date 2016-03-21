@@ -31,6 +31,7 @@ module InspectionScheduleHelper
     f.collection_select(:service_id, Service.all, :id, :name).html_safe
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
   def action_link(inspection_schedule)
     # 点検依頼
     if inspection_schedule.can_inspection_request?(current_user)
@@ -87,6 +88,7 @@ module InspectionScheduleHelper
       ''
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/PerceivedComplexity
 
   def fa_pencil_link_to(name, path)
     link_to(path) do
@@ -122,7 +124,6 @@ module InspectionScheduleHelper
     f.text_field(
       attribute,
       class: 'form-control',
-      readonly: true,
       value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月")
     ) + glyphicon_calendar
   end
@@ -131,7 +132,6 @@ module InspectionScheduleHelper
     f.text_field(
       attribute,
       class: 'form-control',
-      readonly: true,
       value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月%d日 %p %l時")
     ) + glyphicon_calendar
   end

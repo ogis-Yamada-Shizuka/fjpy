@@ -47,7 +47,6 @@ class Equipment < ActiveRecord::Base
     end
   end
 
-  # 次回の点検予定
   def next_inspection_schedule
     inspection_schedules.not_done.order_by_target_yearmonth.first
   end
