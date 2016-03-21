@@ -10,18 +10,27 @@ AllCops:
 Rails:
   Enabled: true
 
-# Use only ascii symbols in comments.
 Style/AsciiComments:
   Enabled: false
 
-# Do not use block comments.
 Style/BlockComments:
   Enabled: false
 
-# Missing top-level class documentation comment.
 Style/Documentation:
   Enabled: false
 
 # Line is too long.
 Metrics/LineLength:
   Max: 128
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 8
