@@ -63,7 +63,7 @@ class InfomsgsController < ApplicationController
     end
   end
 
-  def deleteByAdmin
+  def delete_by_admin
     @infomsg = Infomsg.find(params[:id][:trg])
     respond_to do |format|
       if admin?(params[:check][:adminpass]) && @infomsg.destroy

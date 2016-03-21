@@ -27,11 +27,11 @@ module InspectionScheduleHelper
     if current_user.service_employee?
       return f.select(:service_id, Service.all.map { |t| [t.name, t.id] }, {}, disabled: true).html_safe
     end
+
+    f.collection_select(:service_id, Service.all, :id, :name).html_safe
   end
 
   def action_link(inspection_schedule)
-    fa_pencil = content_tag(:i, '', class: 'fa fa-pencil fa-fw')
-
     # 点検依頼
     if inspection_schedule.can_inspection_request?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.inspection_request'), inspection_request_path(inspection_schedule)
@@ -61,7 +61,10 @@ module InspectionScheduleHelper
   def correct_link(inspection_schedule)
     # 点検依頼可能時　※サービス会社ユーザーは変更不可
     if inspection_schedule.can_inspection_request?(current_user) && !current_user.service_employee?
-      fa_refresh_link_to t('views.inspection_schedule.correct_targetyearmonth'), correct_targetyearmonth_path(inspection_schedule)
+      fa_refresh_link_to(
+        t('views.inspection_schedule.correct_targetyearmonth'),
+        correct_targetyearmonth_path(inspection_schedule)
+      )
 
     # 候補日時回答可能時　※サービス会社ユーザーは変更不可
     elsif inspection_schedule.can_answer_date?(current_user) && !current_user.service_employee?

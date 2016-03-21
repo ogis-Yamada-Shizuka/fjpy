@@ -41,7 +41,7 @@ class Equipment < ActiveRecord::Base
   def self.bulk_change_inspection_cycle(target_list, new_inspection_cycle_month)
     target_list.each do |key, val|
       next unless val == '1'
-      equipment = Equipment.where(id: key).first
+      equipment = Equipment.find_by(key)
       equipment.inspection_cycle_month = new_inspection_cycle_month
       equipment.save
     end

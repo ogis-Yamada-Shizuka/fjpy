@@ -14,9 +14,7 @@ class InspectionSchedule < ActiveRecord::Base
   }
 
   scope :not_done, -> { includes(:schedule_status).where(schedule_status_id: ScheduleStatus.not_done_ids) }
-  scope :with_service_companies, ->(service_companies) {
-    includes(equipment: :place).where(service: service_companies)
-  }
+  scope :with_service_companies, ->(service_companies) { includes(equipment: :place).where(service: service_companies) }
   scope :with_place, ->(place) { joins(equipment: :place).where('equipment.place_id = ?', place.id) }
   scope :order_by_target_yearmonth, -> { order(:target_yearmonth, :id) }
 

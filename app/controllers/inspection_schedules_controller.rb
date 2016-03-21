@@ -48,7 +48,11 @@ class InspectionSchedulesController < ApplicationController
   # GET /inspection_schedules/1.json
   def show
     @same_place_inspection_schedules =
-      InspectionSchedule.with_place(@inspection_schedule.place).not_done.where.not(id: @inspection_schedule).order_by_target_yearmonth
+      InspectionSchedule
+      .with_place(@inspection_schedule.place)
+      .not_done
+      .where.not(id: @inspection_schedule)
+      .order_by_target_yearmonth
     @marker = @inspection_schedule.result.try(:setup_marker)
   end
 
@@ -170,7 +174,7 @@ class InspectionSchedulesController < ApplicationController
     respond_to do |format|
       if @inspection_schedule.save
         @inspection_schedule.create_next_inspection_schedule(
-          DateTime.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
+          DateTime.zone.new(params[:when][:year].to_i, params[:when][:month].to_i, 1)
         ) # 次回の点検予定を作成する
         format.html { redirect_to inspection_schedule_url, notice: 'InspectionSchedule was successfully closed.' }
         format.json { head :no_content }
@@ -218,7 +222,9 @@ class InspectionSchedulesController < ApplicationController
 
   def inspection_schedule_savable_params
     target_param = params[:inspection_schedule][:target_yearmonth]
-    params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月").in_time_zone if target_param.present?
+    if target_param.present?
+      params[:inspection_schedule][:target_yearmonth] = Date.strptime(target_param, "%Y年%m月").in_time_zone
+    end
 
     %i(candidate_datetime1 candidate_datetime2 candidate_datetime3 confirm_datetime).each do |attribute|
       next unless params[:inspection_schedule][attribute].present?
@@ -244,5 +250,7 @@ class InspectionSchedulesController < ApplicationController
     if current_user.service_employee?
       return @search.result.with_service_companies(current_user.company)
     end
+
+    @search.result.order_by_target_yearmonth
   end
 end
