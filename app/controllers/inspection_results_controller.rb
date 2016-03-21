@@ -1,13 +1,6 @@
 class InspectionResultsController < ApplicationController
   before_action :set_inspection_result, only: [:show, :edit, :update, :destroy]
 
-  # GET /inspection_results
-  # GET /inspection_results.json
-  def index
-    # TODO: ここやることないので except していいかも。
-    @inspection_result = InspectionResult.first
-  end
-
   # GET /inspection_results/1
   # GET /inspection_results/1.json
   def show
