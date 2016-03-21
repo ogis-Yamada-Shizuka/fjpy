@@ -1,7 +1,6 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import 'bootstrap-datepicker';
-@import "bootstrap-datetimepicker";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -89,6 +88,6 @@ p{
   }
 }
 
-.datetimepicker-position{
-    position: relative;
+.form-control[readonly] {
+  background-color: #ffffff;
 }

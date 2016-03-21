@@ -105,41 +105,43 @@ module InspectionScheduleHelper
   end
 
   def month_field(f, attribute)
-    (text_field_for_date(f, attribute, month_or_date: :month) + clear_link(attribute)).html_safe
-  end
-
-  def date_field(f, attribute)
-    (text_field_for_date(f, attribute) + clear_link(attribute)).html_safe
+    content_tag(:div, id: :datetimepicker, class: 'input-group month') do
+      text_field_for_month(f, attribute)
+    end.html_safe
   end
 
   def datetime_field(f, attribute)
-    (text_field_for_date(f, attribute, month_or_date: :datetime , pick: :datetimepicker ) + clear_link(attribute)).html_safe
+    content_tag(:div, id: :datetimepicker, class: 'input-group datetime') do
+      text_field_for_datetime(f, attribute)
+    end.html_safe
   end
 
-  def text_field_for_date(f, attribute, month_or_date: 'date', pick: 'datepicker')
+  def text_field_for_month(f, attribute)
     f.text_field(
       attribute,
-      class: "#{month_or_date} #{pick}",
+      class: 'form-control',
       readonly: true,
-      value: send("#{month_or_date}_value", @inspection_schedule.send(attribute)),
-      size: 24
-    )
+      value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月")
+    ) + glyphicon_calendar
+  end
+
+  def text_field_for_datetime(f, attribute)
+    f.text_field(
+      attribute,
+      class: 'form-control',
+      readonly: true,
+      value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月%d日 %p %l時")
+    ) + glyphicon_calendar
+  end
+
+  def glyphicon_calendar
+    content_tag(:span, class: 'input-group-addon') do
+      content_tag(:span, '', class: 'glyphicon glyphicon-calendar')
+    end
   end
 
   def clear_link(attribute)
     link_to('クリア', {}, onclick: "$('#inspection_schedule_#{attribute}').val('')", remote: true)
-  end
-
-  def month_value(date)
-    date.strftime("%Y年%m月") if date.present?
-  end
-
-  def date_value(date)
-    date.strftime("%Y年%m月%d日") if date.present?
-  end
-
-  def datetime_value(date)
-    date.strftime("%Y年%m月%d日 %HH時") if date.present?
   end
 
   # 担当

@@ -1,19 +1,11 @@
 $(document).ready(function(){
-  $(".date.datepicker").datepicker({
-    format: 'yyyy年mm月dd日',
-    language: 'ja'
-  });
-
-  $(".month.datepicker").datepicker({
-    format: 'yyyy年mm月',
-    language: 'ja',
-    minViewMode : 'months'
-  });
-
-  $(".datetime.datetimepicker").datetimepicker({
-    locale: 'ja',
+  $("#datetimepicker .month").datetimepicker({
     ignoreReadonly: true,
-    format: 'YYYY年MM月DD日 hh時',
-    dayViewHeaderFormat: 'YYYY年 MM月'
+    format: 'YYYY年MM月'
+  });
+
+  $("#datetimepicker .datetime").datetimepicker({
+    ignoreReadonly: true,
+    format: 'YYYY年MM月DD日 A hh時'
   });
 });

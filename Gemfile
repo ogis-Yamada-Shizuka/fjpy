@@ -61,7 +61,6 @@ gem "carrierwave"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bootstrap-sass", "~> 3.2.0"
-gem "bootstrap-datepicker-rails"
 gem "bootstrap3-datetimepicker-rails"
 gem "momentjs-rails"
 gem "font-awesome-sass"

@@ -32,8 +32,6 @@ GEM
     bcrypt (3.1.10)
     bcrypt (3.1.10-x64-mingw32)
     bcrypt (3.1.10-x86-mingw32)
-    bootstrap-datepicker-rails (1.5.0)
-      railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     bootstrap3-datetimepicker-rails (4.17.37)
@@ -204,7 +202,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
   bootstrap3-datetimepicker-rails
   carrierwave
