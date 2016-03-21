@@ -25,6 +25,3 @@ Style/Documentation:
 # Line is too long.
 Metrics/LineLength:
   Max: 128
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
