@@ -23,20 +23,20 @@
   <%= show_target_yearmonth %>
   <%= show_service %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime1 %><br>
     <%= datetime_field(f, :candidate_datetime1) %>
-  </div>
+  <% end %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime2 %><br>
     <%= datetime_field(f, :candidate_datetime2) %>
-  </div>
+  <% end %>
 
-  <div class="field datetimepicker-position">
+  <%= datetimepicker_wrapper do %>
     <%= f.label :candidate_datetime3 %><br>
     <%= datetime_field(f, :candidate_datetime3) %>
-  </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :candidate_datetime_memo %><br>

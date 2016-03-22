@@ -2,12 +2,12 @@ module InspectionScheduleHelper
   # 見出し
   def render_index_title
     case params[:action]
-      when 'need_request' then t('views.inspection_schedule.need_request_index')
-      when 'requested_soon' then t('views.inspection_schedule.requested_soon_index')
-      when 'date_answered' then t('views.inspection_schedule.answered_index')
-      when 'target' then t('views.inspection_schedule.targets_index')
-      when 'done' then t('views.inspection_schedule.done_index')
-      else t('views.inspection_schedule.index')
+    when 'need_request' then t('views.inspection_schedule.need_request_index')
+    when 'requested_soon' then t('views.inspection_schedule.requested_soon_index')
+    when 'date_answered' then t('views.inspection_schedule.answered_index')
+    when 'target' then t('views.inspection_schedule.targets_index')
+    when 'done' then t('views.inspection_schedule.done_index')
+    else t('views.inspection_schedule.index')
     end
   end
 
@@ -27,11 +27,12 @@ module InspectionScheduleHelper
     if current_user.service_employee?
       return f.select(:service_id, Service.all.map { |t| [t.name, t.id] }, {}, disabled: true).html_safe
     end
+
+    f.collection_select(:service_id, Service.all, :id, :name).html_safe
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
   def action_link(inspection_schedule)
-    fa_pencil = content_tag(:i, '', class: "fa fa-pencil fa-fw")
-
     # 点検依頼
     if inspection_schedule.can_inspection_request?(current_user)
       fa_pencil_link_to t('views.inspection_schedule.inspection_request'), inspection_request_path(inspection_schedule)
@@ -59,10 +60,12 @@ module InspectionScheduleHelper
   end
 
   def correct_link(inspection_schedule)
-
     # 点検依頼可能時　※サービス会社ユーザーは変更不可
     if inspection_schedule.can_inspection_request?(current_user) && !current_user.service_employee?
-      fa_refresh_link_to t('views.inspection_schedule.correct_targetyearmonth'), correct_targetyearmonth_path(inspection_schedule)
+      fa_refresh_link_to(
+        t('views.inspection_schedule.correct_targetyearmonth'),
+        correct_targetyearmonth_path(inspection_schedule)
+      )
 
     # 候補日時回答可能時　※サービス会社ユーザーは変更不可
     elsif inspection_schedule.can_answer_date?(current_user) && !current_user.service_employee?
@@ -85,138 +88,140 @@ module InspectionScheduleHelper
       ''
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/PerceivedComplexity
 
   def fa_pencil_link_to(name, path)
     link_to(path) do
-      content_tag(:i, '', class: "fa fa-pencil fa-fw") + name
+      content_tag(:i, '', class: 'fa fa-pencil fa-fw') + name
     end
   end
 
   def fa_newspaper_link_to(name, path)
     link_to(path) do
-      content_tag(:i, '', class: "fa fa-newspaper-o fa-fw") + name
+      content_tag(:i, '', class: 'fa fa-newspaper-o fa-fw') + name
     end
   end
 
   def fa_refresh_link_to(name, path)
     link_to(path) do
-      content_tag(:i, '', class: "fa fa-refresh fa-fw") + name
+      content_tag(:i, '', class: 'fa fa-refresh fa-fw') + name
     end
   end
 
   def month_field(f, attribute)
-    (text_field_for_date(f, attribute, month_or_date: :month) + clear_link(attribute)).html_safe
-  end
-
-  def date_field(f, attribute)
-    (text_field_for_date(f, attribute) + clear_link(attribute)).html_safe
+    content_tag(:div, id: :datetimepicker, class: 'input-group month') do
+      text_field_for_month(f, attribute)
+    end.html_safe
   end
 
   def datetime_field(f, attribute)
-    (text_field_for_date(f, attribute, month_or_date: :datetime , pick: :datetimepicker ) + clear_link(attribute)).html_safe
+    content_tag(:div, id: :datetimepicker, class: 'input-group datetime') do
+      text_field_for_datetime(f, attribute)
+    end.html_safe
   end
 
-  def text_field_for_date(f, attribute, month_or_date: 'date', pick: 'datepicker')
+  def text_field_for_month(f, attribute)
     f.text_field(
       attribute,
-      class: "#{month_or_date} #{pick}",
-      readonly: true,
-      value: send("#{month_or_date}_value", @inspection_schedule.send(attribute))
-    )
+      class: 'form-control',
+      value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月")
+    ) + glyphicon_calendar
+  end
+
+  def text_field_for_datetime(f, attribute)
+    f.text_field(
+      attribute,
+      class: 'form-control',
+      value: @inspection_schedule.send(attribute).try(:strftime, "%Y年%m月%d日 %p %l時")
+    ) + glyphicon_calendar
+  end
+
+  def glyphicon_calendar
+    content_tag(:span, class: 'input-group-addon') do
+      content_tag(:span, '', class: 'glyphicon glyphicon-calendar')
+    end
   end
 
   def clear_link(attribute)
     link_to('クリア', {}, onclick: "$('#inspection_schedule_#{attribute}').val('')", remote: true)
   end
 
-  def month_value(date)
-    date.strftime("%Y年%m月") if date.present?
-  end
-
-  def date_value(date)
-    date.strftime("%Y年%m月%d日") if date.present?
-  end
-
-  def datetime_value(date)
-    date.strftime("%Y年%m月%d日 %HH時") if date.present?
-  end
-
   # 担当
   def show_yes_branch_staff?
     permit_action?(%i(index requested_soon date_answered target done)) &&
-    permit_company?(%i(branch))
+      permit_company?(%i(branch))
   end
 
   # 予定年月
   def show_target_yearmonth?
     permit_action?(%i(index need_request requested_soon date_answered)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 点検予定日時(作業確定日時)
   def show_confirm_datetime?
     permit_action?(%i(index target done)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 型式
   def show_system_model?
     permit_action?(%i(index need_request requested_soon date_answered target done)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # シリアルNo.
   def show_serial_number?
     permit_action?(%i(index need_request requested_soon date_answered target done)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 設置場所
   def show_place?
     permit_action?(%i(index need_request requested_soon date_answered target done)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 担当サービス会社
   def show_service?
     permit_action?(%i(index requested_soon date_answered target done)) &&
-    permit_company?(%i(head branch))
+      permit_company?(%i(head branch))
   end
 
   # 候補日時1から3
   def show_candidate_datetime?
     permit_action?(%i(date_answered)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # アポ担当者(YES拠点)
   def show_author?
     permit_action?(%i(target)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # アポ担当者(顧客)
   def show_customer?
     permit_action?(%i(target)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 進捗状況
   def show_schedule_status?
     permit_action?(%i(index)) &&
-    permit_company?(%i(head branch service))
+      permit_company?(%i(head branch service))
   end
 
   # 進捗させる系
   def show_action?
     case params[:action].to_sym
-      when :index then false
-      when :need_request then true
-      when :requested_soon then true
-      when :date_answered then true
-      when :target then current_user.branch_employee? ? false : true
-      when :done then true
-      else false
+    when :index then false
+    when :need_request then true
+    when :requested_soon then true
+    when :date_answered then true
+    when :target then current_user.branch_employee? ? false : true
+    when :done then true
+    else false
     end
   end
 
@@ -275,18 +280,21 @@ module InspectionScheduleHelper
       l(@inspection_schedule.candidate_datetime1, format: :candidate_long)
     )
   end
+
   def show_candidate_datetime2
     show_attribute(
       t('activerecord.attributes.inspection_schedule.candidate_datetime2'),
       l(@inspection_schedule.candidate_datetime2, format: :candidate_long)
     )
   end
+
   def show_candidate_datetime3
     show_attribute(
       t('activerecord.attributes.inspection_schedule.candidate_datetime3'),
       l(@inspection_schedule.candidate_datetime3, format: :candidate_long)
     )
   end
+
   def show_candidate_datetime_memo
     show_attribute(
       t('activerecord.attributes.inspection_schedule.candidate_datetime_memo'),
@@ -301,18 +309,21 @@ module InspectionScheduleHelper
       l(@inspection_schedule.confirm_datetime, format: :confirm_long)
     )
   end
+
   def show_confirm_datetime_memo
     show_attribute(
       t('activerecord.attributes.inspection_schedule.confirm_datetime_memo'),
       @inspection_schedule.confirm_datetime_memo
     )
   end
+
   def show_author
     show_attribute(
       t('activerecord.attributes.inspection_schedule.author'),
       @inspection_schedule.author
     )
   end
+
   def show_customer
     show_attribute(
       t('activerecord.attributes.inspection_schedule.customer'),
@@ -330,11 +341,10 @@ module InspectionScheduleHelper
 
   # 一覧上の[担当]マーク
   def yes_branch_staff_mark(inspection_schedule)
-    if( inspection_schedule.user.present?  && inspection_schedule.user.id == current_user.id)
+    if inspection_schedule.user.present? && inspection_schedule.user.id == current_user.id
       return t('views.inspection_schedule.yes_branch_staff_mark')
     else
       return ''
     end
   end
-
 end

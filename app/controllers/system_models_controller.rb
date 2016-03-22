@@ -28,7 +28,7 @@ class SystemModelsController < ApplicationController
 
     respond_to do |format|
       if @system_model.save
-        format.html { redirect_to @system_model, notice: "SystemModel was successfully created." }
+        format.html { redirect_to @system_model, notice: 'SystemModel was successfully created.' }
         format.json { render :show, status: :created, location: @system_model }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SystemModelsController < ApplicationController
   def update
     respond_to do |format|
       if @system_model.update(system_model_params)
-        format.html { redirect_to @system_model, notice: "SystemModel was successfully updated." }
+        format.html { redirect_to @system_model, notice: 'SystemModel was successfully updated.' }
         format.json { render :show, status: :ok, location: @system_model }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class SystemModelsController < ApplicationController
   def destroy
     @system_model.destroy
     respond_to do |format|
-      format.html { redirect_to system_models_url, notice: "SystemModel was successfully destroyed." }
+      format.html { redirect_to system_models_url, notice: 'SystemModel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
