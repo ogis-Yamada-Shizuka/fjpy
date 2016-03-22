@@ -23,7 +23,7 @@
       <%= content_tag :th, t('activerecord.attributes.inspection_schedule.schedule_status_id') if show_schedule_status? %>
       <%= content_tag :th if show_action? %>
       <th></th>
-      <th></th>
+      <% if index_all? %><th></th><% end %>
       <%= content_tag :th if show_edit? %>
     </tr>
   </thead>
@@ -48,7 +48,7 @@
         <%= content_tag :td, inspection_schedule.status.name if show_schedule_status? %>
         <%= content_tag :td, action_link(inspection_schedule) if show_action? %>
         <%= content_tag :td, fa_newspaper_link_to( t('views.link_to.show'), inspection_schedule_path(inspection_schedule)) %>
-        <%= content_tag :td, correct_link(inspection_schedule) %>
+        <%= content_tag :td, correct_link(inspection_schedule) if index_all?%>
         <%= content_tag :td, fa_refresh_link_to( t('views.link_to.edit'), edit_inspection_schedule_path(inspection_schedule) ) if show_edit? %>
       </tr>
     <% end %>

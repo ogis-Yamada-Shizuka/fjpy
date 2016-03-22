@@ -347,4 +347,9 @@ module InspectionScheduleHelper
       return ''
     end
   end
+
+  def index_all?
+    if params[:action].to_sym == :index then true else false end
+  end
+
 end
