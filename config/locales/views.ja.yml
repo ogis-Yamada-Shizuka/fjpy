@@ -35,9 +35,13 @@ ja:
       show: 点検予定の確認
       correct_targetyearmonth: 予定年月訂正
       inspection_request: 点検依頼
+      correct_inspection_request: 点検依頼訂正
       answer_date: 候補日時回答
+      correct_answer_date: 候補日時訂正
       confirm_date: 出張依頼
+      correct_confirm_date: 出張依頼訂正
       do_inspecrion: 点検報告作成
+      correct_inspecrion_report: 点検報告訂正
       done_inspection: サイン
       close_inspecrion: 承認
       next_inspection_yearmonth: 次回点検年月

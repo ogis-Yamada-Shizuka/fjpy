@@ -58,7 +58,8 @@ class InspectionSchedulesController < ApplicationController
 
   # GET /inspection_schedules/1/do_inspection
   def do_inspection
-    if @inspection_schedule.can_inspection?(current_user) # 点検開始して良い状態か？
+    if @inspection_schedule.can_inspection?(current_user) or # 点検開始して良い状態か？
+       @inspection_schedule.doing?(current_user) # 点検中か？
       if @inspection_schedule.result.nil? # 初回か？ → 初回なら点検実績を新規作成
         @inspection_result = InspectionResult.new(inspection_schedule: @inspection_schedule)
         @inspection_result.user = current_user

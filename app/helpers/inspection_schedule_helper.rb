@@ -69,19 +69,19 @@ module InspectionScheduleHelper
 
     # 候補日時回答可能時　※サービス会社ユーザーは変更不可
     elsif inspection_schedule.can_answer_date?(current_user) && !current_user.service_employee?
-      fa_refresh_link_to t('views.inspection_schedule.inspection_request'), inspection_request_path(inspection_schedule)
+      fa_refresh_link_to t('views.inspection_schedule.correct_inspection_request'), inspection_request_path(inspection_schedule)
 
     # 日程確定可能時
     elsif inspection_schedule.can_confirm_date?(current_user)
-      fa_refresh_link_to t('views.inspection_schedule.answer_date'), answer_date_path(inspection_schedule)
+      fa_refresh_link_to t('views.inspection_schedule.correct_answer_date'), answer_date_path(inspection_schedule)
 
     # 点検実施可能時(日程確定済の場合)
     elsif inspection_schedule.schedule_status_id == ScheduleStatus.of_dates_confirmed && !current_user.service_employee?
-      fa_refresh_link_to t('views.inspection_schedule.confirm_date'), confirm_date_path(inspection_schedule)
+      fa_refresh_link_to t('views.inspection_schedule.correct_confirm_date'), confirm_date_path(inspection_schedule)
 
     # サイン可能時
     elsif inspection_schedule.can_approval?(current_user)
-      fa_refresh_link_to t('views.inspection_schedule.do_inspecrion'), do_inspection_path(inspection_schedule)
+      fa_refresh_link_to t('views.inspection_schedule.correct_inspecrion_report'), do_inspection_path(inspection_schedule)
 
     # 承認可能時　※変更不可
     elsif inspection_schedule.can_close_inspection?(current_user)
@@ -347,4 +347,9 @@ module InspectionScheduleHelper
       return ''
     end
   end
+
+  def index_all?
+    if params[:action].to_sym == :index then true else false end
+  end
+
 end
