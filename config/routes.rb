@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root to: 'menu#show'
 
+  devise_for :users
   resources :users do
     collection { post :import }  # for CSV Upload
   end
-  devise_for :users
 
   resources :topics
 
