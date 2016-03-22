@@ -51,6 +51,13 @@ module EquipmentHelper
     )
   end
 
+  def show_serial_number_link(equipment)
+    show_attribute(
+      t('activerecord.attributes.equipment.serial_number'),
+      ( link_to equipment.serial_number, equipment_path(equipment) )
+    )
+  end
+
   def show_place(equipment = nil)
     show_attribute(
       t('activerecord.attributes.equipment.place_id'),
