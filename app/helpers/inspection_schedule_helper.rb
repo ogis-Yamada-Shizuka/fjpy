@@ -148,7 +148,7 @@ module InspectionScheduleHelper
 
   # 担当
   def show_yes_branch_staff?
-    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_action?(%i(index requested_soon date_answered target done show)) &&
       permit_company?(%i(branch))
   end
 
@@ -335,6 +335,14 @@ module InspectionScheduleHelper
   def show_yes_branch_staff
     show_attribute(
       t('activerecord.attributes.inspection_schedule.user'),
+      (@inspection_schedule.user.name if @inspection_schedule.user.present?)
+    )
+  end
+
+  # 点検依頼者
+  def show_yes_branch_staff_orderd
+    show_attribute(
+      t('views.inspection_schedule.yes_branch_staff_orderd'),
       (@inspection_schedule.user.name if @inspection_schedule.user.present?)
     )
   end
