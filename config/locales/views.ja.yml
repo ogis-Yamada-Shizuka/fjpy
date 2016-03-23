@@ -45,7 +45,7 @@ ja:
       done_inspection: サイン
       close_inspecrion: 承認
       next_inspection_yearmonth: 次回点検年月
-      schedules_by_place: "併設機の点検予定一覧"
+      schedules_by_place: 同一設置場所の点検予定一覧
       yes_branch_staff: 担当
       yes_branch_staff_mark: ＊
     equipment:
