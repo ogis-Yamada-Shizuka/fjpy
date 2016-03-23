@@ -148,7 +148,7 @@ module InspectionScheduleHelper
 
   # 担当
   def show_yes_branch_staff?
-    permit_action?(%i(index requested_soon date_answered target done)) &&
+    permit_action?(%i(index requested_soon date_answered target done show)) &&
       permit_company?(%i(branch))
   end
 
