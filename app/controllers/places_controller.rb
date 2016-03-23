@@ -6,19 +6,18 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
+        @search = Place.search(params[:q])
         # YES本社：全件
-        if current_user.head_employee?
-          @places = Place.all
-        end
+        @places = @search.result if current_user.head_employee?
         # YES拠点：自拠点が管轄しているもののみ
         if current_user.branch_employee?
-          @places= Place.where(branch_id: current_user.company_id)
+          @places = @search.result.where(branch_id: current_user.company_id)
         end
         # サービス会社：なし
       end
       format.csv do
         @places = Place.all
-        send_data render_to_string, type: "text/csv; charset=shift_jis"
+        send_data render_to_string, type: 'text/csv; charset=shift_jis'
       end
     end
   end
@@ -44,7 +43,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @place, notice: "Place was successfully created." }
+        format.html { redirect_to @place, notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else
         format.html { render :new }
@@ -58,7 +57,7 @@ class PlacesController < ApplicationController
   def update
     respond_to do |format|
       if @place.update(place_params)
-        format.html { redirect_to @place, notice: "Place was successfully updated." }
+        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
         format.json { render :show, status: :ok, location: @place }
       else
         format.html { render :edit }
@@ -72,14 +71,14 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
+      format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def import
     Place.import(params[:file])
-    redirect_to places_url, notice: "Places imported."
+    redirect_to places_url, notice: 'Places imported.'
   end
 
   private

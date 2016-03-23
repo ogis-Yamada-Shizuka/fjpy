@@ -1,5 +1,5 @@
 <% breadcrumb :inspection_schedule_edit %>
-<h1><%= t('views.inspection_schedule.answer_date') %></h1>
+<h1><%= t('views.inspection_schedule.correct_targetyearmonth') %></h1>
 
 <%= form_for(@inspection_schedule) do |f| %>
   <% if @inspection_schedule.errors.any? %>
@@ -14,33 +14,20 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :schedule_status_id, value: ScheduleStatus.of_date_answered %>
+  <%= f.hidden_field :schedule_status_id, value: @inspection_schedule.schedule_status_id %>
 
   <%= show_system_model(@inspection_schedule.equipment) %>
   <%= show_serial_number(@inspection_schedule.equipment) %>
   <%= show_place(@inspection_schedule.equipment) %>
 
-  <%= show_target_yearmonth %>
-  <%= show_service %>
-
   <%= datetimepicker_wrapper do %>
-    <%= f.label :candidate_datetime1 %><br>
-    <%= datetime_field(f, :candidate_datetime1) %>
-  <% end %>
-
-  <%= datetimepicker_wrapper do %>
-    <%= f.label :candidate_datetime2 %><br>
-    <%= datetime_field(f, :candidate_datetime2) %>
-  <% end %>
-
-  <%= datetimepicker_wrapper do %>
-    <%= f.label :candidate_datetime3 %><br>
-    <%= datetime_field(f, :candidate_datetime3) %>
+    <%= f.label :target_yearmonth %><br>
+    <%= month_field(f, :target_yearmonth) %>
   <% end %>
 
   <div class="field">
-    <%= f.label :candidate_datetime_memo %><br>
-    <%= f.text_area :candidate_datetime_memo %>
+    <%= f.label :service_id %><br>
+    <%= render_service_select(f) %>
   </div>
 
   <div class="actions">

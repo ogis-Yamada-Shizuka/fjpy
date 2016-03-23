@@ -2,25 +2,24 @@ ja:
   activerecord:
     attributes:
       inspection_schedule:
-        target_yearmonth: 年月
+        target_yearmonth: 予定年月
         candidate_datetime1: 候補日時1
         candidate_datetime2: 候補日時2
         candidate_datetime3: 候補日時3
         candidate_datetime_memo: 候補日時メモ
-        confirm_datetime: 作業確定日時
-        confirm_datetime_memo: 作業確定日時メモ
+        confirm_datetime: 確定日時
+        confirm_datetime_memo: 確定日時メモ
         author: アポ担当者(YES拠点)
         customer: アポ担当者(顧客)
         user: 点検依頼者
-        equipment_id: 対象装置システム
-        service_id: 担当サービス会社
-        schedule_status_id: 進捗状況
-        processingdate: 処理日
+        equipment_id: 対象所有機
+        service_id: 点検実施会社
+        schedule_status_id: ステータス
       inspection_result:
         user_id: 点検実績記録者
         latitude: 緯度
         longitude: 経度
-        updated_at: 最終更新日時
+        processingdate: 作業日
       check:
         inspection_result_id: 点検実績番号
         weather_id: 天候
@@ -57,11 +56,13 @@ ja:
         system_model_id: 型式
         place_id: 設置場所
         branch_id: 管轄
-        service_id: 担当サービス会社
-        last_update: 最終更新日時
+        service_id: 点検実施会社
       system_model:
         name: 名称
         inspection_cycle_month: 点検周期[月]
+      place:
+        name: 名称
+        address: 住所
       infomsg:
         effective_date: 発効日
         title: タイトル
@@ -80,4 +81,4 @@ ja:
         created_at: 登録日
         updated_at: 最終更新日
       approval:
-        signature: お客様署名(承認)
+        signature: サイン

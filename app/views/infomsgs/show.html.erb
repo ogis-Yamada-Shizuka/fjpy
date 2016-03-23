@@ -2,18 +2,17 @@
 
 <p id="notice"><%= notice %></p>
 
-  <% if @infomsg.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@infomsg.errors.count, "error") %> prohibited this infomsg from being saved:</h2>
+<% if @infomsg.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@infomsg.errors.count, "error") %> prohibited this infomsg from being saved:</h2>
 
-      <ul>
-      <% @infomsg.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+    <ul>
+    <% @infomsg.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <p>
   <strong><%= t('activerecord.attributes.infomsg.effective_date') %>:</strong>
@@ -34,7 +33,6 @@
 
 <hr>
 
-
 <%= form_tag action='delete_by_admin' do %>
   <%= hidden_field :id, :trg, :value => @infomsg.id %>
 
@@ -42,5 +40,4 @@
   <div>
     <%= submit_tag('削除') %>
   </div>
-
 <% end %>

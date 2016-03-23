@@ -5,6 +5,7 @@ class CreateInspectionResults < ActiveRecord::Migration
       t.references :user, index: true
       t.decimal :latitude, precision: 11, scale: 8, null: true
       t.decimal :longitude, precision: 11, scale: 8, null: true
+      t.date :processingdate
 
       t.timestamps
     end

@@ -187,12 +187,15 @@ ja:
       two_words_connector: と
       words_connector: と
   time:
-    am: 午前
+    am: AM
     formats:
       default: ! '%Y年%m月%d日 %H時%M分'
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
       short: ! '%y/%m/%d %H:%M'
       target_yearmonth: '%Y年%m月'
-      candidate: '%m月%d日 %H時'
-      confirm: '%m月%d日 %H時'
-    pm: 午後
+      candidate: '%m月%d日 %p%l時'
+      candidate_long: '%Y年%m月%d日 %p%l時'
+      confirm: '%m月%d日 %p%l時'
+      confirm_long: '%Y年%m月%d日 %p%l時'
+      start_date: '%Y年%m月%d日'
+    pm: PM

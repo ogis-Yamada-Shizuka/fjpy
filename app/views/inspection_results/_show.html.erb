@@ -4,6 +4,11 @@
 </p>
 
 <p>
+  <strong><%= t('activerecord.attributes.inspection_result.processingdate') %>:</strong>
+  <%= l inspection_result.processingdate %>
+</p>
+
+<p>
   <strong><%= t('activerecord.attributes.approval.signature') %>:</strong>
   <% if inspection_result.approval.present? %>
     <%= raw inspection_result.approval.signature %>

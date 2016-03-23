@@ -19,5 +19,4 @@ class InspectionResult < ActiveRecord::Base
       marker.json(title: inspection_result.user_id.to_s)
     end
   end
-
 end

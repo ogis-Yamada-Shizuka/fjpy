@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160217030958) do
     t.integer  "user_id"
     t.decimal  "latitude",               precision: 11, scale: 8
     t.decimal  "longitude",              precision: 11, scale: 8
+    t.date     "processingdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,7 +120,6 @@ ActiveRecord::Schema.define(version: 20160217030958) do
     t.integer  "service_id"
     t.integer  "schedule_status_id"
     t.integer  "user_id"
-    t.date     "processingdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

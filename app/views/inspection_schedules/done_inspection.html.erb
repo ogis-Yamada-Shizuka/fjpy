@@ -1,15 +1,22 @@
 <h1><%= t('views.inspection_schedule.done_inspection') %></h1>
 
-<%= render 'show', inspection_schedule: @inspection_schedule %>
+<%= show_system_model(@inspection_schedule.equipment) %>
+<%= show_serial_number(@inspection_schedule.equipment) %>
+<%= show_place(@inspection_schedule.equipment) %>
 
-<hr>
+<%= show_target_yearmonth %>
+
+<p>
+  <strong><%= t('activerecord.attributes.inspection_result.user_id') %>:</strong>
+  <%= @inspection_result.user.name %>
+</p>
+<p>
+   <strong><%= t('activerecord.attributes.inspection_result.processingdate') %>:</strong>
+  <%= l @inspection_result.processingdate %>
+</p>
 
 <table>
-  <tr>
-    <td><%= t('activerecord.attributes.inspection_result.user_id') %>:<%= @inspection_result.user.name %></td>
-    <td><%= t('activerecord.attributes.inspection_result.updated_at') %>:<%= l @inspection_result.updated_at %></td>
-  </tr>
-  <tr><td colspan="2">
+    <tr><td colspan="2">
     <table border=1>
       <tr>
         <th><%= t('activerecord.attributes.check.weather_id') %></th>
@@ -52,10 +59,10 @@
   <div>
     <script type="text/javascript" src="./libs/fabric.js"></script>
     <canvas id="canvas" width="300" height="300" style="border:1px solid;">ご利用のブラウザでは署名欄は表示できません。</canvas>
-  　<script type="text/javascript">
-　    <!--　 Canvasオブジェクトを作成　-->
-　      var canvas = new fabric.Canvas('canvas');
-      <!--　ここにコードを書いていきます。　-->
+    <script type="text/javascript">
+      <!-- Canvasオブジェクトを作成 -->
+        var canvas = new fabric.Canvas('canvas');
+      <!-- ここにコードを書いていきます。-->
         canvas.isDrawingMode = true;
     </script>
     <button type="button" onclick="canvas.clear().renderAll()">クリア</button>

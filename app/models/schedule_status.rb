@@ -8,20 +8,14 @@ class ScheduleStatus < ActiveRecord::Base
   class << self
     Constants::ScheduleStatus.constants.each_with_index do |id, i|
       define_method "of_#{id.to_s.sub(/ID_/, '').downcase}" do
-        const_get("Constants::ScheduleStatus::#{Constants::ScheduleStatus.constants[i].to_s}")
+        const_get("Constants::ScheduleStatus::#{Constants::ScheduleStatus.constants[i]}")
       end
     end
 
-    def inspection_target_ids
-      inspection_target.ids
-    end
+    delegate :ids, to: :inspection_target, prefix: true
 
-    def done_ids
-      done.ids
-    end
+    delegate :ids, to: :done, prefix: true
 
-    def not_done_ids
-      not_done.ids
-    end
+    delegate :ids, to: :not_done, prefix: true
   end
 end

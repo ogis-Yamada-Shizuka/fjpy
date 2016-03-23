@@ -16,14 +16,18 @@
 
 <div class="row">
   <div class="col-md-3 col-sm-3 col-xs-4">
-    <%= render 'show', inspection_schedule: @inspection_schedule %>
+    <%= show_system_model(@inspection_schedule.equipment) %>
+    <%= show_serial_number(@inspection_schedule.equipment) %>
+    <%= show_place(@inspection_schedule.equipment) %>
+    <%= show_target_yearmonth %>
+    <%= show_confirm_datetime %>
+    <%= show_confirm_datetime_memo %>
   </div>
 
-    <%= render 'inspection_results/form_do_inspection', f: f %>
-
+  <%= render 'inspection_results/form_do_inspection', f: f %>
 
   <div class="actions">
-    <%= f.submit "点検実績登録" %>
+    <%= f.submit t('views.inspection_schedule.do_inspecrion') %>
   </div>
 
 <% end %>
