@@ -339,6 +339,14 @@ module InspectionScheduleHelper
     )
   end
 
+  # 点検依頼者
+  def show_yes_branch_staff_orderd
+    show_attribute(
+      t('views.inspection_schedule.yes_branch_staff_orderd'),
+      (@inspection_schedule.user.name if @inspection_schedule.user.present?)
+    )
+  end
+
   # 一覧上の[担当]マーク
   def yes_branch_staff_mark(inspection_schedule)
     if inspection_schedule.user.present? && inspection_schedule.user.id == current_user.id

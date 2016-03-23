@@ -48,6 +48,7 @@ ja:
       schedules_by_place: 同一設置場所の点検予定一覧
       yes_branch_staff: 担当
       yes_branch_staff_mark: ＊
+      yes_branch_staff_orderd: 発注窓口 
     equipment:
       index: 所有機一覧
       new: 所有機の登録
