@@ -187,7 +187,7 @@ ja:
       two_words_connector: と
       words_connector: と
   time:
-    am: AM
+    am: 午前
     formats:
       default: ! '%Y年%m月%d日 %H時%M分'
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
@@ -198,4 +198,4 @@ ja:
       confirm: '%m月%d日 %p%l時'
       confirm_long: '%Y年%m月%d日 %p%l時'
       start_date: '%Y年%m月%d日'
-    pm: PM
+    pm: 午後
